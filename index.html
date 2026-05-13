@@ -7349,28 +7349,19 @@ header{border-bottom:none!important}
 </nav>
 <nav aria-label="Regional language navigation" class="yyk-terminal-lang" id="yyk-i18n-nav">
 <a href="#" class="yyk-terminal-lang-link i18n-link active" data-lang="en">EN</a>
-<a href="#" class="yyk-terminal-lang-link i18n-link" data-lang="ko">KR</a>
-<a href="#" class="yyk-terminal-lang-link i18n-link" data-lang="ja">JP</a>
-<a href="#" class="yyk-terminal-lang-link i18n-link" data-lang="tw">TW</a>
-<a href="#" class="yyk-terminal-lang-link i18n-link" data-lang="cn">CN</a>
+<span class="yyk-terminal-sep">|</span>
+<a href="#" class="yyk-terminal-lang-link i18n-link" data-lang="ko">한국어</a>
+<span class="yyk-terminal-sep">|</span>
+<a href="#" class="yyk-terminal-lang-link i18n-link" data-lang="ja">日本語</a>
+<span class="yyk-terminal-sep">|</span>
+<a href="#" class="yyk-terminal-lang-link i18n-link" data-lang="tw">繁體中文</a>
+<span class="yyk-terminal-sep">|</span>
+<a href="#" class="yyk-terminal-lang-link i18n-link" data-lang="cn">简体中文</a>
 </nav>
 </div>
 <span data-i18n="auto.t19"><!-- TIER-1 CONTROL PANEL — SAP/TRADING-DESK STYLE CONTEXT NAV --></span>
 <nav class="site-nav yyk-hard-primary-tabs"><a class="nav-link d21-hard-tab" data-hard-nav="true" data-i18n="auto.t20" href="#directive21-strategic-reserve">CRITICAL MINERALS</a><a class="nav-link d22-hard-tab" data-hard-nav="true" data-i18n="auto.t21" href="#directive22-japan-tech-standard">JAPAN HIGH-TECH</a><a class="nav-link d23-hard-tab" data-hard-nav="true" data-i18n="auto.t22" href="#directive23-taiwan-silicon-shield">TAIWAN FOUNDRY</a><a class="nav-link d24-hard-tab" data-hard-nav="true" data-i18n="auto.t23" href="#directive24-china-resource-monolith">CHINA RESOURCE</a><a class="nav-link d25-hard-tab" data-hard-nav="true" data-i18n="auto.t24" href="#directive25-apac-interdependency">APAC RISK</a></nav></header>
-<div aria-label="Tier-1 mode control panel" id="yykAuditControlPanel" role="navigation">
-<div class="yyk-audit-wrap">
-<div class="yyk-audit-top">
-<div><div class="yyk-audit-kicker" data-i18n="auto.t25">Tier-1 Control Panel</div><div class="yyk-audit-title" data-i18n="auto.t26" id="yykAuditModeTitle">Procurement Workspace</div></div>
-<div aria-label="Mode switch" class="yyk-audit-modes" role="tablist">
-<button class="yyk-mode-btn active" data-i18n="auto.t27" data-yyk-mode="procurement" type="button">Procurement</button>
-<button class="yyk-mode-btn" data-i18n="auto.t28" data-yyk-mode="engineering" type="button">Engineering</button>
-<button class="yyk-mode-btn" data-i18n="auto.t29" data-yyk-mode="compliance" type="button">Compliance</button>
-</div>
-</div>
-<div class="yyk-audit-context" data-i18n="auto.t30" id="yykAuditModeContext">RFQ intake, buyer evidence, due-diligence readiness and commercial document access.</div>
-<div aria-label="Mode actions" class="yyk-control-actions" id="yykAuditControlActions"></div>
-</div>
-</div>
+
 <span data-i18n="auto.t31"><!-- YYK-D27-FINAL-ARCHITECTURE-PLACEMENT: Header/Terminal Command Rail -> Final Architecture Map -> Executive Decision Layer -> Workspace/Product/Compliance/Logistics -> Smart RFQ. No floating controls. --></span>
 <section aria-label="Final SEO and UX architecture blueprint" data-placement="after-command-rail-before-executive" id="yykFinalArchitecture">
 <div class="yyk-arch-wrap">
@@ -7401,6 +7392,24 @@ header{border-bottom:none!important}
 <div class="yyk-arch-step"><strong data-i18n="auto.t62">04 Execute</strong><span data-i18n="auto.t63">Only controlled RFQ proceeds; missing evidence triggers No Quote Release.</span><em data-i18n="auto.t64">Smart RFQ</em></div>
 </div>
 </article>
+<!-- Relocated Audit Panel -->
+<div class="yyk-relocated-audit" style="margin-top: 40px;">
+<div aria-label="Tier-1 mode control panel" id="yykAuditControlPanel" role="navigation">
+<div class="yyk-audit-wrap">
+<div class="yyk-audit-top">
+<div><div class="yyk-audit-kicker" data-i18n="auto.t25">Tier-1 Control Panel</div><div class="yyk-audit-title" data-i18n="auto.t26" id="yykAuditModeTitle">Procurement Workspace</div></div>
+<div aria-label="Mode switch" class="yyk-audit-modes" role="tablist">
+<button class="yyk-mode-btn active" data-i18n="auto.t27" data-yyk-mode="procurement" type="button">Procurement</button>
+<button class="yyk-mode-btn" data-i18n="auto.t28" data-yyk-mode="engineering" type="button">Engineering</button>
+<button class="yyk-mode-btn" data-i18n="auto.t29" data-yyk-mode="compliance" type="button">Compliance</button>
+</div>
+</div>
+<div class="yyk-audit-context" data-i18n="auto.t30" id="yykAuditModeContext">RFQ intake, buyer evidence, due-diligence readiness and commercial document access.</div>
+<div aria-label="Mode actions" class="yyk-control-actions" id="yykAuditControlActions"></div>
+</div>
+</div>
+</div>
+
 </div>
 <div aria-label="SEO intent clusters" class="yyk-arch-seo">
 <a data-i18n="auto.t65" href="#product-architecture">SEO Cluster: 6N / 7N high-purity metal supplier</a>
@@ -10870,12 +10879,12 @@ body[data-yyk-v15-role="buyer"] #yykTradeDecisionV15 .for-supplier,body[data-yyk
 </section><footer class="footer footer-tier1" id="contact" style="width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);background:#000;overflow:hidden;">
 <div aria-label="APAC technical status" class="footer-tech-status-row" role="status">
 <div class="footer-tech-status-inner">
-<div class="footer-tech-left"><span data-i18n="auto.t2800">SYSTEM OPERATIONAL </span><span class="footer-tech-dot animate-pulse">●</span></div>
+<div class="footer-tech-left"><span data-i18n="auto.t2800">SYSTEM OPERATIONAL </span><span class="footer-tech-dot animate-pulse" style="font-family: monospace;">■</span></div>
 <div class="footer-tech-center" data-i18n="auto.t2801" id="footerTechClock">SEOUL --:-- | TOKYO --:-- | TAIPEI --:-- | SHANGHAI --:--</div>
 <div class="footer-tech-right" data-i18n="auto.t2802">APAC LOT CONTROL DATA FEED</div>
 </div>
 </div>
-<div aria-label="Live terminal system status" id="yykFooterSystemStatus"><span aria-hidden="true" class="yyk-live-dot"></span><span><span data-i18n="auto.t2803">System Status: </span><span class="yyk-green" data-i18n="auto.t2804">Operational</span><span data-i18n="auto.t2805"> | Compliance Sync: </span><span class="yyk-green">100%</span></span></div>
+<div aria-label="Live terminal system status" id="yykFooterSystemStatus"><span aria-hidden="true" class="yyk-live-dot" style="border-radius: 0; padding-right: 4px; display: inline-flex; align-items: center; justify-content: center;">■</span><span><span data-i18n="auto.t2803">System Status: </span><span class="yyk-green" data-i18n="auto.t2804">Operational</span><span data-i18n="auto.t2805"> | Compliance Sync: </span><span class="yyk-green">100%</span></span></div>
 <div class="wrap footer-grid">
 <div>
 <div class="kicker" data-i18n="auto.t2806">GLOBAL TRADING COMPLIANCE</div>
@@ -10913,10 +10922,10 @@ body[data-yyk-v15-role="buyer"] #yykTradeDecisionV15 .for-supplier,body[data-yyk
 <div>
 <h4 data-i18n="auto.t2826">APAC Legal Desk</h4>
 <ul>
-<li><a data-i18n="auto.t2827" href="#yongyeokyo-apac-compliance">Privacy / Data Handling · APAC</a></li>
-<li><a data-i18n="auto.t2828" href="#rfq">Terms of Sale &amp; Delivery · Incoterms 2020</a></li>
-<li><a data-i18n="auto.t2829" href="#compliance-calculator">RCEP Calculator</a></li>
-<li><a data-i18n="auto.t2830" href="#decision-compliance-output">Sustainability &amp; ESG Policy</a></li><li><a data-i18n="auto.t2831" href="#decision-compliance-output">Ethics &amp; ESG Statement</a></li>
+<li><a class="yyk-terminal-link" data-i18n="auto.t2827" href="#yongyeokyo-apac-compliance">Privacy / Data Handling · APAC</a></li>
+<li><a class="yyk-terminal-link" data-i18n="auto.t2828" href="#rfq">Terms of Sale &amp; Delivery · Incoterms 2020</a></li>
+<li><a class="yyk-terminal-link" data-i18n="auto.t2829" href="#compliance-calculator">RCEP Calculator</a></li>
+<li><a class="yyk-terminal-link" data-i18n="auto.t2830" href="#decision-compliance-output">Sustainability &amp; ESG Policy</a></li><li><a data-i18n="auto.t2831" href="#decision-compliance-output">Ethics &amp; ESG Statement</a></li>
 </ul>
 <div aria-label="Quick PDF Vault" class="yyk-pdf-vault">
 <h4 data-i18n="auto.t2832">Quick PDF Vault</h4>
@@ -13444,9 +13453,9 @@ document.addEventListener("DOMContentLoaded", function(){
 (function(){
  const map = {
    en:'en',
-   kr:'kr',
-   jp:'jp',
-   tw:'cn',
+   ko:'ko',
+   ja:'ja',
+   tw:'tw',
    cn:'cn'
  };
 
@@ -13487,8 +13496,8 @@ document.addEventListener("DOMContentLoaded", function(){
        if(dataLang) {
          targetLang = dataLang;
        } else {
-         if(txt.includes('kr')||txt.includes('한국')) targetLang = 'kr';
-         else if(txt.includes('jp')||txt.includes('日本')) targetLang = 'jp';
+         if(txt.includes('kr')||txt.includes('한국')) targetLang = 'ko';
+         else if(txt.includes('jp')||txt.includes('日本')) targetLang = 'ja';
          else if(txt.includes('tw')||txt.includes('繁')) targetLang = 'tw';
          else if(txt.includes('cn')||txt.includes('简')) targetLang = 'cn';
        }
@@ -13498,8 +13507,8 @@ document.addEventListener("DOMContentLoaded", function(){
        document.querySelectorAll('.region-btn, .lang-btn, .yyk-terminal-lang-link, .i18n-link').forEach(b => b.classList.remove('active'));
        btn.classList.add('active');
        
-       if (window.i18n && typeof window.i18n.setLanguage === 'function') {
-           window.i18n.setLanguage(targetLang);
+       if (window.YYKi18n && typeof window.YYKi18n.setLanguage === 'function') {
+           window.YYKi18n.setLanguage(targetLang);
        }
      });
    });
@@ -16923,10 +16932,10 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     a.className='yyk-return-site-btn';
     a.href='#top';
     a.textContent='Exit to Website';
-    a.addEventListener('click',function(e){e.preventDefault(); closeAllEngines(); var top=q('#top')||document.body; top.scrollIntoView({behavior:'smooth',block:'start'});});
+    a.addEventListener('click',function(e){e.preventDefault(); closeAllEngines(); });
     modes.appendChild(a);
   }
-  function ensureReturnSiteInEngines(){
+  function ensureReturnSiteInEngines(){ return;
     var selectors=['.compliance-head','.product-head','.contact-head','.bcp-head','.yyk-legal-head','.yyk-data-room-head','.yyk-vdr-head','.yyk-supply-chain-head','.yyk-tds-head','.yyk-pricing-head','.yyk-partnership-head'];
     selectors.forEach(function(sel){
       qa(sel).forEach(function(head){
@@ -16936,7 +16945,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
         a.className='yyk-engine-return-site';
         a.href='#top';
         a.textContent='Exit to Website';
-        a.addEventListener('click',function(e){e.preventDefault(); closeAllEngines(); var top=q('#top')||document.body; top.scrollIntoView({behavior:'smooth',block:'start'});});
+        a.addEventListener('click',function(e){e.preventDefault(); closeAllEngines(); });
         if(close && close.parentNode){ close.parentNode.insertBefore(a, close); }
         else { head.appendChild(a); }
       });
@@ -17169,13 +17178,13 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     qa('.compliance-engine.active,.product-engine.active,.contact-engine.active,.yyk-bcp-engine.active,.yyk-legal-engine.active,.yyk-data-room-engine.active,.yyk-vdr-engine.active,.yyk-supply-chain-engine.active,.yyk-tds-engine.active,.yyk-pricing-engine.active,.yyk-partnership-engine.active,.modal.active,.sogo-drawer.active').forEach(function(el){el.classList.remove('active');el.setAttribute('aria-hidden','true')});
     document.body.classList.remove('apex-modal-open');
   }
-  function moveExitToLeftActions(){
+  function moveExitToLeftActions(){ return;
     var panel=q('#yykAuditControlPanel'), actions=q('#yykAuditControlPanel .yyk-control-actions');
     if(!panel || !actions) return;
     var exit=q('#yykAuditReturnSite') || q('#yykAuditControlPanel .yyk-return-site-btn');
     if(!exit){
       exit=document.createElement('a');
-      exit.id="yykAuditReturnSite__dup2" data-original-id="yykAuditReturnSite__d27clean2" data-original-id="yykAuditReturnSite";
+      exit.id='yykAuditReturnSite';
       exit.className='yyk-return-site-btn';
       exit.href='#top';
       exit.textContent='Exit to Website';
@@ -17430,7 +17439,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     var exit=q('#yykAuditReturnSite') || q('#yykAuditControlPanel .yyk-return-site-btn');
     if(!exit){
       exit=document.createElement('a');
-      exit.id="yykAuditReturnSite__dup3" data-original-id="yykAuditReturnSite__d27clean3" data-original-id="yykAuditReturnSite";
+      exit.id='yykAuditReturnSite';
       exit.className='yyk-return-site-btn';
       exit.href='#top';
       exit.textContent='Exit to Website';
@@ -17439,8 +17448,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     exit.onclick=function(e){
       e.preventDefault();
       closeAll();
-      var top=q('#top')||document.body;
-      top.scrollIntoView({behavior:'smooth',block:'start'});
+      
     };
     var exec=q('#yykAuditExecutiveBtn') || q('#yykAuditControlPanel .yyk-executive-primary-btn') || q('#yykAuditControlPanel .yyk-v32-exec-btn');
     if(!exec){
@@ -17679,6 +17687,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     document.body.appendChild(tip);
     return tip;
   }
+  var yykTipTimeout;
   function attachIntel(el){
     if(!el || el.__yykHoverIntel) return;
     el.__yykHoverIntel=true;
@@ -17687,18 +17696,23 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     if(!INTEL[raw]) return;
     el.setAttribute('data-hover-intel','true');
     el.setAttribute('aria-describedby','yykHoverIntelTooltip');
-    el.addEventListener('mouseenter',function(){show(el,raw)});
-    el.addEventListener('focus',function(){show(el,raw)});
-    el.addEventListener('mousemove',function(){position(el)});
-    el.addEventListener('mouseleave',hide);
-    el.addEventListener('blur',hide);
+    var tip = ensureTip();
+    if(!tip.__hoverInit) {
+        tip.__hoverInit = true;
+        tip.addEventListener('mouseenter', function(){ clearTimeout(yykTipTimeout); });
+        tip.addEventListener('mouseleave', function(){ yykTipTimeout = setTimeout(hide, 300); });
+    }
+    el.addEventListener('mouseenter',function(){clearTimeout(yykTipTimeout); show(el,raw)});
+    el.addEventListener('focus',function(){clearTimeout(yykTipTimeout); show(el,raw)});
+    el.addEventListener('mouseleave',function(){yykTipTimeout = setTimeout(hide, 300);});
+    el.addEventListener('blur',function(){yykTipTimeout = setTimeout(hide, 300);});
   }
   function show(el,label){
     var data=INTEL[label], tip=ensureTip();
     if(!data) return;
     q('.yyk-hover-intel-title',tip).textContent=label;
     q('.yyk-hover-intel-status',tip).textContent=data.status;
-    q('.yyk-hover-intel-body',tip).textContent=data.body;
+    q('.yyk-hover-intel-body',tip).innerHTML=data.body;
     q('.yyk-hover-intel-kv:nth-child(1) span',tip).textContent=data.risk;
     q('.yyk-hover-intel-kv:nth-child(2) span',tip).textContent=data.evidence;
     position(el);
@@ -17706,8 +17720,8 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
   }
   function position(el){
     var tip=ensureTip(), r=el.getBoundingClientRect(), pad=14;
-    var w=tip.offsetWidth || 360, h=tip.offsetHeight || 150;
-    var left=Math.min(Math.max(r.left, pad), window.innerWidth-w-pad);
+    var h=tip.offsetHeight || 150;
+    var left=r.left;
     var top=r.bottom+10;
     if(top+h+pad>window.innerHeight) top=Math.max(pad,r.top-h-10);
     tip.style.left=left+'px';
@@ -19234,7 +19248,7 @@ button:focus,button:focus-visible,a:focus,a:focus-visible,input:focus,select:foc
     var exit=q('#yykAuditReturnSite') || q('#yykAuditControlPanel .yyk-return-site-btn');
     if(!exit){
       exit=document.createElement('a');
-      exit.id="yykAuditReturnSite__dup7" data-original-id="yykAuditReturnSite__d27clean7" data-original-id="yykAuditReturnSite";
+      exit.id='yykAuditReturnSite';
       exit.className='yyk-return-site-btn';
       exit.href='#top';
       exit.textContent='Exit to Website';
@@ -19243,8 +19257,7 @@ button:focus,button:focus-visible,a:focus,a:focus-visible,input:focus,select:foc
     exit.onclick=function(e){
       e.preventDefault();
       closeAll();
-      var top=q('#top')||document.body;
-      top.scrollIntoView({behavior:'smooth',block:'start'});
+      
     };
   }
   function flattenRail(){
@@ -19511,7 +19524,7 @@ button:focus,button:focus-visible,a:focus,a:focus-visible,input:focus,select:foc
     var exit=q('#yykAuditReturnSite') || q('#yykAuditControlPanel .yyk-return-site-btn');
     if(!exit){
       exit=document.createElement('a');
-      exit.id="yykAuditReturnSite__dup8" data-original-id="yykAuditReturnSite__d27clean8" data-original-id="yykAuditReturnSite";
+      exit.id='yykAuditReturnSite';
       exit.className='yyk-return-site-btn';
       exit.href='#top';
       exit.textContent='Exit to Website';
@@ -19520,8 +19533,7 @@ button:focus,button:focus-visible,a:focus,a:focus-visible,input:focus,select:foc
     exit.onclick=function(e){
       e.preventDefault();
       closeAll();
-      var top=q('#top')||document.body;
-      top.scrollIntoView({behavior:'smooth',block:'start'});
+      
     };
     var exec=q('#yykAuditExecutiveBtn') || q('#yykAuditControlPanel .yyk-executive-primary-btn') || q('#yykAuditControlPanel .yyk-v32-exec-btn');
     if(!exec){
@@ -20737,7 +20749,7 @@ button:focus,button:focus-visible,a:focus,a:focus-visible,input:focus,select:foc
     if(nav && !nav.querySelector('[data-d25-apac-link]')){
       var a=document.createElement('a');
       a.href='#directive25-apac-interdependency';
-      a.textContent='APAC MATRIX';
+      a.textContent='APAC MATRIX'; a.setAttribute('data-i18n','auto.t2471');
       a.className='nav-link';
       a.setAttribute('data-d25-apac-link','true');
       nav.appendChild(a);
@@ -21416,4 +21428,82 @@ button:focus,button:focus-visible,a:focus,a:focus-visible,input:focus,select:foc
 </style>
 <link rel="stylesheet" href="css/overrides.css">
 <script src="js/i18n.js?v=2"></script>
+
+<!-- YYK EXIT BTN FIX: HOSTED PARITY -->
+<style>
+/* Ensure .yyk-audit-modes allows the EXIT TO WEBSITE button as 4th item */
+#yykAuditControlPanel .yyk-audit-modes{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  gap:8px!important;
+  grid-template-columns:unset!important;
+}
+#yykAuditReturnSite.yyk-return-site-btn{
+  display:inline-flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  flex:0 0 auto!important;
+  min-height:36px!important;
+  padding:8px 11px!important;
+  border:1px solid rgba(201,162,39,.62)!important;
+  background:rgba(201,162,39,.12)!important;
+  color:#fff!important;
+  font-size:11px!important;
+  letter-spacing:.10em!important;
+  text-transform:uppercase!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  text-decoration:none!important;
+  white-space:nowrap!important;
+  cursor:pointer!important;
+  order:999!important;
+}
+#yykAuditReturnSite.yyk-return-site-btn:hover{
+  background:rgba(201,162,39,.22)!important;
+  border-color:rgba(201,162,39,.80)!important;
+}
+</style>
+<script>
+(function(){
+  function injectExitBtn(){
+    var modes = document.querySelector('#yykAuditControlPanel .yyk-audit-modes');
+    if(!modes) return;
+    var existing = document.getElementById('yykAuditReturnSite');
+    if(existing){
+      // Make sure it's in modes, visible, and properly styled
+      if(existing.parentNode !== modes) modes.appendChild(existing);
+      return;
+    }
+    var a = document.createElement('a');
+    a.id = 'yykAuditReturnSite';
+    a.className = 'yyk-return-site-btn';
+    a.href = '#top';
+    a.textContent = 'Exit to Website';
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      document.querySelectorAll('.compliance-engine.active,.product-engine.active,.contact-engine.active,.modal.active,.sogo-drawer.active').forEach(function(el){
+        el.classList.remove('active');
+      });
+      document.body.classList.remove('apex-modal-open');
+      var top = document.getElementById('top') || document.body;
+      top.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+    modes.appendChild(a);
+  }
+  // Run after everything else
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){
+      setTimeout(injectExitBtn, 0);
+      setTimeout(injectExitBtn, 300);
+      setTimeout(injectExitBtn, 1000);
+    });
+  } else {
+    setTimeout(injectExitBtn, 0);
+    setTimeout(injectExitBtn, 300);
+    setTimeout(injectExitBtn, 1000);
+  }
+})();
+</script>
+
 </body></html>

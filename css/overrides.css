@@ -298,3 +298,79 @@ nav * {
   color: #fff !important;
 }
 
+
+
+/* BLOCK 1: Global styles, colors, hover */
+button, .btn, .yyk-terminal-btn, .yyk-tds-btn, .yyk-legal-btn, .yyk-dr-btn, .yyk-vdr-btn, .yyk-partnership-btn, .yyk-qc-lab-btn, .yyk-strip-action, .yyk-phase-card, .yyk-exec-action, .rt-btn, .sogo-option, .yyk-proof-action,
+[class$="-tab"], [class$="-card"], .hyb-rail-card, .hyb-kpi, .yyk-euc-checker, .yyk-vdr-checker {
+    border: 1px solid rgba(201, 162, 39, 0.45) !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+button:hover, .btn:hover, .yyk-terminal-btn:hover, [class$="-tab"]:hover, [class$="-card"]:hover, .yyk-strip-action:hover, .yyk-tds-btn:hover, .yyk-legal-btn:hover, .yyk-dr-btn:hover, .yyk-vdr-btn:hover, .yyk-partnership-btn:hover, .yyk-qc-lab-btn:hover {
+    border: 1px solid rgba(201, 162, 39, 0.95) !important;
+    box-shadow: 0 0 10px rgba(201, 162, 39, 0.15) !important;
+    background-color: rgba(201, 162, 39, 0.05) !important;
+}
+
+[class$="-engine"], [class$="-shell"], [class$="-modal"], .yyk-data-room-engine, .rt-overlay, .sogo-overlay, .yyk-bcp-window {
+    background: var(--bg2) !important;
+    color: var(--text) !important;
+}
+
+[class$="-tab"] {
+    color: var(--text) !important;
+}
+[class$="-tab"].active, [class$="-tab"]:hover {
+    color: var(--gold) !important;
+}
+
+/* BLOCK 2.2: Remove top green bar on panels */
+.yyk-stage-exitbar, .yyk-legal-head, .yyk-data-room-head, .yyk-tds-head, .yyk-vdr-head, .yyk-supply-chain-head {
+    border-top: none !important;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.3) !important;
+    background: transparent !important;
+}
+
+
+/* BLOCK 4: Header Adjustments */
+.yyk-terminal-header {
+    margin-top: 1.5cm !important;
+    border-bottom: none !important;
+}
+
+.yyk-hard-primary-tabs {
+    justify-content: flex-start !important;
+    padding-left: 22px !important;
+}
+
+.yyk-hard-primary-tabs .nav-link {
+    font-size: 14px !important;
+}
+
+/* BLOCK 5: Map and Logistics */
+.yyk-port-card {
+    bottom: 50px !important;
+}
+
+.yyk-port-card strong, .yyk-port-card span {
+    color: #9EB37B !important;
+    font-weight: 300 !important;
+    border: 1px solid rgba(158, 179, 123, 0.5) !important;
+    padding: 2px 6px !important;
+    margin-bottom: 4px !important;
+    display: inline-block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.yyk-geo-card, .yyk-hub-card {
+    border-color: rgba(201, 162, 39, 0.45) !important;
+}
+
+svg path[stroke="#10b981"], svg path[style*="stroke: #10b981"], svg path[style*="stroke:#10b981"] {
+    stroke-dasharray: 8 6 !important;
+}
+
+.yyk-geo-card { min-width: 0; word-break: break-word; overflow-wrap: break-word; }
