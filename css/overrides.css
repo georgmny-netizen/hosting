@@ -1,0 +1,300 @@
+/* ============================================================
+   YONGYEOKYO APAC 6N — Client Override Layer
+   ============================================================
+   Phase 2 override file. Loaded LAST after all monolith styles.
+   To rollback: remove the <link> tag from CANONICAL.html.
+   
+   Table of Contents:
+   1. GREEN → GOLD/SILVER color migration
+   2. Double border / outline removal
+   3. Button flash / animation removal
+   4. Exit / Return button hiding
+   5. Navigation tab adjustments
+   6. Workspace positioning
+   ============================================================ */
+
+
+/* ==========================================================
+   1. GREEN → GOLD/SILVER — Color Migration
+   ==========================================================
+   Replace all green terminal glow (rgba(0,255,136,...))
+   with warm gold/silver tones matching the Mitsubishi brand.
+   EXCEPTION: Footer system indicators (.yyk-green in #yykFooterSystemStatus)
+   are intentionally left green — they indicate live system status.
+   ========================================================== */
+
+/* Override CSS custom properties at the root level */
+:root {
+  --yyk-terminal-green: #c9a227 !important;
+  --yyk-terminal-green-dim: rgba(201, 162, 39, .34) !important;
+}
+
+/* Green APAC clock widget → gold tones */
+.yyk-green-apac-clock {
+  border-top-color: rgba(201, 162, 39, .24) !important;
+  border-bottom-color: rgba(201, 162, 39, .24) !important;
+  text-shadow:
+    0 0 5px rgba(201, 162, 39, .85),
+    0 0 14px rgba(201, 162, 39, .38) !important;
+}
+
+/* Green glow effects on header elements → gold */
+.yyk-terminal-brand {
+  text-shadow:
+    0 0 5px rgba(201, 162, 39, .9),
+    0 0 14px rgba(201, 162, 39, .48) !important;
+}
+
+/* Terminal nav link active glow → gold */
+.yyk-terminal-link.active {
+  text-shadow:
+    0 0 5px rgba(201, 162, 39, .78),
+    0 0 14px rgba(201, 162, 39, .34) !important;
+}
+
+/* Terminal group prefix (SUPPLY: / PRODUCT: / DEAL:) borders → gold */
+.yyk-terminal-group {
+  border-top-color: rgba(201, 162, 39, .22) !important;
+  border-bottom-color: rgba(201, 162, 39, .22) !important;
+}
+
+/* Terminal separator glow → gold */
+.yyk-terminal-sep {
+  text-shadow:
+    0 0 4px rgba(201, 162, 39, .85),
+    0 0 10px rgba(201, 162, 39, .48),
+    0 0 20px rgba(201, 162, 39, .25) !important;
+}
+
+/* Active terminal link animation → gold instead of green */
+@keyframes yykTerminalPulseGold {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(201, 162, 39, .95), 0 0 16px rgba(201, 162, 39, .48);
+  }
+  50% {
+    opacity: .36;
+    transform: scale(.82);
+    text-shadow: 0 0 3px rgba(201, 162, 39, .55);
+  }
+}
+
+/* Port dots on logistics map → warm gold instead of neon green */
+#yykFooterLogisticsMap .port-dot {
+  fill: #c9a227 !important;
+  stroke: #f5e6b8 !important;
+}
+
+/* EXCEPTION: Keep footer system status indicators green */
+#yykFooterSystemStatus .yyk-green {
+  color: #c7d6b3 !important;
+  text-shadow: 0 0 12px rgba(158, 179, 123, .18) !important;
+}
+#yykFooterSystemStatus.yyk-live .yyk-green {
+  color: #c7d6b3 !important;
+  text-shadow: 0 0 16px rgba(158, 179, 123, .28) !important;
+}
+
+
+/* ==========================================================
+   2. DOUBLE BORDER / OUTLINE REMOVAL
+   ==========================================================
+   Remove double borders that appear on click/focus for 
+   interactive elements. Keep a subtle single border only.
+   ========================================================== */
+
+/* Remove cyan/green focus outlines, replace with subtle gold */
+button:focus-visible,
+a:focus-visible,
+.micro-btn:focus-visible,
+.nav-link:focus-visible,
+.sogo-primary-cta:focus-visible,
+.yyk-vdr-tab:focus-visible,
+.yyk-vdr-action:focus-visible,
+.yyk-control-action:focus-visible,
+.yyk-mode-btn:focus-visible,
+.yyk-executive-primary-btn:focus-visible,
+[role="button"]:focus-visible {
+  outline: 1px solid rgba(201, 162, 39, .55) !important;
+  outline-offset: 2px !important;
+  box-shadow: none !important;
+}
+
+/* Remove all double-border artifacts on active/focus states */
+.yyk-control-action:active,
+.yyk-mode-btn:active,
+.yyk-executive-primary-btn:active,
+.spec-tab:active,
+.yyk-legal-tab:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Table panels: no outline on focus */
+.table-panel:focus,
+.table-panel:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+/* ==========================================================
+   3. BUTTON FLASH / ANIMATION REMOVAL
+   ==========================================================
+   Remove harsh blinking/pulsing animations on buttons
+   when switching modes or states.
+   ========================================================== */
+
+/* Kill any pulsing or flashing on mode buttons */
+.yyk-mode-btn,
+.yyk-control-action,
+.yyk-executive-primary-btn {
+  animation: none !important;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+}
+
+/* Suppress any remaining keyframe-based flickers */
+.yyk-mode-btn.active,
+.yyk-control-action.active {
+  animation: none !important;
+}
+
+
+/* ==========================================================
+   4. EXIT / RETURN BUTTON HIDING
+   ==========================================================
+   Hide all "Exit to Website" / "Return to main site" controls.
+   These confuse users on a single-page application.
+   ========================================================== */
+
+.yyk-return-to-site,
+.yyk-back-to-site,
+.return-to-site,
+.yyk-back-main,
+.yyk-modal-back,
+.yyk-return-site-btn,
+.yyk-return-site-control,
+[data-return-to-site],
+button[data-return-to-site] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Also hide the "Return to main site" bar that JS creates */
+[aria-label="Return to main site"] {
+  display: none !important;
+}
+
+
+/* ==========================================================
+   5. NAVIGATION TAB ADJUSTMENTS
+   ==========================================================
+   - Equalize font sizes across CRITICAL MINERALS / JAPAN / etc.
+   - Remove gold underline from header
+   - Adjust top panel spacing
+   ========================================================== */
+
+/* Equalize all hard-tab font sizes (were 10px, now 11px uniform) */
+header .yyk-hard-primary-tabs .nav-link[data-hard-nav="true"] {
+  font-size: 11px !important;
+  letter-spacing: .10em !important;
+  padding: 9px 12px !important;
+}
+
+/* Remove gold underline from header border-bottom */
+header {
+  border-bottom: none !important;
+}
+
+/* Lower the top panel area slightly (~15px extra padding) */
+header .yyk-terminal-header {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+/* Remove any box-shadow from header and nav */
+header,
+header *,
+nav,
+nav * {
+  box-shadow: none !important;
+}
+
+
+/* ==========================================================
+   6. WORKSPACE / CONTROL PANEL POSITIONING
+   ==========================================================
+   Ensure the Tier-1 Control Panel is NOT sticky/fixed
+   and flows naturally in the document.
+   ========================================================== */
+
+#yykAuditControlPanel {
+  position: relative !important;
+  top: auto !important;
+}
+
+/* Ensure the return-site control doesn't float */
+.yyk-return-site-control {
+  position: relative !important;
+  top: auto !important;
+}
+
+/* Mode workspace should have proper spacing */
+#yykAuditModeWorkspace {
+  margin-top: 0 !important;
+  padding-top: 20px !important;
+}
+
+
+/* ==========================================================
+   END OF PHASE 2 OVERRIDE LAYER
+   ========================================================== */
+
+
+/* ==========================================================
+   7. LANGUAGE SWITCHER (Phase 3 — i18n)
+   ==========================================================
+   Override monolith rules that hide/break the language nav.
+   The monolith CSS already positions .yyk-terminal-lang
+   correctly in the header grid — we just ensure our links
+   are visible, styled, and clickable.
+   ========================================================== */
+
+/* Ensure the language nav is visible and interactive */
+#yyk-i18n-nav {
+  display: flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  z-index: 100 !important;
+}
+
+/* Language buttons — use i18n-link for JS targeting */
+#yyk-i18n-nav .i18n-link {
+  display: inline-flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Active state — gold highlight */
+#yyk-i18n-nav .i18n-link.active {
+  border-color: rgba(201, 162, 39, .58) !important;
+  background: rgba(201, 162, 39, .10) !important;
+  color: #fff !important;
+}
+
+/* Hover state — subtle gold */
+#yyk-i18n-nav .i18n-link:hover {
+  border-color: rgba(201, 162, 39, .45) !important;
+  background: rgba(201, 162, 39, .06) !important;
+  color: #fff !important;
+}
+
