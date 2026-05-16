@@ -6,3 +6,20 @@ section[id], div[id], article[id] { scroll-margin-top: 100px !important; }
 
 /* Center tooltip scaling animation */
 .yyk-hover-intel-tooltip { transform-origin: top center !important; }
+
+/* Footer APAC Legal Desk: style compliance buttons as links */
+footer button.yyk-terminal-link,
+.yyk-geo-legal-footer ~ * button.yyk-terminal-link {
+  all: unset;
+  cursor: pointer;
+  color: rgba(201,162,39,.85);
+  font-size: inherit;
+  font-family: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(201,162,39,.3);
+  text-underline-offset: 2px;
+}
+footer button.yyk-terminal-link:hover {
+  color: #c9a227;
+  text-decoration-color: rgba(201,162,39,.7);
+}
