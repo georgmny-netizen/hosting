@@ -188,3 +188,10 @@ footer button.yyk-terminal-link {
     border-color: rgba(0,255,136,.65) !important;
     background: rgba(0,255,136,.1) !important;
 }
+
+/* Hover Badge (LANE ACTIVE popup) */
+#yykFooterLogisticsMap .yyk-apac-badge {
+    border-color: rgba(16,185,129,.46) !important;
+    color: #10b981 !important;
+    text-shadow: 0 0 8px rgba(16,185,129,.4) !important;
+}
