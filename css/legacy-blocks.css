@@ -10795,3 +10795,34 @@ html body .yyk-logistics-dictate .yyk-hub-card .yyk-hub-line:nth-child(3) {
   color: #fff !important;
 }
 
+/* Industries Cards Strict Typography & Alignment */
+#industries .dense-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+#industries .dense-card .card-title {
+  min-height: 2.3em !important;
+}
+#industries .dense-card .kv {
+  margin-top: auto !important;
+}
+#industries .dense-card .kv-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  min-height: 2.8em !important;
+}
+#industries .dense-card .kv-row span:first-child {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+#industries .dense-card .kv-row span:last-child {
+  text-align: right !important;
+  word-break: break-word !important;
+}
+#industries .dense-card .micro-btn {
+  margin-top: 16px !important;
+}
+
