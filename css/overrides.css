@@ -1,11 +1,11 @@
 /* ============================================================
-   YONGYEOKYO APAC 6N — Client Override Layer
+   YONGYEOKYO APAC 6N ??Client Override Layer
    ============================================================
    Phase 2 override file. Loaded LAST after all monolith styles.
    To rollback: remove the <link> tag from CANONICAL.html.
    
    Table of Contents:
-   1. GREEN → GOLD/SILVER color migration
+   1. GREEN ??GOLD/SILVER color migration
    2. Double border / outline removal
    3. Button flash / animation removal
    4. Exit / Return button hiding
@@ -15,12 +15,12 @@
 
 
 /* ==========================================================
-   1. GREEN → GOLD/SILVER — Color Migration
+   1. GREEN ??GOLD/SILVER ??Color Migration
    ==========================================================
    Replace all green terminal glow (rgba(0,255,136,...))
    with warm gold/silver tones matching the Mitsubishi brand.
    EXCEPTION: Footer system indicators (.yyk-green in #yykFooterSystemStatus)
-   are intentionally left green — they indicate live system status.
+   are intentionally left green ??they indicate live system status.
    ========================================================== */
 
 /* Override CSS custom properties at the root level */
@@ -29,7 +29,7 @@
   --yyk-terminal-green-dim: rgba(201, 162, 39, .34) !important;
 }
 
-/* Green APAC clock widget → gold tones */
+/* Green APAC clock widget ??gold tones */
 .yyk-green-apac-clock {
   border-top-color: rgba(201, 162, 39, .24) !important;
   border-bottom-color: rgba(201, 162, 39, .24) !important;
@@ -38,27 +38,27 @@
     0 0 14px rgba(201, 162, 39, .38) !important;
 }
 
-/* Green glow effects on header elements → gold */
+/* Green glow effects on header elements ??gold */
 .yyk-terminal-brand {
   text-shadow:
     0 0 5px rgba(201, 162, 39, .9),
     0 0 14px rgba(201, 162, 39, .48) !important;
 }
 
-/* Terminal nav link active glow → gold */
+/* Terminal nav link active glow ??gold */
 .yyk-terminal-link.active {
   text-shadow:
     0 0 5px rgba(201, 162, 39, .78),
     0 0 14px rgba(201, 162, 39, .34) !important;
 }
 
-/* Terminal group prefix (SUPPLY: / PRODUCT: / DEAL:) borders → gold */
+/* Terminal group prefix (SUPPLY: / PRODUCT: / DEAL:) borders ??gold */
 .yyk-terminal-group {
   border-top-color: rgba(201, 162, 39, .22) !important;
   border-bottom-color: rgba(201, 162, 39, .22) !important;
 }
 
-/* Terminal separator glow → gold */
+/* Terminal separator glow ??gold */
 .yyk-terminal-sep {
   text-shadow:
     0 0 4px rgba(201, 162, 39, .85),
@@ -66,7 +66,7 @@
     0 0 20px rgba(201, 162, 39, .25) !important;
 }
 
-/* Active terminal link animation → gold instead of green */
+/* Active terminal link animation ??gold instead of green */
 @keyframes yykTerminalPulseGold {
   0%, 100% {
     opacity: 1;
@@ -80,7 +80,7 @@
   }
 }
 
-/* Port dots on logistics map → warm gold instead of neon green */
+/* Port dots on logistics map ??warm gold instead of neon green */
 #yykFooterLogisticsMap .port-dot {
   fill: #c9a227 !important;
   stroke: #f5e6b8 !important;
@@ -209,8 +209,15 @@ header .yyk-hard-primary-tabs .nav-link[data-hard-nav="true"] {
   padding: 9px 12px !important;
 }
 
-/* Remove gold underline from header border-bottom */
-header {
+/* Remove gold underline from header border-bottom.
+   Override monolith sticky positioning ??header must flow
+   normally so it does not overlap the architecture section.
+   Use html body header for higher specificity than style.css:3183
+   which declares header{position:sticky!important;top:0!important} */
+html body header {
+  position: relative !important;
+  top: auto !important;
+  z-index: auto !important;
   border-bottom: none !important;
 }
 
@@ -232,25 +239,179 @@ nav * {
 /* ==========================================================
    6. WORKSPACE / CONTROL PANEL POSITIONING
    ==========================================================
-   Ensure the Tier-1 Control Panel is NOT sticky/fixed
-   and flows naturally in the document.
+
+   ??СТ?У?Ц?Я ?? ?????Т???????Ю ЭТ??? ?????:
+
+   ЧТ? ???СЬ:
+     CSS-overrides дл? #yykAuditControlPanel (Tier-1 Control Panel).
+     ?ей??ализ?е? кон?лик????ие п?авила из legacy-blocks.css и style.css.
+
+   Ф????Т ??????:
+     html body #yykAuditControlPanel .кла?? {
+       ?вой??во: зна?ение !important;
+     }
+     - ??е?ик? «html body» об?за?елен дл? побед? над legacy !important.
+     - ?ез «!important» п?авило ?? ??або?ае?.
+
+   ????? LEGACY-??????? ???Ф???ТУЮТ:
+     - legacy-blocks.css: display:none!important на .yyk-audit-top
+     - legacy-blocks.css: display:grid / display:contents на .yyk-audit-wrap
+     - legacy-blocks.css: min-height:96px / 116px на .yyk-audit-wrap
+     - legacy-blocks.css: flex:1 1 360px на .yyk-control-actions (?азд?вае? п???ое ме??о)
+     - legacy-blocks.css: gap:16px / 24px межд? ?лемен?ами
+
+   DOM-СТ?У?ТУ?? (HTML: sections/03_control-panel.html):
+     #yykAuditControlPanel
+     ?��??� .yyk-audit-wrap              ??flex-column, gap:4px
+         ?��??� .yyk-audit-top           ??заголовок (kicker + title)
+         ?��??� .yyk-audit-context       ??опи?ание ?ежима
+         ?��??� .yyk-control-actions     ??кнопки дей??вий (?озда???? JS)
+         ?��??� .yyk-audit-modes         ??grid repeat(3, 1fr) ??????У
+
+   Т???Ч?Ы? ?Ш????:
+     1. ?е?и .yyk-audit-wrap ?а???гива???? ??добави?? flex:0 0 auto
+     2. ?анел? ?ли?ком в??ока? ??п?ове?и?? min-height, height на кон?ейне?е
+     3. ?нопки ?ежимов ?били?? ??п?ове?и?? grid-template-columns
+
+   ????????Я ??СТ?У?Ц?Я:
+     _workspace/5_control_panel_edit_guide.md
    ========================================================== */
 
-#yykAuditControlPanel {
-  position: relative !important;
-  top: auto !important;
+/* Force visibility of Tier-1 Control Panel header elements.
+   legacy-blocks.css L8210 sets display:none!important on .yyk-audit-top.
+   We need html body prefix for higher specificity. */
+html body #yykAuditControlPanel .yyk-audit-top {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 4px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin-bottom: 0 !important;
+  width: 100% !important;
 }
 
-/* Ensure the return-site control doesn't float */
-.yyk-return-site-control {
-  position: relative !important;
-  top: auto !important;
+/* Ensure title div stays on top */
+html body #yykAuditControlPanel .yyk-audit-top > div:first-child {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  order: 1 !important;
+  flex: 0 0 auto !important;
 }
 
-/* Mode workspace should have proper spacing */
-#yykAuditModeWorkspace {
-  margin-top: 0 !important;
-  padding-top: 20px !important;
+/* Mode buttons: full-width row of 3 equal columns (matches CANONICAL) */
+html body #yykAuditControlPanel .yyk-audit-modes {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 0 !important;
+  order: 2 !important;
+  width: 100% !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Force all mode buttons to be visible and fill their column */
+html body #yykAuditControlPanel .yyk-audit-modes .yyk-mode-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  min-height: 34px !important;
+  text-align: center !important;
+}
+
+html body #yykAuditControlPanel .yyk-audit-kicker {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-size: 10px !important;
+  text-transform: uppercase !important;
+  letter-spacing: .26em !important;
+  color: #c9a227 !important;
+}
+
+html body #yykAuditControlPanel .yyk-audit-title {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin-top: 2px !important;
+  font-size: 15px !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  letter-spacing: .02em !important;
+}
+
+html body #yykAuditControlPanel .yyk-audit-context {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: rgba(255,255,255,.6) !important;
+  font-size: 11px !important;
+  margin-top: 2px !important;
+}
+
+/* Ensure .yyk-relocated-audit provides correct layout context */
+.yyk-relocated-audit {
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Restore wrap to stacked flow: title row ??actions row ??modes row */
+html body #yykAuditControlPanel .yyk-audit-wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-content: flex-start !important;
+  align-items: stretch !important;
+  gap: 4px !important;
+  grid-template-columns: unset !important;
+  grid-template-areas: unset !important;
+  width: min(1500px, 90vw) !important;
+  margin: 0 auto !important;
+  padding: 8px 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  height: auto !important;
+}
+
+/* Force ALL direct children of .yyk-audit-wrap to not stretch */
+html body #yykAuditControlPanel .yyk-audit-wrap > * {
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* The panel container itself must be height:auto */
+html body #yykAuditControlPanel {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Actions + modes row: horizontal with modes on right */
+html body #yykAuditControlPanel .yyk-control-actions {
+  grid-area: unset !important;
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+html body #yykAuditControlPanel .yyk-audit-modes {
+  grid-area: unset !important;
+  justify-self: unset !important;
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+html body #yykAuditControlPanel .yyk-audit-context {
+  flex: 0 0 auto !important;
+  height: auto !important;
 }
 
 
@@ -260,11 +421,11 @@ nav * {
 
 
 /* ==========================================================
-   7. LANGUAGE SWITCHER (Phase 3 — i18n)
+   7. LANGUAGE SWITCHER (Phase 3 ??i18n)
    ==========================================================
    Override monolith rules that hide/break the language nav.
    The monolith CSS already positions .yyk-terminal-lang
-   correctly in the header grid — we just ensure our links
+   correctly in the header grid ??we just ensure our links
    are visible, styled, and clickable.
    ========================================================== */
 
@@ -276,7 +437,7 @@ nav * {
   z-index: 100 !important;
 }
 
-/* Language buttons — use i18n-link for JS targeting */
+/* Language buttons ??use i18n-link for JS targeting */
 #yyk-i18n-nav .i18n-link {
   display: inline-flex !important;
   visibility: visible !important;
@@ -284,14 +445,14 @@ nav * {
   cursor: pointer !important;
 }
 
-/* Active state — gold highlight */
+/* Active state ??gold highlight */
 #yyk-i18n-nav .i18n-link.active {
   border-color: rgba(201, 162, 39, .58) !important;
   background: rgba(201, 162, 39, .10) !important;
   color: #fff !important;
 }
 
-/* Hover state — subtle gold */
+/* Hover state ??subtle gold */
 #yyk-i18n-nav .i18n-link:hover {
   border-color: rgba(201, 162, 39, .45) !important;
   background: rgba(201, 162, 39, .06) !important;
@@ -302,13 +463,13 @@ nav * {
 
 /* BLOCK 1: Global styles, colors, hover */
 button, .btn, .yyk-terminal-btn, .yyk-tds-btn, .yyk-legal-btn, .yyk-dr-btn, .yyk-vdr-btn, .yyk-partnership-btn, .yyk-qc-lab-btn, .yyk-strip-action, .yyk-phase-card, .yyk-exec-action, .rt-btn, .sogo-option, .yyk-proof-action,
-[class$="-tab"], [class$="-card"], .hyb-rail-card, .hyb-kpi, .yyk-euc-checker, .yyk-vdr-checker {
+.hyb-rail-card, .hyb-kpi, .yyk-euc-checker, .yyk-vdr-checker {
     border: 1px solid rgba(201, 162, 39, 0.45) !important;
     box-shadow: none !important;
     outline: none !important;
 }
 
-button:hover, .btn:hover, .yyk-terminal-btn:hover, [class$="-tab"]:hover, [class$="-card"]:hover, .yyk-strip-action:hover, .yyk-tds-btn:hover, .yyk-legal-btn:hover, .yyk-dr-btn:hover, .yyk-vdr-btn:hover, .yyk-partnership-btn:hover, .yyk-qc-lab-btn:hover {
+button:hover, .btn:hover, .yyk-terminal-btn:hover, .yyk-strip-action:hover, .yyk-tds-btn:hover, .yyk-legal-btn:hover, .yyk-dr-btn:hover, .yyk-vdr-btn:hover, .yyk-partnership-btn:hover, .yyk-qc-lab-btn:hover {
     border: 1px solid rgba(201, 162, 39, 0.95) !important;
     box-shadow: 0 0 10px rgba(201, 162, 39, 0.15) !important;
     background-color: rgba(201, 162, 39, 0.05) !important;
@@ -336,7 +497,7 @@ button:hover, .btn:hover, .yyk-terminal-btn:hover, [class$="-tab"]:hover, [class
 
 /* BLOCK 4: Header Adjustments */
 .yyk-terminal-header {
-    margin-top: 1.5cm !important;
+    /* margin-top: 1.5cm !important; removed to lift the site up */
     border-bottom: none !important;
 }
 
@@ -374,3 +535,225 @@ svg path[stroke="#10b981"], svg path[style*="stroke: #10b981"], svg path[style*=
 }
 
 .yyk-geo-card { min-width: 0; word-break: break-word; overflow-wrap: break-word; }
+
+/* Header menu layout only. No block/background rules here.
+   SAFETY NOTE:
+   This block may only target header, .yyk-terminal-* and #yyk-lang-slot.
+   Do not add section/card/panel selectors here and do not add background or
+   opacity rules for page blocks. Those changes can hide the 99.9999% watermark
+   and break the transparent block design. */
+header .yyk-terminal-header {
+  display: grid !important;
+  grid-template-columns: minmax(0, auto) 1fr !important;
+  grid-template-areas:
+    "brand lang"
+    "command command" !important;
+  gap: 6px 18px !important;
+  align-items: center !important;
+}
+
+header .yyk-terminal-brand {
+  grid-area: brand !important;
+  justify-self: start !important;
+}
+
+header .yyk-terminal-command {
+  grid-area: command !important;
+  width: 100% !important;
+  justify-content: flex-start !important;
+}
+
+header #yyk-lang-slot {
+  grid-area: lang !important;
+  justify-self: end !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+@media (max-width: 760px) {
+  header .yyk-terminal-header {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "brand"
+      "lang"
+      "command" !important;
+    gap: 8px !important;
+  }
+
+  header #yyk-lang-slot {
+    justify-self: start !important;
+  }
+}
+
+
+
+/* Fix for 360px gap caused by flex-basis */
+html body #yykAuditControlPanel .yyk-control-actions {
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: 100% !important;
+}
+
+
+/* ==========================================================
+   8. STICKY HEADER
+   ==========================================================
+   Main site header always visible at the top of the viewport.
+   z-index: 12000 ??above all page content but below modals.
+   ========================================================== */
+html body > header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 12000 !important;
+  background: #0a0a0a !important;
+  box-shadow: 0 1px 8px rgba(0,0,0,.6) !important;
+}
+
+
+/* ==========================================================
+   9. ENGINE MODALS ??Z-INDEX & FULLSCREEN ACTIVATION
+   ==========================================================
+   When an engine modal gets .active, it MUST cover the entire
+   viewport and sit above everything including the sticky header.
+   z-index: 99990 > header's 12000.
+   ========================================================== */
+html body .yyk-legal-engine.active,
+html body .yyk-data-room-engine.active,
+html body .yyk-tds-engine.active,
+html body .yyk-supply-engine.active,
+html body .yyk-vdr-engine.active,
+html body .yyk-pricing-engine.active,
+html body .yyk-partnership-engine.active,
+html body .yyk-bcp-engine.active,
+html body .compliance-engine.active,
+html body .product-engine.active,
+html body .contact-engine.active,
+html body .rt-overlay.active,
+html body .sogo-overlay.active,
+html body .sogo-drawer.active,
+html body #supplierApprovalEngine.active,
+html body #redTeamAuditEngine.active,
+html body #yykPhaseOverlay.active {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99990 !important;
+  overflow-y: auto !important;
+}
+
+/* All children inside active engines must also be visible */
+html body [class$="-engine"].active > *,
+html body .rt-overlay.active > *,
+html body .sogo-overlay.active > *,
+html body #yykPhaseOverlay.active > * {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* When a modal is open, suppress sticky header AND control panel z-index
+   so they don't sit on top of the modal overlay.
+   style.css:5482 elevates #yykAuditControlPanel to z-index:12000 on apex-modal-open
+   ??we must override that back down. */
+html body.apex-modal-open > header {
+  z-index: 1 !important;
+}
+html body.apex-modal-open #yykAuditControlPanel {
+  z-index: 1 !important;
+}
+html body.apex-modal-open #tier1ControlPanel,
+html body.apex-modal-open .tier1-control-panel,
+html body.apex-modal-open .control-panel {
+  z-index: 1 !important;
+}
+
+/* Ensure close buttons inside engines are always visible and clickable */
+html body [class$="-engine"].active [class$="-close"],
+html body [class$="-engine"].active [id^="close"] {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 10 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: absolute !important;
+  top: 18px !important;
+  right: 18px !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  padding: 4px 10px !important;
+  border: 1px solid rgba(201, 162, 39, .45) !important;
+  background: rgba(10, 10, 10, .85) !important;
+  color: #fff !important;
+}
+
+/* === FIX: VDR close button visibility ===
+   style.css:7424/8712 sets overflow:hidden on .yyk-vdr-head which clips the close button.
+   We override that and ensure the close button is always visible. */
+.yyk-vdr-head {
+  overflow: visible !important;
+}
+.yyk-vdr-head > div:first-child {
+  max-width: calc(100% - 64px) !important;
+}
+.yyk-vdr-close {
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  font-size: 22px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 10 !important;
+  border: 1px solid rgba(201,162,39,.4) !important;
+  border-radius: 6px !important;
+  background: rgba(255,255,255,.06) !important;
+  color: #fff !important;
+}
+/* === REMOVE: Exit to Website button ===
+   User requested removal of the yykAuditReturnSite button */
+#yykAuditReturnSite, .yyk-return-site-btn {
+  display: none !important;
+}
+/* Fix dropdown menu legibility in dark mode */
+html body .yyk-legal-field select {
+  background-color: #111 !important; /* Solid dark background for the select itself */
+  color: #fff !important;
+  cursor: pointer;
+}
+
+html body .yyk-legal-field select option {
+  background-color: #111 !important; /* Forces the dropdown list to be dark */
+  color: #fff !important;           /* Forces the text to be white */
+  padding: 8px !important;
+}
+
+/* ==========================================================
+   STAGE 3 FIX: Audit Modes 3-Column Grid
+   ========================================================== */
+html body #yykAuditControlPanel .yyk-audit-modes {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 0 !important;
+  width: 100% !important;
+  order: 2 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+html body #yykAuditControlPanel .yyk-audit-modes .yyk-mode-btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+}

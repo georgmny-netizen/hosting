@@ -1,0 +1,1457 @@
+<div aria-hidden="true" class="modal" id="vaultModal"><div class="modal-box"><div class="modal-head"><div><div class="modal-title" data-i18n="auto.t2914">Controlled Technical Request</div><div class="message" data-i18n="auto.t2915" id="selectedProduct">Copper 6N</div></div><button class="modal-close" onclick="closeVault()">×</button></div><div class="field"><label class="field-label" data-i18n="auto.t2916">Corporate Email</label><input class="input" id="corpEmail" placeholder="name@company.com"/></div><div class="field"><label class="field-label" data-i18n="auto.t2917">Industry</label><select class="select" id="industrySelect"><option data-i18n="auto.t2918">Semiconductors</option><option data-i18n="auto.t2919">Aerospace</option><option>EV</option><option data-i18n="auto.t2920">Precision Chemistry</option></select></div><div class="field"><label class="field-label" data-i18n="auto.t2921">Documentation Scope</label><select class="select" id="docScope"><option data-i18n="auto.t2922">CoA</option><option data-i18n="auto.t2923">CoA + TDS</option><option data-i18n="auto.t2924">CoA + TDS + SDS</option><option data-i18n="auto.t2925">CoA + TDS + SDS + REACH/RoHS</option></select></div><label class="message"><input id="consent" type="checkbox"/><span data-i18n="auto.t2926"> I consent to data processing under applicable privacy regulations. The document may be generated with a unique security watermark.</span></label><div class="esg-policy-note"><span data-i18n="auto.t2927">Data processing is governed by YONGYEOKYO Trading House Co., Ltd Privacy Policy. </span><button class="micro-btn compliance-trigger" data-i18n="auto.t2928" data-open-compliance="privacy" onclick="console.log('Button activated');" style="margin-left:8px" type="button">View Privacy</button></div><div class="esg-policy-note"><span data-i18n="auto.t2929">ESG &amp; Responsible Sourcing Policy applies to all controlled technical requests. </span><button class="micro-btn esg-trigger" data-i18n="auto.t2930" data-open-compliance="esg" onclick="console.log('Button activated');" style="margin-left:8px" type="button">View ESG Policy</button></div><button class="micro-btn" data-i18n="auto.t2931" onclick="submitVault()" style="width:100%;margin-top:16px">Submit Controlled Request</button><div class="message" id="vaultMessage"></div></div></div>
+<script>
+const materialDefaults={"Copper Cu · CAS 7440-50-8 · KE-08896 · Up to 99.99999% (7N)":{purity:"Up to 99.99999% (7N)",form:"Powder",particle:"ingot / bar / ultrafine powder; PSD by RFQ"},"Aluminum Al · CAS 7429-90-5 · High-purity ingot route":{purity:"Up to 99.9999% (6N)",form:"Ingots",particle:""},"Zinc Zn · CAS 7440-66-6 · Up to 99.9995% (5N5)":{purity:"Up to 99.9995% (5N5)",form:"Powder",particle:"powder / formulations / coatings; PSD by RFQ"},"Rare Earth Materials · Metals / Oxides / Salts / Alloys · Custom grades":{purity:"Custom grades available",form:"Oxide / Salt",particle:""}};const required=["rfqMaterial","rfqForm","rfqPurity","rfqQty","rfqParticle","rfqApp","rfqMarket","rfqDocs","rfqTerm"];
+function selectMaterial(name){document.getElementById("rfqMaterial").value=name;const d=materialDefaults[name];if(d){document.getElementById("rfqPurity").value=d.purity;document.getElementById("rfqForm").value=d.form;document.getElementById("rfqParticle").value=d.particle;}location.hash="#rfq";updateRFQ()}
+function updateRFQ(){const missing=[];required.forEach(id=>{if(!document.getElementById(id).value.trim())missing.push(id.replace("rfq","").toLowerCase())});const score=Math.round(((required.length-missing.length)/required.length)*100);document.getElementById("scoreBar").style.width=score+"%";document.getElementById("scoreText").textContent="Completeness: "+score+"%";document.getElementById("missingText").textContent=missing.length?"Missing: "+missing.join(", ")+".":"Complete RFQ input. Ready for controlled technical review."; if(typeof renderRiskEngine==="function") renderRiskEngine(state.lastDecision||null)}
+function verifyBatch(){const id=(document.getElementById("batchId")?.value||"COA-CU6N-2024-001").trim()||"COA-CU6N-2024-001";const rows=document.getElementById("batchRows");if(!rows){return}const safeId=id.replace(/[<>]/g,"");rows.innerHTML=`<tr><td>Batch ID</td><td>${safeId}</td></tr><tr><td>Sequence Position</td><td>Product Passport → CoA / ISO 17025 evidence → Batch Verification → Smart RFQ</td></tr><tr><td>Material</td><td>Copper high-purity materials · KE-08896</td></tr><tr><td>CoA Evidence</td><td>Controlled trust-flow check initialized</td></tr><tr><td>RFQ Gate</td><td class="ok">Verified batch evidence or manual compliance override required before final quote release</td></tr><tr><td>KYC / Sanctions</td><td class="warn">Must remain blocked until counterparty screening is complete</td></tr>`;document.getElementById("batchResult")?.classList.add("active")}
+function updateSimulation(){const v=Number(document.getElementById("simDocs").value)+Number(document.getElementById("simImp").value)+Number(document.getElementById("simQual").value);let weeks="+0 weeks",text="Low qualification friction. Evaluation can proceed with documentation review.";if(v>=2&&v<6){weeks="+2-3 weeks";text="Moderate friction. Expect clarification cycles and internal SQE review."}if(v>=6){weeks="+4-6 weeks";text="High delay risk. Re-testing, supplier review or requalification may be triggered."}document.getElementById("delayWeeks").textContent=weeks;document.getElementById("delayText").textContent=text}
+function openVault(product){document.getElementById("selectedProduct").textContent=product;document.getElementById("vaultMessage").textContent="";document.getElementById("vaultModal").classList.add("active")}
+function closeVault(){document.getElementById("vaultModal").classList.remove("active")}
+function submitVault(){const email=document.getElementById("corpEmail").value.trim();const consent=document.getElementById("consent").checked;const blocked=/@(gmail|yahoo|hotmail|outlook|icloud|protonmail)\./i.test(email);if(!email||blocked){document.getElementById("vaultMessage").textContent="Corporate email required.";return}if(!consent){document.getElementById("vaultMessage").textContent="Consent is required.";return}console.log("Controlled request",{product:document.getElementById("selectedProduct").textContent,email,industry:document.getElementById("industrySelect").value,docScope:document.getElementById("docScope").value});document.getElementById("vaultMessage").textContent="Request received. A technical representative will contact you if purity or documentation clarification is required."}
+document.querySelectorAll(".rfq-field").forEach(el=>el.addEventListener("input",updateRFQ));document.querySelectorAll(".sim-field").forEach(el=>el.addEventListener("change",updateSimulation));document.querySelectorAll(".lang-btn").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");const v=btn.textContent.trim().toLowerCase();document.body.classList.remove("lang-en","lang-kr","lang-jp","lang-cn","lang-tw");document.body.classList.add(v==="tw"?"lang-cn":"lang-"+v);}));document.getElementById("vaultModal").addEventListener("click",e=>{if(e.target.id==="vaultModal")closeVault()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeVault()});var _riskMat=document.getElementById("rfqMaterial"); if(_riskMat) _riskMat.addEventListener("change",()=>{if(window.renderRiskEngine) window.renderRiskEngine(null)}); updateRFQ();updateSimulation(); if(window.renderRiskEngine) window.renderRiskEngine(null);
+
+const contactEngine=document.getElementById("contactEngine");
+function openContact(){
+  if(contactEngine){
+    contactEngine.classList.add("active");
+    contactEngine.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  }
+}
+function closeContact(){
+  if(contactEngine){
+    contactEngine.classList.remove("active");
+    contactEngine.setAttribute("aria-hidden","true");
+    document.body.style.overflow="";
+  }
+}
+document.querySelectorAll("[data-open-contact]").forEach(btn=>btn.addEventListener("click",e=>{e.preventDefault();openContact();}));
+document.querySelectorAll("[data-close-contact]").forEach(btn=>btn.addEventListener("click",closeContact));
+if(contactEngine){contactEngine.addEventListener("click",e=>{if(e.target===contactEngine)closeContact();});}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeContact();});
+document.querySelectorAll("[data-contact-form]").forEach(form=>{
+  form.addEventListener("submit",e=>{
+    e.preventDefault();
+    let note=form.querySelector(".contact-submit-note");
+    if(!note){note=document.createElement("div");note.className="contact-submit-note";form.appendChild(note);}
+    const email=form.querySelector('input[type="email"]')?.value||"";
+    const blocked=/@(gmail|yahoo|hotmail|outlook|icloud|protonmail)\./i.test(email);
+    if(blocked){note.textContent="Corporate email required for controlled B2B inquiry routing.";return;}
+    note.textContent="Inquiry captured for routing. Connect this form to CRM / email endpoint before production.";
+  });
+});
+
+const productEngine=document.getElementById("productEngine");
+function setProductTab(tab){
+  document.querySelectorAll(".product-tab").forEach(b=>b.classList.toggle("active",b.dataset.productTab===tab));
+  document.querySelectorAll(".product-panel").forEach(p=>p.classList.toggle("active",p.dataset.productPanel===tab));
+}
+function openProductEngine(tab="cu"){
+  if(productEngine){
+    setProductTab(tab);
+    productEngine.classList.add("active");
+    productEngine.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  }
+}
+function closeProductEngine(){
+  if(productEngine){
+    productEngine.classList.remove("active");
+    productEngine.setAttribute("aria-hidden","true");
+    document.body.style.overflow="";
+  }
+}
+document.querySelectorAll("[data-open-product]").forEach(btn=>btn.addEventListener("click",e=>{e.preventDefault();openProductEngine(btn.dataset.openProduct||"cu");}));
+document.querySelectorAll("[data-close-product]").forEach(btn=>btn.addEventListener("click",closeProductEngine));
+document.querySelectorAll(".product-tab").forEach(btn=>btn.addEventListener("click",()=>setProductTab(btn.dataset.productTab)));
+if(productEngine){productEngine.addEventListener("click",e=>{if(e.target===productEngine)closeProductEngine();});}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeProductEngine();});
+
+</script>
+<div aria-hidden="true" class="compliance-engine" id="complianceEngine">
+<div aria-labelledby="complianceEngineTitle" aria-modal="true" class="compliance-shell" role="dialog">
+<div class="compliance-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t2932">YONGYEOKYO · Compliance Engine</div>
+<div class="compliance-title" data-i18n="auto.t2933" id="complianceEngineTitle">Tier-1 Compliance &amp; Technical Data Pack Control Center</div>
+<p class="card-text" data-i18n="auto.t2934">Interactive buyer-facing layer for Technical Data Pack, export-control screening, traceability audit trails and RFQ-SLA governance.</p>
+</div>
+<button aria-label="Close Compliance Engine" class="compliance-close" data-close-compliance="" onclick="console.log('Button activated');" type="button">×</button>
+</div>
+<div class="compliance-tabs">
+<button class="compliance-tab active" data-compliance-tab="tier1" data-i18n="auto.t2935" onclick="console.log('Button activated');" type="button">Tier-1 Due Diligence</button>
+<button class="compliance-tab" data-compliance-tab="esg" data-i18n="auto.t2936" onclick="console.log('Button activated');" type="button">ESG</button>
+<button class="compliance-tab" data-compliance-tab="privacy" data-i18n="auto.t2937" onclick="console.log('Button activated');" type="button">Privacy</button>
+<button class="compliance-tab" data-compliance-tab="terms" data-i18n="auto.t2938" onclick="console.log('Button activated');" type="button">Terms</button>
+<button class="compliance-tab" data-compliance-tab="cookies" data-i18n="auto.t2939" onclick="console.log('Button activated');" type="button">Cookies</button>
+<button class="compliance-tab" data-compliance-tab="ethics" data-i18n="auto.t2940" onclick="console.log('Button activated');" type="button">Ethics</button>
+<button class="compliance-tab" data-compliance-tab="legal-framework" data-i18n="auto.t2941" onclick="console.log('Button activated');" type="button">Legal Framework</button>
+</div>
+<div class="compliance-panel active" data-compliance-panel="tier1">
+<div class="compliance-body">
+<aside class="compliance-toc">
+<h2 data-i18n="auto.t2942" data-lang-block="en">Tier-1 Pack</h2>
+<a data-i18n="auto.t2943" data-lang-block="en" href="#tier1-overview">1. Data Room Scope</a>
+<a data-i18n="auto.t2944" data-lang-block="en" href="#tier1-coa">2. CoA Template</a>
+<a data-i18n="auto.t2945" data-lang-block="en" href="#tier1-screening">3. Export Control</a>
+<a data-i18n="auto.t2946" data-lang-block="en" href="#tier1-rfq-sla">4. RFQ-SLA</a>
+<a data-i18n="auto.t2947" data-lang-block="en" href="#tier1-language">5. Professional Language</a>
+<a data-i18n="auto.t2948" data-lang-block="en" href="#tier1-intake">6. Interactive Gate</a>
+</aside>
+<article class="compliance-content">
+<section id="tier1-overview">
+<h2 class="section-title" data-i18n="auto.t2949">Tier-1 Technical Data Pack for Due Diligence</h2>
+<div class="intro" data-i18n="auto.t2950">This module is designed as a buyer-facing procurement gate for high-purity metals. It converts RFQ intake into a documented Technical Data Pack, compliance screening record, traceability audit trail and RFQ service-level response path.</div>
+<div class="tier1-pack-grid">
+<div class="tier1-pack-card"><strong data-i18n="auto.t2951">Technical Data Pack</strong><span data-i18n="auto.t2952">CoA, TDS/SDS, batch identity, analytical method, impurity profile and controlled release log.</span></div>
+<div class="tier1-pack-card"><strong data-i18n="auto.t2953">Traceability Audit Trails</strong><span data-i18n="auto.t2954">Smelter/refiner identity, batch genealogy, origin statement and supplier qualification record.</span></div>
+<div class="tier1-pack-card"><strong data-i18n="auto.t2955">Export-Control Gate</strong><span data-i18n="auto.t2956">Restricted-party screening, destination review, end-use declaration and EUC requirement logic.</span></div>
+<div class="tier1-pack-card"><strong data-i18n="auto.t2957">RFQ-SLA</strong><span data-i18n="auto.t2958">Defined quotation timing, Incoterms 2020 route, insurance basis and payment instruments.</span></div>
+</div>
+</section>
+<section id="tier1-coa">
+<h3 data-i18n="auto.t2959">Certificate of Analysis Template · Cu / Al 6N-7N</h3>
+<p data-i18n="auto.t2960">CoA release is batch-specific and must identify material, grade, form, batch number, production date, analysis date, analytical method and authorized QC release.</p>
+<div class="table-panel"><table class="tier1-coa-table"><thead><tr><th data-i18n="auto.t2961">Element</th><th data-i18n="auto.t2962">6N Target Limit</th><th data-i18n="auto.t2963">7N Target Limit</th><th data-i18n="auto.t2964">Detection Limit</th><th data-i18n="auto.t2965">Method</th><th data-i18n="auto.t2966">Buyer Use</th></tr></thead><tbody>
+<tr><td>Fe</td><td data-i18n="auto.t2967">≤ 0.05 ppm</td><td data-i18n="auto.t2968">≤ 0.01 ppm</td><td data-i18n="auto.t2969">0.005-0.01 ppm</td><td data-i18n="auto.t2970">GDMS / ICP-MS</td><td data-i18n="auto.t2971">Semiconductor / sputtering sensitivity</td></tr>
+<tr><td>Si</td><td data-i18n="auto.t2972">≤ 0.03 ppm</td><td data-i18n="auto.t2973">≤ 0.01 ppm</td><td data-i18n="auto.t2974">0.005-0.01 ppm</td><td data-i18n="auto.t2975">ICP-MS</td><td data-i18n="auto.t2976">Wafer and advanced-material compatibility</td></tr>
+<tr><td>Ag</td><td data-i18n="auto.t2977">≤ 0.02 ppm</td><td data-i18n="auto.t2978">≤ 0.005 ppm</td><td data-i18n="auto.t2979">0.005 ppm</td><td data-i18n="auto.t2980">GDMS</td><td data-i18n="auto.t2981">Electrical-property control</td></tr>
+<tr><td>S</td><td data-i18n="auto.t2982">≤ 0.01 ppm</td><td data-i18n="auto.t2983">≤ 0.005 ppm</td><td data-i18n="auto.t2984">0.005 ppm</td><td data-i18n="auto.t2985">ICP-MS</td><td data-i18n="auto.t2986">Corrosion / process contamination control</td></tr>
+<tr><td>Pb</td><td data-i18n="auto.t2987">≤ 0.01 ppm</td><td data-i18n="auto.t2988">≤ 0.005 ppm</td><td data-i18n="auto.t2989">0.005 ppm</td><td data-i18n="auto.t2990">ICP-MS</td><td data-i18n="auto.t2991">RoHS / contamination sensitivity</td></tr>
+<tr><td>Ni</td><td data-i18n="auto.t2992">≤ 0.02 ppm</td><td data-i18n="auto.t2993">≤ 0.005 ppm</td><td data-i18n="auto.t2994">0.005 ppm</td><td data-i18n="auto.t2995">GDMS / ICP-MS</td><td data-i18n="auto.t2996">Device and alloy-route risk control</td></tr>
+<tr><td>Zn</td><td data-i18n="auto.t2997">≤ 0.02 ppm</td><td data-i18n="auto.t2998">≤ 0.005 ppm</td><td data-i18n="auto.t2999">0.005 ppm</td><td data-i18n="auto.t3000">ICP-MS</td><td data-i18n="auto.t3001">Cross-metal contamination control</td></tr>
+<tr><td data-i18n="auto.t3002">Total impurities</td><td data-i18n="auto.t3003">≤ 1.0 ppm</td><td data-i18n="auto.t3004">≤ 0.1 ppm</td><td data-i18n="auto.t3005">Calculated</td><td data-i18n="auto.t3006">GDMS + ICP-MS</td><td data-i18n="auto.t3007">Purity statement support</td></tr>
+</tbody></table></div>
+<div class="note" data-i18n="auto.t3008">Reference alignment: ASTM B170 for copper cathode context, JIS material specifications where applicable, and buyer-specific semiconductor-grade analytical release criteria. Final limits remain subject to batch CoA and confirmed analytical method.</div>
+</section>
+<section id="tier1-screening">
+<h3 data-i18n="auto.t3009">Export Control &amp; Sanctions Screening Protocol</h3>
+<div class="grid2">
+<div class="mini"><strong data-i18n="auto.t3010">Counterparty screening</strong><ul><li data-i18n="auto.t3011">Restricted-party review against OFAC, EU, UN, UK, METI and Korea strategic trade lists.</li><li data-i18n="auto.t3012">Beneficial-owner and intermediary review for indirect exposure.</li><li data-i18n="auto.t3013">Manual escalation for name-match, high-risk routing or unclear business activity.</li></ul></div>
+<div class="mini"><strong data-i18n="auto.t3014">End-user control</strong><ul><li data-i18n="auto.t3015">End-User Certificate required for controlled, sensitive or high-purity transactions.</li><li data-i18n="auto.t3016">Non-military / non-sanctioned-use declaration.</li><li data-i18n="auto.t3017">Application, destination and consignee validation before commercial release.</li></ul></div>
+</div>
+<div class="table-panel" style="margin-top:14px"><table><thead><tr><th data-i18n="auto.t3018">Risk Trigger</th><th data-i18n="auto.t3019">System Action</th><th data-i18n="auto.t3020">Required Evidence</th><th data-i18n="auto.t3021">Output</th></tr></thead><tbody>
+<tr><td data-i18n="auto.t3022">Restricted-party match</td><td data-i18n="auto.t3023">Stop release</td><td data-i18n="auto.t3024">Compliance review record</td><td><span class="tier1-status stop" data-i18n="auto.t3025">Rejected / Escalated</span></td></tr>
+<tr><td data-i18n="auto.t3026">Missing EUC</td><td data-i18n="auto.t3027">Suspend RFQ</td><td data-i18n="auto.t3028">Signed EUC + declared application</td><td><span class="tier1-status warn" data-i18n="auto.t3029">Conditional</span></td></tr>
+<tr><td data-i18n="auto.t3030">High-risk destination</td><td data-i18n="auto.t3031">Manual route review</td><td data-i18n="auto.t3032">End-use, consignee and logistics route</td><td><span class="tier1-status warn" data-i18n="auto.t3033">Route-gated</span></td></tr>
+<tr><td data-i18n="auto.t3034">Complete file</td><td data-i18n="auto.t3035">Release quote pack</td><td data-i18n="auto.t3036">CoA, origin, EUC if required, RFQ spec</td><td><span class="tier1-status" data-i18n="auto.t3037">Approved</span></td></tr>
+</tbody></table></div>
+</section>
+<section id="tier1-rfq-sla">
+<h3 data-i18n="auto.t3038">RFQ-SLA · Procurement Response Standard</h3>
+<div class="table-panel"><table><thead><tr><th data-i18n="auto.t3039">Stage</th><th data-i18n="auto.t3040">SLA</th><th data-i18n="auto.t3041">Operational Output</th></tr></thead><tbody>
+<tr><td data-i18n="auto.t3042">RFQ acknowledgment</td><td data-i18n="auto.t3043">≤ 4 business hours</td><td data-i18n="auto.t3044">RFQ ID, intake confirmation and missing-data check.</td></tr>
+<tr><td data-i18n="auto.t3045">Initial quotation</td><td data-i18n="auto.t3046">≤ 24 business hours</td><td data-i18n="auto.t3047">Indicative price, available grade/form, quantity window and lead-time range.</td></tr>
+<tr><td data-i18n="auto.t3048">Technical review</td><td data-i18n="auto.t3049">≤ 48 business hours</td><td data-i18n="auto.t3050">CoA method fit, impurity profile, documentation scope and application alignment.</td></tr>
+<tr><td data-i18n="auto.t3051">Final offer</td><td data-i18n="auto.t3052">≤ 72 business hours</td><td data-i18n="auto.t3053">Commercial offer, Incoterms 2020, payment instrument and document pack.</td></tr>
+</tbody></table></div>
+<div class="grid2" style="margin-top:14px">
+<div class="mini"><strong data-i18n="auto.t3054">Trade terms</strong><p data-i18n="auto.t3055">CIF Busan, CIF Yokohama, FOB Korea/China where suitable. Cargo insurance basis: Institute Cargo Clauses (A), normally 110% of invoice value unless agreed otherwise.</p></div>
+<div class="mini"><strong data-i18n="auto.t3056">Payment instruments</strong><p data-i18n="auto.t3057">Irrevocable L/C at sight for first transactions; T/T split terms for qualified repeat buyers; additional bank compliance review where required.</p></div>
+</div>
+</section>
+<section id="tier1-language">
+<h3 data-i18n="auto.t3058">Professional Terminology Control</h3>
+<div class="table-panel"><table class="tier1-copy-clean"><thead><tr><th data-i18n="auto.t3059">Remove</th><th data-i18n="auto.t3060">Use Instead</th><th data-i18n="auto.t3061">Reason</th></tr></thead><tbody>
+<tr><td data-i18n="auto.t3062">Supply Chain Integrity</td><td data-i18n="auto.t3063">Traceability Audit Trails</td><td data-i18n="auto.t3064">Auditable, batch-level and procurement-ready.</td></tr>
+<tr><td data-i18n="auto.t3065">Smart sourcing ecosystem</td><td data-i18n="auto.t3066">Structured RFQ intake with compliance gating</td><td data-i18n="auto.t3067">Specific operational control.</td></tr>
+<tr><td data-i18n="auto.t3068">Quality assurance system</td><td data-i18n="auto.t3069">Batch-level analytical validation</td><td data-i18n="auto.t3070">Connects quality to CoA and method.</td></tr>
+<tr><td data-i18n="auto.t3071">Supplier verification</td><td data-i18n="auto.t3072">Smelter-level qualification protocol</td><td data-i18n="auto.t3073">Shows depth of origin control.</td></tr>
+<tr><td data-i18n="auto.t3074">ESG friendly</td><td data-i18n="auto.t3075">OECD-aligned risk-based supplier due diligence</td><td data-i18n="auto.t3076">Avoids unsupported ESG claims.</td></tr>
+</tbody></table></div>
+</section>
+<section id="tier1-intake">
+<h3 data-i18n="auto.t3077">Interactive Due Diligence Gate</h3>
+<div class="tier1-control-grid">
+<div class="tier1-control-card">
+<h4 data-i18n="auto.t3078">RFQ Readiness Check</h4>
+<label class="tier1-mini-label" data-i18n="auto.t3079" for="tier1Material">Material</label><select class="tier1-select" id="tier1Material"><option data-i18n="auto.t3080">Copper 6N-7N</option><option data-i18n="auto.t3081">Aluminum 6N-7N</option><option data-i18n="auto.t3082">Rare Earth / Specialty Materials</option></select>
+<label class="tier1-mini-label" data-i18n="auto.t3083" for="tier1Destination">Destination</label><select class="tier1-select" id="tier1Destination"><option data-i18n="auto.t3084">Busan · Korea</option><option data-i18n="auto.t3085">Yokohama · Japan</option><option data-i18n="auto.t3086">Taiwan</option><option data-i18n="auto.t3087">China</option><option data-i18n="auto.t3088">Other APAC</option></select>
+<label class="tier1-mini-label" data-i18n="auto.t3089" for="tier1Docs">Documentation</label><select class="tier1-select" id="tier1Docs"><option data-i18n="auto.t3090" value="complete">CoA + TDS/SDS + EUC ready</option><option data-i18n="auto.t3091" value="partial">CoA ready, EUC pending</option><option data-i18n="auto.t3092" value="missing">Missing controlled documents</option></select>
+<div class="tier1-output" id="tier1ReadinessOutput"><strong data-i18n="auto.t3093">Status:</strong><span data-i18n="auto.t3094"> Approved for initial due diligence. Quote pack can be prepared with standard controls.</span></div>
+</div>
+<div class="tier1-control-card">
+<h4 data-i18n="auto.t3095">Required Buyer File</h4>
+<div class="table-panel"><table><tbody>
+<tr><td data-i18n="auto.t3096">CoA</td><td data-i18n="auto.t3097">Batch-specific, GDMS / ICP-MS identified.</td></tr>
+<tr><td data-i18n="auto.t3098">End-User Certificate</td><td data-i18n="auto.t3099">Required for sensitive destination, high-purity or dual-use concern.</td></tr>
+<tr><td data-i18n="auto.t3100">Commercial File</td><td data-i18n="auto.t3101">RFQ, Incoterms, invoice, packing list, insurance basis.</td></tr>
+<tr><td data-i18n="auto.t3102">Compliance Note</td><td data-i18n="auto.t3103">Restricted-party screen, origin and end-use control record.</td></tr>
+</tbody></table></div>
+<div class="tier1-output"><strong data-i18n="auto.t3104">Buyer-facing result:</strong><span data-i18n="auto.t3105"> procurement can open supplier due diligence without asking for a new document architecture.</span></div>
+</div>
+</div>
+</section>
+</article>
+</div>
+</div>
+<div class="compliance-panel" data-compliance-panel="esg">
+<div class="compliance-body">
+<aside class="compliance-toc"><h2 data-i18n="auto.t3106" data-lang-block="en">Contents</h2>
+<h2 data-lang-block="kr"></h2>
+<h2 data-lang-block="jp"></h2>
+<h2 data-lang-block="cn"></h2>
+<a data-i18n="auto.t3107" data-lang-block="en" href="#commitment">1. Sustainability Commitment</a>
+<a data-i18n="auto.t3108" data-lang-block="en" href="#circular">2. Circular Economy</a>
+<a data-i18n="auto.t3109" data-lang-block="en" href="#sourcing">3. Responsible Sourcing</a>
+<a data-i18n="auto.t3110" data-lang-block="en" href="#integrity">4. Supply Chain Integrity</a>
+<a data-i18n="auto.t3111" data-lang-block="en" href="#environment">5. Environmental Responsibility</a>
+<a data-i18n="auto.t3112" data-lang-block="en" href="#ethics">6. Ethics &amp; Compliance</a>
+<a data-i18n="auto.t3113" data-lang-block="en" href="#supplier">7. Supplier Standards</a>
+<a data-i18n="auto.t3114" data-lang-block="en" href="#risk">8. Supplier Risk Management</a>
+<a data-i18n="auto.t3115" data-lang-block="en" href="#reporting">9. Reporting</a>
+<a data-i18n="auto.t3116" data-lang-block="en" href="#contact">10. Company Information</a>
+<a data-lang-block="kr" href="#commitment">1.  </a>
+<a data-lang-block="kr" href="#circular">2. </a>
+<a data-lang-block="kr" href="#sourcing">3.   </a>
+<a data-lang-block="kr" href="#integrity">4.  </a>
+<a data-lang-block="kr" href="#environment">5.  </a>
+<a data-lang-block="kr" href="#ethics">6.   </a>
+<a data-lang-block="kr" href="#supplier">7.  </a>
+<a data-lang-block="kr" href="#risk">8.   </a>
+<a data-lang-block="kr" href="#reporting">9.    </a>
+<a data-lang-block="kr" href="#contact">10.  </a>
+<a data-lang-block="jp" href="#commitment">1. </a>
+<a data-lang-block="jp" href="#circular">2. </a>
+<a data-lang-block="jp" href="#sourcing">3. </a>
+<a data-lang-block="jp" href="#integrity">4. </a>
+<a data-lang-block="jp" href="#environment">5. </a>
+<a data-lang-block="jp" href="#ethics">6. </a>
+<a data-lang-block="jp" href="#supplier">7. </a>
+<a data-lang-block="jp" href="#risk">8. </a>
+<a data-lang-block="jp" href="#reporting">9. </a>
+<a data-lang-block="jp" href="#contact">10. </a>
+<a data-lang-block="cn" href="#commitment">1. </a>
+<a data-lang-block="cn" href="#circular">2. </a>
+<a data-lang-block="cn" href="#sourcing">3. </a>
+<a data-lang-block="cn" href="#integrity">4. </a>
+<a data-lang-block="cn" href="#environment">5. </a>
+<a data-lang-block="cn" href="#ethics">6. </a>
+<a data-lang-block="cn" href="#supplier">7. </a>
+<a data-lang-block="cn" href="#risk">8. </a>
+<a data-lang-block="cn" href="#reporting">9. </a>
+<a data-lang-block="cn" href="#contact">10. </a></aside>
+<article class="compliance-content"><section id="commitment">
+<h2 class="section-title" data-i18n="auto.t3117" data-lang-block="en">1. Sustainability Commitment</h2>
+<h2 class="section-title" data-lang-block="kr">1.  </h2>
+<h2 class="section-title" data-lang-block="jp">1. </h2>
+<h2 class="section-title" data-lang-block="cn">1. </h2>
+<div class="intro" data-i18n="auto.t3118" data-lang-block="en">YONGYEOKYO Trading House Co., Ltd conducts business through controlled sourcing, documented supplier review, and responsible trade practices. As a supplier of high-purity and ultra-high-purity non-ferrous and rare earth metals, the Company recognizes its role in supporting supply chain integrity, regulatory compliance, and environmentally conscious industrial development.</div>
+<div class="intro" data-i18n="auto.t3119" data-lang-block="kr">YONGYEOKYO Trading House Co., Ltd         .          ,           .</div>
+<div class="intro" data-i18n="auto.t3120" data-lang-block="jp">YONGYEOKYO Trading House Co., Ltd 、、。、、、。</div>
+<div class="intro" data-i18n="auto.t3121" data-lang-block="cn">YONGYEOKYO Trading House Co., Ltd 、。，、。</div>
+</section>
+<section id="circular">
+<h3 data-i18n="auto.t3122" data-lang-block="en">2. Circular Economy</h3>
+<h3 data-lang-block="kr">2. </h3>
+<h3 data-lang-block="jp">2. </h3>
+<h3 data-lang-block="cn">2. </h3>
+<p data-i18n="auto.t3123" data-lang-block="en">YONGYEOKYO supports the principles of a circular economy by promoting efficient material use and responsible sourcing practices throughout its supply chain. The Company supports business partners that adopt recycling, recovery, and environmentally responsible operating practices, while avoiding unverified claims regarding recycled content or carbon performance.</p>
+<p data-i18n="auto.t3124" data-lang-block="kr">YONGYEOKYO             .  ,        ,           .</p>
+<p data-i18n="auto.t3125" data-lang-block="jp">YONGYEOKYO 、、。、、、。</p>
+<p data-i18n="auto.t3126" data-lang-block="cn">YONGYEOKYO ，。、，。</p>
+</section>
+<section data-original-id="sourcing" id="sourcing__dup2">
+<h3 data-i18n="auto.t3127" data-lang-block="en">3. Responsible Sourcing</h3>
+<h3 data-lang-block="kr">3.   </h3>
+<h3 data-lang-block="jp">3. </h3>
+<h3 data-lang-block="cn">3. </h3>
+<ul data-lang-block="en">
+<li data-i18n="auto.t3128">lawful sourcing only</li>
+<li data-i18n="auto.t3129">no support for human rights abuses, forced labor, or child labor</li>
+<li data-i18n="auto.t3130">no fraudulent misrepresentation of origin, purity, or composition</li>
+<li data-i18n="auto.t3131">risk-based due diligence on suppliers and transactions</li>
+</ul>
+<ul data-lang-block="kr">
+<li> </li>
+<li> , ,    </li>
+<li>, ,     </li>
+<li> </li>
+</ul>
+<ul data-lang-block="jp">
+<li></li>
+<li>、、</li>
+<li>、、</li>
+<li></li>
+</ul>
+<ul data-lang-block="cn">
+<li></li>
+<li>、</li>
+<li>、</li>
+<li></li>
+</ul>
+</section>
+<section id="integrity">
+<h3 data-i18n="auto.t3132" data-lang-block="en">4. Supply Chain Integrity</h3>
+<h3 data-lang-block="kr">4.  </h3>
+<h3 data-lang-block="jp">4. </h3>
+<h3 data-lang-block="cn">4. </h3>
+<p data-i18n="auto.t3133" data-lang-block="en">Because YONGYEOKYO supplies high-purity industrial and rare earth materials from Korea into APAC technology supply chains, the Company places particular emphasis on origin transparency, batch traceability, CoA consistency, controlled document release and jurisdiction-specific review. Suppliers are expected to provide accurate supporting records and cooperate with reasonable verification requests.</p>
+<p data-i18n="auto.t3134" data-lang-block="kr">YONGYEOKYO       ,  ,       .          .</p>
+<p data-i18n="auto.t3135" data-lang-block="jp">YONGYEOKYO 、、、、。、。</p>
+<p data-i18n="auto.t3136" data-lang-block="cn"> YONGYEOKYO ，、、。，。</p>
+</section>
+<section id="environment">
+<h3 data-i18n="auto.t3137" data-lang-block="en">5. Environmental Responsibility</h3>
+<h3 data-lang-block="kr">5.  </h3>
+<h3 data-lang-block="jp">5. </h3>
+<h3 data-lang-block="cn">5. </h3>
+<div class="grid2">
+<div class="mini" data-lang-block="en">
+<strong data-i18n="auto.t3138">Our approach</strong>
+<ul>
+<li data-i18n="auto.t3139">comply with applicable environmental laws</li>
+<li data-i18n="auto.t3140">support environmentally responsible suppliers</li>
+<li data-i18n="auto.t3141">promote efficient material use and reduced waste</li>
+</ul>
+</div>
+<div class="mini" data-lang-block="en">
+<strong data-i18n="auto.t3142">What we do not claim</strong>
+<ul>
+<li data-i18n="auto.t3143">no unverified recycled-content claims</li>
+<li data-i18n="auto.t3144">no unsupported carbon-neutral claims</li>
+<li data-i18n="auto.t3145">no statements beyond documented capability</li>
+</ul>
+</div>
+<div class="mini" data-lang-block="kr">
+<strong> </strong>
+<ul>
+<li> </li>
+<li> </li>
+<li> </li>
+</ul>
+</div>
+<div class="mini" data-lang-block="kr">
+<strong> </strong>
+<ul>
+<li> </li>
+<li> </li>
+<li> </li>
+</ul>
+</div>
+<div class="mini" data-lang-block="jp">
+<strong></strong>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<div class="mini" data-lang-block="jp">
+<strong></strong>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<div class="mini" data-lang-block="cn">
+<strong></strong>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<div class="mini" data-lang-block="cn">
+<strong></strong>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="ethics">
+<h3 data-i18n="auto.t3146" data-lang-block="en">6. Ethics &amp; Compliance</h3>
+<h3 data-lang-block="kr">6.   </h3>
+<h3 data-lang-block="jp">6. </h3>
+<h3 data-lang-block="cn">6. </h3>
+<ul data-lang-block="en">
+<li data-i18n="auto.t3147">prohibition of bribery, corruption, and improper payments</li>
+<li data-i18n="auto.t3148">maintenance of accurate books and records</li>
+<li data-i18n="auto.t3149">compliance with export control, customs, and trade laws</li>
+<li data-i18n="auto.t3150">protection of confidential information and personal data</li>
+</ul>
+<ul data-lang-block="kr">
+<li>,     </li>
+<li> </li>
+<li>,      </li>
+<li> </li>
+</ul>
+<ul data-lang-block="jp">
+<li>、、</li>
+<li></li>
+<li>、、</li>
+<li></li>
+</ul>
+<ul data-lang-block="cn">
+<li>、</li>
+<li></li>
+<li>、</li>
+<li></li>
+</ul>
+</section>
+<section id="supplier">
+<h3 data-i18n="auto.t3151" data-lang-block="en">7. Supplier Standards</h3>
+<h3 data-lang-block="kr">7.  </h3>
+<h3 data-lang-block="jp">7. </h3>
+<h3 data-lang-block="cn">7. </h3>
+<p data-i18n="auto.t3152" data-lang-block="en">YONGYEOKYO expects suppliers to comply with the Company’s Supplier Code of Conduct and Supplier Declaration requirements. Suppliers are expected to operate lawfully, transparently, and in a manner consistent with responsible sourcing principles.</p>
+<p data-i18n="auto.t3153" data-lang-block="kr">YONGYEOKYO   Supplier Code of Conduct  Supplier Declaration    .           .</p>
+<p data-i18n="auto.t3154" data-lang-block="jp">YONGYEOKYO 、 Supplier Code of Conduct  Supplier Declaration 。、、。</p>
+<p data-i18n="auto.t3155" data-lang-block="cn">YONGYEOKYO  Supplier Code of Conduct  Supplier Declaration 。、。</p>
+<div class="note" data-i18n="auto.t3156" data-lang-block="en">Supplier documents should be provided through the Suppliers or Compliance section of the website and incorporated into contractual onboarding.</div>
+<div class="note" data-i18n="auto.t3157" data-lang-block="kr">    Suppliers  Compliance         .</div>
+<div class="note" data-i18n="auto.t3158" data-lang-block="jp">、 Suppliers  Compliance 、。</div>
+<div class="note" data-i18n="auto.t3159" data-lang-block="cn"> Suppliers  Compliance ，。</div>
+</section>
+<section id="risk">
+<h3 data-i18n="auto.t3160" data-lang-block="en">8. Supplier Risk Management</h3>
+<h3 data-lang-block="kr">8.   </h3>
+<h3 data-lang-block="jp">8. </h3>
+<h3 data-lang-block="cn">8. </h3>
+<div class="grid2">
+<div class="mini" data-lang-block="en">
+<strong data-i18n="auto.t3161">Assessment criteria</strong>
+<ul>
+<li data-i18n="auto.t3162">country risk</li>
+<li data-i18n="auto.t3163">material sensitivity</li>
+<li data-i18n="auto.t3164">supplier transparency</li>
+<li data-i18n="auto.t3165">compliance history</li>
+<li data-i18n="auto.t3166">trade and regulatory risk</li>
+</ul>
+</div>
+<div class="mini" data-lang-block="en">
+<strong data-i18n="auto.t3167">Risk levels</strong>
+<ul>
+<li data-i18n="auto.t3168">Low Risk - approved</li>
+<li data-i18n="auto.t3169">Medium Risk - enhanced monitoring</li>
+<li data-i18n="auto.t3170">High Risk - conditional approval</li>
+<li data-i18n="auto.t3171">Critical Risk - rejection</li>
+</ul>
+</div>
+<div class="mini" data-lang-block="kr">
+<strong> </strong>
+<ul>
+<li> </li>
+<li> </li>
+<li> </li>
+<li> </li>
+<li> </li>
+</ul>
+</div>
+<div class="mini" data-lang-block="kr">
+<strong> </strong>
+<ul>
+<li data-i18n="auto.t3172">Low Risk - </li>
+<li data-i18n="auto.t3173">Medium Risk -  </li>
+<li data-i18n="auto.t3174">High Risk -  </li>
+<li data-i18n="auto.t3175">Critical Risk - </li>
+</ul>
+</div>
+<div class="mini" data-lang-block="jp">
+<strong></strong>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<div class="mini" data-lang-block="jp">
+<strong></strong>
+<ul>
+<li data-i18n="auto.t3176">Low Risk - </li>
+<li data-i18n="auto.t3177">Medium Risk - </li>
+<li data-i18n="auto.t3178">High Risk - </li>
+<li data-i18n="auto.t3179">Critical Risk - </li>
+</ul>
+</div>
+<div class="mini" data-lang-block="cn">
+<strong></strong>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<div class="mini" data-lang-block="cn">
+<strong></strong>
+<ul>
+<li data-i18n="auto.t3180">Low Risk - </li>
+<li data-i18n="auto.t3181">Medium Risk - </li>
+<li data-i18n="auto.t3182">High Risk - </li>
+<li data-i18n="auto.t3183">Critical Risk - </li>
+</ul>
+</div>
+</div>
+</section>
+<section id="reporting">
+<h3 data-i18n="auto.t3184" data-lang-block="en">9. Reporting and Grievance Mechanism</h3>
+<h3 data-lang-block="kr">9.    </h3>
+<h3 data-lang-block="jp">9. </h3>
+<h3 data-lang-block="cn">9. </h3>
+<p data-i18n="auto.t3185" data-lang-block="en">YONGYEOKYO encourages employees, suppliers, and stakeholders to report concerns relating to supply chain risks, unethical conduct, or violations of Company policies. Reports are reviewed appropriately and handled in accordance with internal governance procedures.</p>
+<p data-i18n="auto.t3186" data-lang-block="kr">YONGYEOKYO ,     ,             .         .</p>
+<p data-i18n="auto.t3187" data-lang-block="jp">YONGYEOKYO 、、、、、、。。</p>
+<p data-i18n="auto.t3188" data-lang-block="cn">YONGYEOKYO 、、。。</p>
+</section>
+<section data-original-id="contact" id="contact__dup2">
+<h3 data-i18n="auto.t3189" data-lang-block="en">10. Company Information</h3>
+<h3 data-lang-block="kr">10.  </h3>
+<h3 data-lang-block="jp">10. </h3>
+<h3 data-lang-block="cn">10. </h3>
+<div class="grid2">
+<div class="mini" data-lang-block="en">
+<strong data-i18n="auto.t3190">Company</strong>
+<p data-i18n="auto.t3191">YONGYEOKYO Trading House Co., Ltd</p>
+<strong data-i18n="auto.t3192">Registered Office</strong>
+<p data-i18n="auto.t3193">Room 201, 47, Hogupo-ro 764beon-gil, Namdong-gu, Incheon 21536, Republic of Korea</p>
+<strong data-i18n="auto.t3194">Registration</strong>
+<p><span data-i18n="auto.t3195">Registration No.: 877-88-03332</span><br/><span data-i18n="auto.t3196">Representative Director </span><strong class="yyk-kim-verified" data-i18n="auto.t3197">Representative Director / CEO Kim Irina</strong></p>
+</div>
+<div class="mini" data-lang-block="en">
+<strong data-i18n="auto.t3198">Compliance Department</strong>
+<p><span data-i18n="auto.t3199">Email: compliance@yongyeokyo.com</span><br/><span data-i18n="auto.t3200">Tel: +82 10-8010-5275</span><br/><span data-i18n="auto.t3201">Business Hours: 09:00 - 18:00 KST</span></p>
+</div>
+<div class="mini" data-lang-block="kr">
+<strong></strong>
+<p data-i18n="auto.t3202">YONGYEOKYO Trading House Co., Ltd</p>
+<strong> </strong>
+<p data-i18n="auto.t3203">Room 201, 47, Hogupo-ro 764beon-gil, Namdong-gu, Incheon 21536, Republic of Korea</p>
+<strong> </strong>
+<p><span data-i18n="auto.t3204">Registration No.: 877-88-03332</span><br/><span data-i18n="auto.t3205">Representative Director </span><strong class="yyk-kim-verified" data-i18n="auto.t3206">Representative Director / CEO Kim Irina</strong></p>
+</div>
+<div class="mini" data-lang-block="kr">
+<strong> </strong>
+<p><span data-i18n="auto.t3207">: compliance@yongyeokyo.com</span><br/>: +82 10-8010-5275<br/><span data-i18n="auto.t3208">: 09:00 - 18:00 (Korea Standard Time / APAC Desk)</span></p>
+</div>
+<div class="mini" data-lang-block="jp">
+<strong></strong>
+<p data-i18n="auto.t3209">YONGYEOKYO Trading House Co., Ltd</p>
+<strong></strong>
+<p data-i18n="auto.t3210">Room 201, 47, Hogupo-ro 764beon-gil, Namdong-gu, Incheon 21536, Republic of Korea</p>
+<strong></strong>
+<p><span data-i18n="auto.t3211">Registration No.: 877-88-03332</span><br/><span data-i18n="auto.t3212">Representative Director </span><strong class="yyk-kim-verified" data-i18n="auto.t3213">Representative Director / CEO Kim Irina</strong></p>
+</div>
+<div class="mini" data-lang-block="jp">
+<strong></strong>
+<p><span data-i18n="auto.t3214">：compliance@yongyeokyo.com</span><br/>：+82 10-8010-5275<br/><span data-i18n="auto.t3215">：09:00 - 18:00（Korea Standard Time / APAC Desk）</span></p>
+</div>
+<div class="mini" data-lang-block="cn">
+<strong></strong>
+<p data-i18n="auto.t3216">YONGYEOKYO Trading House Co., Ltd</p>
+<strong></strong>
+<p data-i18n="auto.t3217">Room 201, 47, Hogupo-ro 764beon-gil, Namdong-gu, Incheon 21536, Republic of Korea</p>
+<strong></strong>
+<p><span data-i18n="auto.t3218">Registration No.: 877-88-03332</span><br/><span data-i18n="auto.t3219">Representative Director </span><strong class="yyk-kim-verified" data-i18n="auto.t3220">Representative Director / CEO Kim Irina</strong></p>
+</div>
+<div class="mini" data-lang-block="cn">
+<strong></strong>
+<p><span data-i18n="auto.t3221">：compliance@yongyeokyo.com</span><br/>：+82 10-8010-5275<br/><span data-i18n="auto.t3222">：09:00 - 18:00（Korea Standard Time / APAC Desk）</span></p>
+</div>
+</div>
+</section>
+<div class="footer">
+<p data-i18n="auto.t3223" data-lang-block="en">This page is designed as a corporate website Sustainability section for YONGYEOKYO and may be used together with the Company’s Supplier Code of Conduct, Supplier Declaration, and related compliance documents.</p>
+<p data-i18n="auto.t3224" data-lang-block="kr">  YONGYEOKYO   Sustainability   Supplier Code of Conduct, Supplier Declaration        .</p>
+<p data-i18n="auto.t3225" data-lang-block="jp"> YONGYEOKYO  Sustainability 、Supplier Code of Conduct、Supplier Declaration、。</p>
+<p data-i18n="auto.t3226" data-lang-block="cn"> YONGYEOKYO  Sustainability ， Supplier Code of Conduct、Supplier Declaration 。</p>
+</div></article>
+</div>
+</div>
+<div class="compliance-panel" data-compliance-panel="privacy">
+<div class="compliance-body">
+<aside class="compliance-toc">
+<h2 data-i18n="auto.t3227">Privacy Policy</h2>
+<a data-i18n="auto.t3228" href="#privacy-controller">Controller</a>
+<a data-i18n="auto.t3229" href="#privacy-scope">Processing Scope</a>
+<a data-i18n="auto.t3230" href="#privacy-apac">APAC Laws</a>
+<a data-i18n="auto.t3231" href="#privacy-rights">Data Subject Rights</a>
+<a data-i18n="auto.t3232" href="#privacy-retention">Retention &amp; Security</a>
+</aside>
+<div class="compliance-content">
+<div id="yyk-esg-compliance-panel">
+<div class="yyk-esg-fix-head">
+<div>
+<div class="yyk-esg-fix-title" data-i18n="auto.t3233">ESG / Responsible Sourcing Control Layer</div>
+<div data-i18n="auto.t3234" style="color:var(--muted2);font-size:12px;line-height:1.45;margin-top:6px">Buyer-facing ESG evidence layer for semiconductor, electronics and Sogo Shosha onboarding.</div>
+</div>
+<div class="yyk-esg-fix-status" data-i18n="auto.t3235">TEXT VERIFIED · VERIFIED</div>
+</div>
+<div class="yyk-esg-fix-grid">
+<div class="yyk-esg-fix-card">
+<strong data-i18n="auto.t3236">Responsible Sourcing</strong>
+<p data-i18n="auto.t3237">Materials are reviewed under supplier qualification, origin traceability, destination screening and end-use verification before commercial release. High-purity metals are not released as anonymous commodity goods.</p>
+</div>
+<div class="yyk-esg-fix-card">
+<strong data-i18n="auto.t3238">Environmental Control</strong>
+<p data-i18n="auto.t3239">Batch documentation may include CoA, TDS, SDS, packing information and process-related evidence where available. ESG review is aligned with buyer-side onboarding and review requirements.</p>
+</div>
+<div class="yyk-esg-fix-card">
+<strong data-i18n="auto.t3240">Governance</strong>
+<ul>
+<li data-i18n="auto.t3241">Contract-based supply only after quotation and buyer qualification.</li>
+<li data-i18n="auto.t3242">Export-control and restricted-party screening before shipment.</li>
+<li data-i18n="auto.t3243">Batch-specific CoA release for high-purity material claims.</li>
+</ul>
+</div>
+<div class="yyk-esg-fix-card">
+<strong data-i18n="auto.t3244">APAC Buyer Fit</strong>
+<p data-i18n="auto.t3245">Designed for Korea, Japan, Taiwan and China procurement review: semiconductor chain onboarding, Sogo Shosha documentation packs, privacy-aware communication and controlled transaction governance.</p>
+</div>
+</div>
+<div class="yyk-esg-fix-note" data-i18n="auto.t3246">
+    ESG decision signal: YONGYEOKYO should present ESG as a controlled procurement layer - traceability, documentation, compliance review and responsible sourcing - not as generic marketing copy.
+  </div>
+</div>
+<section id="privacy-controller">
+<h2 class="section-title" data-i18n="auto.t3247">Privacy Policy · YONGYEOKYO Trading House Co., Ltd</h2>
+<div class="intro" data-i18n="auto.t3248">
+        YONGYEOKYO Trading House Co., Ltd is the data controller for business inquiries, supplier qualification requests, RFQ intake, compliance review, document exchange and buyer communication submitted through this website or related procurement channels.
+      </div>
+<div class="company-box" style="margin-top:14px">
+<div class="mini-card"><strong data-i18n="auto.t3249">Legal Entity</strong><span data-i18n="auto.t3250">YONGYEOKYO Trading House Co., Ltd</span></div>
+<div class="mini-card"><strong data-i18n="auto.t3251">Business Registration</strong>877-88-03332</div>
+<div class="mini-card"><strong data-i18n="auto.t3252">Registered Office</strong><span data-i18n="auto.t3253">Room 201, 47, Hogupo-ro 764beon-gil, Namdong-gu, Incheon, Republic of Korea 21536</span></div>
+<div class="mini-card"><strong data-i18n="auto.t3254">Contact</strong><span data-i18n="auto.t3255">sales@yongyeokyo.com · compliance@yongyeokyo.com</span></div>
+</div>
+</section>
+<section id="privacy-scope">
+<h3 data-i18n="auto.t3256">Processing Scope</h3>
+<p data-i18n="auto.t3257">Personal and business data may be processed for RFQ handling, supplier onboarding, buyer qualification, compliance screening, contract negotiation, export-control review, logistics coordination, document delivery, review record keeping and legal obligations.</p>
+<table>
+<thead><tr><th data-i18n="auto.t3258">Data Category</th><th data-i18n="auto.t3259">Purpose</th><th data-i18n="auto.t3260">Examples</th></tr></thead>
+<tbody>
+<tr><td data-i18n="auto.t3261">Business identity</td><td data-i18n="auto.t3262">RFQ and buyer verification</td><td data-i18n="auto.t3263">Company name, department, role, business email, phone number</td></tr>
+<tr><td data-i18n="auto.t3264">Transaction data</td><td data-i18n="auto.t3265">Quotation and contract handling</td><td data-i18n="auto.t3266">Material, purity, volume, destination, Incoterms, requested documents</td></tr>
+<tr><td data-i18n="auto.t3267">Compliance data</td><td data-i18n="auto.t3268">Legal and export-control review</td><td data-i18n="auto.t3269">End-use statements, entity screening signals, country routing, review notes</td></tr>
+<tr><td data-i18n="auto.t3270">Technical data</td><td data-i18n="auto.t3271">Specification and quality review</td><td data-i18n="auto.t3272">CoA requests, SDS/TDS requirements, GDMS/ICP-MS scope, impurity limits</td></tr>
+<tr><td data-i18n="auto.t3273">Website data</td><td data-i18n="auto.t3274">Security and cookie preference handling</td><td data-i18n="auto.t3275">Consent status, browser metadata, access logs where required for security</td></tr>
+</tbody>
+</table>
+</section>
+<section id="privacy-apac">
+<h3 data-i18n="auto.t3276">APAC Privacy and Commercial Law Mapping</h3>
+<p data-i18n="auto.t3277">Privacy handling is mapped to the buyer’s jurisdiction and transaction route. The RFQ decision engine links destination selection to the applicable privacy and compliance layer.</p>
+<table>
+<thead><tr><th data-i18n="auto.t3278">Region</th><th data-i18n="auto.t3279">Framework</th><th data-i18n="auto.t3280">Operational Meaning</th></tr></thead>
+<tbody>
+<tr><td data-i18n="auto.t3281">Korea</td><td data-i18n="auto.t3282">PIPA · K-REACH where applicable</td><td data-i18n="auto.t3283">Korean personal information handling, chemical documentation review and Korean entity documentation.</td></tr>
+<tr><td data-i18n="auto.t3284">Japan</td><td data-i18n="auto.t3285">APPI · Tokushoho · METI awareness</td><td data-i18n="auto.t3286">Japanese privacy handling, commercial disclosure, import/export review and Japanese buyer documentation.</td></tr>
+<tr><td data-i18n="auto.t3287">China</td><td data-i18n="auto.t3288">PIPL · entity/end-use screening</td><td data-i18n="auto.t3289">China personal information review, end-use confirmation, customs classification and controlled buyer screening.</td></tr>
+<tr><td data-i18n="auto.t3290">Taiwan</td><td data-i18n="auto.t3291">Taiwan PDPA · TCSCA where applicable</td><td data-i18n="auto.t3292">Taiwan personal data handling, UBN verification, chemical review and logistics documentation.</td></tr>
+</tbody>
+</table>
+</section>
+<section id="privacy-rights">
+<h3 data-i18n="auto.t3293">Data Subject Rights</h3>
+<p data-i18n="auto.t3294">Authorized individuals may request access, correction, deletion, restriction, withdrawal of consent or information regarding processing where applicable law provides such rights. Requests are reviewed against legal, contractual, review and compliance retention obligations.</p>
+<ul>
+<li data-i18n="auto.t3295">Access to business-contact and RFQ-related personal data.</li>
+<li data-i18n="auto.t3296">Correction of inaccurate contact or company information.</li>
+<li data-i18n="auto.t3297">Withdrawal of consent for non-essential communications.</li>
+<li data-i18n="auto.t3298">Restriction or deletion where no overriding legal or review retention requirement applies.</li>
+<li data-i18n="auto.t3299">Review of cookie preferences and website consent state.</li>
+</ul>
+</section>
+<section id="privacy-retention">
+<h3 data-i18n="auto.t3300">Retention, Security and Disclosure</h3>
+<p data-i18n="auto.t3301">Records are retained only as long as necessary for RFQ handling, contract negotiation, transaction execution, quality documentation, legal obligations, dispute prevention, review readiness and compliance review. Access is limited to personnel and service providers with a business need.</p>
+<div class="grid2">
+<div class="mini-card"><strong data-i18n="auto.t3302">Security</strong><span data-i18n="auto.t3303">Access control, document segregation, supplier qualification records, review trail logic and controlled communication channels.</span></div>
+<div class="mini-card"><strong data-i18n="auto.t3304">Disclosure</strong><span data-i18n="auto.t3305">Data may be shared with logistics partners, testing laboratories, legal/compliance advisors and counterparties only where necessary for the transaction or required by law.</span></div>
+</div>
+<div class="note" data-i18n="auto.t3306" style="margin-top:14px">This privacy layer is provided for procurement and supplier qualification review. Transaction-specific terms may be refined in NDA, quotation, purchase order, contract or controlled document exchange.</div>
+</section>
+</div>
+</div>
+</div>
+<div class="compliance-panel" data-compliance-panel="terms">
+<div class="compliance-body">
+<aside class="compliance-toc"><h2 data-i18n="auto.t3307">Terms</h2><a data-i18n="auto.t3308" href="javascript:void(0)">Sale &amp; Delivery</a><a data-i18n="auto.t3309" href="javascript:void(0)">Incoterms</a><a data-i18n="auto.t3310" href="javascript:void(0)">Document Set</a></aside>
+<article class="compliance-content">
+<section>
+<h2 class="section-title" data-i18n="auto.t3311">Terms of Sale &amp; Delivery</h2>
+<p data-i18n="auto.t3312">YONGYEOKYO Trading House Co., Ltd applies controlled commercial terms for international industrial transactions. Final terms are confirmed in the quotation, purchase order, invoice and applicable contract documents.</p>
+</section>
+<section>
+<h3 data-i18n="auto.t3313">Incoterms 2020</h3>
+<table>
+<thead><tr><th data-i18n="auto.t3314">Term</th><th data-i18n="auto.t3315">Use</th><th data-i18n="auto.t3316">Commercial Meaning</th></tr></thead>
+<tbody>
+<tr><td data-i18n="auto.t3317">EXW</td><td data-i18n="auto.t3318">Factory / warehouse release</td><td data-i18n="auto.t3319">Buyer controls export logistics and risk from pickup point.</td></tr>
+<tr><td data-i18n="auto.t3320">FOB</td><td data-i18n="auto.t3321">Port shipment</td><td data-i18n="auto.t3322">Risk transfers at loaded vessel stage under agreed port terms.</td></tr>
+<tr><td data-i18n="auto.t3323">CIF</td><td data-i18n="auto.t3324">Port-to-port delivery</td><td data-i18n="auto.t3325">Cost, insurance and freight included to destination port.</td></tr>
+<tr><td data-i18n="auto.t3326">DAP</td><td data-i18n="auto.t3327">Delivered destination</td><td data-i18n="auto.t3328">Seller arranges delivery to agreed place, excluding import clearance unless agreed.</td></tr>
+</tbody>
+</table>
+</section>
+<section>
+<h3 data-i18n="auto.t3329">Document Set</h3>
+<ul>
+<li data-i18n="auto.t3330">Commercial invoice</li>
+<li data-i18n="auto.t3331">Packing list</li>
+<li data-i18n="auto.t3332">Certificate of Analysis / Technical Data Sheet / Safety Data Sheet</li>
+<li data-i18n="auto.t3333">Origin and compliance documentation where applicable</li>
+</ul>
+</section>
+</article>
+</div>
+</div>
+<div class="compliance-panel" data-compliance-panel="cookies">
+<div class="compliance-body">
+<aside class="compliance-toc"><h2 data-i18n="auto.t3334">Cookies</h2><a data-i18n="auto.t3335" href="javascript:void(0)">Settings</a><a data-i18n="auto.t3336" href="javascript:void(0)">Consent Log</a></aside>
+<article class="compliance-content">
+<section>
+<h2 class="section-title" data-i18n="auto.t3337">Cookie Settings</h2>
+<p data-i18n="auto.t3338">Essential cookies are required for site operation. Analytics and marketing cookies are disabled unless consent is granted.</p>
+<button class="micro-btn" data-i18n="auto.t3339" id="openSettingsInside" onclick="console.log('Button activated');">Open Cookie Settings</button>
+</section>
+<section>
+<h3 data-i18n="auto.t3340">Consent Record</h3>
+<p><strong data-i18n="auto.t3341">Current consent status:</strong> <span class="code" data-i18n="auto.t3342" id="consentSummary">Not set</span></p>
+<div class="log-box" data-i18n="auto.t3343" id="consentLogView">No consent log yet.</div>
+</section>
+</article>
+</div>
+</div>
+<div class="compliance-panel" data-compliance-panel="ethics">
+<div class="compliance-body">
+<aside class="compliance-toc"><h2 data-i18n="auto.t3344">Ethics</h2><a data-i18n="auto.t3345" href="javascript:void(0)">Hotline</a><a data-i18n="auto.t3346" href="javascript:void(0)">Non-Retaliation</a></aside>
+<article class="compliance-content">
+<section>
+<h2 class="section-title" data-i18n="auto.t3347">Ethics &amp; Global Hotline</h2>
+<p data-i18n="auto.t3348">Reports concerning bribery, sanctions risk, forced labor, conflict minerals, document falsification, product integrity or trade compliance concerns may be submitted to the Compliance Department.</p>
+<div class="note" data-i18n="auto.t3349">Contact: compliance@yongyeokyo.com</div>
+</section>
+<section>
+<h3 data-i18n="auto.t3350">Non-Retaliation</h3>
+<p data-i18n="auto.t3351">YONGYEOKYO Trading House Co., Ltd does not permit retaliation against persons raising good-faith compliance concerns.</p>
+</section>
+</article>
+</div>
+</div>
+<div class="compliance-panel" data-compliance-panel="legal-framework">
+<div class="compliance-body">
+<aside class="compliance-toc">
+<h2 data-i18n="auto.t3352">Legal Framework</h2>
+<a data-i18n="auto.t3353" href="javascript:void(0)">Export Control</a>
+<a data-i18n="auto.t3354" href="javascript:void(0)">No Public Offer</a>
+<a data-i18n="auto.t3355" href="javascript:void(0)">RFQ Validation</a>
+<a data-i18n="auto.t3356" href="javascript:void(0)">Controlled Materials</a>
+<a data-i18n="auto.t3357" href="javascript:void(0)">Batch Certification</a>
+</aside>
+<article class="compliance-content">
+<section>
+<h2 class="section-title" data-i18n="auto.t3358">Legal Framework for Controlled Materials</h2>
+<p data-i18n="auto.t3359">This framework applies to YONGYEOKYO high-purity metals, rare earth materials, Korea-origin or Korea-routed APAC shipments and controlled RFQ scenarios. Commercial activity is governed by compliance review, technical validation and batch-specific certification.</p>
+</section>
+<section>
+<h3 data-i18n="auto.t3360">Export-Control Disclaimer</h3>
+<p data-i18n="auto.t3361">Certain products may be subject to export control regulations depending on material specification, purity level, destination and end-use. Supply may require verification of end-user, application and shipment routing prior to approval.</p>
+</section>
+<section>
+<h3 data-i18n="auto.t3362">No-Public-Offer Disclaimer</h3>
+<p data-i18n="auto.t3363">This website and its contents do not constitute a legally binding public offer. All transactions are subject to formal quotation, mutual agreement and executed contract documentation.</p>
+</section>
+<section>
+<h3 data-i18n="auto.t3364">RFQ Subject-to-Specification Disclaimer</h3>
+<p data-i18n="auto.t3365">All RFQs are subject to technical validation, specification alignment, GDMS/ICP-MS route confirmation, CoA release, supplier confirmation and APAC compliance review.</p>
+</section>
+<section>
+<h3 data-i18n="auto.t3366">Controlled Materials Notice</h3>
+<p data-i18n="auto.t3367">Certain rare earth elements, isotopically enriched materials and ultra-high purity products may require additional documentation, regulatory approval and compliance review prior to release.</p>
+</section>
+<section>
+<h3 data-i18n="auto.t3368">Batch &amp; Certification Disclaimer</h3>
+<p data-i18n="auto.t3369">Materials are supplied on a batch-specific basis. Final purity, impurity profile and release status are confirmed via Certificate of Analysis (CoA) and related documentation for each shipment.</p>
+</section>
+</article>
+</div>
+</div>
+</div>
+</div>
+<button class="floating-settings" id="openSettingsFloating" onclick="console.log('Button activated');"> </button>
+<div aria-label="  " aria-modal="false" class="cookie-banner" id="cookieBanner" role="dialog">
+<div class="cookie-top">
+<div>
+<strong> </strong>
+<div style="margin-top:6px; color:#d1d5db;">
+               .        .
+        </div>
+</div>
+<div class="cookie-actions">
+<button class="accept" id="acceptAll" onclick="console.log('Button activated');"> </button>
+<button class="reject" id="rejectNonEssential" onclick="console.log('Button activated');"> </button>
+<button class="customize" id="toggleCustomize" onclick="console.log('Button activated');"></button>
+</div>
+</div>
+<div class="cookie-panel" id="cookiePanel">
+<div class="consent-row">
+<div>
+<strong> </strong>
+<div class="muted" style="color:#d1d5db;">, ,   .</div>
+</div>
+<label class="switch">
+<input checked="" disabled="" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<div class="consent-row">
+<div>
+<strong> </strong>
+<div class="muted" style="color:#d1d5db;">      .</div>
+</div>
+<label class="switch">
+<input id="analyticsConsent" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<div class="consent-row">
+<div>
+<strong> </strong>
+<div class="muted" style="color:#d1d5db;">      .</div>
+</div>
+<label class="switch">
+<input id="marketingConsent" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<div class="cookie-actions" style="margin-top: 12px;">
+<button class="accept" id="savePreferences" onclick="console.log('Button activated');"> </button>
+</div>
+<div class="status-bar">
+         ,  ,   .
+            <span class="code" data-i18n="auto.t3370">sendConsentToServer()</span>   .
+      </div>
+</div>
+</div>
+<script>
+
+    (function () {
+      const CONSENT_KEY = "yongyeokyo_cookie_consent_v1";
+      const CONSENT_LOG_KEY = "yongyeokyo_cookie_consent_log_v1";
+      const POLICY_VERSION = "2026-04-19";
+
+      const banner = document.getElementById("cookieBanner");
+      const panel = document.getElementById("cookiePanel");
+      const analyticsInput = document.getElementById("analyticsConsent");
+      const marketingInput = document.getElementById("marketingConsent");
+      const consentSummary = document.getElementById("consentSummary");
+      const consentLogView = document.getElementById("consentLogView");
+
+      function nowISO() {
+        return new Date().toISOString();
+      }
+
+      function getClientMeta() {
+        return {
+          userAgent: navigator.userAgent,
+          language: navigator.language || "unknown",
+          path: location.pathname,
+          policyVersion: POLICY_VERSION
+        };
+      }
+
+      function getStoredConsent() {
+        try {
+          return JSON.parse(localStorage.getItem(CONSENT_KEY) || "null");
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function getStoredLog() {
+        try {
+          return JSON.parse(localStorage.getItem(CONSENT_LOG_KEY) || "[]");
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function writeLog(entry) {
+        const logs = getStoredLog();
+        logs.unshift(entry);
+        localStorage.setItem(CONSENT_LOG_KEY, JSON.stringify(logs.slice(0, 20)));
+      }
+
+      function updateConsentUI() {
+        const consent = getStoredConsent();
+        if (!consent) {
+          consentSummary.textContent = "";
+          consentLogView.textContent = "   .";
+          return;
+        }
+        consentSummary.textContent =
+          `essential=${consent.essential}, analytics=${consent.analytics}, marketing=${consent.marketing}, updated=${consent.timestamp}`;
+        const logs = getStoredLog();
+        consentLogView.textContent = JSON.stringify(logs, null, 2);
+      }
+
+      function sendConsentToServer(payload) {
+        // Production hook:
+        // Replace this with a real fetch() call to your backend endpoint.
+        // Example:
+        // return fetch("/api/privacy/consent-log", {
+        //   method: "POST",
+        //   headers: {"Content-Type": "application/json"},
+        //   body: JSON.stringify(payload)
+        // });
+        return Promise.resolve({ ok: true });
+      }
+
+      function applyConsent(consentData) {
+        localStorage.setItem(CONSENT_KEY, JSON.stringify(consentData));
+        writeLog(consentData);
+
+        // Non-essential tags must only load after consent.
+        // Example:
+        // if (consentData.analytics) loadGoogleAnalytics();
+        // if (consentData.marketing) loadMetaPixel();
+
+        sendConsentToServer(consentData).catch(function () {
+          // Fail silently here; local log still remains.
+        });
+
+        updateConsentUI();
+        banner.classList.remove("show");
+      }
+
+      function openBannerWithPanel() {
+        banner.classList.add("show");
+        panel.classList.add("show");
+      }
+
+      document.getElementById("toggleCustomize").addEventListener("click", function () {
+        panel.classList.toggle("show");
+      });
+
+      document.getElementById("openSettingsTop").addEventListener("click", openBannerWithPanel);
+      document.getElementById("openSettingsFloating").addEventListener("click", openBannerWithPanel);
+
+      document.getElementById("acceptAll").addEventListener("click", function () {
+        analyticsInput.checked = true;
+        marketingInput.checked = true;
+        applyConsent({
+          essential: true,
+          analytics: true,
+          marketing: true,
+          source: "banner_accept_all",
+          timestamp: nowISO(),
+          ...getClientMeta()
+        });
+      });
+
+      document.getElementById("rejectNonEssential").addEventListener("click", function () {
+        analyticsInput.checked = false;
+        marketingInput.checked = false;
+        applyConsent({
+          essential: true,
+          analytics: false,
+          marketing: false,
+          source: "banner_reject_nonessential",
+          timestamp: nowISO(),
+          ...getClientMeta()
+        });
+      });
+
+      document.getElementById("savePreferences").addEventListener("click", function () {
+        applyConsent({
+          essential: true,
+          analytics: !!analyticsInput.checked,
+          marketing: !!marketingInput.checked,
+          source: "banner_customized",
+          timestamp: nowISO(),
+          ...getClientMeta()
+        });
+      });
+
+      const existing = getStoredConsent();
+      if (existing) {
+        analyticsInput.checked = !!existing.analytics;
+        marketingInput.checked = !!existing.marketing;
+        banner.classList.remove("show");
+      } else {
+        banner.classList.add("show");
+      }
+
+      updateConsentUI();
+    })();
+  
+</script>
+<div aria-hidden="true" class="product-engine" id="productEngine">
+<div aria-labelledby="productEngineTitle" aria-modal="true" class="product-shell" role="dialog">
+<div class="product-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t3371">YONGYEOKYO · Product Passport Engine</div>
+<div class="product-title" data-i18n="auto.t3372" id="productEngineTitle">Engineering Catalog for 6N-7N Materials</div>
+<p class="card-text" data-i18n="auto.t3373">Materials are defined by purity class, impurity profile and process compatibility - not generic commercial descriptors.</p>
+</div>
+<button aria-label="Close Product Passport Engine" class="product-close" data-close-product="" onclick="console.log('Button activated');" type="button">×</button>
+</div>
+<div class="product-tabs">
+<button class="product-tab active" data-i18n="auto.t3374" data-product-tab="cu" onclick="console.log('Button activated');" type="button">Cu · Copper</button>
+<button class="product-tab" data-i18n="auto.t3375" data-product-tab="al" onclick="console.log('Button activated');" type="button">Al · Aluminum</button>
+<button class="product-tab" data-i18n="auto.t3376" data-product-tab="zn" onclick="console.log('Button activated');" type="button">Zn · Zinc</button>
+<button class="product-tab" data-i18n="auto.t3377" data-product-tab="ree" onclick="console.log('Button activated');" type="button">REE · Rare Earth</button>
+<button class="product-tab" data-i18n="auto.t3378" data-product-tab="quality" onclick="console.log('Button activated');" type="button">Quality Chain</button>
+<button class="product-tab" data-i18n="auto.t3379" data-product-tab="logistics" onclick="console.log('Button activated');" type="button">Logistics</button>
+</div>
+<div class="product-panel active" data-product-panel="cu">
+<div class="product-body">
+<aside class="product-side">
+<div class="product-symbol">Cu</div>
+<div class="product-purity">99.9999% - 99.99999%<br/><span data-i18n="auto.t3380">(6N-7N)</span></div>
+<div class="cert-stamp" data-i18n="auto.t3381">CAS 7440-50-8 · Internal Ref KE-08896</div>
+<div class="product-meta">
+<div class="row"><span data-i18n="auto.t3382">Line</span><span data-i18n="auto.t3383">CORE / PRECISION / ULTRA</span></div>
+<div class="row"><span data-i18n="auto.t3384">Forms</span><span data-i18n="auto.t3385">Ingot / Rod / Powder / Target</span></div>
+<div class="row"><span data-i18n="auto.t3386">Control</span><span data-i18n="auto.t3387">ppb impurity profile</span></div>
+</div>
+<div class="product-actions"><button class="micro-btn" data-i18n="auto.t3388" data-pp-add-rfq="Copper Cu · CAS 7440-50-8 · KE-08896 · Up to 99.99999% (7N)" onclick="selectMaterial('Copper Cu · CAS 7440-50-8 · KE-08896 · Up to 99.99999% (7N)'); return false;" type="button">Add to RFQ</button></div>
+</aside>
+<article class="product-content">
+<div class="product-grid">
+<div class="product-card"><h3 data-i18n="auto.t3389">Applications</h3><ul><li data-i18n="auto.t3390">Semiconductor interconnects and deposition processes</li><li data-i18n="auto.t3391">Magnetron sputtering targets (PVD)</li><li data-i18n="auto.t3392">Epitaxial growth substrates and seed layers</li><li data-i18n="auto.t3393">High-frequency conductive components</li><li data-i18n="auto.t3394">Quantum and cryogenic systems with low impurity scattering</li></ul></div>
+<div class="product-card"><h3 data-i18n="auto.t3395">Technical Control</h3><ul><li data-i18n="auto.t3396">Controlled impurity profile at ppb level: Fe, Ni, Pb, Zn, O</li><li data-i18n="auto.t3397">High electrical conductivity with minimized electron scattering</li><li data-i18n="auto.t3398">Oxygen-controlled variants available: OFHC / ultra-low O₂</li><li data-i18n="auto.t3399">Batch-specific CoA and GDMS / ICP-MS analytical data</li></ul></div>
+</div>
+<table class="product-table"><thead><tr><th data-i18n="auto.t3400">Parameter</th><th data-i18n="auto.t3401">Specification</th><th data-i18n="auto.t3402">Commercial relevance</th></tr></thead><tbody><tr><td data-i18n="auto.t3403">Purity class</td><td data-i18n="auto.t3404">6N-7N</td><td data-i18n="auto.t3405">Defines supply line: CORE / PRECISION / ULTRA</td></tr><tr><td data-i18n="auto.t3406">Impurity logic</td><td data-i18n="auto.t3407">ppm / ppb profile by RFQ</td><td data-i18n="auto.t3408">Determines engineering fit and qualification scope</td></tr><tr><td data-i18n="auto.t3409">Forms</td><td data-i18n="auto.t3410">Ingots / rod / ultrafine powder / sputtering target</td><td data-i18n="auto.t3411">Defines packaging, handling and quotation route</td></tr></tbody></table>
+</article>
+</div>
+</div>
+<div class="product-panel" data-product-panel="al">
+<div class="product-body">
+<aside class="product-side">
+<div class="product-symbol">Al</div>
+<div class="product-purity">99.9999%<br/><span data-i18n="auto.t3412">(6N)</span></div>
+<div class="cert-stamp" data-i18n="auto.t3413">CAS 7429-90-5 · GDMS Certified</div>
+<div class="product-meta"><div class="row"><span data-i18n="auto.t3414">Line</span><span data-i18n="auto.t3415">CORE / PRECISION</span></div><div class="row"><span data-i18n="auto.t3416">Forms</span><span data-i18n="auto.t3417">Ingots / Sputtering Targets</span></div><div class="row"><span data-i18n="auto.t3418">Control</span><span data-i18n="auto.t3419">Na / K critical control</span></div></div>
+<div class="product-actions"><button class="micro-btn" data-i18n="auto.t3420" data-pp-add-rfq="Aluminum Al · CAS 7429-90-5 · High-purity ingot route" onclick="selectMaterial('Aluminum Al · CAS 7429-90-5 · High-purity ingot route'); return false;" type="button">Add to RFQ</button></div>
+</aside>
+<article class="product-content">
+<div class="product-grid">
+<div class="product-card"><h3 data-i18n="auto.t3421">Applications</h3><ul><li data-i18n="auto.t3422">Semiconductor metallization layers</li><li data-i18n="auto.t3423">Vacuum deposition: PVD / evaporation</li><li data-i18n="auto.t3424">Reflective coatings and optical systems</li><li data-i18n="auto.t3425">Capacitor-grade aluminum for microelectronics</li></ul></div>
+<div class="product-card"><h3 data-i18n="auto.t3426">Technical Control</h3><ul><li data-i18n="auto.t3427">Low alkali metal contamination: Na and K critical control</li><li data-i18n="auto.t3428">Stable oxide layer behavior for thin-film consistency</li><li data-i18n="auto.t3429">Suitable for cleanroom-class deposition environments</li><li data-i18n="auto.t3430">GDMS / spark mass spectrometry review by batch scope</li></ul></div>
+</div>
+<table class="product-table"><thead><tr><th data-i18n="auto.t3431">Parameter</th><th data-i18n="auto.t3432">Specification</th><th data-i18n="auto.t3433">Commercial relevance</th></tr></thead><tbody><tr><td data-i18n="auto.t3434">Purity</td><td data-i18n="auto.t3435">99.9999% (6N)</td><td data-i18n="auto.t3436">Thin-film and optical process stability</td></tr><tr><td data-i18n="auto.t3437">Impurities</td><td data-i18n="auto.t3438">Regulated impurity list per contract</td><td data-i18n="auto.t3439">Defines acceptance criteria</td></tr><tr><td data-i18n="auto.t3440">Forms</td><td data-i18n="auto.t3441">High-purity ingots / targets</td><td data-i18n="auto.t3442">Defines production and delivery route</td></tr></tbody></table>
+</article>
+</div>
+</div>
+<div class="product-panel" data-product-panel="zn">
+<div class="product-body">
+<aside class="product-side">
+<div class="product-symbol">Zn</div>
+<div class="product-purity">99.999% - 99.9995%<br/><span data-i18n="auto.t3443">(5N-5N5)</span></div>
+<div class="cert-stamp" data-i18n="auto.t3444">CAS 7440-66-6</div>
+<div class="product-meta"><div class="row"><span data-i18n="auto.t3445">Line</span><span data-i18n="auto.t3446">CORE / PRECISION</span></div><div class="row"><span data-i18n="auto.t3447">Forms</span><span data-i18n="auto.t3448">Powder / Granular</span></div><div class="row"><span data-i18n="auto.t3449">Control</span><span data-i18n="auto.t3450">PSD / morphology</span></div></div>
+<div class="product-actions"><button class="micro-btn" data-i18n="auto.t3451" data-pp-add-rfq="Zinc Zn · CAS 7440-66-6 · Up to 99.9995% (5N5)" onclick="selectMaterial('Zinc Zn · CAS 7440-66-6 · Up to 99.9995% (5N5)'); return false;" type="button">Add to RFQ</button></div>
+</aside>
+<article class="product-content">
+<div class="product-grid">
+<div class="product-card"><h3 data-i18n="auto.t3452">Applications</h3><ul><li data-i18n="auto.t3453">Zinc-rich anti-corrosion coatings</li><li data-i18n="auto.t3454">Thin-film deposition and functional coatings</li><li data-i18n="auto.t3455">Battery and electrochemical systems</li><li data-i18n="auto.t3456">Materials processing and alloy modification</li></ul></div>
+<div class="product-card"><h3 data-i18n="auto.t3457">Technical Control</h3><ul><li data-i18n="auto.t3458">Controlled particle morphology: spherical / dendritic</li><li data-i18n="auto.t3459">Surface oxidation management for stability</li><li data-i18n="auto.t3460">Consistent PSD for coating uniformity</li><li data-i18n="auto.t3461">Batch-specific CoA and particle characterization</li></ul></div>
+</div>
+<table class="product-table"><thead><tr><th data-i18n="auto.t3462">Parameter</th><th data-i18n="auto.t3463">Specification</th><th data-i18n="auto.t3464">Commercial relevance</th></tr></thead><tbody><tr><td data-i18n="auto.t3465">Purity</td><td data-i18n="auto.t3466">Up to 99.9995% (5N5)</td><td data-i18n="auto.t3467">Functional coating and electrochemical consistency</td></tr><tr><td data-i18n="auto.t3468">Form</td><td data-i18n="auto.t3469">Powder / granular distribution</td><td data-i18n="auto.t3470">Defines coating and processing behavior</td></tr><tr><td data-i18n="auto.t3471">Handling</td><td data-i18n="auto.t3472">Surface oxidation control</td><td data-i18n="auto.t3473">Stability during storage and application</td></tr></tbody></table>
+</article>
+</div>
+</div>
+<div class="product-panel" data-product-panel="ree">
+<div class="product-body">
+<aside class="product-side">
+<div class="product-symbol" data-i18n="auto.t3474">REE</div>
+<div class="product-purity"><span data-i18n="auto.t3475">Rare Earth Materials</span><br/><span data-i18n="auto.t3476">RFQ-based</span></div>
+<div class="cert-stamp" data-i18n="auto.t3477">Custom grades available</div>
+<div class="product-meta"><div class="row"><span data-i18n="auto.t3478">Grade</span><span data-i18n="auto.t3479">Custom grades available</span></div><div class="row"><span data-i18n="auto.t3480">Applications</span><span data-i18n="auto.t3481">Semiconductor &amp; Energy applications</span></div><div class="row"><span data-i18n="auto.t3482">Route</span><span data-i18n="auto.t3483">Compliance-gated RFQ</span></div></div>
+<div class="product-actions"><button class="micro-btn" data-i18n="auto.t3484" data-lanthanex-rfq="true" onclick="console.log('Button activated');" type="button">Add REE to RFQ</button></div>
+</aside>
+<article class="product-content">
+<div class="product-grid">
+<div class="product-card"><h3 data-i18n="auto.t3485">Technical Scope</h3><ul><li data-i18n="auto.t3486">Custom grades available</li><li data-i18n="auto.t3487">Semiconductor &amp; Energy applications</li></ul></div>
+<div class="product-card"><h3 data-i18n="auto.t3488">RFQ Control</h3><ul><li data-i18n="auto.t3489">Material value: Rare Earth Materials · REE</li><li data-i18n="auto.t3490">CoA release subject to grade, origin, destination and end-use validation</li></ul></div>
+</div>
+<table class="product-table"><thead><tr><th data-i18n="auto.t3491">Parameter</th><th data-i18n="auto.t3492">Specification</th><th data-i18n="auto.t3493">Commercial relevance</th></tr></thead><tbody><tr><td data-i18n="auto.t3494">Material</td><td data-i18n="auto.t3495">Rare Earth Materials · REE</td><td data-i18n="auto.t3496">Direct RFQ routing</td></tr><tr><td data-i18n="auto.t3497">Grade</td><td data-i18n="auto.t3498">Custom grades available</td><td data-i18n="auto.t3499">Defines feasibility and document pack</td></tr><tr><td data-i18n="auto.t3500">Applications</td><td data-i18n="auto.t3501">Semiconductor &amp; Energy applications</td><td data-i18n="auto.t3502">Buyer qualification context</td></tr></tbody></table>
+</article>
+</div>
+</div>
+<div class="product-panel" data-product-panel="quality">
+<div class="product-body">
+<aside class="product-side">
+<div class="product-symbol">QC</div>
+<div class="product-purity" data-i18n="auto.t3503">Verification Chain</div>
+<div class="cert-stamp" data-i18n="auto.t3504">GDMS · ICP-MS · Gas Analysis · SEM</div>
+<div class="product-meta"><div class="row"><span data-i18n="auto.t3505">Output</span><span data-i18n="auto.t3506">CoA / impurity profile</span></div><div class="row"><span data-i18n="auto.t3507">Level</span><span data-i18n="auto.t3508">ppm / ppb</span></div><div class="row"><span data-i18n="auto.t3509">Scope</span><span data-i18n="auto.t3510">Batch-specific</span></div></div>
+</aside>
+<article class="product-content">
+<div class="product-grid">
+<div class="product-card"><h3 data-i18n="auto.t3511">Verification Chain</h3><ul><li data-i18n="auto.t3512">GDMS primary analysis</li><li data-i18n="auto.t3513">ICP-MS cross-validation</li><li data-i18n="auto.t3514">Gas analysis: O / N / H</li><li data-i18n="auto.t3515">Particle characterization: SEM / laser diffraction</li><li data-i18n="auto.t3516">Batch CoA issuance</li><li data-i18n="auto.t3517">Traceability linkage</li></ul></div>
+<div class="product-card"><h3 data-i18n="auto.t3518">Shipment Evidence</h3><ul><li data-i18n="auto.t3519">Batch-specific Certificate of Analysis</li><li data-i18n="auto.t3520">Impurity profile: ppm / ppb</li><li data-i18n="auto.t3521">Production and origin traceability</li><li data-i18n="auto.t3522">Documentation release based on end-use validation</li></ul></div>
+</div>
+</article>
+</div>
+</div>
+<div class="product-panel" data-product-panel="logistics">
+<div class="product-body">
+<aside class="product-side">
+<div class="product-symbol" data-i18n="auto.t3523">LOG</div>
+<div class="product-purity" data-i18n="auto.t3524">Controlled Delivery</div>
+<div class="cert-stamp" data-i18n="auto.t3525">EXW · FCA · CIF · CIP</div>
+<div class="product-meta"><div class="row"><span data-i18n="auto.t3526">Primary Hub</span><span data-i18n="auto.t3527">Busan, South Korea</span></div><div class="row"><span data-i18n="auto.t3528">Packaging</span><span data-i18n="auto.t3529">Vacuum / Argon</span></div><div class="row"><span data-i18n="auto.t3530">Handling</span><span data-i18n="auto.t3531">≥5N controlled atmosphere</span></div></div>
+</aside>
+<article class="product-content">
+<div class="product-grid">
+<div class="product-card"><h3 data-i18n="auto.t3532">Logistics Architecture</h3><ul><li data-i18n="auto.t3533">APAC-centered routing via Korea: Busan hub</li><li data-i18n="auto.t3534">APAC / Global Buyer Desk and APAC lanes by RFQ</li><li data-i18n="auto.t3535">Controlled atmosphere packaging: vacuum / argon</li><li data-i18n="auto.t3536">Export-compliant documentation: CoA, MTC, end-use validation</li></ul></div>
+<div class="product-card"><h3 data-i18n="auto.t3537">Documentation Logic</h3><ul><li data-i18n="auto.t3538">Technical documentation released based on material specification alignment</li><li data-i18n="auto.t3539">End-use validation where required</li><li data-i18n="auto.t3540">Compliance and export-control screening before final release</li><li data-i18n="auto.t3541">For materials ≥5N, controlled atmosphere handling is mandatory</li></ul></div>
+</div>
+</article>
+</div>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="contact-engine" id="contactEngine">
+<div aria-labelledby="contactEngineTitle" aria-modal="true" class="contact-shell" role="dialog">
+<div class="contact-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t3542">YONGYEOKYO · Contact Engine</div>
+<div class="contact-title" data-i18n="auto.t3543" id="contactEngineTitle">Inquiry, Media and Privacy Routing</div>
+<p class="card-text" data-i18n="auto.t3544">A controlled contact layer for product inquiries, quotation routing, media requests and privacy access.</p>
+</div>
+<button aria-label="Close Contact Engine" class="contact-close" data-close-contact="" onclick="console.log('Button activated');" type="button">×</button>
+</div>
+<div class="contact-body">
+<aside class="contact-toc">
+<h2 data-i18n="auto.t3545">Contact</h2>
+<a data-i18n="auto.t3546" href="#ce-overview">Overview</a>
+<a data-i18n="auto.t3547" href="#ce-inquiry">Product &amp; Business Inquiries</a>
+<a data-i18n="auto.t3548" href="#ce-media">Media Inquiries</a>
+<a data-i18n="auto.t3549" href="#ce-accounts">Official Social Media</a>
+<button data-i18n="auto.t3550" data-open-compliance="cookies" onclick="console.log('Button activated');" type="button">Cookie Settings</button>
+<button data-i18n="auto.t3551" data-open-compliance="privacy" onclick="console.log('Button activated');" type="button">Privacy Policy</button>
+<a data-i18n="auto.t3552" href="#ce-company">Company Information</a>
+</aside>
+<article class="contact-content"><section id="ce-overview">
+<h2 class="section-title" data-i18n="auto.t3553">Overview</h2>
+<div class="intro" data-i18n="auto.t3554">
+            This page is designed for YONGYEOKYO’s legal-compliance and contact layer. It supports product and business inquiries relating to high-purity and ultra-high-purity non-ferrous and rare earth metals, media contact requests, and privacy settings management for website visitors.
+          </div>
+<div class="note" data-i18n="auto.t3555">
+            For production deployment in South Korea, the consent manager should be connected to a backend log endpoint so that consent status, timestamp, policy version, and source can be recorded server-side.
+          </div>
+</section>
+<section id="ce-inquiry">
+<h3 data-i18n="auto.t3556">Product, Supply &amp; Business Inquiries</h3>
+<p data-i18n="auto.t3557">For inquiries relating to product specifications, purity grades, quotation requests, supply availability, technical information, logistics coordination, or business cooperation, please use the inquiry form below. Your inquiry will be routed to the appropriate department.</p>
+<div class="grid3 contact-cards">
+<div class="mini">
+<strong data-i18n="auto.t3558">Typical inquiry topics</strong>
+<ul>
+<li data-i18n="auto.t3559">product specifications and purity</li>
+<li data-i18n="auto.t3560">quotation requests</li>
+<li data-i18n="auto.t3561">supply availability and lead time</li>
+<li data-i18n="auto.t3562">commercial and technical discussions</li>
+</ul>
+</div>
+<div class="mini">
+<strong data-i18n="auto.t3563">Materials</strong>
+<ul>
+<li data-i18n="auto.t3564">copper ingots</li>
+<li data-i18n="auto.t3565">copper powder</li>
+<li data-i18n="auto.t3566">aluminum ingots</li>
+<li data-i18n="auto.t3567">zinc powder and rare earth materials</li>
+</ul>
+</div>
+<div class="mini">
+<strong data-i18n="auto.t3568">Response routing</strong>
+<ul>
+<li data-i18n="auto.t3569">sales and quotation desk</li>
+<li data-i18n="auto.t3570">technical review</li>
+<li data-i18n="auto.t3571">logistics and supply coordination</li>
+<li data-i18n="auto.t3572">compliance and documentation support</li>
+</ul>
+</div>
+</div>
+<form data-contact-form="">
+<div class="field">
+<label data-i18n="auto.t3573" for="companyName">Company Name</label>
+<input id="companyName" name="companyName" placeholder="Enter company name" type="text"/>
+</div>
+<div class="grid2">
+<div class="field">
+<label data-i18n="auto.t3574" for="contactName">Contact Name</label>
+<input id="contactName" name="contactName" placeholder="Enter contact name" type="text"/>
+</div>
+<div class="field">
+<label data-i18n="auto.t3575" for="position">Position / Title</label>
+<input id="position" name="position" placeholder="Enter position or title" type="text"/>
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label data-i18n="auto.t3576" for="email">Business Email</label>
+<input id="email" name="email" placeholder="Enter email address" type="email"/>
+</div>
+<div class="field">
+<label data-i18n="auto.t3577" for="phone">Phone</label>
+<input id="phone" name="phone" placeholder="Enter phone number" type="tel"/>
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label data-i18n="auto.t3578" for="topic">Inquiry Topic</label>
+<select id="topic" name="topic">
+<option data-i18n="auto.t3579" value="">Select a topic</option>
+<option data-i18n="auto.t3580">Quotation Request</option>
+<option data-i18n="auto.t3581">Product Specification</option>
+<option data-i18n="auto.t3582">Supply Capacity</option>
+<option data-i18n="auto.t3583">Logistics / Delivery</option>
+<option data-i18n="auto.t3584">Business Cooperation</option>
+<option data-i18n="auto.t3585">Request for Materials</option>
+<option data-i18n="auto.t3586">Other</option>
+</select>
+</div>
+<div class="field">
+<label data-i18n="auto.t3587" for="region">Region / Market</label>
+<select id="region" name="region">
+<option data-i18n="auto.t3588" value="">Select region</option>
+<option data-i18n="auto.t3589">Republic of Korea</option>
+<option data-i18n="auto.t3590">Japan</option>
+<option data-i18n="auto.t3591">China</option>
+<option data-i18n="auto.t3592">Other</option>
+</select>
+</div>
+</div>
+<div class="field">
+<label data-i18n="auto.t3593" for="message">Inquiry Details</label>
+<textarea id="message" name="message" placeholder="Provide product, purity, quantity, timing, and any relevant commercial or technical details."></textarea>
+</div>
+<label style="color:var(--muted);font-size:13px"><input required="" type="checkbox"/> <span data-i18n="auto.t3594">I agree</span><span data-i18n="auto.t3595">. By submitting this request, you agree to our Terms of Service and Privacy Policy. </span><button class="btn" data-i18n="auto.t3596" data-open-compliance="privacy" onclick="console.log('Button activated');" type="button">View Privacy</button></label><div class="actions">
+<button class="btn primary" data-i18n="auto.t3597" onclick="console.log('Button activated');" type="submit">Submit Inquiry</button>
+<button class="btn" data-i18n="auto.t3598" onclick="console.log('Button activated');" type="reset">Reset Form</button>
+</div>
+</form>
+</section>
+<section id="ce-media">
+<h3 data-i18n="auto.t3599">Media Inquiries</h3>
+<p data-i18n="auto.t3600">For interview requests, media inquiries, or requests for corporate information materials relating to YONGYEOKYO’s business activities, please use the media inquiry form below.</p>
+<form data-contact-form="">
+<div class="grid2">
+<div class="field">
+<label data-i18n="auto.t3601" for="mediaOrg">Media Organization</label>
+<input id="mediaOrg" name="mediaOrg" placeholder="Enter media organization" type="text"/>
+</div>
+<div class="field">
+<label data-i18n="auto.t3602" for="mediaContact">Journalist / Contact Name</label>
+<input id="mediaContact" name="mediaContact" placeholder="Enter journalist or contact name" type="text"/>
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label data-i18n="auto.t3603" for="mediaEmail">Email</label>
+<input id="mediaEmail" name="mediaEmail" placeholder="Enter email address" type="email"/>
+</div>
+<div class="field">
+<label data-i18n="auto.t3604" for="mediaPhone">Phone</label>
+<input id="mediaPhone" name="mediaPhone" placeholder="Enter phone number" type="tel"/>
+</div>
+</div>
+<div class="field">
+<label data-i18n="auto.t3605" for="mediaRequest">Request Details</label>
+<textarea id="mediaRequest" name="mediaRequest" placeholder="Describe the interview request, topic, publication timing, and any materials requested."></textarea>
+</div>
+<div class="actions">
+<button class="btn primary" data-i18n="auto.t3606" onclick="console.log('Button activated');" type="submit">Submit Media Inquiry</button>
+</div>
+</form>
+</section>
+<section id="ce-accounts">
+<h3 data-i18n="auto.t3607">Official Social Media Accounts</h3>
+<p data-i18n="auto.t3608">Official social media channels should be linked through this page and aligned with the Company’s Social Media Policy and Privacy Policy.</p>
+<div class="social-list">
+<a data-i18n="auto.t3609" href="https://www.linkedin.com/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+<a data-i18n="auto.t3610" href="https://www.youtube.com/" rel="noopener noreferrer" target="_blank">YouTube</a>
+</div>
+<div class="warn" data-i18n="auto.t3611">
+            Replace the placeholder links above with YONGYEOKYO’s actual official account URLs before publication. Do not link to generic platform homepages in production.
+          </div>
+</section>
+<section id="ce-privacy">
+<h3 data-i18n="auto.t3612">Privacy Settings</h3>
+<p data-i18n="auto.t3613">Privacy and cookie preferences are managed through the Compliance Engine.</p>
+<div class="actions" style="margin-top:12px;">
+<button class="btn primary" data-i18n="auto.t3614" data-open-compliance="cookies" onclick="console.log('Button activated');" type="button">Open Cookie Settings</button>
+<button class="btn" data-i18n="auto.t3615" data-open-compliance="privacy" onclick="console.log('Button activated');" type="button">View Privacy Policy</button>
+</div>
+</section>
+<section id="ce-company">
+<h3 data-i18n="auto.t3616">Company Information</h3>
+<div class="grid2">
+<div class="mini">
+<strong data-i18n="auto.t3617">Company</strong>
+<p data-i18n="auto.t3618">YONGYEOKYO Trading House Co., Ltd</p>
+<strong data-i18n="auto.t3619">Address</strong>
+<p data-i18n="auto.t3620">Room 201, 47, Hogupo-ro 764beon-gil, Namdong-gu, Incheon 21536, Republic of Korea</p>
+</div>
+<div class="mini">
+<strong data-i18n="auto.t3621">Compliance Department</strong>
+<p><span data-i18n="auto.t3622">Email: </span><a data-i18n="auto.t3623" href="mailto:compliance@yongyeokyo.com">compliance@yongyeokyo.com</a><br/><span data-i18n="auto.t3624">
+              Tel: </span><a href="tel:+10000000000">+82 10-8010-5275</a><br/><span data-i18n="auto.t3625">
+              Business Hours: Korea Standard Time / APAC Desk</span></p>
+</div>
+</div>
+</section>
+</article>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="sogo-drawer" id="sogoDrawer">
+<div class="sogo-backdrop" data-close-sogo=""></div>
+<aside aria-labelledby="sogoTitle" aria-modal="true" class="sogo-panel" role="dialog">
+<div class="sogo-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t3626">YONGYEOKYO Qualification Flow · Just-in-Time RFQ</div>
+<div class="sogo-title" data-i18n="auto.t3627" id="sogoTitle">Request Supply</div>
+<div class="card-text" data-i18n="auto.t3628" style="color:#AEB4BC;font-size:13px;line-height:1.55;margin-top:8px;display:block!important;visibility:visible!important;opacity:1!important;">One controlled request. The system resolves material, compliance, logistics and RFQ intake.</div>
+</div>
+<button aria-label="Close Request Supply" class="sogo-close" data-close-sogo="" onclick="console.log('Button activated');" type="button">×</button>
+</div>
+<div class="sogo-body">
+<div class="sogo-step">
+<div class="sogo-step-title" data-i18n="auto.t3629">1. Material</div>
+<div class="sogo-options" id="sogoMaterialOptions">
+<button class="sogo-option" data-i18n="auto.t3630" data-sogo-material="Copper" onclick="console.log('Button activated');" type="button">Cu · Copper</button>
+<button class="sogo-option" data-i18n="auto.t3631" data-sogo-material="Aluminum" onclick="console.log('Button activated');" type="button">Al · Aluminum</button>
+<button class="sogo-option" data-i18n="auto.t3632" data-sogo-material="Zinc" onclick="console.log('Button activated');" type="button">Zn · Zinc</button>
+<button class="sogo-option" data-i18n="auto.t3633" data-sogo-material="Rare Earths" onclick="console.log('Button activated');" type="button">REE · Rare Earths</button>
+</div>
+</div>
+<div class="sogo-step">
+<div class="sogo-step-title" data-i18n="auto.t3634">2. Auto-expanded specification</div>
+<div class="sogo-inline">
+<div class="sogo-field"><label data-i18n="auto.t3635">Purity</label><select id="sogoPurity"><option>5N</option><option>6N</option><option data-i18n="auto.t3636">6N+</option><option>7N</option><option data-i18n="auto.t3637">Custom</option></select></div>
+<div class="sogo-field"><label data-i18n="auto.t3638">Form</label><select id="sogoForm"><option data-i18n="auto.t3639">Ingot</option><option data-i18n="auto.t3640">Powder</option><option data-i18n="auto.t3641">Rod</option><option data-i18n="auto.t3642">Sputtering Target</option><option data-i18n="auto.t3643">Oxide / Salt</option></select></div>
+<div class="sogo-field"><label data-i18n="auto.t3644">Region</label><select id="sogoRegion"><option data-i18n="auto.t3645">Japan</option><option data-i18n="auto.t3646">Korea</option><option data-i18n="auto.t3647">China</option><option data-i18n="auto.t3648">Taiwan</option><option data-i18n="auto.t3649">APAC / Global Buyer Desk</option><option data-i18n="auto.t3650">Europe</option></select></div>
+<div class="sogo-field"><label data-i18n="auto.t3651">Volume</label><input id="sogoVolume" placeholder="50 kg / annual volume"/></div>
+<div class="sogo-field"><label data-i18n="auto.t3652">Application</label><select id="sogoApplication"><option data-i18n="auto.t3653">Semiconductor</option><option data-i18n="auto.t3654">Aerospace</option><option>EV</option><option data-i18n="auto.t3655">Optics</option><option data-i18n="auto.t3656">Research</option></select></div>
+<div class="sogo-field"><label data-i18n="auto.t3657">Delivery Term</label><select id="sogoTerm"><option data-i18n="auto.t3658">CIF</option><option data-i18n="auto.t3659">FOB</option><option data-i18n="auto.t3660">DAP</option><option data-i18n="auto.t3661">EXW</option><option data-i18n="auto.t3662">FCA</option><option data-i18n="auto.t3663">CIP</option></select></div>
+</div>
+</div>
+<div class="sogo-step">
+<div class="sogo-step-title" data-i18n="auto.t3664">3. Instant intelligence</div>
+<div class="sogo-intel">
+<div class="sogo-check"><span data-i18n="auto.t3665">SCSP status</span><strong data-i18n="auto.t3666" id="sogoScsp">Specification route ready</strong></div>
+<div class="sogo-check"><span data-i18n="auto.t3667">Compliance</span><strong data-i18n="auto.t3668" id="sogoCompliance">Required</strong></div>
+<div class="sogo-check"><span data-i18n="auto.t3669">Export control</span><strong data-i18n="auto.t3670" id="sogoExport">Destination review</strong></div>
+<div class="sogo-check"><span data-i18n="auto.t3671">Batch availability</span><strong data-i18n="auto.t3672" id="sogoBatch">Limited / verify</strong></div>
+<div class="sogo-check"><span data-i18n="auto.t3673">Next system</span><strong data-i18n="auto.t3674">RFQ Intake</strong></div>
+</div>
+</div>
+</div>
+<div class="sogo-actions">
+<button class="sogo-submit" data-i18n="auto.t3675" id="sogoSubmit" onclick="console.log('Button activated');" type="button">Submit Request → RFQ</button>
+<div class="sogo-progress"><span id="sogoProgress"></span></div>
+<div class="sogo-status" data-i18n="auto.t3676" id="sogoStatus">Progress is cached automatically. Closing this panel will not erase input.</div>
+</div>
+</aside>
+</div>
+<div class="sogo-toast" data-i18n="auto.t3677" id="sogoToast">RFQ synchronized. Opening RFQ form…</div>
+<script id="sogo-shosha-flow-js">
+(function(){
+  const KEY="apex_sogo_rfq_state_v1";
+  const drawer=document.getElementById("sogoDrawer");
+  const toast=document.getElementById("sogoToast");
+  const materialButtons=[].slice.call(document.querySelectorAll("[data-sogo-material]"));
+  const fields=["sogoPurity","sogoForm","sogoRegion","sogoVolume","sogoApplication","sogoTerm"].map(id=>document.getElementById(id)).filter(Boolean);
+  const defaults={
+    "Copper":{purity:"6N+",form:"Powder",app:"Semiconductor",compliance:"Required",export:"Destination review",batch:"Limited / verify"},
+    "Aluminum":{purity:"6N",form:"Ingot",app:"Semiconductor",compliance:"Standard",export:"Route review",batch:"Available / verify"},
+    "Zinc":{purity:"5N",form:"Powder",app:"EV",compliance:"Standard",export:"Route review",batch:"Verify PSD"},
+    "Rare Earths":{purity:"Custom",form:"Oxide / Salt",app:"EV",compliance:"Enhanced",export:"End-use validation",batch:"Controlled release"}
+  };
+  let state={material:"Copper",purity:"6N+",form:"Powder",region:"Japan",volume:"50 kg",application:"Semiconductor",term:"CIF"};
+  function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+  function load(){try{const s=JSON.parse(localStorage.getItem(KEY)||"null"); if(s)state=Object.assign(state,s);}catch(e){}}
+  function apply(){
+    materialButtons.forEach(b=>b.classList.toggle("active",b.dataset.sogoMaterial===state.material));
+    const map={sogoPurity:state.purity,sogoForm:state.form,sogoRegion:state.region,sogoVolume:state.volume,sogoApplication:state.application,sogoTerm:state.term};
+    Object.keys(map).forEach(id=>{const el=document.getElementById(id); if(el)el.value=map[id];});
+    const d=defaults[state.material]||defaults.Copper;
+    const c=document.getElementById("sogoCompliance"); if(c)c.textContent=d.compliance;
+    const ex=document.getElementById("sogoExport"); if(ex)ex.textContent=d.export;
+    const ba=document.getElementById("sogoBatch"); if(ba)ba.textContent=d.batch;
+    updateProgress();
+  }
+  function updateProgress(){
+    let score=20;
+    if(state.material)score+=20;if(state.purity)score+=15;if(state.form)score+=15;if(state.region)score+=10;if(state.volume)score+=10;if(state.application)score+=5;if(state.term)score+=5;
+    score=Math.min(score,100);
+    const bar=document.getElementById("sogoProgress"); if(bar)bar.style.width=score+"%";
+    const status=document.getElementById("sogoStatus");
+    if(status)status.textContent=score>=95?"Ready for Lanthanex workspace.":"Progress cached automatically. Complete missing RFQ fields to accelerate review.";
+  }
+  function open(){if(!drawer)return;drawer.classList.add("active");drawer.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";load();apply();}
+  function close(){if(!drawer)return;drawer.classList.remove("active");drawer.setAttribute("aria-hidden","true");document.body.style.overflow="";}
+  window.apexOpenSogoFlow=open; window.apexCloseSogoFlow=close;
+  document.querySelectorAll("[data-open-sogo]").forEach(btn=>btn.addEventListener("click",e=>{e.preventDefault();open();}));
+  document.querySelectorAll("[data-close-sogo]").forEach(btn=>btn.addEventListener("click",e=>{e.preventDefault();close();}));
+  if(drawer)drawer.addEventListener("click",e=>{if(e.target.classList.contains("sogo-backdrop"))close();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});
+  materialButtons.forEach(btn=>{btn.addEventListener("click",()=>{const m=btn.dataset.sogoMaterial;const d=defaults[m]||defaults.Copper;state.material=m;state.purity=d.purity;state.form=d.form;state.application=d.app;save();apply();});});
+  fields.forEach(el=>{el.addEventListener("input",()=>{state.purity=document.getElementById("sogoPurity")?.value||state.purity;state.form=document.getElementById("sogoForm")?.value||state.form;state.region=document.getElementById("sogoRegion")?.value||state.region;state.volume=document.getElementById("sogoVolume")?.value||state.volume;state.application=document.getElementById("sogoApplication")?.value||state.application;state.term=document.getElementById("sogoTerm")?.value||state.term;save();updateProgress();});el.addEventListener("change",()=>el.dispatchEvent(new Event("input")));});
+  const submit=document.getElementById("sogoSubmit");
+  if(submit){submit.addEventListener("click",()=>{save();submit.textContent="Processing…";if(toast){toast.classList.add("active");}setTimeout(()=>{close();if(toast){toast.textContent="RFQ synchronized. Opening RFQ form.";setTimeout(()=>toast.classList.remove("active"),2200);}if(window.apexOpenLanthanex){window.apexOpenLanthanex("workspace");}submit.textContent="Submit Request → RFQ";},650);});}
+  load();apply();
+})();
+</script>
+<script id="industry-product-link-logic">
+(function(){
+  function setRFQMaterial(material){
+    var select = document.getElementById("rfqMaterial");
+    if(!select || !material) return;
+    var found = false;
+    Array.prototype.slice.call(select.options).forEach(function(opt){
+      if(opt.textContent === material || opt.value === material){ found = true; }
+    });
+    if(!found){
+      var option = document.createElement("option");
+      option.value = material;
+      option.textContent = material;
+      select.appendChild(option);
+    }
+    select.value = material;
+    select.dispatchEvent(new Event("change", { bubbles:true }));
+  }
+
+  function openLinkedProduct(card){
+    var product = card.getAttribute("data-product") || "cu";
+    var material = card.getAttribute("data-rfq-material") || "";
+    setRFQMaterial(material);
+
+    if(typeof window.openProductEngine === "function"){
+      window.openProductEngine(product);
+      return;
+    }
+    if(typeof window.apexOpenProduct === "function"){
+      window.apexOpenProduct(product);
+      return;
+    }
+
+    var btn = document.querySelector('[data-open-product="' + product + '"]');
+    if(btn){ btn.click(); }
+  }
+
+  document.addEventListener("click", function(event){
+    var card = event.target.closest("[data-industry-link]");
+    if(!card) return;
+
+    var isInteractiveChild = event.target.closest("a, input, select, textarea");
+    if(isInteractiveChild) return;
+
+    event.preventDefault();
+    openLinkedProduct(card);
+  });
+})();</script>

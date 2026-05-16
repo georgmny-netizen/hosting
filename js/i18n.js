@@ -95,21 +95,23 @@
     return val;
   }
 
-  /* ── Build autonomous floating panel ───────────────────── */
+  /* ── Build autonomous language panel ─────────────────────
+     MENU SAFETY NOTE:
+     The panel belongs in #yyk-lang-slot inside the header. Do not move it
+     back to fixed body positioning unless the header slot is intentionally
+     removed. Header menu work must not change page block backgrounds. */
   function buildFloatingPanel() {
     // Kill any old panel if exists
     var old = document.getElementById('yyk-float-i18n');
     if (old) old.remove();
 
-    // Container — fixed position, top-right, immune to monolith
+    // Container: relative so it stays in the header layout slot.
     var panel = document.createElement('div');
     panel.id = 'yyk-float-i18n';
     panel.setAttribute('style', [
       'all: initial',                       // Reset ALL inherited styles
-      'position: fixed',
-      'top: 8px',
-      'right: 12px',
-      'z-index: 2147483647',               // Maximum z-index
+      'position: relative',
+      'z-index: 100',               // Keep above header text without escaping layout
       'display: flex',
       'flex-direction: row',
       'align-items: center',
@@ -174,8 +176,17 @@
       panel.appendChild(btn);
     });
 
-    // Inject into body (outside ALL monolith containers)
-    document.body.appendChild(panel);
+    // Prefer the header slot, then the header itself, then body as fallback.
+    // This keeps the working language panel from becoming a floating overlay.
+    var slot = document.getElementById('yyk-lang-slot');
+    var header = document.querySelector('.yyk-terminal-header');
+    if (slot) {
+      slot.appendChild(panel);
+    } else if (header) {
+      header.appendChild(panel);
+    } else {
+      document.body.appendChild(panel);
+    }
   }
 
   function applyButtonStyle(btn, isActive) {
@@ -358,18 +369,10 @@
     /SVG BATCH FLOW/i,                   // SVG animation debug marker
     /^Hybrid section assembled/i,        // Architecture placement note
     /controls remain canonical from File/i, // Dev file-reference note
-    /^This block replaces/i,             // Dev consolidation instruction
-    /^All repeated recommendations/i,    // Dev consolidation instruction
-    /^This content is restricted to VDR/i, // VDR access restriction note
-    /KYC.*sanctions.*CoA.*tolerance gate/i, // Internal gate description
-    /^A controlled, additive integration/i, // Dev architecture note
-    /^This framework applies to YONGYEOKYO/i, // Dev framework note
-    /^Placed after Product Passport/i,   // Dev placement instruction
-    /^Placed immediately after/i,        // Dev placement instruction
-    /^This is a frontend-ready API/i,    // Dev API contract note
-    /real deployment can connect/i,      // Dev deployment note
-    /Static HTML runs the monitoring/i,  // Dev simulation note
-    /Do not create separate recommendation/i, // Dev instruction
+    /* v2.2: Removed overly aggressive patterns that were hiding
+       legitimate .hint content (e.g. "This block replaces...",
+       "Placed after Product Passport..."). These patterns
+       matched user-facing section descriptions, not dev comments. */
     /ENHANCED_MATRIX_REMOVED/i,          // Architecture removal marker
     /PHASE.*INTEGRATION.*SUITE/i,        // Phase integration dev marker
     /SELF.HEAL/i,                        // Self-healing dev marker
