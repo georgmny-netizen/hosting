@@ -421,9 +421,47 @@
     // Build our autonomous panel
     buildFloatingPanel();
 
+    // Wire footer language buttons to the i18n engine
+    wireFooterLangButtons();
+
     // Restore saved language
     var saved = getCurrentLang();
     if (saved !== DEFAULT_LANG) setLanguage(saved);
+  }
+
+  /* ── Footer language buttons ─────────────────────────────
+     The footer contains <a class="yyk-vcard-lang" href="/kr/">
+     style links that navigate to non-existent subdirectories.
+     This function intercepts clicks and routes them through
+     the same setLanguage() pipeline as the header buttons.
+     ─────────────────────────────────────────────────────── */
+  function wireFooterLangButtons() {
+    var HREF_TO_LANG = {
+      '/kr/': 'ko', '/ko/': 'ko',
+      '/jp/': 'ja', '/ja/': 'ja',
+      '/tw/': 'tw',
+      '/cn/': 'cn', '/zh/': 'cn',
+      '/en/': 'en', '/': 'en'
+    };
+
+    var links = document.querySelectorAll('.yyk-vcard-lang');
+    Array.prototype.forEach.call(links, function (link) {
+      var href = link.getAttribute('href') || '';
+      var lang = HREF_TO_LANG[href];
+      if (!lang) return;
+
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        setLanguage(lang);
+
+        // Update active state on footer buttons
+        Array.prototype.forEach.call(links, function (l) {
+          l.classList.remove('active');
+        });
+        link.classList.add('active');
+      });
+    });
   }
 
   if (document.readyState === 'loading') {
