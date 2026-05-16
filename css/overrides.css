@@ -1,0 +1,3 @@
+
+/* Fix header obscuring anchor targets */
+section[id], div[id], article[id] { scroll-margin-top: 100px !important; }
