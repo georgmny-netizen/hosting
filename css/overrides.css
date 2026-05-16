@@ -860,3 +860,77 @@ html body [class*="-card"] input:focus-visible {
   outline: none !important;
   box-shadow: none !important;
 }
+
+/* ==========================================================
+   STAGE 10 FIX: Audit Folder Architecture — Card Grid Design
+   ========================================================== */
+.yyk-folder-card { padding: 0 0 4px 0 !important; }
+
+.yyk-folder-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 6px !important;
+  margin-top: 12px !important;
+}
+
+.yyk-folder-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 6px !important;
+  padding: 8px 10px !important;
+  transition: background 0.18s, border-color 0.18s !important;
+}
+
+.yyk-folder-item:hover {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(201,160,89,0.35) !important;
+}
+
+.yyk-folder-item--critical {
+  border-color: rgba(230, 80, 80, 0.35) !important;
+  background: rgba(230, 80, 80, 0.06) !important;
+}
+
+.yyk-folder-icon {
+  font-size: 18px !important;
+  flex-shrink: 0 !important;
+  line-height: 1 !important;
+}
+
+.yyk-folder-info {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1px !important;
+  min-width: 0 !important;
+}
+
+.yyk-folder-num {
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  color: rgba(201,160,89,0.8) !important;
+  letter-spacing: 0.06em !important;
+  line-height: 1 !important;
+}
+
+.yyk-folder-name {
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  color: #e8eaf0 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.3 !important;
+}
+
+.yyk-folder-tag {
+  font-size: 9.5px !important;
+  color: rgba(174,180,188,0.8) !important;
+  line-height: 1.2 !important;
+}
+
+.yyk-folder-tag--warn {
+  color: rgba(230, 100, 100, 0.9) !important;
+}
