@@ -1,3 +1,5 @@
-
 /* Fix header obscuring anchor targets */
 section[id], div[id], article[id] { scroll-margin-top: 100px !important; }
+
+/* Allow mouse to enter the tooltip so it doesn't close immediately */
+.yyk-hover-intel-tooltip { pointer-events: auto !important; }
