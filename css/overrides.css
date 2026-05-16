@@ -3,3 +3,6 @@ section[id], div[id], article[id] { scroll-margin-top: 100px !important; }
 
 /* Allow mouse to enter the tooltip so it doesn't close immediately */
 .yyk-hover-intel-tooltip { pointer-events: auto !important; }
+
+/* Center tooltip scaling animation */
+.yyk-hover-intel-tooltip { transform-origin: top center !important; }

@@ -1311,7 +1311,7 @@ document.addEventListener("DOMContentLoaded", function(){
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',enhance);else enhance();
   setTimeout(enhance,60);
-  setTimeout(enhance,300);
+  setTimeout(enhance,4000);
 })();
 </script>
 <script id="yyk-trust-hover-only-final-guard">
@@ -1569,7 +1569,7 @@ document.addEventListener("DOMContentLoaded", function(){
   document.addEventListener("DOMContentLoaded", function(){
     removeHeatmapsFromComplianceCards();
     setTimeout(removeHeatmapsFromComplianceCards, 50);
-    setTimeout(removeHeatmapsFromComplianceCards, 300);
+    setTimeout(removeHeatmapsFromComplianceCards, 4000);
   });
 
   document.addEventListener("click", function(){
@@ -3775,12 +3775,12 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     if(!tip.__hoverInit) {
         tip.__hoverInit = true;
         tip.addEventListener('mouseenter', function(){ clearTimeout(yykTipTimeout); });
-        tip.addEventListener('mouseleave', function(){ yykTipTimeout = setTimeout(hide, 300); });
+        tip.addEventListener('mouseleave', function(){ yykTipTimeout = setTimeout(hide, 4000); });
     }
     el.addEventListener('mouseenter',function(){clearTimeout(yykTipTimeout); show(el,raw)});
     el.addEventListener('focus',function(){clearTimeout(yykTipTimeout); show(el,raw)});
-    el.addEventListener('mouseleave',function(){yykTipTimeout = setTimeout(hide, 300);});
-    el.addEventListener('blur',function(){yykTipTimeout = setTimeout(hide, 300);});
+    el.addEventListener('mouseleave',function(){yykTipTimeout = setTimeout(hide, 4000);});
+    el.addEventListener('blur',function(){yykTipTimeout = setTimeout(hide, 4000);});
   }
   function show(el,label){
     var data=INTEL[label], tip=ensureTip();
