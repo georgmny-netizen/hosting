@@ -788,3 +788,26 @@ html body .yyk-authority-card-image {
   background: transparent !important;
   box-shadow: none !important;
 }
+
+/* ==========================================================
+   STAGE 7 FIX: Remove Focus Outline Ring from Modal Buttons
+   ========================================================== */
+html body [class*="-engine"] button:focus,
+html body [class*="-engine"] button:focus-visible,
+html body [class*="-layer"] button:focus,
+html body [class*="-layer"] button:focus-visible,
+html body [class*="-shell"] button:focus,
+html body [class*="-shell"] button:focus-visible,
+html body .sogo-drawer button:focus,
+html body .sogo-drawer button:focus-visible,
+html body .modal button:focus,
+html body .modal button:focus-visible,
+html body [class*="-tabs"] button:focus,
+html body [class*="-tabs"] button:focus-visible,
+html body [class*="-tab"]:focus,
+html body [class*="-tab"]:focus-visible,
+html body [class*="-btn"]:focus,
+html body [class*="-btn"]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
