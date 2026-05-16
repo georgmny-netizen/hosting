@@ -10691,3 +10691,15 @@ button:focus,button:focus-visible,a:focus,a:focus-visible,input:focus,select:foc
   border-color:rgba(201,162,39,.80)!important;
 }
 
+/* YYK Hub Card Vertical Alignment Fix */
+html body .yyk-logistics-dictate .yyk-hub-card {
+  display: flex !important;
+  flex-direction: column !important;
+}
+html body .yyk-logistics-dictate .yyk-hub-card .yyk-hub-status {
+  margin-top: auto !important;
+}
+html body .yyk-logistics-dictate .yyk-hub-card .yyk-heatmap {
+  margin-top: 14px !important;
+}
+
