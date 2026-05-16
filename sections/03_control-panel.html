@@ -95,47 +95,34 @@
 </div>
 </section>
 
-<!-- ===== БЛОК 3: Tier-1 Control Panel =====
-     DOM-структура:
-       #yykAuditControlPanel
-       └── .yyk-audit-wrap              ← flex-column, gap:4px (overrides.css)
-           ├── .yyk-audit-top           ← заголовок (kicker + title)
-           ├── .yyk-audit-context       ← текст описания режима
-           ├── #yykAuditControlActions  ← кнопки действий (создаются JS: setupRail())
-           └── .yyk-audit-modes         ← grid 3 колонки (Procurement/Engineering/Compliance) - ВНИЗУ
-
-     CSS: overrides.css секция 6 (html body #yykAuditControlPanel ...)
-     ВАЖНО: legacy-blocks.css ставит display:none на .yyk-audit-top
-            и flex:1 1 360px на .yyk-control-actions - без overrides будет сломано.
-     Кнопки режимов: добавить/удалить → обновить grid-template-columns в overrides.css
-     Кнопки действий: НЕ добавлять в HTML, редактировать setupRail() в 06_scripts.html
-     Для перевода: ключи auto.t25-auto.t30 в lang/*.json -->
-<div aria-label="Tier-1 mode control panel" id="yykAuditControlPanel" role="navigation">
-<div class="yyk-audit-wrap">
-<div class="yyk-audit-top">
-<div><div class="yyk-audit-kicker" data-i18n="auto.t25">Tier-1 Control Panel</div><div class="yyk-audit-title" data-i18n="auto.t26" id="yykAuditModeTitle">Procurement Workspace</div></div>
-</div>
-<div class="yyk-audit-context" data-i18n="auto.t30" id="yykAuditModeContext">RFQ intake, buyer evidence, due-diligence readiness and commercial document access.</div>
-<div aria-label="Mode actions" class="yyk-control-actions" id="yykAuditControlActions"></div>
-<div aria-label="Mode switch" class="yyk-audit-modes" role="tablist">
-<button class="yyk-mode-btn active" data-i18n="auto.t27" data-yyk-mode="procurement" type="button">Procurement</button>
-<button class="yyk-mode-btn" data-i18n="auto.t28" data-yyk-mode="engineering" type="button">Engineering</button>
-<button class="yyk-mode-btn" data-i18n="auto.t29" data-yyk-mode="compliance" type="button">Compliance</button>
-</div>
-</div>
-</div>
-
-<!-- ===== БЛОК 4: Рабочее пространство (Mode Workspace) =====
-     Карточки режимов заполняются JavaScript-ом (yyk-v70-terminal-core-unified).
-     #yykAuditModeCards - пустой контейнер, в который JS вставляет карточки
-     при переключении режимов Procurement/Engineering/Compliance.
-     Для перевода: ключи auto.t108-auto.t110 в lang/*.json -->
+<!-- ===== БЛОК 3 и 4: Tier-1 Control Panel & Mode Workspace (ОБЪЕДИНЕНЫ) =====
+     Верхний блок управления объединен с нижним рабочим пространством по запросу пользователя.
+     Кнопки и логика JS сохранены.
+     Для перевода: ключи auto.t25-auto.t30, auto.t108-auto.t110 в lang/*.json -->
 <section aria-label="Mode workspace" id="yykAuditModeWorkspace">
 <div class="yyk-work-wrap">
 <div class="yyk-work-head">
-<div><div class="yyk-work-status" data-i18n="auto.t108" id="yykAuditWorkStatus">RFQ · Evidence · Commercial Access</div><div class="yyk-work-title" data-i18n="auto.t109" id="yykAuditWorkTitle">Procurement Workspace</div></div>
+<div>
+  <!-- Сохранили надпись Tier-1 Control Panel над динамическим статусом -->
+  <div class="yyk-work-kicker" style="color: #F8B500; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px;" data-i18n="auto.t25">Tier-1 Control Panel</div>
+  <div class="yyk-work-status" data-i18n="auto.t108" id="yykAuditWorkStatus">RFQ · Evidence · Commercial Access</div>
+  <div class="yyk-work-title" data-i18n="auto.t109" id="yykAuditWorkTitle">Procurement Workspace</div>
+</div>
 <div class="yyk-work-copy" data-i18n="auto.t110" id="yykAuditWorkCopy">Buyer-facing workspace for RFQ intake, due-diligence evidence, commercial documents, pricing memo and supplier qualification access.</div>
 </div>
+
+<!-- Сохраняем контейнер с ID yykAuditControlPanel, чтобы не сломать JS-селекторы из 06_scripts.html -->
+<div id="yykAuditControlPanel">
+  <div class="yyk-audit-wrap" style="padding: 0; background: transparent; border: none;">
+    <div aria-label="Mode actions" class="yyk-control-actions" id="yykAuditControlActions" style="margin-top: 24px;"></div>
+    <div aria-label="Mode switch" class="yyk-audit-modes" role="tablist" style="margin-top: 16px; margin-bottom: 24px;">
+      <button class="yyk-mode-btn active" data-i18n="auto.t27" data-yyk-mode="procurement" type="button">Procurement</button>
+      <button class="yyk-mode-btn" data-i18n="auto.t28" data-yyk-mode="engineering" type="button">Engineering</button>
+      <button class="yyk-mode-btn" data-i18n="auto.t29" data-yyk-mode="compliance" type="button">Compliance</button>
+    </div>
+  </div>
+</div>
+
 <div class="yyk-mode-grid" id="yykAuditModeCards"></div>
 </div>
 </section>
