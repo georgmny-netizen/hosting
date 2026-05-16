@@ -10732,3 +10732,66 @@ html body .yyk-logistics-dictate .yyk-hub-card .yyk-hub-line:nth-child(3) {
   min-height: 1.4em !important;
 }
 
+/* Product Profit/Risk Overlay - Form Controls Styling */
+.product-profit-risk-controls input[type="range"] {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 100% !important;
+  background: transparent !important;
+  padding: 10px 0 !important;
+  border: none !important;
+}
+.product-profit-risk-controls input[type="range"]:focus {
+  outline: none !important;
+}
+.product-profit-risk-controls input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,.12);
+  border-radius: 2px;
+}
+.product-profit-risk-controls input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--gold, #c9a227);
+  border: 2px solid #111;
+  margin-top: -6px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(201,162,39,.4);
+}
+.product-profit-risk-controls input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,.12);
+  border-radius: 2px;
+}
+.product-profit-risk-controls input[type="range"]::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--gold, #c9a227);
+  border: 2px solid #111;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(201,162,39,.4);
+}
+
+.product-profit-risk-controls select {
+  background-color: rgba(201,162,39,.06) !important;
+  border: 1px solid rgba(201,162,39,.35) !important;
+  color: #fff !important;
+  transition: all 0.25s ease !important;
+  cursor: pointer !important;
+}
+.product-profit-risk-controls select:focus,
+.product-profit-risk-controls select:hover {
+  background-color: rgba(201,162,39,.14) !important;
+  border-color: rgba(201,162,39,.7) !important;
+  outline: none !important;
+}
+.product-profit-risk-controls select option {
+  background-color: #1e1e20 !important;
+  color: #fff !important;
+}
+
