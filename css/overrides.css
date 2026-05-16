@@ -934,3 +934,31 @@ html body [class*="-card"] input:focus-visible {
 .yyk-folder-tag--warn {
   color: rgba(230, 100, 100, 0.9) !important;
 }
+
+/* ==========================================================
+   STAGE 11 FIX: Executive Decision Layer Buttons Style Match
+   Match the .yyk-exec-action buttons to the Tier-1 .yyk-control-action style
+   ========================================================== */
+html body .yyk-exec-action {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #1A1A1A !important;
+  color: #F5F5F2 !important;
+  border: 1px solid rgba(176,184,194,.32) !important;
+  padding: 9px 10px !important;
+  min-height: 36px !important;
+  font-size: 10px !important;
+  line-height: 1.1 !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  border-radius: 0 !important;
+}
+html body .yyk-exec-action:hover, html body .yyk-exec-action:focus-visible, html body .yyk-exec-action.active, html body .yyk-exec-action.primary {
+  background: rgba(201,162,39,.14) !important;
+  border-color: rgba(201,162,39,.62) !important;
+  color: #fff !important;
+}
