@@ -79,12 +79,12 @@ footer button.yyk-terminal-link {
     background: rgba(0,255,136,.18) !important;
 }
 
-/* Turn the bottom row / table headers green */
-.table-panel table th,
+/* Turn the bottom row / table headers green ONLY in the logistics map */
+#yykFooterLogisticsMap .table-panel table th,
 .yyk-port-table th {
     color: #10b981 !important;
 }
-.table-panel table tr.active td,
+#yykFooterLogisticsMap .table-panel table tr.active td,
 .yyk-port-table tr.active td {
     background: rgba(0,255,136,.12) !important;
     color: #10b981 !important;
