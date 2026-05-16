@@ -195,3 +195,14 @@ footer button.yyk-terminal-link {
     color: #10b981 !important;
     text-shadow: 0 0 8px rgba(16,185,129,.4) !important;
 }
+
+/* Footer Palette Transfer (Green instead of Gold) */
+.footer h4 {
+    color: #10b981 !important;
+}
+.footer a:hover {
+    color: #10b981 !important;
+}
+.footer .yyk-pdf-vault a:hover span {
+    color: #10b981 !important;
+}
