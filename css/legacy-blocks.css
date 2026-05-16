@@ -10846,3 +10846,13 @@ html body .yyk-logistics-dictate .yyk-hub-card .yyk-hub-line:nth-child(3) {
   outline: none !important;
 }
 
+/* Fix large gap at bottom of Trust Scoring Factors card */
+.yyk-supplier-wrap > .yyk-supplier-card {
+  min-height: auto !important;
+  height: auto !important;
+  margin-bottom: 0 !important;
+}
+.yyk-exec-signal {
+  margin-bottom: 0 !important;
+}
+
