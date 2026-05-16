@@ -757,3 +757,25 @@ html body #yykAuditControlPanel .yyk-audit-modes .yyk-mode-btn {
   opacity: 1 !important;
   width: 100% !important;
 }
+
+/* ==========================================================
+   STAGE 4 FIX: Global Dark Theme for Modal Select/Option
+   ========================================================== */
+html body .modal select,
+html body [class*="-engine"] select,
+html body [class*="-layer"] select,
+html body [class*="-shell"] select,
+html body .sogo-drawer select {
+  background-color: #121826 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+html body .modal option,
+html body [class*="-engine"] option,
+html body [class*="-layer"] option,
+html body [class*="-shell"] option,
+html body .sogo-drawer option {
+  background-color: #0b0f19 !important;
+  color: #ffffff !important;
+}
