@@ -232,16 +232,8 @@ footer button.yyk-terminal-link {
     box-shadow: 0 0 14px rgba(16, 185, 129, .65) !important;
 }
 
-/* 3. PDF Vault Brackets: Green brackets, normal gray text */
-.yyk-pdf-vault a span:first-child {
-    color: #10b981 !important;
-    text-shadow: 0 0 5px rgba(16, 185, 129, .25) !important;
-}
-.yyk-pdf-vault a:hover span:first-child {
-    color: #10b981 !important;
-    text-shadow: 0 0 14px rgba(16, 185, 129, .55) !important;
-}
-.yyk-pdf-vault a span:last-child:not(:first-child) {
+/* 3. PDF Vault Brackets: Arrows and text share the same color as the parent link (gray) */
+.yyk-pdf-vault a span {
     color: inherit !important;
     text-shadow: none !important;
 }
