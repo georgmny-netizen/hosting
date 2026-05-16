@@ -779,3 +779,12 @@ html body .sogo-drawer option {
   background-color: #0b0f19 !important;
   color: #ffffff !important;
 }
+
+/* ==========================================================
+   STAGE 6 FIX: Remove Border from Corporate Authority Image
+   ========================================================== */
+html body .yyk-authority-card-image {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
