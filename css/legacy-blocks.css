@@ -11901,7 +11901,9 @@ html body #yykAuditControlPanel #yykAuditControlActions .yyk-control-action:hove
 html body #yykAuditControlPanel #yykAuditControlActions .yyk-control-action:focus-visible,
 html body #yykAuditControlPanel #yykAuditControlActions .yyk-control-action.active,
 html body #yykAuditControlActions .yyk-control-action:hover,
-html body #yykAuditControlActions .yyk-control-action.active {
+html body #yykAuditControlActions .yyk-control-action.active,
+html body #yykAuditControlPanel #yykAuditControlActions .yyk-control-action[data-terminal-priority="1"],
+html body #yykAuditControlActions .yyk-control-action[data-terminal-priority="1"] {
   background: rgba(201,162,39,.14) !important;
   border-color: rgba(201,162,39,.62) !important;
   color: #fff !important;
