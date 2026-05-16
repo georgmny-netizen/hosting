@@ -5766,6 +5766,22 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeProductEngine()
     document.body.style.overflow = '';
   }, true);
 })();
+
+// Accordion exclusive logic
+document.addEventListener('DOMContentLoaded', function() {
+  const accordions = document.querySelectorAll('.hero-accordion');
+  accordions.forEach(acc => {
+    acc.addEventListener('toggle', function() {
+      if (this.open) {
+        accordions.forEach(other => {
+          if (other !== this && other.open) {
+            other.open = false;
+          }
+        });
+      }
+    });
+  });
+});
 </script>
 <script id="compliance-logic-integration">
 (function(){
