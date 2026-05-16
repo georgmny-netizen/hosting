@@ -4386,7 +4386,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     }
     exec.className='yyk-v32-exec-btn';
     exec.setAttribute('aria-label','Open Executive Decision Layer');
-    if(exec.parentNode!==rail) rail.insertBefore(exec,exit.nextSibling);
+    if(exec.parentNode!==rail) rail.insertBefore(exec, rail.firstChild);
     exec.onclick=function(e){
       e.preventDefault();
       closeAll();
@@ -5256,8 +5256,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
         var target=q('#yykExecutiveDecisionLayer') || q('.yyk-executive-decision-layer');
         if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
       };
-      if(exit.nextSibling) rail.insertBefore(exec, exit.nextSibling);
-      else rail.appendChild(exec);
+      rail.insertBefore(exec, rail.firstChild);
     }
     
     // Wire up engine buttons
