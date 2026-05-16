@@ -3796,7 +3796,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
   function position(el){
     var tip=ensureTip(), r=el.getBoundingClientRect(), pad=14;
     var h=tip.offsetHeight || 150;
-    var left=r.left;
+    var w=tip.offsetWidth || 380; var left=r.left + (r.width / 2) - (w / 2); if(left < pad) left = pad; if(left + w + pad > window.innerWidth) left = window.innerWidth - w - pad;
     var top=r.bottom+10;
     if(top+h+pad>window.innerHeight) top=Math.max(pad,r.top-h-10);
     tip.style.left=left+'px';
