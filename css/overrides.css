@@ -221,16 +221,16 @@ footer button.yyk-terminal-link {
     text-shadow: 0 0 3px #10b981, 0 0 12px rgba(16, 185, 129, .55) !important;
 }
 
-/* 2. System Status Live Indicators: Green instead of Gold */
+/* 2. System Status Live Indicators: specific pale green #c7d6b3 */
 #yykFooterSystemStatus .yyk-green,
 #yykFooterSystemStatus.yyk-live .yyk-green {
-    color: #10b981 !important;
-    text-shadow: 0 0 12px rgba(16, 185, 129, .35) !important;
+    color: #c7d6b3 !important;
+    text-shadow: 0 0 12px rgba(199, 214, 179, .35) !important;
 }
 
 .yyk-live-dot {
-    background: #10b981 !important;
-    box-shadow: 0 0 14px rgba(16, 185, 129, .65) !important;
+    background: #c7d6b3 !important;
+    box-shadow: 0 0 14px rgba(199, 214, 179, .65) !important;
 }
 
 /* 3. PDF Vault Brackets: Arrows and text share the same color as the parent link (gray) */
