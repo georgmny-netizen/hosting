@@ -1760,7 +1760,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const output = MATRIX[material][destination];
     const destinationLabel = destinationEl.options[destinationEl.selectedIndex].text;
 
-    byId("decisionRcepHeadline").textContent = "?�� " + output.rcep;
+    byId("decisionRcepHeadline").textContent = "🛡 " + output.rcep;
     byId("decisionRcepSub").textContent = MATRIX[material].label + " · " + destinationLabel + " · financial benefit routed through South Korea QC hub.";
     byId("decisionRcepCell").textContent = output.rcep;
     byId("decisionStandardCell").textContent = output.standard;
