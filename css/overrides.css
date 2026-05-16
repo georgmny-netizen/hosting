@@ -232,15 +232,7 @@ footer button.yyk-terminal-link {
     box-shadow: 0 0 14px rgba(16, 185, 129, .65) !important;
 }
 
-/* 3. PDF Vault Brackets: Green brackets, normal gray text, no weird background on links */
-.yyk-pdf-vault a span:first-child {
-    color: #10b981 !important;
-    text-shadow: 0 0 5px rgba(16, 185, 129, .25) !important;
-}
-.yyk-pdf-vault a:hover span:first-child {
-    color: #10b981 !important;
-    text-shadow: 0 0 14px rgba(16, 185, 129, .55) !important;
-}
+/* 3. PDF Vault Brackets: Let them be Gold as in original, but fix i18n text color */
 .yyk-pdf-vault a span:last-child:not(:first-child) {
     color: inherit !important;
     text-shadow: none !important;
