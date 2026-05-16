@@ -4206,6 +4206,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
   function initReturnControls(){
     addReturnControl(document.querySelector('.compliance-shell'),'Compliance workspace');
     addReturnControl(document.querySelector('.product-shell'),'Engineering workspace');
+    addReturnControl(document.querySelector('.sogo-panel'),'Procurement workspace');
     addReturnControl(document.querySelector('.yyk-vdr-shell'),'Virtual Data Room');
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initReturnControls); else initReturnControls();
@@ -5175,22 +5176,6 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
 })();
 </script>
 
-<script>
-(function(){
-  var drawer=document.getElementById('sogoDrawer');
-  if(!drawer)return;
-  var btn=document.createElement('button');
-  btn.className='sogo-external-close';
-  btn.textContent='\u2715 Close';
-  btn.setAttribute('aria-label','Close drawer');
-  btn.addEventListener('click',function(){
-    drawer.classList.remove('active');
-    drawer.setAttribute('aria-hidden','true');
-    document.body.style.overflow='';
-  });
-  drawer.appendChild(btn);
-})();
-</script>
 
 <!-- i18n.js is loaded from 01_head.html ? do not duplicate here -->
 
