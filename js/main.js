@@ -6312,5 +6312,21 @@ try {
   drawer.appendChild(btn);
 })();
 
+// --- Script Block 126: Accordion Scroll ---
+(function(){
+  var accordions = document.querySelectorAll('.hero-accordion');
+  accordions.forEach(function(acc) {
+    acc.addEventListener('toggle', function() {
+      if (this.open) {
+        var el = this;
+        setTimeout(function() {
+          var y = el.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }, 50);
+      }
+    });
+  });
+})();
+
 });
 // END OF COMBINED JAVASCRIPT

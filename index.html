@@ -10625,6 +10625,22 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init);
   else init();
 
+  // --- Accordion Auto-Scroll ---
+  document.addEventListener('DOMContentLoaded', function() {
+    var accordions = document.querySelectorAll('.hero-accordion');
+    accordions.forEach(function(acc) {
+      acc.addEventListener('toggle', function(e) {
+        if (this.open) {
+          var el = this;
+          setTimeout(function() {
+            var y = el.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }, 80);
+        }
+      });
+    });
+  });
+
 })();
 </script>
 
