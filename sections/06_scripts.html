@@ -3806,6 +3806,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     var tip=q('#yykHoverIntelTooltip');
     if(tip) tip.classList.remove('active');
   }
+  window.addEventListener('scroll', hide, {passive: true});
   function scrubGhostText(){
     var rail=q('#yykAuditControlActions');
     if(!rail) return;
@@ -4386,6 +4387,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     }
     exec.className='yyk-v32-exec-btn';
     exec.setAttribute('aria-label','Open Executive Decision Layer');
+    if(typeof attachIntel==='function') attachIntel(exec);
     if(exec.parentNode!==rail) rail.insertBefore(exec, rail.firstChild);
     exec.onclick=function(e){
       e.preventDefault();
