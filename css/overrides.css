@@ -832,3 +832,31 @@ html body [class*="-form"] select:focus-visible {
   outline: none !important;
   box-shadow: none !important;
 }
+
+/* ==========================================================
+   STAGE 9 FIX: Remove Focus Outline from Data Room + All Inputs
+   Covers cases not caught by *-engine selector
+   ========================================================== */
+html body .yyk-data-room-engine select:focus,
+html body .yyk-data-room-engine select:focus-visible,
+html body .yyk-dr-shell select:focus,
+html body .yyk-dr-shell select:focus-visible,
+html body .yyk-dr-card select:focus,
+html body .yyk-dr-card select:focus-visible,
+html body .yyk-dr-panel select:focus,
+html body .yyk-dr-panel select:focus-visible,
+html body .yyk-data-room-engine input:focus,
+html body .yyk-data-room-engine input:focus-visible,
+html body .yyk-dr-card input:focus,
+html body .yyk-dr-card input:focus-visible,
+html body [class*="-engine"] input:focus,
+html body [class*="-engine"] input:focus-visible,
+html body [class*="-shell"] input:focus,
+html body [class*="-shell"] input:focus-visible,
+html body [class*="-card"] select:focus,
+html body [class*="-card"] select:focus-visible,
+html body [class*="-card"] input:focus,
+html body [class*="-card"] input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
