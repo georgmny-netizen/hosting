@@ -215,7 +215,8 @@ footer button.yyk-terminal-link {
 .footer-terminal-left, .footer-terminal-core, .footer-terminal-right,
 .footer-terminal-core time, #footerApacClock, #apacClock,
 .yyk-apac-command-strip, .yyk-apac-command-inner,
-.yyk-apac-command-strip span {
+.yyk-apac-command-strip span,
+.footer-tech-dot {
     color: #10b981 !important;
     text-shadow: 0 0 3px #10b981, 0 0 12px rgba(16, 185, 129, .55) !important;
 }
