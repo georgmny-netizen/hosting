@@ -164,15 +164,12 @@ footer button.yyk-terminal-link {
 #yykFooterLogisticsMap .yyk-proof-card {
     border-color: rgba(16,185,129,.48) !important;
 }
-#yykFooterLogisticsMap .yyk-proof-card .yyk-proof-title,
-#yykFooterLogisticsMap .yyk-proof-card .yyk-proof-status,
+
+/* ONLY color the originally gold elements inside the modal */
 #yykFooterLogisticsMap .yyk-proof-card .yyk-proof-status b,
-#yykFooterLogisticsMap .yyk-proof-card th,
-#yykFooterLogisticsMap .yyk-proof-card td,
 #yykFooterLogisticsMap .yyk-proof-card .yyk-proof-action,
 #yykFooterLogisticsMap .yyk-proof-card .yyk-proof-link,
-#yykFooterLogisticsMap .yyk-proof-card .yyk-proof-close,
-#yykFooterLogisticsMap .yyk-proof-card .yyk-proof-copy {
+#yykFooterLogisticsMap .yyk-proof-card .yyk-proof-close {
     color: #10b981 !important;
 }
 
@@ -190,10 +187,4 @@ footer button.yyk-terminal-link {
     border-bottom-color: #00FF88 !important;
     border-color: rgba(0,255,136,.65) !important;
     background: rgba(0,255,136,.1) !important;
-}
-
-/* Ensure any general buttons inside the map are also green */
-#yykFooterLogisticsMap button, 
-#yykFooterLogisticsMap .btn {
-    border-color: rgba(16,185,129,.45) !important;
 }
