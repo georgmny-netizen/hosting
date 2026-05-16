@@ -811,3 +811,24 @@ html body [class*="-btn"]:focus-visible {
   outline: none !important;
   box-shadow: none !important;
 }
+
+/* ==========================================================
+   STAGE 8 FIX: Remove Focus Outline from Modal Select Elements
+   ========================================================== */
+html body [class*="-engine"] select:focus,
+html body [class*="-engine"] select:focus-visible,
+html body [class*="-layer"] select:focus,
+html body [class*="-layer"] select:focus-visible,
+html body [class*="-shell"] select:focus,
+html body [class*="-shell"] select:focus-visible,
+html body .sogo-drawer select:focus,
+html body .sogo-drawer select:focus-visible,
+html body .modal select:focus,
+html body .modal select:focus-visible,
+html body [class*="-field"] select:focus,
+html body [class*="-field"] select:focus-visible,
+html body [class*="-form"] select:focus,
+html body [class*="-form"] select:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
