@@ -1,0 +1,1125 @@
+
+#yykAuditControlPanel .yyk-mode-btn,#yykAuditControlPanel .yyk-control-action,.yyk-mode-card button{appearance:none;border:1px solid rgba(255,255,255,.18);background:#1a1a1a;color:#fff;padding:9px 12px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap;line-height:1.2;opacity:1;position:relative;z-index:2;}
+
+
+#yykAuditControlPanel .yyk-mode-btn.active,#yykAuditControlPanel .yyk-control-action.active,#yykAuditControlPanel button:hover,.yyk-mode-card button:hover{border-color:rgba(201,162,39,.70);background:#252116;}
+
+
+#yykAuditControlPanel .yyk-control-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+
+#yykAuditControlPanel .yyk-audit-modes,#yykAuditControlPanel .yyk-control-actions{justify-content:flex-start;}
+
+#yykAuditControlPanel .yyk-mode-btn,#yykAuditControlPanel .yyk-control-action,.yyk-mode-card button{font-size:10px;padding:8px 9px;}
+
+
+
+
+/* === ID: yyk-button-frames-final-fix === */
+
+/* FINAL FIX: restore rectangular frames for all Control Panel / workspace action buttons */
+#tier1ControlPanel button,
+.tier1-control-panel button,
+.control-panel button,
+.yyk-control-panel button,
+.yyk-control-actions button,
+.yyk-mode-page-action,
+button[data-panel],
+button[data-control-open],
+[data-panel].nav-link,
+[data-control-open].nav-link {
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:38px !important;
+  padding:9px 12px !important;
+  border:1px solid rgba(201,162,39,.58) !important;
+  background:#17181A !important;
+  color:#F5F5F2 !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04) !important;
+  white-space:nowrap !important;
+  text-decoration:none !important;
+  cursor:pointer !important;
+  box-sizing:border-box !important;
+}
+
+
+#tier1ControlPanel button:hover,
+.tier1-control-panel button:hover,
+.control-panel button:hover,
+.yyk-control-panel button:hover,
+.yyk-control-actions button:hover,
+.yyk-mode-page-action:hover,
+button[data-panel]:hover,
+button[data-control-open]:hover {
+  border-color:rgba(201,162,39,.86) !important;
+  background:rgba(201,162,39,.14) !important;
+}
+
+
+.yyk-mode-btn,.yyk-control-action{border:1px solid var(--line);background:rgba(255,255,255,.025);color:var(--platinum,var(--text));cursor:pointer;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;transition:.22s ease;box-shadow:none}
+
+
+.yyk-control-actions{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+
+
+.yyk-control-action{min-height:46px;padding:10px 11px;font-size:10.5px;line-height:1.25;letter-spacing:.08em;text-align:left;display:flex;align-items:center;justify-content:flex-start}
+
+
+.yyk-control-action:hover,.yyk-control-action.active{border-color:rgba(201,162,39,.62);background:rgba(201,162,39,.10);color:#fff}
+
+
+.yyk-control-action[data-hidden="true"]{opacity:.38}
+
+.yyk-control-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+.yyk-control-actions{grid-template-columns:1fr}
+
+.yyk-control-action{min-height:42px}
+
+
+#yykAuditControlPanel .yyk-audit-modes,
+#yykAuditControlPanel .yyk-control-actions,
+.yyk-control-panel-stable .yyk-mode-switch,
+.yyk-control-panel-stable .yyk-control-actions{
+  flex:1 1 360px!important;
+  min-width:0!important;
+  max-width:100%!important;
+  justify-content:flex-end!important;
+  row-gap:8px!important;
+}
+
+
+#yykAuditControlPanel .yyk-mode-btn,
+#yykAuditControlPanel .yyk-control-action,
+.yyk-control-panel-stable .yyk-control-action,
+.yyk-control-panel-stable .yyk-mode-btn,
+#yykAuditModeWorkspace .yyk-mode-card button{
+  flex:0 1 auto!important;
+  max-width:100%!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  text-align:center!important;
+}
+
+
+  #yykAuditControlPanel .yyk-audit-modes,
+  #yykAuditControlPanel .yyk-control-actions,
+  .yyk-control-panel-stable .yyk-mode-switch,
+  .yyk-control-panel-stable .yyk-control-actions{
+    justify-content:flex-start!important;
+    flex-basis:auto!important;
+  }
+
+
+#yykAuditControlPanel .yyk-control-actions{
+  grid-area:actions!important;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  justify-content:flex-start!important;
+  align-items:flex-start!important;
+  align-content:flex-start!important;
+  gap:8px!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  margin:0!important;
+  padding:0!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-mode-btn{
+  margin-left:0!important;
+  margin-right:0!important;
+  text-align:left!important;
+  justify-content:flex-start!important;
+  min-height:40px!important;
+  max-width:100%!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  touch-action:manipulation!important;
+}
+
+
+  #yykAuditControlPanel .yyk-control-actions,
+  #yykAuditControlPanel .yyk-audit-modes{
+    justify-content:flex-start!important;
+  }
+
+
+  #yykAuditControlPanel .yyk-control-actions{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:7px!important;
+  }
+
+
+  #yykAuditControlPanel .yyk-control-action,
+  #yykAuditControlPanel .yyk-mode-btn{
+    font-size:10px!important;
+    padding:8px 9px!important;
+    min-height:38px!important;
+  }
+
+
+@media(max-width:420px){
+  #yykAuditControlPanel .yyk-control-actions{/* grid-template-columns not needed for flex layout */}
+
+
+#yykAuditControlPanel .yyk-control-actions{
+  grid-area:actions!important;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  justify-content:flex-start!important;
+  align-items:flex-start!important;
+  gap:8px!important;
+  width:100%!important;
+  max-width:980px!important;
+  min-height:78px!important;
+  margin:0!important;
+  justify-self:start!important;
+}
+
+
+#yykAuditControlPanel .yyk-mode-btn,
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-return-site-btn{
+  min-height:38px!important;
+  white-space:normal!important;
+  line-height:1.18!important;
+  transform:none!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-action{
+  flex:0 1 158px!important;
+  text-align:left!important;
+  justify-content:flex-start!important;
+}
+
+
+  #yykAuditControlPanel .yyk-audit-modes,
+  #yykAuditControlPanel .yyk-control-actions,
+  #yykAuditControlPanel .yyk-audit-context{
+    justify-self:start!important;
+    justify-content:flex-start!important;
+    text-align:left!important;
+    min-width:0!important;
+    max-width:100%!important;
+  }
+
+
+  #yykAuditControlPanel .yyk-control-actions{min-height:0!important;}
+
+
+  #yykAuditControlPanel .yyk-control-action{flex:1 1 100%!important;}
+
+
+/* LEFT SIDE: website exit + workspace actions */
+#yykAuditControlPanel .yyk-control-actions{
+  grid-area:actions!important;
+  justify-self:start!important;
+  align-self:start!important;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  gap:7px!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-height:42px!important;
+  margin:0!important;
+  padding:0!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-return-site-btn{
+  flex:0 0 auto!important;
+  min-height:36px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  padding:8px 10px!important;
+  margin:0!important;
+  border:1px solid rgba(176,184,194,.26)!important;
+  background:rgba(255,255,255,.025)!important;
+  color:#E0E0E0!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  font-size:10px!important;
+  font-weight:800!important;
+  letter-spacing:.10em!important;
+  text-transform:uppercase!important;
+  line-height:1.12!important;
+  white-space:nowrap!important;
+  text-decoration:none!important;
+  cursor:pointer!important;
+  transform:none!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-action:hover,
+#yykAuditControlPanel .yyk-return-site-btn:hover{
+  border-color:rgba(201,162,39,.58)!important;
+  background:rgba(201,162,39,.10)!important;
+  color:#fff!important;
+}
+
+
+  #yykAuditControlPanel .yyk-audit-modes,
+  #yykAuditControlPanel .yyk-control-actions{
+    justify-self:start!important;
+    justify-content:flex-start!important;
+    width:100%!important;
+  }
+
+
+  #yykAuditControlPanel .yyk-control-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important;}
+
+
+  #yykAuditControlPanel .yyk-control-action,
+  #yykAuditControlPanel .yyk-return-site-btn{width:100%!important;font-size:9.5px!important;white-space:normal!important;}
+
+
+@media(max-width:430px){
+  #yykAuditControlPanel .yyk-control-actions{/* grid-template-columns not needed for flex layout */}
+
+
+#yykAuditControlPanel .yyk-control-actions,
+#yykAuditControlPanel .yyk-control-actions.yyk-terminal-rail-ready,
+#yykAuditControlPanel .yyk-control-actions.yyk-v32-single-line-ready{
+  grid-area:actions!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  min-height:44px!important;
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  gap:8px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding:0 2px 8px 0!important;
+  margin:0!important;
+  border:0!important;
+  background:transparent!important;
+  scrollbar-gutter:stable!important;
+  -webkit-overflow-scrolling:touch!important;
+  scroll-snap-type:x proximity!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-actions:before{
+  content:none!important;
+  display:none!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar{height:7px!important;}
+
+
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar-track{background:rgba(255,255,255,.045)!important;}
+
+
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar-thumb{background:rgba(201,162,39,.58)!important;border-radius:999px!important;}
+
+
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-return-site-btn,
+#yykAuditControlPanel .yyk-executive-primary-btn,
+#yykAuditControlPanel .yyk-v32-exec-btn{
+  position:relative!important;
+  flex:0 0 auto!important;
+  min-width:max-content!important;
+  min-height:40px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  padding:9px 12px!important;
+  margin:0!important;
+  border:1px solid rgba(176,184,194,.30)!important;
+  background:rgba(255,255,255,.026)!important;
+  color:#E0E0E0!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  font-size:10px!important;
+  font-weight:850!important;
+  letter-spacing:.095em!important;
+  text-transform:uppercase!important;
+  line-height:1.1!important;
+  white-space:nowrap!important;
+  text-decoration:none!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+  user-select:none!important;
+  transform:none!important;
+  scroll-snap-align:start!important;
+  box-shadow:none!important;
+  transition:border-color .18s ease,background-color .18s ease,color .18s ease,box-shadow .18s ease!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-action:hover,
+#yykAuditControlPanel .yyk-control-action:focus-visible,
+#yykAuditControlPanel .yyk-return-site-btn:hover,
+#yykAuditControlPanel .yyk-return-site-btn:focus-visible{
+  border-color:rgba(201,162,39,.68)!important;
+  background:rgba(201,162,39,.13)!important;
+  color:#fff!important;
+  outline:none!important;
+  box-shadow:inset 0 -2px 0 rgba(201,162,39,.62)!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="vdr"]{order:2!important;}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="legal"]{order:3!important;}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="supply"]{order:4!important;}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="data"]{order:5!important;}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="pricing"]{order:6!important;}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="tds"]{order:7!important;}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="partnership"]{order:8!important;}
+
+
+  #yykAuditControlPanel .yyk-control-action,
+  #yykAuditControlPanel .yyk-return-site-btn,
+  #yykAuditControlPanel .yyk-v32-exec-btn,
+  #yykAuditControlPanel .yyk-executive-primary-btn{min-height:38px!important;font-size:9px!important;padding:8px 10px!important;}
+
+
+
+
+/* === ID: yyk-v33-bloomberg-hover-intelligence-final === */
+
+/* Hover Intelligence: production-grade command feedback, no ghost letters, no layout shift */
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-v32-exec-btn,
+#yykAuditControlPanel .yyk-return-site-btn{
+  position:relative!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  line-height:1.15!important;
+  vertical-align:middle!important;
+  cursor:pointer!important;
+  isolation:isolate!important;
+  overflow:visible!important;
+  user-select:none!important;
+  transition:border-color .18s ease, background-color .18s ease, box-shadow .18s ease, color .18s ease!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-action::before,
+#yykAuditControlPanel .yyk-control-action::after,
+#yykAuditControlPanel .yyk-v32-exec-btn::before,
+#yykAuditControlPanel .yyk-v32-exec-btn::after,
+#yykAuditControlPanel .yyk-return-site-btn::before,
+#yykAuditControlPanel .yyk-return-site-btn::after{
+  content:none!important;
+  display:none!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-action:hover,
+#yykAuditControlPanel .yyk-control-action:focus-visible{
+  border-color:rgba(0,255,204,.72)!important;
+  background:linear-gradient(180deg,rgba(0,255,204,.12),rgba(201,162,39,.08))!important;
+  box-shadow:0 0 0 1px rgba(0,255,204,.12),0 12px 28px rgba(0,0,0,.22), inset 0 -1px 0 rgba(0,255,204,.28)!important;
+  color:#fff!important;
+  outline:none!important;
+}
+
+
+  #yykAuditControlPanel .yyk-control-action:active,
+  #yykAuditControlPanel .yyk-v32-exec-btn:active,
+  #yykAuditControlPanel .yyk-return-site-btn:active{filter:brightness(1.12)!important;}
+
+
+.yyk-control-actions{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+
+
+.yyk-control-action{position:relative!important;overflow:hidden!important;min-height:58px!important;padding:12px 12px 12px 14px!important;border-color:rgba(176,184,194,.22)!important;background:rgba(0,0,0,.18)!important}
+
+
+.yyk-control-action::after{content:attr(data-state-role);display:block;position:absolute;left:14px;bottom:7px;color:var(--muted2);font-size:9px;letter-spacing:.14em;text-transform:uppercase;opacity:.88}
+
+
+.yyk-control-action.is-primary,.yyk-control-action.active{border-color:rgba(201,162,39,.68)!important;background:rgba(201,162,39,.12)!important;color:#fff!important}
+
+
+.yyk-control-action.is-disabled{opacity:.34!important;filter:saturate(.65);cursor:not-allowed!important}
+
+.yyk-control-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+
+.yyk-control-actions,.yyk-state-meta{grid-template-columns:1fr!important}
+
+.yyk-control-action{min-height:54px!important}
+
+
+.yyk-control-panel-stable .yyk-mode-switch,.yyk-control-panel-stable .yyk-control-actions{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;gap:8px!important;align-items:center!important;justify-content:flex-end!important;position:relative!important;z-index:12060!important;overflow:visible!important;}
+
+
+.yyk-control-panel-stable .yyk-control-actions{margin-top:10px!important;}
+
+
+.yyk-control-panel-stable .yyk-control-action,.yyk-control-panel-stable .yyk-mode-btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;width:auto!important;min-width:0!important;max-width:none!important;height:auto!important;white-space:nowrap!important;position:relative!important;z-index:12070!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;background:#1A1A1A!important;color:#F5F5F2!important;border:1px solid rgba(176,184,194,.32)!important;padding:9px 12px!important;margin:0!important;font-size:11px!important;line-height:1.1!important;letter-spacing:.08em!important;text-transform:uppercase!important;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;cursor:pointer!important;transform:none!important;}
+
+
+.yyk-control-panel-stable .yyk-control-action:hover,.yyk-control-panel-stable .yyk-control-action.active,.yyk-control-panel-stable .yyk-mode-btn:hover,.yyk-control-panel-stable .yyk-mode-btn.active{background:rgba(201,162,39,.14)!important;border-color:rgba(201,162,39,.62)!important;color:#fff!important;}
+
+.yyk-control-panel-stable .yyk-mode-switch,.yyk-control-panel-stable .yyk-control-actions{justify-content:flex-start!important}
+
+.yyk-control-panel-stable .yyk-control-action,.yyk-control-panel-stable .yyk-mode-btn{font-size:10px!important;padding:8px 10px!important}
+
+
+#yykStableControlPanel .yyk-mode-btn,#yykStableControlPanel .yyk-control-action{pointer-events:auto!important;position:relative!important;z-index:2!important;}
+
+
+#yykAuditControlPanel .yyk-audit-modes,
+#yykAuditControlPanel .yyk-control-actions,
+.yyk-control-panel-stable .yyk-mode-switch,
+.yyk-control-panel-stable .yyk-control-actions{
+  flex:1 1 360px!important;
+  min-width:0!important;
+  max-width:100%!important;
+  justify-content:flex-end!important;
+  row-gap:8px!important;
+}
+
+
+#yykAuditControlPanel .yyk-mode-btn,
+#yykAuditControlPanel .yyk-control-action,
+.yyk-control-panel-stable .yyk-control-action,
+.yyk-control-panel-stable .yyk-mode-btn,
+#yykAuditModeWorkspace .yyk-mode-card button{
+  flex:0 1 auto!important;
+  max-width:100%!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  text-align:center!important;
+}
+
+
+  #yykAuditControlPanel .yyk-audit-modes,
+  #yykAuditControlPanel .yyk-control-actions,
+  .yyk-control-panel-stable .yyk-mode-switch,
+  .yyk-control-panel-stable .yyk-control-actions{
+    justify-content:flex-start!important;
+    flex-basis:auto!important;
+  }
+
+
+#yykAuditControlPanel .yyk-control-actions,
+#yykAuditControlPanel .yyk-control-actions.yyk-terminal-rail-ready{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scrollbar-gutter:stable!important;
+  overscroll-behavior-x:contain!important;
+  -webkit-overflow-scrolling:touch!important;
+  padding:0 0 13px 0!important;
+  margin:0!important;
+  scroll-snap-type:x proximity!important;
+  border-bottom:1px solid rgba(176,184,194,.18)!important;
+  background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.20))!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar{height:8px!important;}
+
+
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar-track{background:rgba(255,255,255,.045)!important;}
+
+
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar-thumb{background:rgba(201,162,39,.55)!important;border-radius:999px!important;}
+
+
+#yykAuditControlPanel .yyk-control-actions:before{
+  content:"TERMINAL RAIL";
+  flex:0 0 auto!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:38px!important;
+  padding:0 10px!important;
+  border:1px solid rgba(201,162,39,.45)!important;
+  background:rgba(201,162,39,.10)!important;
+  color:var(--gold,#C9A227)!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  font-size:9px!important;
+  letter-spacing:.18em!important;
+  text-transform:uppercase!important;
+  white-space:nowrap!important;
+  scroll-snap-align:start!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-actions .yyk-control-action{
+  flex:0 0 auto!important;
+  min-height:38px!important;
+  margin:0!important;
+  white-space:nowrap!important;
+  scroll-snap-align:start!important;
+  border-color:rgba(176,184,194,.26)!important;
+  background:rgba(255,255,255,.024)!important;
+  color:var(--platinum,#E0E0E0)!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-actions .yyk-control-action[data-terminal-priority="1"]{
+  border-color:rgba(201,162,39,.62)!important;
+  background:rgba(201,162,39,.12)!important;
+  color:#fff!important;
+  font-weight:800!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-actions .yyk-control-action:hover,
+#yykAuditControlPanel .yyk-control-actions .yyk-control-action:focus-visible{
+  border-color:rgba(201,162,39,.76)!important;
+  background:rgba(201,162,39,.18)!important;
+  outline:none!important;
+}
+
+
+@media(max-width:620px){
+  #yykAuditControlPanel .yyk-control-actions:before{min-height:36px!important;font-size:8px!important;padding:0 9px!important;}
+
+
+  #yykAuditControlPanel .yyk-control-actions .yyk-control-action{min-height:36px!important;font-size:10px!important;padding:9px 10px!important;}
+
+
+/* Full-width terminal rail: left-aligned to Procurement Workspace boundary */
+#yykAuditControlPanel .yyk-control-actions,
+#yykAuditControlPanel .yyk-control-actions.yyk-terminal-rail-ready{
+  grid-area:actions!important;
+  justify-self:stretch!important;
+  align-self:start!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  min-height:50px!important;
+  margin:2px 0 0!important;
+  padding:8px 0 11px!important;
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scrollbar-gutter:stable!important;
+  overscroll-behavior-x:contain!important;
+  -webkit-overflow-scrolling:touch!important;
+  scroll-snap-type:x proximity!important;
+  border-top:1px solid rgba(176,184,194,.16)!important;
+  border-bottom:1px solid rgba(176,184,194,.16)!important;
+  background:linear-gradient(180deg,rgba(0,0,0,.13),rgba(0,0,0,.23))!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar{height:8px!important;}
+
+
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar-track{background:rgba(255,255,255,.045)!important;}
+
+
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar-thumb{background:rgba(201,162,39,.58)!important;border-radius:999px!important;}
+
+
+#yykAuditControlPanel .yyk-control-actions::before{
+  content:"COMMAND RAIL"!important;
+  flex:0 0 auto!important;
+  min-height:38px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0 11px!important;
+  margin:0!important;
+  border:1px solid rgba(201,162,39,.50)!important;
+  background:rgba(201,162,39,.105)!important;
+  color:var(--gold,#C9A227)!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  font-size:9px!important;
+  font-weight:900!important;
+  letter-spacing:.18em!important;
+  text-transform:uppercase!important;
+  white-space:nowrap!important;
+  scroll-snap-align:start!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-return-site-btn{
+  flex:0 0 auto!important;
+  min-width:max-content!important;
+  min-height:38px!important;
+  margin:0!important;
+  padding:9px 11px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:1px solid rgba(176,184,194,.28)!important;
+  background:rgba(255,255,255,.025)!important;
+  color:#E0E0E0!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  font-size:10px!important;
+  font-weight:850!important;
+  letter-spacing:.095em!important;
+  line-height:1.12!important;
+  text-transform:uppercase!important;
+  white-space:nowrap!important;
+  text-decoration:none!important;
+  cursor:pointer!important;
+  transform:none!important;
+  scroll-snap-align:start!important;
+}
+
+
+#yykAuditControlPanel .yyk-return-site-btn,
+#yykAuditControlPanel .yyk-control-action[data-terminal-priority="1"]{
+  border-color:rgba(201,162,39,.64)!important;
+  background:rgba(201,162,39,.12)!important;
+  color:#fff!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-action:hover,
+#yykAuditControlPanel .yyk-control-action:focus-visible,
+#yykAuditControlPanel .yyk-return-site-btn:hover,
+#yykAuditControlPanel .yyk-return-site-btn:focus-visible{
+  border-color:rgba(201,162,39,.78)!important;
+  background:rgba(201,162,39,.18)!important;
+  color:#fff!important;
+  outline:none!important;
+}
+
+
+  #yykAuditControlPanel .yyk-control-actions::before{min-height:36px!important;font-size:8px!important;padding:0 9px!important;}
+
+
+  #yykAuditControlPanel .yyk-control-action,
+  #yykAuditControlPanel .yyk-return-site-btn{min-height:36px!important;font-size:9px!important;padding:8px 9px!important;}
+
+
+#yykAuditControlPanel .yyk-control-actions,
+#yykAuditControlPanel .yyk-control-actions.yyk-terminal-rail-ready,
+#yykAuditControlPanel .yyk-control-actions.yyk-v32-single-line-ready{
+  grid-area:actions!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  min-height:44px!important;
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  gap:8px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding:0 2px 8px 0!important;
+  margin:0!important;
+  border:0!important;
+  background:transparent!important;
+  scrollbar-gutter:stable!important;
+  -webkit-overflow-scrolling:touch!important;
+  scroll-snap-type:x proximity!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-actions:before{
+  content:none!important;
+  display:none!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar{height:7px!important;}
+
+
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar-track{background:rgba(255,255,255,.045)!important;}
+
+
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar-thumb{background:rgba(201,162,39,.58)!important;border-radius:999px!important;}
+
+
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-return-site-btn,
+#yykAuditControlPanel .yyk-executive-primary-btn,
+#yykAuditControlPanel .yyk-v32-exec-btn{
+  position:relative!important;
+  flex:0 0 auto!important;
+  min-width:max-content!important;
+  min-height:40px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  padding:9px 12px!important;
+  margin:0!important;
+  border:1px solid rgba(176,184,194,.30)!important;
+  background:rgba(255,255,255,.026)!important;
+  color:#E0E0E0!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  font-size:10px!important;
+  font-weight:850!important;
+  letter-spacing:.095em!important;
+  text-transform:uppercase!important;
+  line-height:1.1!important;
+  white-space:nowrap!important;
+  text-decoration:none!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+  user-select:none!important;
+  transform:none!important;
+  scroll-snap-align:start!important;
+  box-shadow:none!important;
+  transition:border-color .18s ease,background-color .18s ease,color .18s ease,box-shadow .18s ease!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-action:hover,
+#yykAuditControlPanel .yyk-control-action:focus-visible,
+#yykAuditControlPanel .yyk-return-site-btn:hover,
+#yykAuditControlPanel .yyk-return-site-btn:focus-visible{
+  border-color:rgba(201,162,39,.68)!important;
+  background:rgba(201,162,39,.13)!important;
+  color:#fff!important;
+  outline:none!important;
+  box-shadow:inset 0 -2px 0 rgba(201,162,39,.62)!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="vdr"]{order:2!important;}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="legal"]{order:3!important;}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="supply"]{order:4!important;}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="data"]{order:5!important;}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="pricing"]{order:6!important;}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="tds"]{order:7!important;}
+
+
+#yykAuditControlPanel .yyk-control-action[data-open-engine="partnership"]{order:8!important;}
+
+
+  #yykAuditControlPanel .yyk-control-action,
+  #yykAuditControlPanel .yyk-return-site-btn,
+  #yykAuditControlPanel .yyk-v32-exec-btn,
+  #yykAuditControlPanel .yyk-executive-primary-btn{min-height:38px!important;font-size:9px!important;padding:8px 10px!important;}
+
+
+#yykAuditControlPanel .yyk-control-actions,
+#yykAuditControlPanel #yykAuditControlActions{
+  /* grid-area:actions removed - flexbox */
+  justify-self:start!important;
+  align-self:center!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  padding-left:0!important;
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  transform:none!important;
+  float:none!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-return-site-btn,
+#yykAuditControlPanel .yyk-executive-primary-btn,
+#yykAuditControlPanel .yyk-v32-exec-btn,
+#yykAuditControlPanel .yyk-mode-btn{
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+  transform:none!important;
+}
+
+
+#yykAuditControlPanel .yyk-control-actions{width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;padding:0 0 3px!important;display:flex!important;flex-wrap:nowrap!important;gap:8px!important;align-items:center!important;justify-content:flex-start!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin!important;-webkit-overflow-scrolling:touch!important;scroll-snap-type:x proximity!important}
+
+
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-v32-exec-btn,
+#yykAuditControlPanel .yyk-return-site-btn{flex:0 0 auto!important;white-space:nowrap!important;scroll-snap-align:start!important;position:relative!important;left:auto!important;right:auto!important;transform:none!important}
+
+
+
+
+/* ==========================================================
+   2. DOUBLE BORDER / OUTLINE REMOVAL
+   ==========================================================
+   Remove double borders that appear on click/focus for 
+   interactive elements. Keep a subtle single border only.
+   ========================================================== */
+
+/* Remove cyan/green focus outlines, replace with subtle gold */
+button:focus-visible,
+a:focus-visible,
+.micro-btn:focus-visible,
+.nav-link:focus-visible,
+.sogo-primary-cta:focus-visible,
+.yyk-vdr-tab:focus-visible,
+.yyk-vdr-action:focus-visible,
+.yyk-control-action:focus-visible,
+.yyk-mode-btn:focus-visible,
+.yyk-executive-primary-btn:focus-visible,
+[role="button"]:focus-visible {
+  outline: 1px solid rgba(201, 162, 39, .55) !important;
+  outline-offset: 2px !important;
+  box-shadow: none !important;
+}
+
+
+
+/* Remove all double-border artifacts on active/focus states */
+.yyk-control-action:active,
+.yyk-mode-btn:active,
+.yyk-executive-primary-btn:active,
+.spec-tab:active,
+.yyk-legal-tab:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+
+
+/* ==========================================================
+   3. BUTTON FLASH / ANIMATION REMOVAL
+   ==========================================================
+   Remove harsh blinking/pulsing animations on buttons
+   when switching modes or states.
+   ========================================================== */
+
+/* Kill any pulsing or flashing on mode buttons */
+.yyk-mode-btn,
+.yyk-control-action,
+.yyk-executive-primary-btn {
+  animation: none !important;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+}
+
+
+
+/* Suppress any remaining keyframe-based flickers */
+.yyk-mode-btn.active,
+.yyk-control-action.active {
+  animation: none !important;
+}
+
+
+     - ??е?ик? «html body» об?за?елен дл? побед? над legacy !important.
+     - ?ез «!important» п?авило ?? ??або?ае?.
+
+   ????? LEGACY-??????? ???Ф???ТУЮТ:
+     - legacy-blocks.css: display:none!important на .yyk-audit-top
+     - legacy-blocks.css: display:grid / display:contents на .yyk-audit-wrap
+     - legacy-blocks.css: min-height:96px / 116px на .yyk-audit-wrap
+     - legacy-blocks.css: flex:1 1 360px на .yyk-control-actions (?азд?вае? п???ое ме??о)
+     - legacy-blocks.css: gap:16px / 24px межд? ?лемен?ами
+
+   DOM-СТ?У?ТУ?? (HTML: sections/03_control-panel.html):
+     #yykAuditControlPanel
+     ?��??� .yyk-audit-wrap              ??flex-column, gap:4px
+         ?��??� .yyk-audit-top           ??заголовок (kicker + title)
+         ?��??� .yyk-audit-context       ??опи?ание ?ежима
+         ?��??� .yyk-control-actions     ??кнопки дей??вий (?озда???? JS)
+         ?��??� .yyk-audit-modes         ??grid repeat(3, 1fr) ??????У
+
+   Т???Ч?Ы? ?Ш????:
+     1. ?е?и .yyk-audit-wrap ?а???гива???? ??добави?? flex:0 0 auto
+     2. ?анел? ?ли?ком в??ока? ??п?ове?и?? min-height, height на кон?ейне?е
+     3. ?нопки ?ежимов ?били?? ??п?ове?и?? grid-template-columns
+
+   ????????Я ??СТ?У?Ц?Я:
+     _workspace/5_control_panel_edit_guide.md
+   ========================================================== */
+
+/* Force visibility of Tier-1 Control Panel header elements.
+   legacy-blocks.css L8210 sets display:none!important on .yyk-audit-top.
+   We need html body prefix for higher specificity. */
+html body #yykAuditControlPanel .yyk-audit-top {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 4px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin-bottom: 0 !important;
+  width: 100% !important;
+}
+
+
+
+/* Actions + modes row: horizontal with modes on right */
+html body #yykAuditControlPanel .yyk-control-actions {
+  grid-area: unset !important;
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+
+
+
+
+/* Fix for 360px gap caused by flex-basis */
+html body #yykAuditControlPanel .yyk-control-actions {
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: 100% !important;
+}
+
+
+
+/* ==========================================================
+   STAGE 11 FIX: Executive Decision Layer Buttons Style Match
+   Match the .yyk-exec-action buttons to the Tier-1 .yyk-control-action style
+   ========================================================== */
+html body .yyk-exec-action,
+html body .yyk-exec-action.primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #1A1A1A !important;
+  color: #F5F5F2 !important;
+  border: 1px solid rgba(176,184,194,.32) !important;
+  padding: 9px 10px !important;
+  min-height: 36px !important;
+  font-size: 10px !important;
+  line-height: 1.1 !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+}
+
+
+
+/* ==========================================================
+   STAGE 12 FIX: Unify All Site Buttons to Tier-1 Style
+   Targets: .yyk-control-action, .spec-tab, .yyk-terminal-action
+   ========================================================== */
+html body .yyk-control-action,
+html body .spec-tab,
+html body .yyk-terminal-action {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #1A1A1A !important;
+  color: #F5F5F2 !important;
+  border: 1px solid rgba(176,184,194,.32) !important;
+  padding: 9px 10px !important;
+  min-height: 36px !important;
+  font-size: 10px !important;
+  line-height: 1.1 !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+  transition: background 0.15s, border-color 0.15s, color 0.15s !important;
+}
+
+
+html body .yyk-control-action:hover,
+html body .yyk-control-action:focus-visible,
+html body .yyk-control-action.active,
+html body .spec-tab:hover,
+html body .spec-tab:focus-visible,
+html body .spec-tab.active,
+html body .yyk-terminal-action:hover,
+html body .yyk-terminal-action:focus-visible,
+html body .yyk-terminal-action.active,
+html body .yyk-terminal-action.primary {
+  background: rgba(201,162,39,.14) !important;
+  border-color: rgba(201,162,39,.62) !important;
+  color: #fff !important;
+}
+
+
+
+/* ==========================================================
+   STAGE 13 FIX: Force Tier-1 Control Action Buttons Style
+   High specificity to override all previous !important rules
+   for #yykAuditControlActions buttons
+   ========================================================== */
+html body #yykAuditControlPanel #yykAuditControlActions .yyk-control-action,
+html body #yykAuditControlActions .yyk-control-action {
+  background: #1A1A1A !important;
+  color: #F5F5F2 !important;
+  border: 1px solid rgba(176,184,194,.32) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  padding: 9px 10px !important;
+  min-height: 36px !important;
+  border-radius: 0 !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+
+html body #yykAuditControlPanel #yykAuditControlActions .yyk-control-action:hover,
+html body #yykAuditControlPanel #yykAuditControlActions .yyk-control-action:focus-visible,
+html body #yykAuditControlPanel #yykAuditControlActions .yyk-control-action.active,
+html body #yykAuditControlActions .yyk-control-action:hover,
+html body #yykAuditControlActions .yyk-control-action.active {
+  background: rgba(201,162,39,.14) !important;
+  border-color: rgba(201,162,39,.62) !important;
+  color: #fff !important;
+}
