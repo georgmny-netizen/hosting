@@ -10703,3 +10703,32 @@ html body .yyk-logistics-dictate .yyk-hub-card .yyk-heatmap {
   margin-top: 14px !important;
 }
 
+/* Hub Card Strict Typography & Alignment */
+html body .yyk-logistics-dictate .yyk-hub-card h3 {
+  min-height: 2.8em !important;
+  margin-bottom: 12px !important;
+}
+html body .yyk-logistics-dictate .yyk-hub-card .yyk-hub-line {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  margin-bottom: 6px !important;
+}
+html body .yyk-logistics-dictate .yyk-hub-card .yyk-hub-line span {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+html body .yyk-logistics-dictate .yyk-hub-card .yyk-hub-line strong {
+  text-align: right !important;
+  word-break: break-word !important;
+}
+html body .yyk-logistics-dictate .yyk-hub-card .yyk-hub-line:nth-child(1),
+html body .yyk-logistics-dictate .yyk-hub-card .yyk-hub-line:nth-child(4) {
+  min-height: 2.8em !important;
+}
+html body .yyk-logistics-dictate .yyk-hub-card .yyk-hub-line:nth-child(2),
+html body .yyk-logistics-dictate .yyk-hub-card .yyk-hub-line:nth-child(3) {
+  min-height: 1.4em !important;
+}
+
