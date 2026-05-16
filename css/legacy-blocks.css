@@ -10826,3 +10826,17 @@ html body .yyk-logistics-dictate .yyk-hub-card .yyk-hub-line:nth-child(3) {
   margin-top: 16px !important;
 }
 
+/* Phase Integration Cards Strict Typography & Layout */
+.yyk-phase-card .yyk-phase-num,
+.yyk-phase-card .yyk-phase-title,
+.yyk-phase-card .yyk-phase-copy {
+  display: block !important;
+}
+.yyk-phase-card .yyk-phase-title {
+  margin-top: 12px !important; /* Moves title down */
+  margin-bottom: 8px !important; /* Pushes the text below it down */
+}
+.yyk-phase-card .yyk-phase-copy {
+  margin-top: 8px !important; /* Additional spacing for text */
+}
+
