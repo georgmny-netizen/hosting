@@ -233,13 +233,17 @@ footer button.yyk-terminal-link {
 }
 
 /* 3. PDF Vault Brackets: Green instead of Gold */
-.yyk-pdf-vault a span {
+.yyk-pdf-vault a span:first-child {
     color: #10b981 !important;
     text-shadow: 0 0 5px rgba(16, 185, 129, .25) !important;
 }
-.yyk-pdf-vault a:hover span {
+.yyk-pdf-vault a:hover span:first-child {
     color: #10b981 !important;
     text-shadow: 0 0 14px rgba(16, 185, 129, .55) !important;
+}
+.yyk-pdf-vault a span:last-child:not(:first-child) {
+    color: inherit !important;
+    text-shadow: none !important;
 }
 
 /* 4. Vault links specific styling from CANONICAL */
