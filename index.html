@@ -5329,7 +5329,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeProductEngine()
       var activeParent = engine.closest('.active');
       if(activeParent) engine = activeParent;
     }
-    console.log('[YYK-CLOSE-DEBUG] engine:', engine - engine.id + ' ' + engine.className : 'NULL'); if(!engine) return; console.log('[YYK-CLOSE-DEBUG] CLOSING engine:', engine.id);
+    console.log('[YYK-CLOSE-DEBUG] engine:', engine ? engine.id + ' ' + engine.className : 'NULL'); if(!engine) return; console.log('[YYK-CLOSE-DEBUG] CLOSING engine:', engine.id);
     e.preventDefault();
     e.stopImmediatePropagation();
     engine.classList.remove('active');
@@ -5359,7 +5359,7 @@ document.addEventListener('DOMContentLoaded', function() {
 (function(){
   function getMaterialValue(){
     var select = document.getElementById("rfqMaterial");
-    return select - (select.value || select.options[select.selectedIndex]?.textContent || "") : "";
+    return select ? (select.value || select.options[select.selectedIndex]?.textContent || "") : "";
   }
 
   function getRegionValue(){
@@ -5368,7 +5368,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById("sogoRegion"),
       document.querySelector('[name="region"]')
     ].filter(Boolean);
-    return regionFields.length - (regionFields[0].value || "") : "";
+    return regionFields.length ? (regionFields[0].value || "") : "";
   }
 
   function updateComplianceNotice(){
@@ -5617,13 +5617,13 @@ document.querySelectorAll('.compliance-toc a').forEach(link=>{
 
     tabs.forEach(function(tab, i){
       tab.classList.toggle('active', i === index);
-      tab.setAttribute('aria-selected', i === index - 'true' : 'false');
+      tab.setAttribute('aria-selected', i === index ? 'true' : 'false');
     });
 
     panels.forEach(function(panel, i){
       panel.classList.toggle('active', i === index);
       panel.hidden = i !== index;
-      panel.style.display = i === index - 'block' : 'none';
+      panel.style.display = i === index ? 'block' : 'none';
     });
 
     var content = qs('.compliance-content', panels[index]) || panels[index];
@@ -5652,7 +5652,7 @@ document.querySelectorAll('.compliance-toc a').forEach(link=>{
         }
         if(e.key === 'ArrowRight' || e.key === 'ArrowLeft'){
           e.preventDefault();
-          var next = e.key === 'ArrowRight' - i + 1 : i - 1;
+          var next = e.key === 'ArrowRight' ? i + 1 : i - 1;
           if(next < 0) next = tabs.length - 1;
           if(next >= tabs.length) next = 0;
           tabs[next].focus();
@@ -5664,10 +5664,10 @@ document.querySelectorAll('.compliance-toc a').forEach(link=>{
     panels.forEach(function(panel, i){
       panel.setAttribute('role', 'tabpanel');
       panel.hidden = i !== 0;
-      panel.style.display = i === 0 - 'block' : 'none';
+      panel.style.display = i === 0 ? 'block' : 'none';
     });
 
-    activateComplianceTab((qs('[data-compliance-tab].active', engine) || tabs[0] || {}).getAttribute - (qs('[data-compliance-tab].active', engine) || tabs[0]).getAttribute('data-compliance-tab') : 'esg');
+    activateComplianceTab((qs('[data-compliance-tab].active', engine) || tabs[0] || {}).getAttribute ? (qs('[data-compliance-tab].active', engine) || tabs[0]).getAttribute('data-compliance-tab') : 'esg');
   }
 
   function initOpeners(){
@@ -5800,7 +5800,7 @@ document.querySelectorAll('.compliance-toc a').forEach(link=>{
 
   function findRFQValue(type){
     const selectors = type === "material"
-      - ['select[name*="material" i]','input[name*="material" i]','#rfqMaterial','#material','select[id*="material" i]','input[id*="material" i]']
+      ? ['select[name*="material" i]','input[name*="material" i]','#rfqMaterial','#material','select[id*="material" i]','input[id*="material" i]']
       : ['select[name*="destination" i]','select[name*="country" i]','input[name*="destination" i]','input[name*="country" i]','#rfqDestination','#destination','#country','select[id*="destination" i]','select[id*="country" i]'];
     for(const sel of selectors){
       const el = qs(sel);
@@ -5809,7 +5809,7 @@ document.querySelectorAll('.compliance-toc a').forEach(link=>{
     // fallback from visible selected options
     const allSelects = qsa('select');
     for(const el of allSelects){
-      const v = el.value || (el.options && el.options[el.selectedIndex] - el.options[el.selectedIndex].text : "");
+      const v = el.value || (el.options && el.options[el.selectedIndex] ? el.options[el.selectedIndex].text : "");
       if(type === "material" && /(copper|cu|aluminum|zinc|zn|rare|ree|lanthan)/i.test(v)) return v;
       if(type === "destination" && /(korea|japan|china|taiwan|busan|incheon|yokohama|shanghai|kaohsiung)/i.test(v)) return v;
     }
@@ -5828,7 +5828,7 @@ document.querySelectorAll('.compliance-toc a').forEach(link=>{
     let idx = tabs.findIndex(t => String(t.getAttribute('data-compliance-tab')).toLowerCase() === String(tabName).toLowerCase());
     if(idx < 0) idx = 0;
     tabs.forEach((t,i)=>t.classList.toggle('active', i===idx));
-    panels.forEach((p,i)=>{p.classList.toggle('active', i===idx); p.hidden = i!==idx; p.style.display = i===idx - 'block':'none';});
+    panels.forEach((p,i)=>{p.classList.toggle('active', i===idx); p.hidden = i!==idx; p.style.display = i===idx ? 'block':'none';});
   }
 
   function renderDecision(){
@@ -5847,7 +5847,7 @@ document.querySelectorAll('.compliance-toc a').forEach(link=>{
     if(mEl) mEl.textContent = mat.label + " · " + mat.purity;
     if(dEl) dEl.textContent = dest.label;
     if(cEl) cEl.textContent = dest.compliance;
-    if(sEl) sEl.textContent = materialKey === "ree" || destKey === "cn" - "Enhanced Review" : "Controlled RFQ";
+    if(sEl) sEl.textContent = materialKey === "ree" || destKey === "cn" ? "Enhanced Review" : "Controlled RFQ";
     if(sumEl) sumEl.textContent = mat.label + " routed to " + dest.label + ": " + dest.control;
 
     if(rows){
@@ -5878,7 +5878,7 @@ document.querySelectorAll('.compliance-toc a').forEach(link=>{
           <td>Buyer-selected material + destination</td>
           <td>Auto-route to compliance tab: ${dest.compliance}</td>
           <td>RFQ pack generated with required legal / technical attachments</td>
-          <td><span class="yyk-decision-pill">${materialKey === "ree" || destKey === "cn" - "Enhanced Review" : "Ready"}</span></td>
+          <td><span class="yyk-decision-pill">${materialKey === "ree" || destKey === "cn" ? "Enhanced Review" : "Ready"}</span></td>
         </tr>
       `;
     }
@@ -6077,14 +6077,14 @@ document.addEventListener("DOMContentLoaded",applyState)
     section.querySelectorAll('[data-spec-tab]').forEach(function(btn){
       var active = btn.getAttribute('data-spec-tab') === key;
       btn.classList.toggle('active', active);
-      btn.setAttribute('aria-selected', active - 'true' : 'false');
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
     });
 
     section.querySelectorAll('[data-spec-panel]').forEach(function(panel){
       var active = panel.getAttribute('data-spec-panel') === key;
       panel.classList.toggle('active', active);
       panel.hidden = !active;
-      panel.setAttribute('aria-hidden', active - 'false' : 'true');
+      panel.setAttribute('aria-hidden', active ? 'false' : 'true');
     });
   }
 
@@ -6098,7 +6098,7 @@ document.addEventListener("DOMContentLoaded",applyState)
 
   document.addEventListener('DOMContentLoaded', function(){
     var active = document.querySelector('#industrial-specs [data-spec-tab].active');
-    activateSpecTab(active - active.getAttribute('data-spec-tab') : 'cu');
+    activateSpecTab(active ? active.getAttribute('data-spec-tab') : 'cu');
   });
 
   window.YYKActivateSpecTab = activateSpecTab;
@@ -6136,13 +6136,13 @@ document.addEventListener("DOMContentLoaded",applyState)
 
     tabs.forEach(function(tab){
       var text = (tab.textContent || '').trim().toLowerCase();
-      var key = text.indexOf('cu') === 0 || text.indexOf('copper') === 0 - 'cu' :
-                text.indexOf('al') === 0 || text.indexOf('aluminum') === 0 - 'al' :
-                text.indexOf('zn') === 0 || text.indexOf('zinc') === 0 - 'zn' :
+      var key = text.indexOf('cu') === 0 || text.indexOf('copper') === 0 ? 'cu' :
+                text.indexOf('al') === 0 || text.indexOf('aluminum') === 0 ? 'al' :
+                text.indexOf('zn') === 0 || text.indexOf('zinc') === 0 ? 'zn' :
                 'ree';
       tab.setAttribute('data-catalog-tab', key);
       tab.classList.add('catalog-tab');
-      tab.setAttribute('type', tab.tagName.toLowerCase() === 'button' - 'button' : tab.getAttribute('type') || '');
+      tab.setAttribute('type', tab.tagName.toLowerCase() === 'button' ? 'button' : tab.getAttribute('type') || '');
     });
 
     var panels = Array.prototype.slice.call(scope.querySelectorAll('[data-spec-panel], [data-product-panel], [data-catalog-panel], .spec-panel, .product-panel, .catalog-panel'));
@@ -6173,13 +6173,13 @@ document.addEventListener("DOMContentLoaded",applyState)
     scope.querySelectorAll('[data-catalog-tab]').forEach(function(tab){
       var active = tab.getAttribute('data-catalog-tab') === key;
       tab.classList.toggle('active', active);
-      tab.setAttribute('aria-selected', active - 'true' : 'false');
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
     });
     scope.querySelectorAll('[data-catalog-panel]').forEach(function(panel){
       var active = panel.getAttribute('data-catalog-panel') === key;
       panel.classList.toggle('active', active);
       panel.hidden = !active;
-      panel.setAttribute('aria-hidden', active - 'false' : 'true');
+      panel.setAttribute('aria-hidden', active ? 'false' : 'true');
     });
   }
 
@@ -6196,7 +6196,7 @@ document.addEventListener("DOMContentLoaded",applyState)
   document.addEventListener('DOMContentLoaded', function(){
     prepareCatalog();
     var active = document.querySelector('.yyk-engineering-catalog-scope [data-catalog-tab].active');
-    activateCatalogTab(active - active.getAttribute('data-catalog-tab') : 'cu');
+    activateCatalogTab(active ? active.getAttribute('data-catalog-tab') : 'cu');
   });
 
   window.YYKActivateEngineeringCatalogTab = activateCatalogTab;
@@ -6334,8 +6334,8 @@ document.addEventListener("DOMContentLoaded", function(){
        if(dataLang) {
          targetLang = dataLang;
        } else {
-         if(txt.includes('kr')||txt.includes('—국')) targetLang = 'ko';
-         else if(txt.includes('jp')||txt.includes('—本')) targetLang = 'ja';
+         if(txt.includes('kr')||txt.includes('한국')) targetLang = 'ko';
+         else if(txt.includes('jp')||txt.includes('日本')) targetLang = 'ja';
          else if(txt.includes('tw')||txt.includes('tw')) targetLang = 'tw';
          else if(txt.includes('cn')||txt.includes('简')) targetLang = 'cn';
        }
@@ -6415,16 +6415,16 @@ document.addEventListener("DOMContentLoaded", function(){
     tabs.forEach(function(tab){
       var active = tab.getAttribute('data-product-tab') === key;
       tab.classList.toggle('active', active);
-      tab.setAttribute('aria-selected', active - 'true' : 'false');
-      tab.tabIndex = active - 0 : -1;
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      tab.tabIndex = active ? 0 : -1;
     });
 
     panels.forEach(function(panel){
       var active = panel.getAttribute('data-product-panel') === key;
       panel.classList.toggle('active', active);
       panel.hidden = !active;
-      panel.setAttribute('aria-hidden', active - 'false' : 'true');
-      panel.style.display = active - 'block' : 'none';
+      panel.setAttribute('aria-hidden', active ? 'false' : 'true');
+      panel.style.display = active ? 'block' : 'none';
     });
 
     engine.setAttribute('data-active-product-panel', key);
@@ -6457,7 +6457,7 @@ document.addEventListener("DOMContentLoaded", function(){
   function boot(){
     repairProductEngineMarkup();
     var active = document.querySelector('#productEngine .product-tab.active[data-product-tab]');
-    activateProductPassportPanel(active - active.getAttribute('data-product-tab') : 'cu');
+    activateProductPassportPanel(active ? active.getAttribute('data-product-tab') : 'cu');
   }
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
@@ -6761,7 +6761,7 @@ document.addEventListener("DOMContentLoaded", function(){
     get: function(key, fallback){
       try {
         var value = localStorage.getItem(key);
-        return value === null - fallback : value;
+        return value === null ? fallback : value;
       } catch(err) {
         return fallback;
       }
@@ -6911,10 +6911,10 @@ document.addEventListener("DOMContentLoaded", function(){
   };
   function $(id){ return document.getElementById(id); }
   function updateComplianceCalculator(){
-    const material = $("calcMaterial") - $("calcMaterial").value : "copper";
-    const destination = $("calcDestination") - $("calcDestination").value : "south_korea";
+    const material = $("calcMaterial") ? $("calcMaterial").value : "copper";
+    const destination = $("calcDestination") ? $("calcDestination").value : "south_korea";
     const item = matrix[material][destination];
-    const destinationLabel = $("calcDestination") - $("calcDestination").options[$("calcDestination").selectedIndex].text : "South Korea";
+    const destinationLabel = $("calcDestination") ? $("calcDestination").options[$("calcDestination").selectedIndex].text : "South Korea";
     if($("calcRouteTitle")) $("calcRouteTitle").textContent = "Malaysia → South Korea Hub → " + destinationLabel;
     if($("calcRouteText")) $("calcRouteText").textContent = matrix[material].label + " procurement route resolved through APAC Regional Supply Desk.";
     if($("calcRcepBenefit")) $("calcRcepBenefit").textContent = item.rcep;
@@ -7204,7 +7204,7 @@ document.addEventListener("DOMContentLoaded", function(){
   ];
 
   function pad(value){
-    return value < 10 - "0" + value : String(value);
+    return value < 10 ? "0" + value : String(value);
   }
 
   function timeForOffset(offset){
@@ -7294,7 +7294,7 @@ document.addEventListener("DOMContentLoaded", function(){
     try { if(typeof window.updateRFQ === "function") window.updateRFQ(); } catch(err) {}
   };
   document.addEventListener("click", function(event){
-    var target = event.target && event.target.closest - event.target.closest("[data-open-lanthanex],[data-lanthanex-rfq]") : null;
+    var target = event.target && event.target.closest ? event.target.closest("[data-open-lanthanex],[data-lanthanex-rfq]") : null;
     if(!target) return;
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -7494,7 +7494,7 @@ document.addEventListener("DOMContentLoaded", function(){
     let candidates = [];
     scopes.forEach(scope => {
       if(!scope) return;
-      const nodes = scope.querySelectorAll - scope.querySelectorAll(selectors) : [];
+      const nodes = scope.querySelectorAll ? scope.querySelectorAll(selectors) : [];
       nodes.forEach(el => {
         if(!isVisible(el)) return;
         const signal = contextSignal(el);
@@ -7512,7 +7512,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
     candidates.sort((a,b) => b.score - a.score);
-    return candidates[0] - candidates[0].match : null;
+    return candidates[0] ? candidates[0].match : null;
   }
 
   function getScopes(){
@@ -7616,7 +7616,7 @@ document.addEventListener("DOMContentLoaded", function(){
     setHref("[data-evidence-material-link]", material.href);
     setHref("[data-evidence-route-link]", destination.href);
     setHref("[data-evidence-compliance-link]", "#yongyeokyo-apac-compliance");
-    setHref("[data-evidence-decision-link]", score >= 82 - "#advisory-deal-room" : "#rfq");
+    setHref("[data-evidence-decision-link]", score >= 82 ? "#advisory-deal-room" : "#rfq");
 
     const router = document.querySelector("[data-evidence-router]");
     const meter = document.querySelector("[data-evidence-risk-meter]");
@@ -7848,7 +7848,7 @@ document.addEventListener("DOMContentLoaded", function(){
       if(!panel || !qc[name]) return;
       panel.classList.add("is-verified");
       var rows=panel.querySelectorAll(".route-status-row");
-      if(rows[0]){ rows[0].firstElementChild.textContent="QC STATUS"; rows[0].lastElementChild.textContent=locked - "ROUTE LOCKED" : qc[name].mode; }
+      if(rows[0]){ rows[0].firstElementChild.textContent="QC STATUS"; rows[0].lastElementChild.textContent=locked ? "ROUTE LOCKED" : qc[name].mode; }
       if(rows[1]){ rows[1].firstElementChild.textContent="BATCH FLOW"; rows[1].lastElementChild.textContent=qc[name].batch; }
       if(rows[2]){ rows[2].firstElementChild.textContent="TRACEABILITY"; rows[2].lastElementChild.textContent=qc[name].trace; }
       if(rows[3]){ rows[3].firstElementChild.textContent="LOT CONTROL"; rows[3].lastElementChild.textContent=qc[name].lot; }
@@ -8441,8 +8441,8 @@ document.addEventListener("DOMContentLoaded", function(){
       document.body.appendChild(tooltip);
     }
     tooltip.textContent = message || 'Copied';
-    var x = event && typeof event.clientX === 'number' - event.clientX : window.innerWidth / 2;
-    var y = event && typeof event.clientY === 'number' - event.clientY : window.innerHeight / 2;
+    var x = event && typeof event.clientX === 'number' ? event.clientX : window.innerWidth / 2;
+    var y = event && typeof event.clientY === 'number' ? event.clientY : window.innerHeight / 2;
     tooltip.style.left = x + 'px';
     tooltip.style.top = y + 'px';
     tooltip.classList.add('active');
@@ -8645,7 +8645,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
 <div class="rt-tabs"><button class="rt-tab active" data-i18n="auto.t3804" data-rt-tab="inspector" type="button">Tokyo Inspector</button><button class="rt-tab" data-i18n="auto.t3805" data-rt-tab="crisis" type="button">Critical Incident</button><button class="rt-tab" data-i18n="auto.t3806" data-rt-tab="impurities" type="button">Impurity Deep Dive</button><button class="rt-tab" data-i18n="auto.t3807" data-rt-tab="liability" type="button">Legal Trap</button><button class="rt-tab" data-i18n="auto.t3808" data-rt-tab="readiness" type="button">Last-Mile Risk</button></div>
 <div class="rt-body">
 <section class="rt-panel active" data-rt-panel="inspector">
-<div class="rt-grid2"><div class="rt-card"><strong data-i18n="auto.t3809">Role-play trigger</strong><h3 data-i18n="auto.t3810">Inspector from Tokyo</h3><p><b data-i18n="auto.t3811">Demand:</b><span data-i18n="auto.t3812"> —Show us the laboratory service agreement and the GDMS calibration log for the last quarter. We will not accept a CoA that is not tied to instrument serial number, method scope and signatory authority.</span></p><div class="rt-field"><label data-i18n="auto.t3813">Requested document</label><select id="rtDocSelect"><option data-i18n="auto.t3814">Lab Service Agreement + GDMS Calibration Log</option><option data-i18n="auto.t3815">End-User Certificate + Sanctions Screening Record</option><option data-i18n="auto.t3816">Cargo Insurance Certificate + Seal Photo Log</option><option data-i18n="auto.t3817">Retained Sample Chain-of-Custody</option><option data-i18n="auto.t3818">Supplier Qualification File + Smelter Origin Declaration</option></select></div><button class="rt-btn danger" data-i18n="auto.t3819" id="rtGenerateAnswer" type="button">Generate Defense Response</button></div><div class="rt-output" id="rtInspectorOutput"><strong data-i18n="auto.t3820">System response</strong><h3 data-i18n="auto.t3821">Awaiting document demand</h3><p data-i18n="auto.t3822">Select a document demand and generate the procurement-grade response.</p></div></div>
+<div class="rt-grid2"><div class="rt-card"><strong data-i18n="auto.t3809">Role-play trigger</strong><h3 data-i18n="auto.t3810">Inspector from Tokyo</h3><p><b data-i18n="auto.t3811">Demand:</b><span data-i18n="auto.t3812"> “Show us the laboratory service agreement and the GDMS calibration log for the last quarter. We will not accept a CoA that is not tied to instrument serial number, method scope and signatory authority.</span></p><div class="rt-field"><label data-i18n="auto.t3813">Requested document</label><select id="rtDocSelect"><option data-i18n="auto.t3814">Lab Service Agreement + GDMS Calibration Log</option><option data-i18n="auto.t3815">End-User Certificate + Sanctions Screening Record</option><option data-i18n="auto.t3816">Cargo Insurance Certificate + Seal Photo Log</option><option data-i18n="auto.t3817">Retained Sample Chain-of-Custody</option><option data-i18n="auto.t3818">Supplier Qualification File + Smelter Origin Declaration</option></select></div><button class="rt-btn danger" data-i18n="auto.t3819" id="rtGenerateAnswer" type="button">Generate Defense Response</button></div><div class="rt-output" id="rtInspectorOutput"><strong data-i18n="auto.t3820">System response</strong><h3 data-i18n="auto.t3821">Awaiting document demand</h3><p data-i18n="auto.t3822">Select a document demand and generate the procurement-grade response.</p></div></div>
 <div id="rtKillerList" style="margin-top:14px"></div>
 </section>
 <section class="rt-panel" data-rt-panel="crisis">
@@ -8654,7 +8654,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
 </section>
 <section class="rt-panel" data-rt-panel="impurities">
 <div class="rt-card"><strong data-i18n="auto.t3850">Technical deep dive</strong><h3 data-i18n="auto.t3851">CoA against foundry expectations</h3><p data-i18n="auto.t3852">Public TSMC/Samsung foundry impurity limits for specific 7N aluminum lots are generally not disclosed; real buyer specifications are NDA-controlled. Therefore this module compares the CoA to a conservative semiconductor qualification posture: ISO/IEC 17025 lab data, GDMS/ICP-MS, retained samples, contaminant priority list and buyer-specific threshold mapping.</p></div>
-<table class="rt-table"><thead><tr><th data-i18n="auto.t3853">Element / control</th><th data-i18n="auto.t3854">YYK CoA target</th><th data-i18n="auto.t3855">Likely foundry expectation</th><th data-i18n="auto.t3856">Red-team verdict</th><th data-i18n="auto.t3857">Action</th></tr></thead><tbody><tr><td>Fe</td><td data-i18n="auto.t3858">≤0.05 ppm</td><td data-i18n="auto.t3859">Buyer-specific; priority contaminant review</td><td class="rt-pass" data-i18n="auto.t3860">Strong if GDMS/ICP-MS validated</td><td data-i18n="auto.t3861">Attach lab raw report + calibration certificate.</td></tr><tr><td>Si</td><td data-i18n="auto.t3862">≤0.03 ppm</td><td data-i18n="auto.t3863">Critical for semiconductor contamination control</td><td class="rt-pass" data-i18n="auto.t3864">Good margin as declared</td><td data-i18n="auto.t3865">Confirm blank correction and detection limit.</td></tr><tr><td data-i18n="auto.t3866">Ag / Ni / Zn</td><td data-i18n="auto.t3867">≤0.02 ppm class</td><td data-i18n="auto.t3868">Metallic contamination risk depends on process use</td><td class="rt-gap" data-i18n="auto.t3869">Need buyer-specific mapping</td><td data-i18n="auto.t3870">Add —application/process node not assumed — disclaimer.</td></tr><tr><td data-i18n="auto.t3871">S / Pb</td><td data-i18n="auto.t3872">≤0.01 ppm class</td><td data-i18n="auto.t3873">Restricted/controlled trace contaminants</td><td class="rt-pass" data-i18n="auto.t3874">Acceptable only with trace method evidence</td><td data-i18n="auto.t3875">Use ISO/IEC 17025 lab and retained sample policy.</td></tr><tr><td data-i18n="auto.t3876">Particle / surface contamination</td><td data-i18n="auto.t3877">Not fully specified in CoA</td><td data-i18n="auto.t3878">Often decisive for semiconductor handling</td><td class="rt-fail" data-i18n="auto.t3879">Weak point</td><td data-i18n="auto.t3880">Add surface cleanliness, packaging environment and particle inspection certificate.</td></tr><tr><td data-i18n="auto.t3881">Cross-contamination at logistics</td><td data-i18n="auto.t3882">Seal log only</td><td data-i18n="auto.t3883">Chain-of-custody and packaging integrity proof</td><td class="rt-gap" data-i18n="auto.t3884">Needs stronger evidence</td><td data-i18n="auto.t3885">Add seal photos, warehouse handling SOP and quarantine trigger.</td></tr><tr><td data-i18n="auto.t3886">Calibration linkage</td><td data-i18n="auto.t3887">Document ID planned</td><td data-i18n="auto.t3888">Instrument serial, method scope, calibration date</td><td class="rt-gap" data-i18n="auto.t3889">Must be mandatory</td><td data-i18n="auto.t3890">Make CoA invalid without calibration/log link.</td></tr></tbody></table><div class="rt-mini"><b data-i18n="auto.t3891">Where we lose:</b><span data-i18n="auto.t3892"> buyer-specific NDA impurity thresholds, particle/surface cleanliness, lab calibration attachments if absent. </span><b data-i18n="auto.t3893">Safety margin:</b><span data-i18n="auto.t3894"> low ppm/sub-ppm targets, traceability design, screening workflow and RMA/CAPA logic.</span></div>
+<table class="rt-table"><thead><tr><th data-i18n="auto.t3853">Element / control</th><th data-i18n="auto.t3854">YYK CoA target</th><th data-i18n="auto.t3855">Likely foundry expectation</th><th data-i18n="auto.t3856">Red-team verdict</th><th data-i18n="auto.t3857">Action</th></tr></thead><tbody><tr><td>Fe</td><td data-i18n="auto.t3858">≤0.05 ppm</td><td data-i18n="auto.t3859">Buyer-specific; priority contaminant review</td><td class="rt-pass" data-i18n="auto.t3860">Strong if GDMS/ICP-MS validated</td><td data-i18n="auto.t3861">Attach lab raw report + calibration certificate.</td></tr><tr><td>Si</td><td data-i18n="auto.t3862">≤0.03 ppm</td><td data-i18n="auto.t3863">Critical for semiconductor contamination control</td><td class="rt-pass" data-i18n="auto.t3864">Good margin as declared</td><td data-i18n="auto.t3865">Confirm blank correction and detection limit.</td></tr><tr><td data-i18n="auto.t3866">Ag / Ni / Zn</td><td data-i18n="auto.t3867">≤0.02 ppm class</td><td data-i18n="auto.t3868">Metallic contamination risk depends on process use</td><td class="rt-gap" data-i18n="auto.t3869">Need buyer-specific mapping</td><td data-i18n="auto.t3870">Add “application/process node not assumed — disclaimer.</td></tr><tr><td data-i18n="auto.t3871">S / Pb</td><td data-i18n="auto.t3872">≤0.01 ppm class</td><td data-i18n="auto.t3873">Restricted/controlled trace contaminants</td><td class="rt-pass" data-i18n="auto.t3874">Acceptable only with trace method evidence</td><td data-i18n="auto.t3875">Use ISO/IEC 17025 lab and retained sample policy.</td></tr><tr><td data-i18n="auto.t3876">Particle / surface contamination</td><td data-i18n="auto.t3877">Not fully specified in CoA</td><td data-i18n="auto.t3878">Often decisive for semiconductor handling</td><td class="rt-fail" data-i18n="auto.t3879">Weak point</td><td data-i18n="auto.t3880">Add surface cleanliness, packaging environment and particle inspection certificate.</td></tr><tr><td data-i18n="auto.t3881">Cross-contamination at logistics</td><td data-i18n="auto.t3882">Seal log only</td><td data-i18n="auto.t3883">Chain-of-custody and packaging integrity proof</td><td class="rt-gap" data-i18n="auto.t3884">Needs stronger evidence</td><td data-i18n="auto.t3885">Add seal photos, warehouse handling SOP and quarantine trigger.</td></tr><tr><td data-i18n="auto.t3886">Calibration linkage</td><td data-i18n="auto.t3887">Document ID planned</td><td data-i18n="auto.t3888">Instrument serial, method scope, calibration date</td><td class="rt-gap" data-i18n="auto.t3889">Must be mandatory</td><td data-i18n="auto.t3890">Make CoA invalid without calibration/log link.</td></tr></tbody></table><div class="rt-mini"><b data-i18n="auto.t3891">Where we lose:</b><span data-i18n="auto.t3892"> buyer-specific NDA impurity thresholds, particle/surface cleanliness, lab calibration attachments if absent. </span><b data-i18n="auto.t3893">Safety margin:</b><span data-i18n="auto.t3894"> low ppm/sub-ppm targets, traceability design, screening workflow and RMA/CAPA logic.</span></div>
 </section>
 <section class="rt-panel" data-rt-panel="liability">
 <div class="rt-grid2"><div class="rt-liability"><strong data-i18n="auto.t3895">Legal trap</strong><h3 data-i18n="auto.t3896">How a large buyer can bankrupt the supplier</h3><p data-i18n="auto.t3897">If the contract is silent on consequential damages, the buyer may claim line stoppage, lost wafer output, customer penalties, expedited replacement, reputational damage and internal investigation costs. A single delayed or downgraded lot can become a claim far above invoice value.</p><ul><li data-i18n="auto.t3898">Danger phrase: “Supplier shall be liable for all losses arising from delay or nonconformity.</li><li data-i18n="auto.t3899">Danger gap: no inspection window, no exclusive remedy, no cap, no exclusion of indirect damages.</li><li data-i18n="auto.t3900">Danger evidence: website claims “guaranteed supply” or “zero risk” without contract limits.</li></ul></div><div class="rt-liability"><strong data-i18n="auto.t3901">Protective clause</strong><h3 data-i18n="auto.t3902">Limit of Liability — draft wording</h3><div class="rt-clause" data-i18n="auto.t3903">Except for fraud, willful misconduct, proven sanctions violation caused solely by Supplier, or breach of confidentiality, Supplier’s aggregate liability arising out of or relating to any purchase order, shipment, delay, nonconforming material, documentation error or related service shall be limited to the amount paid by Buyer for the affected lot. Supplier shall not be liable for indirect, incidental, special, punitive or consequential damages, including loss of production, line stoppage, lost profits, loss of business opportunity, customer penalties or reputational damage, whether claimed in contract, tort or otherwise. Buyer’s exclusive remedy for confirmed nonconforming material shall be replacement, refund or credit for the affected lot, subject to timely written notice, quarantine of the material, and confirmation by an agreed independent referee laboratory.</div></div></div>
@@ -9510,7 +9510,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
 <script id="yyk-stage-2-3-return-to-site-script">
 (function(){
   function closeDeepLayer(from){
-    var root = from && from.closest - from.closest('.compliance-engine,.product-engine,.contact-engine,.sogo-drawer,.yyk-vdr-engine,.modal,.esg-deep-layer') : null;
+    var root = from && from.closest ? from.closest('.compliance-engine,.product-engine,.contact-engine,.sogo-drawer,.yyk-vdr-engine,.modal,.esg-deep-layer') : null;
     if(!root) return;
     root.classList.remove('active');
     root.setAttribute('aria-hidden','true');
@@ -9621,7 +9621,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     }
     Array.prototype.slice.call(box.querySelectorAll('.yyk-priority-row,.yyk-priority-label,.yyk-priority-buttons')).forEach(function(el){el.remove()});
     Array.prototype.slice.call(box.querySelectorAll('.yyk-control-action')).forEach(function(btn){
-      btn.setAttribute('data-terminal-priority', PRIORITY[txt(btn)] - '1' : '2');
+      btn.setAttribute('data-terminal-priority', PRIORITY[txt(btn)] ? '1' : '2');
       btn.setAttribute('draggable','false');
     });
     box.classList.remove('yyk-priority-ready');
@@ -9860,7 +9860,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
   function bindRouteFocus(){
     var map=q('#yykFooterLogisticsMap'); if(!map) return;
     map.addEventListener('mouseenter',function(e){
-      var node=e.target && e.target.closest - e.target.closest('.port-node,.yyk-logistics-route,.route-group') : null;
+      var node=e.target && e.target.closest ? e.target.closest('.port-node,.yyk-logistics-route,.route-group') : null;
       if(!node) return;
       var label=node.getAttribute('data-port')||node.getAttribute('data-route')||'APAC LANE';
       var lane=q('#yykLiveLane + span'); if(lane) lane.textContent=String(label).toUpperCase()+' · LIVE FOCUS';
@@ -10039,7 +10039,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     if(rec.kyc_status!=="PASS") hardMissing.push("kyc_status");
     if(rec.sanctions_status!=="PASS") hardMissing.push("sanctions_status");
     if(rec.bonded_route_confirmed!=="YES") hardMissing.push("bonded_route_confirmed");
-    const lock = hardMissing.length - (rec.rfq_lock || "CONDITIONAL") : "RELEASED";
+    const lock = hardMissing.length ? (rec.rfq_lock || "CONDITIONAL") : "RELEASED";
     setBackendLockState(lock);
     return Object.assign({id,hardMissing,rfq_lock:lock},rec);
   };
@@ -10050,8 +10050,8 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     const gate=window.yykBatchBackendGate(id);
     const rows=document.getElementById("batchRows");
     if(rows){
-      rows.innerHTML += `<tr><td>Internal Batch DB</td><td>${gate.reason - gate.reason : "Record located · API contract ready"}</td></tr>`;
-      rows.innerHTML += `<tr><td>Backend RFQ-Lock</td><td class="${gate.rfq_lock==='RELEASED'?'ok':'warn'}">${gate.rfq_lock} · ${gate.hardMissing&&gate.hardMissing.length - 'Missing: '+gate.hardMissing.join(', ') : 'All hard gates passed'}</td></tr>`;
+      rows.innerHTML += `<tr><td>Internal Batch DB</td><td>${gate.reason ? gate.reason : "Record located · API contract ready"}</td></tr>`;
+      rows.innerHTML += `<tr><td>Backend RFQ-Lock</td><td class="${gate.rfq_lock==='RELEASED'?'ok':'warn'}">${gate.rfq_lock} · ${gate.hardMissing&&gate.hardMissing.length ? 'Missing: '+gate.hardMissing.join(', ') : 'All hard gates passed'}</td></tr>`;
     }
   };
   document.addEventListener("DOMContentLoaded",function(){window.yykBatchBackendGate("COA-CU6N-2024-001");});
@@ -10077,12 +10077,12 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     validateTolerance: function(){
       var input = document.getElementById("d20PpbTolerance");
       var result = document.getElementById("d20ToleranceResult");
-      var value = input - Number(input.value) : NaN;
+      var value = input ? Number(input.value) : NaN;
       var ok = Number.isFinite(value) && value > 0;
       if(result){
         result.classList.toggle("block", !ok);
         result.textContent = ok
-          - "PASS · ppb tolerance captured for RFQ technical routing."
+          ? "PASS · ppb tolerance captured for RFQ technical routing."
           : "BLOCKED · ppb tolerance missing; RFQ cannot pass final gate.";
       }
       return ok;
@@ -10172,7 +10172,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
       var hit = regulated.some(function(x){ return material.indexOf(x) >= 0; });
       return {
         licenseRequired: hit,
-        status: hit - "MOFCOM_REVIEW_REQUIRED" : "STANDARD_COMPLIANCE_ROUTE",
+        status: hit ? "MOFCOM_REVIEW_REQUIRED" : "STANDARD_COMPLIANCE_ROUTE",
         gate: "CHINA_EXPORT_LICENSE_MANAGEMENT"
       };
     }
@@ -10258,8 +10258,8 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     catch(e){ return null; }
   }
   function compute(data){
-    const regions = data && data.regions - data.regions : {};
-    const weights = data && data.weights - data.weights : {};
+    const regions = data && data.regions ? data.regions : {};
+    const weights = data && data.weights ? data.weights : {};
     const map = [
       ['CN','china_license_visibility'],
       ['KR','korea_distribution_readiness'],
@@ -10273,7 +10273,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
       const w=Number(weights[key] || 0.25);
       weighted += score*w; total += w;
     });
-    return clamp(total - weighted/total : 0);
+    return clamp(total ? weighted/total : 0);
   }
   function render(data, status){
     const box=el(ids.box); if(!box || !data) return;
@@ -10289,7 +10289,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     const controls=data.controls || {};
     el(ids.narrative).textContent = 'Live balance across China, Korea, Japan and Taiwan · origin: '+(controls.origin_required || 'verified origin')+' · gap closers: '+((controls.primary_gap_closer_hubs || ['Kuantan','Busan']).join(' + '))+'.';
     el(ids.source).textContent = status === 'live'
-      - 'Source: live backend API · '+(data.updated_at || 'timestamp pending')
+      ? 'Source: live backend API · '+(data.updated_at || 'timestamp pending')
       : 'Source: embedded backend fallback · '+(data.updated_at || 'timestamp pending')+' · replaceable by '+API_ENDPOINT;
   }
   async function init(){
@@ -10502,7 +10502,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
 </script>
 
 
-<!-- i18n.js is loaded from 01_head.html - do not duplicate here -->
+<!-- i18n.js is loaded from 01_head.html ? do not duplicate here -->
 
 <!-- YONGYEOKYO v6.0 - RESTORE TIER-1 CONTROL PANEL HEADER
      The v5.x scripts set display:contents on .yyk-audit-top and
@@ -10611,11 +10611,11 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     var pill=q('#yykExecStatusPill'),rec=q('#yykExecRecommendation'),kill=q('#yykExecKillSwitch');
     if(missing.length){
       if(pill){pill.textContent='CONDITIONAL APPROVAL';pill.className='yyk-exec-status-pill';}
-      if(rec)rec.textContent='RECOMMENDATION: APPROVE WITH CONDITIONS - RELEASE ONLY AFTER LAB CALIBRATION ID IS ATTACHED';
+      if(rec)rec.textContent='RECOMMENDATION: APPROVE WITH CONDITIONS ? RELEASE ONLY AFTER LAB CALIBRATION ID IS ATTACHED';
       if(kill)kill.textContent='KILL SWITCH ARMED: DO NOT QUOTE if EUC, sanctions screen, CoA method ID, lab calibration ID, bonded route confirmation or buyer foundry spec mapping is missing.';
     }else{
       if(pill){pill.textContent='APPROVED';pill.className='yyk-exec-status-pill is-approved';}
-      if(rec)rec.textContent='RECOMMENDATION: APPROVE - QUOTE RELEASE ENABLED';
+      if(rec)rec.textContent='RECOMMENDATION: APPROVE ? QUOTE RELEASE ENABLED';
     }
     var r=q('#yykExecRiskIndex');if(r)r.textContent=risk+'%';
     var m=q('#yykExecMargin');if(m)m.textContent='+'+margin+'%';
@@ -10670,7 +10670,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
 
       function updateTrigger(){
         var opt = select.options[select.selectedIndex];
-        trigger.innerHTML = (opt - opt.innerHTML : '') + '<span class="yyk-custom-arrow">▼</span>';
+        trigger.innerHTML = (opt ? opt.innerHTML : '') + '<span class="yyk-custom-arrow">▼</span>';
       }
       updateTrigger();
 
@@ -10733,7 +10733,7 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
         var email = btn.getAttribute('data-copy-email');
         if(!email) return;
         var original = btn.textContent;
-        navigator.clipboard - navigator.clipboard.writeText(email).then(function(){
+        navigator.clipboard ? navigator.clipboard.writeText(email).then(function(){
           btn.textContent = 'Copied!';
           btn.style.borderColor = 'rgba(201,162,39,0.8)';
           btn.style.color = '#c9a227';
