@@ -254,3 +254,28 @@ html body .yyk-data-room-engine .yyk-killer-a {
 .yyk-data-room-engine input[type="number"]::-webkit-outer-spin-button:hover {
     opacity: 1 !important;
 }
+
+/* =========================================================
+   Task 05: Separate Procurement, Engineering, Compliance buttons
+   ========================================================= */
+html body #yykAuditControlPanel .yyk-audit-modes {
+    gap: 24px !important;
+}
+html body #yykAuditControlPanel .yyk-audit-modes .yyk-mode-btn,
+html body #yykAuditControlPanel .yyk-audit-modes .yyk-mode-btn + .yyk-mode-btn {
+    margin: 0 !important;
+    border-radius: 0 !important;
+    flex: 1 !important;
+    text-align: center !important;
+    border: 1px solid rgba(255,255,255,.18) !important; 
+    border-bottom-width: 1px !important;
+    box-shadow: none !important;
+    font-size: 12px !important;
+    letter-spacing: .08em !important;
+}
+html body #yykAuditControlPanel .yyk-audit-modes .yyk-mode-btn.active,
+html body #yykAuditControlPanel .yyk-audit-modes .yyk-mode-btn:hover {
+    border: 1px solid rgba(201,162,39,.70) !important;
+    border-bottom-width: 1px !important;
+    box-shadow: none !important;
+}
