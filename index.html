@@ -10790,13 +10790,52 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     }
   }
 
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncHeights);
-  else syncHeights();
+  function syncDenseCards(){
+    document.querySelectorAll('.grid3, .grid4').forEach(function(grid){
+      var cards = grid.querySelectorAll('.dense-card');
+      if(cards.length < 2) return;
+      
+      cards.forEach(function(card){
+        var t1 = card.querySelector('.card-title');
+        var t2 = card.querySelector('.card-text');
+        var kv = card.querySelector('.kv');
+        if(t1) t1.style.height = 'auto';
+        if(t2) t2.style.height = 'auto';
+        if(kv) kv.style.height = 'auto';
+      });
+      
+      var maxT1 = 0, maxT2 = 0, maxKv = 0;
+      cards.forEach(function(card){
+        var t1 = card.querySelector('.card-title');
+        var t2 = card.querySelector('.card-text');
+        var kv = card.querySelector('.kv');
+        if(t1 && t1.getBoundingClientRect().height > maxT1) maxT1 = t1.getBoundingClientRect().height;
+        if(t2 && t2.getBoundingClientRect().height > maxT2) maxT2 = t2.getBoundingClientRect().height;
+        if(kv && kv.getBoundingClientRect().height > maxKv) maxKv = kv.getBoundingClientRect().height;
+      });
+      
+      cards.forEach(function(card){
+        var t1 = card.querySelector('.card-title');
+        var t2 = card.querySelector('.card-text');
+        var kv = card.querySelector('.kv');
+        if(t1 && maxT1 > 0) t1.style.height = maxT1 + 'px';
+        if(t2 && maxT2 > 0) t2.style.height = maxT2 + 'px';
+        if(kv && maxKv > 0) kv.style.height = maxKv + 'px';
+      });
+    });
+  }
+
+  function runAllSyncs(){
+    syncHeights();
+    syncDenseCards();
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', runAllSyncs);
+  else runAllSyncs();
   
-  window.addEventListener('resize', syncHeights);
-  // run it a few times to ensure fonts have loaded
-  setTimeout(syncHeights, 500);
-  setTimeout(syncHeights, 1500);
+  window.addEventListener('resize', runAllSyncs);
+  setTimeout(runAllSyncs, 500);
+  setTimeout(runAllSyncs, 1500);
 })();
 </script>
 
