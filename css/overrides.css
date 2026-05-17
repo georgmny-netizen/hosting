@@ -512,3 +512,7 @@ html {
 /* Align footer components padding with apac command inner */
 #yykFooterSystemStatus, .footer-grid { padding-left: 28px !important; padding-right: 28px !important; }
 
+
+/* Match apac command text size with tech status row */
+.yyk-apac-command-inner { font-size: 13px !important; }
+
