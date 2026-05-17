@@ -79,6 +79,7 @@
   var ORIGINALS = {};
   var originalsStored = false;
   var panelButtons = [];
+  var navPanelButtons = [];
 
   /* ── Helpers ────────────────────────────────────────────── */
   function getCurrentLang() {
@@ -230,6 +231,92 @@
       var active = btn.getAttribute('data-lang') === lang;
       applyButtonStyle(btn, active);
     });
+    navPanelButtons.forEach(function (btn) {
+      var active = btn.getAttribute('data-lang') === lang;
+      applyButtonStyle(btn, active);
+    });
+  }
+
+  /* ── Build nav-slot language panel (left side of terminal nav) ── */
+  function buildNavPanel() {
+    var slot = document.getElementById('yyk-nav-lang-slot');
+    if (!slot) return;
+
+    // Remove any existing
+    var old = slot.querySelector('#yyk-nav-float-i18n');
+    if (old) old.remove();
+
+    var panel = document.createElement('div');
+    panel.id = 'yyk-nav-float-i18n';
+    panel.setAttribute('style', [
+      'all: initial',
+      'position: relative',
+      'z-index: 100',
+      'display: inline-flex',
+      'flex-direction: row',
+      'align-items: center',
+      'gap: 0',
+      'background: rgba(10, 10, 14, 0.92)',
+      'border: 1px solid rgba(201, 162, 39, 0.4)',
+      'border-radius: 6px',
+      'padding: 2px',
+      'box-shadow: 0 2px 16px rgba(0,0,0,0.5), 0 0 1px rgba(201,162,39,0.3)',
+      'font-family: "SF Mono", "Fira Code", "Cascadia Code", "Consolas", monospace',
+      'font-size: 11px',
+      'letter-spacing: 0.06em',
+      'line-height: 1',
+      'pointer-events: auto',
+      'user-select: none',
+      '-webkit-user-select: none',
+      'backdrop-filter: blur(8px)',
+      '-webkit-backdrop-filter: blur(8px)',
+      'opacity: 1',
+      'visibility: visible',
+      'overflow: visible',
+      'transform: none',
+      'width: auto',
+      'height: auto',
+      'max-width: none',
+      'max-height: none',
+      'margin: 0',
+      'float: none',
+      'clip: auto',
+      'clip-path: none'
+    ].join(' !important; ') + ' !important;');
+
+    var currentLang = getCurrentLang();
+    navPanelButtons = [];
+
+    SUPPORTED.forEach(function (item) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = item.label;
+      btn.setAttribute('data-lang', item.code);
+
+      var isActive = item.code === currentLang;
+      applyButtonStyle(btn, isActive);
+
+      btn.addEventListener('mouseenter', function () {
+        if (btn.getAttribute('data-lang') !== getCurrentLang()) {
+          btn.style.setProperty('background', 'rgba(201, 162, 39, 0.15)', 'important');
+          btn.style.setProperty('color', '#fff', 'important');
+        }
+      });
+      btn.addEventListener('mouseleave', function () {
+        var active = btn.getAttribute('data-lang') === getCurrentLang();
+        applyButtonStyle(btn, active);
+      });
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        setLanguage(item.code);
+      });
+
+      navPanelButtons.push(btn);
+      panel.appendChild(btn);
+    });
+
+    slot.appendChild(panel);
   }
 
   /* ── Translation loading ───────────────────────────────── */
@@ -420,6 +507,9 @@
 
     // Build our autonomous panel
     buildFloatingPanel();
+
+    // Build the nav-slot panel (left side of terminal nav)
+    buildNavPanel();
 
     // Wire footer language buttons to the i18n engine
     wireFooterLangButtons();
