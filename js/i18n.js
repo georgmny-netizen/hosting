@@ -177,17 +177,13 @@
       panel.appendChild(btn);
     });
 
-    // Prefer the header slot, then the header itself, then body as fallback.
-    // This keeps the working language panel from becoming a floating overlay.
+    // Inject into header slot if it exists, otherwise skip
+    // (if #yyk-nav-lang-slot is present, the nav panel is the primary UI)
     var slot = document.getElementById('yyk-lang-slot');
-    var header = document.querySelector('.yyk-terminal-header');
     if (slot) {
       slot.appendChild(panel);
-    } else if (header) {
-      header.appendChild(panel);
-    } else {
-      document.body.appendChild(panel);
     }
+    // If no slot found - do NOT append to header/body; buildNavPanel() handles the UI.
   }
 
   function applyButtonStyle(btn, isActive) {
