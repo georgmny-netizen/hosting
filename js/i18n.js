@@ -12,11 +12,11 @@
 
   /* ── Config ─────────────────────────────────────────────── */
   var SUPPORTED = [
-    { code: 'ko', label: 'KR 한국어' },
-    { code: 'ja', label: 'JP 日本語' },
-    { code: 'tw', label: 'TW 繁體中文' },
-    { code: 'cn', label: 'CN 简体中文' },
-    { code: 'en', label: 'EN English' }
+    { code: 'ko', label: 'KR<span style="font-size:8px; opacity:0.75; font-weight:normal; margin-top:2px;">한국어</span>' },
+    { code: 'ja', label: 'JP<span style="font-size:8px; opacity:0.75; font-weight:normal; margin-top:2px;">日本語</span>' },
+    { code: 'tw', label: 'TW<span style="font-size:8px; opacity:0.75; font-weight:normal; margin-top:2px;">繁體中文</span>' },
+    { code: 'cn', label: 'CN<span style="font-size:8px; opacity:0.75; font-weight:normal; margin-top:2px;">简体中文</span>' },
+    { code: 'en', label: 'EN<span style="font-size:8px; opacity:0.75; font-weight:normal; margin-top:2px;">English</span>' }
   ];
   var DEFAULT_LANG = 'en';
   var CACHE = {};
@@ -150,7 +150,7 @@
     SUPPORTED.forEach(function (item) {
       var btn = document.createElement('button');
       btn.type = 'button';
-      btn.textContent = item.label;
+      btn.innerHTML = item.label;
       btn.setAttribute('data-lang', item.code);
 
       var isActive = item.code === currentLang;
@@ -190,11 +190,12 @@
     btn.setAttribute('style', [
       'all: unset',
       'display: inline-flex',
+      'flex-direction: column',
       'align-items: center',
       'justify-content: center',
       'min-width: 32px',
-      'height: 24px',
-      'padding: 0 7px',
+      'height: auto',
+      'padding: 3px 5px',
       'margin: 0',
       'border: none',
       'border-radius: 4px',
@@ -286,7 +287,7 @@
     SUPPORTED.forEach(function (item) {
       var btn = document.createElement('button');
       btn.type = 'button';
-      btn.textContent = item.label;
+      btn.innerHTML = item.label;
       btn.setAttribute('data-lang', item.code);
 
       var isActive = item.code === currentLang;
