@@ -5443,6 +5443,50 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
 })();
 </script>
 
+<!-- Task 11: Synchronize Row Heights across Passport Tables -->
+<script id="yyk-sync-passport-rows">
+(function(){
+  function syncHeights(){
+    var tables = document.querySelectorAll('.passport .table-panel table');
+    if(!tables.length) return;
+    
+    // reset heights to natural first to allow shrinking on resize
+    tables.forEach(function(table){
+      var rows = table.querySelectorAll('tr');
+      rows.forEach(function(row){
+        row.style.height = 'auto';
+      });
+    });
 
+    // Assume all tables have the same number of rows (4)
+    var numRows = 4;
+    for(var i=0; i<numRows; i++){
+      var maxH = 0;
+      var currentRows = [];
+      
+      tables.forEach(function(table){
+        var rows = table.querySelectorAll('tr');
+        if(rows[i]){
+          currentRows.push(rows[i]);
+          var h = rows[i].getBoundingClientRect().height;
+          if(h > maxH) maxH = h;
+        }
+      });
+      
+      if(maxH > 0){
+        currentRows.forEach(function(row){
+          row.style.height = maxH + 'px';
+        });
+      }
+    }
+  }
 
-
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncHeights);
+  else syncHeights();
+  
+  window.addEventListener('resize', syncHeights);
+  // run it a few times to ensure fonts have loaded
+  setTimeout(syncHeights, 500);
+  setTimeout(syncHeights, 1500);
+})();
+</script>
