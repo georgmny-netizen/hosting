@@ -177,44 +177,6 @@ footer button.yyk-terminal-link {
     text-shadow: 0 0 8px rgba(16,185,129,.4) !important;
 }
 
-
-/* =========================================================
-   RESTORE ORIGINAL APAC FOOTER PALETTE
-   ========================================================= */
-
-/* 1. Top and Bottom Strips: Green instead of Gold */
-.footer-tech-status-row,
-.footer-terminal-ticker,
-.yyk-apac-command-strip {
-    border-top-color: rgba(16, 185, 129, .32) !important;
-    border-bottom-color: rgba(16, 185, 129, .32) !important;
-}
-
-.footer-tech-status-inner, 
-.footer-terminal-inner,
-.footer-tech-left, .footer-tech-center, .footer-tech-right,
-.footer-terminal-left, .footer-terminal-core, .footer-terminal-right,
-.footer-terminal-core time, #footerApacClock, #apacClock,
-.yyk-apac-command-strip, .yyk-apac-command-inner,
-.yyk-apac-command-strip span,
-.footer-tech-dot {
-    color: #10b981 !important;
-    text-shadow: 0 0 3px #10b981, 0 0 12px rgba(16, 185, 129, .55) !important;
-}
-
-/* 2. System Status Live Indicators: specific pale green #c7d6b3 */
-#yykFooterSystemStatus .yyk-green,
-#yykFooterSystemStatus.yyk-live .yyk-green {
-    color: #c7d6b3 !important;
-    text-shadow: 0 0 12px rgba(199, 214, 179, .35) !important;
-}
-
-.yyk-live-dot {
-    background: #c7d6b3 !important;
-    box-shadow: 0 0 14px rgba(199, 214, 179, .65) !important;
-}
-
-/* 3. PDF Vault Brackets: Arrows and text share the same color as the parent link (gray) */
 .yyk-pdf-vault a span {
     color: inherit !important;
     text-shadow: none !important;
@@ -493,3 +455,52 @@ html {
 }
 
 
+
+/* Align geo-legal footer to wrap edges */
+.yyk-geo-legal-footer { padding: 0 0 22px !important; }
+
+/* =========================================================
+   RESTORE ORIGINAL APAC FOOTER PALETTE
+   ========================================================= */
+
+/* 1. Top and Bottom Strips: Green instead of Gold */
+.footer-tech-status-row,
+.footer-terminal-ticker,
+.yyk-apac-command-strip {
+    border-top-color: rgba(16, 185, 129, .32) !important;
+    border-bottom-color: rgba(16, 185, 129, .32) !important;
+}
+
+.footer-tech-status-inner, 
+.footer-terminal-inner,
+.footer-tech-left, .footer-tech-center, .footer-tech-right,
+.footer-terminal-left, .footer-terminal-core, .footer-terminal-right,
+.footer-terminal-core time, #footerApacClock, #apacClock,
+.yyk-apac-command-strip, .yyk-apac-command-inner,
+.yyk-apac-command-strip span,
+.footer-tech-dot {
+    color: #10b981 !important;
+    text-shadow: none !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+.yyk-apac-dot {
+    background: #10b981 !important;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* 2. System Status Live Indicators: specific pale green #c7d6b3 */
+#yykFooterSystemStatus .yyk-green,
+#yykFooterSystemStatus.yyk-live .yyk-green {
+    color: #c7d6b3 !important;
+    text-shadow: none !important;
+    font-weight: 600 !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+.yyk-live-dot {
+    background: #c7d6b3 !important;
+    box-shadow: 0 0 14px rgba(199, 214, 179, .65) !important;
+}
