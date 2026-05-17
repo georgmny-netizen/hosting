@@ -508,3 +508,7 @@ html {
 /* Align footer tech status row padding with apac command inner */
 .footer-tech-status-inner { padding-left: 28px !important; padding-right: 28px !important; }
 
+
+/* Align footer components padding with apac command inner */
+#yykFooterSystemStatus, .footer-grid { padding-left: 28px !important; padding-right: 28px !important; }
+
