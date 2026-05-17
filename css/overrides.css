@@ -475,3 +475,20 @@ html {
   vertical-align: middle !important;
 }
 
+
+/* Force tight wrapping of passport tables to prevent empty vertical space */
+.passport .table-panel {
+  height: max-content !important;
+  min-height: 0 !important;
+  flex: 0 0 auto !important;
+  margin-top: 10px !important;
+  padding: 0 !important;
+}
+.passport .table-panel table {
+  height: max-content !important;
+  margin: 0 !important;
+}
+.passport .table-panel tr:first-child td {
+  border-top: none !important;
+}
+
