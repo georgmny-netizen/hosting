@@ -219,3 +219,19 @@ footer button.yyk-terminal-link {
     color: inherit !important;
     text-shadow: none !important;
 }
+
+/* =========================================================
+   A1 — Critical Minerals: серый в покое, белый + золотая обводка при hover
+   ========================================================= */
+header .yyk-hard-primary-tabs .d21-hard-tab {
+  color: rgba(180, 180, 185, 0.65) !important;
+  background: rgba(255,255,255,0.03) !important;
+  border-color: rgba(180,180,185,0.25) !important;
+}
+header .yyk-hard-primary-tabs .d21-hard-tab:hover {
+  color: #ffffff !important;
+  background: rgba(201,162,39,0.12) !important;
+  border-color: rgba(201,162,39,0.75) !important;
+  text-shadow: 0 0 8px rgba(201,162,39,0.4) !important;
+}
+
