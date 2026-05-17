@@ -302,11 +302,17 @@ html body [class*="-engine"] select {
 .yyk-custom-select-list {
     position: absolute; top: calc(100% + 8px); left: 0; right: 0;
     background-color: #111; border: 1px solid rgba(201,162,39,.70); border-radius: 4px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.8); z-index: 9999;
-    max-height: 0; overflow: hidden; opacity: 0;
-    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.9); z-index: 9999;
+    max-height: 250px; overflow-y: auto;
+    opacity: 0; visibility: hidden;
+    transform: translateY(-10px) scaleY(0.96);
+    transform-origin: top center;
+    transition: opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1), transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.35s;
 }
-.yyk-custom-select.open .yyk-custom-select-list { max-height: 250px; opacity: 1; overflow-y: auto; }
+.yyk-custom-select.open .yyk-custom-select-list { 
+    opacity: 1; visibility: visible; 
+    transform: translateY(0) scaleY(1); 
+}
 .yyk-custom-select-item { display: block; width: 100%; box-sizing: border-box;
     padding: 10px 12px; color: #fff; cursor: pointer; transition: background-color 0.2s ease;
     border-bottom: 1px solid rgba(255,255,255,0.05);
