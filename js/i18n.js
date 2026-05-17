@@ -12,11 +12,11 @@
 
   /* ── Config ─────────────────────────────────────────────── */
   var SUPPORTED = [
-    { code: 'en', label: 'EN' },
-    { code: 'ko', label: 'KR' },
-    { code: 'ja', label: 'JP' },
-    { code: 'tw', label: 'TW' },
-    { code: 'cn', label: 'CN' }
+    { code: 'ko', label: 'KR 한국어' },
+    { code: 'ja', label: 'JP 日本語' },
+    { code: 'tw', label: 'TW 繁體中文' },
+    { code: 'cn', label: 'CN 简体中文' },
+    { code: 'en', label: 'EN English' }
   ];
   var DEFAULT_LANG = 'en';
   var CACHE = {};
