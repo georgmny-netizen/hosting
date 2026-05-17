@@ -528,3 +528,7 @@ section { max-width: 1480px !important; margin-left: auto !important; margin-rig
 /* Remove black background from phase integration block */
 #yykPhaseIntegration { background: transparent !important; }
 
+
+/* Lower tooltip z-index so it doesn't cover modals */
+.yyk-hover-intel-tooltip { z-index: 90 !important; }
+
