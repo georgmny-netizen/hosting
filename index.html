@@ -9069,12 +9069,12 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     if(!tip.__hoverInit) {
         tip.__hoverInit = true;
         tip.addEventListener('mouseenter', function(){ clearTimeout(yykTipTimeout); });
-        tip.addEventListener('mouseleave', function(){ yykTipTimeout = setTimeout(hide, 4000); });
+        tip.addEventListener('mouseleave', function(){ yykTipTimeout = setTimeout(hide, 200); });
     }
     el.addEventListener('mouseenter',function(){clearTimeout(yykTipTimeout); show(el,raw)});
     el.addEventListener('focus',function(){clearTimeout(yykTipTimeout); show(el,raw)});
-    el.addEventListener('mouseleave',function(){yykTipTimeout = setTimeout(hide, 4000);});
-    el.addEventListener('blur',function(){yykTipTimeout = setTimeout(hide, 4000);});
+    el.addEventListener('mouseleave',function(){yykTipTimeout = setTimeout(hide, 200);});
+    el.addEventListener('blur',function(){yykTipTimeout = setTimeout(hide, 200);});
   }
   function show(el,label){
     var data=INTEL[label], tip=ensureTip();
@@ -9108,6 +9108,12 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
     if(tip) tip.classList.remove('active');
   }
   window.addEventListener('scroll', hide, {passive: true});
+  document.addEventListener('click', function(e) {
+    var tip = q('#yykHoverIntelTooltip');
+    if (tip && tip.classList.contains('active') && !tip.contains(e.target) && !e.target.closest('[data-hover-intel="true"]')) {
+      hide();
+    }
+  });
   function scrubGhostText(){
     var rail=q('#yykAuditControlActions');
     if(!rail) return;
