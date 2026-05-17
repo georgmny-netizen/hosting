@@ -524,7 +524,3 @@ html {
 /* Align all sections to site boundaries to prevent full-width overflow */
 section { max-width: 1480px !important; margin-left: auto !important; margin-right: auto !important; border-bottom: none !important; border-top: none !important; }
 
-
-/* Remove black background from phase integration block */
-#yykPhaseIntegration { background: transparent !important; }
-
