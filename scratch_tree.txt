@@ -1,0 +1,53 @@
+﻿00_Index_and_Access_Control/
+├── VDR_Index.pdf
+├── NDA_Template.pdf
+└── Access_Log_Register.pdf
+01_Corporate_Registry/
+├── Business_Registration_Certificate.pdf
+├── Articles_of_Association.pdf
+├── Representative_Director_ID_Register.pdf
+└── Tax_Registration_and_Bank_Account_Verification.pdf
+02_Quality_Management/
+├── ISO_9001_Certificate.pdf
+├── ISO_14001_Certificate.pdf
+├── Supplier_Qualification_Procedure.pdf
+└── CAPA_and_Nonconformance_Procedure.pdf
+03_Technical_Data_Pack/
+├── Foundry_Edition_TDS.pdf
+├── CoA_Template_6N_7N.pdf
+├── Impurity_Specification_U_Th_Gas_Profile.pdf
+└── Sampling_Protocol_ISO_Class_5.pdf
+04_Analytical_Integrity/
+├── GDMS_Method_Statement.pdf
+├── ICP_MS_Method_Statement.pdf
+├── GDMS_Calibration_Certificate_Last_Quarter.pdf
+├── Lab_Service_Agreement.pdf
+└── Raw_Data_Retention_Policy.pdf
+05_SPC_and_Batch_History/
+├── Last_10_Batches_SPC_Report.pdf
+├── Batch_Release_Log.pdf
+└── Stability_Corridor_Report.pdf
+06_Lot_Traceability/
+├── Smelter_Origin_Record.pdf
+├── Refinery_Process_Log.pdf
+├── Packaging_Record.pdf
+├── Chain_of_Custody_Map.pdf
+└── Bonded_Warehouse_Receipt.pdf
+07_Compliance_and_EUC/
+├── EUC_Policy.pdf
+├── Sanctions_Screening_Protocol.pdf
+├── Export_Control_Decision_Log.pdf
+└── KYC_Checklist.pdf
+08_Logistics_and_Insurance/
+├── Bonded_Zone_Protocol_Busan_Yokohama.pdf
+├── Cargo_Insurance_Policy.pdf
+├── Tamper_Shock_Sensor_Procedure.pdf
+└── RMA_Return_Procedure.pdf
+09_Trade_Finance/
+├── L_C_Documentary_Requirements.pdf
+├── Bank_Compliance_Statement.pdf
+└── Invoice_and_Payment_Terms.pdf
+10_Legal/
+├── Limitation_of_Liability.pdf
+├── Master_Supply_Terms.pdf
+└── RMA_Quality_Dispute_Policy.pdf

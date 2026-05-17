@@ -3533,58 +3533,58 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
 <main class="yyk-vdr-content">
 <section class="yyk-vdr-panel active" data-vdr-panel="onboarding"><h3 class="section-title" data-i18n="auto.t4352">VDR Onboarding Protocol</h3><div class="yyk-vdr-grid"><div class="yyk-vdr-card"><strong data-i18n="auto.t4353">Access levels</strong><div class="yyk-vdr-level"><div><b data-i18n="auto.t4354">Level 0 · Public Technical Data</b><span data-i18n="auto.t4355">TDS summary, material grades, RFQ SLA, general compliance policy, contact route.</span></div><em class="yyk-vdr-pill" data-i18n="auto.t4356">Open</em></div><div class="yyk-vdr-level"><div><b data-i18n="auto.t4357">Level 1 · NDA Technical Evidence</b><span data-i18n="auto.t4358">Full TDS, sample CoA, SPC demo, packaging specification, RMA policy.</span></div><em class="yyk-vdr-pill" data-i18n="auto.t4359">NDA</em></div><div class="yyk-vdr-level"><div><b data-i18n="auto.t4360">Level 2 · KYC Compliance Vault</b><span data-i18n="auto.t4361">Company registry, insurance, banking controls, sanctions screening records, EUC templates.</span></div><em class="yyk-vdr-pill" data-i18n="auto.t4362">NDA + KYC</em></div><div class="yyk-vdr-level"><div><b data-i18n="auto.t4363">Level 3 · Deep Audit Logs</b><span data-i18n="auto.t4364">Lab calibration certificates, raw GDMS/ICP-MS logs, lot traceability, CAPA/RMA records.</span></div><em class="yyk-vdr-pill" data-i18n="auto.t4365">Approved buyer</em></div></div><div class="yyk-vdr-card"><strong data-i18n="auto.t4366">Online NDA template</strong><p><b data-i18n="auto.t4367">Non-Disclosure Undertaking.</b><span data-i18n="auto.t4368"> The requesting party agrees that all laboratory logs, SPC history, supplier qualification records, end-user screening records, trade finance documents and chain-of-custody evidence are confidential and may be used only for supplier qualification, procurement approval, technical validation or compliance review.</span></p><p data-i18n="auto.t4369">The recipient shall not copy, disclose, redistribute, reverse engineer or use the information to solicit suppliers, bypass the contracting party, or disclose pricing, origin, logistics routes, laboratory data or buyer-specific documents to any third party without written authorization.</p><p data-i18n="auto.t4370">Access is personal, time-limited, revocable, and subject to logging of user identity, company domain, IP address, timestamp and document activity.</p></div></div><table class="yyk-vdr-table"><tr><th data-i18n="auto.t4371">Onboarding step</th><th data-i18n="auto.t4372">Control</th><th data-i18n="auto.t4373">Evidence</th><th data-i18n="auto.t4374">Decision</th></tr><tr><td data-i18n="auto.t4375">Corporate email verification</td><td data-i18n="auto.t4376">Reject public/free email for deep access</td><td data-i18n="auto.t4377">Domain match, requester role</td><td data-i18n="auto.t4378">Proceed / Reject</td></tr><tr><td data-i18n="auto.t4379">NDA acceptance</td><td data-i18n="auto.t4380">Clickwrap + versioned NDA ID</td><td data-i18n="auto.t4381">Timestamp, name, title, company</td><td data-i18n="auto.t4382">Level 1</td></tr><tr><td data-i18n="auto.t4383">KYC screening</td><td data-i18n="auto.t4384">Registry + sanctions + beneficial ownership check</td><td data-i18n="auto.t4385">Company registration, address, EUC role</td><td data-i18n="auto.t4386">Level 2</td></tr><tr><td data-i18n="auto.t4387">Buyer approval</td><td data-i18n="auto.t4388">Manual compliance sign-off</td><td data-i18n="auto.t4389">Reason for access, RFQ number, buyer team</td><td data-i18n="auto.t4390">Level 3</td></tr></table></section>
 <section class="yyk-vdr-panel" data-vdr-panel="index"><h3 class="section-title" data-i18n="auto.t4391">Structured VDR Index</h3><p data-i18n="auto.t4392">Inventory sheet visible immediately after buyer login. Each folder should contain versioned PDFs, issue dates, owner, expiry date and hash/checksum where applicable.</p><div class="yyk-vdr-folder dense-card" data-i18n="auto.t4393">00_Index_and_Access_Control/
-  VDR_Index.pdf
-  NDA_Template.pdf
-  Access_Log_Register.pdf
+├── VDR_Index.pdf
+├── NDA_Template.pdf
+└── Access_Log_Register.pdf
 01_Corporate_Registry/
-  Business_Registration_Certificate.pdf
-  Articles_of_Association.pdf
-  Representative_Director_ID_Register.pdf
-  Tax_Registration_and_Bank_Account_Verification.pdf
+├── Business_Registration_Certificate.pdf
+├── Articles_of_Association.pdf
+├── Representative_Director_ID_Register.pdf
+└── Tax_Registration_and_Bank_Account_Verification.pdf
 02_Quality_Management/
-  ISO_9001_Certificate.pdf
-  ISO_14001_Certificate.pdf
-  Supplier_Qualification_Procedure.pdf
-  CAPA_and_Nonconformance_Procedure.pdf
+├── ISO_9001_Certificate.pdf
+├── ISO_14001_Certificate.pdf
+├── Supplier_Qualification_Procedure.pdf
+└── CAPA_and_Nonconformance_Procedure.pdf
 03_Technical_Data_Pack/
-  Foundry_Edition_TDS.pdf
-  CoA_Template_6N_7N.pdf
-  Impurity_Specification_U_Th_Gas_Profile.pdf
-  Sampling_Protocol_ISO_Class_5.pdf
+├── Foundry_Edition_TDS.pdf
+├── CoA_Template_6N_7N.pdf
+├── Impurity_Specification_U_Th_Gas_Profile.pdf
+└── Sampling_Protocol_ISO_Class_5.pdf
 04_Analytical_Integrity/
-  GDMS_Method_Statement.pdf
-  ICP_MS_Method_Statement.pdf
-  GDMS_Calibration_Certificate_Last_Quarter.pdf
-  Lab_Service_Agreement.pdf
-  Raw_Data_Retention_Policy.pdf
+├── GDMS_Method_Statement.pdf
+├── ICP_MS_Method_Statement.pdf
+├── GDMS_Calibration_Certificate_Last_Quarter.pdf
+├── Lab_Service_Agreement.pdf
+└── Raw_Data_Retention_Policy.pdf
 05_SPC_and_Batch_History/
-  Last_10_Batches_SPC_Report.pdf
-  Batch_Release_Log.pdf
-  Stability_Corridor_Report.pdf
+├── Last_10_Batches_SPC_Report.pdf
+├── Batch_Release_Log.pdf
+└── Stability_Corridor_Report.pdf
 06_Lot_Traceability/
-  Smelter_Origin_Record.pdf
-  Refinery_Process_Log.pdf
-  Packaging_Record.pdf
-  Chain_of_Custody_Map.pdf
-  Bonded_Warehouse_Receipt.pdf
+├── Smelter_Origin_Record.pdf
+├── Refinery_Process_Log.pdf
+├── Packaging_Record.pdf
+├── Chain_of_Custody_Map.pdf
+└── Bonded_Warehouse_Receipt.pdf
 07_Compliance_and_EUC/
-  EUC_Policy.pdf
-  Sanctions_Screening_Protocol.pdf
-  Export_Control_Decision_Log.pdf
-  KYC_Checklist.pdf
+├── EUC_Policy.pdf
+├── Sanctions_Screening_Protocol.pdf
+├── Export_Control_Decision_Log.pdf
+└── KYC_Checklist.pdf
 08_Logistics_and_Insurance/
-  Bonded_Zone_Protocol_Busan_Yokohama.pdf
-  Cargo_Insurance_Policy.pdf
-  Tamper_Shock_Sensor_Procedure.pdf
-  RMA_Return_Procedure.pdf
+├── Bonded_Zone_Protocol_Busan_Yokohama.pdf
+├── Cargo_Insurance_Policy.pdf
+├── Tamper_Shock_Sensor_Procedure.pdf
+└── RMA_Return_Procedure.pdf
 09_Trade_Finance/
-  L_C_Documentary_Requirements.pdf
-  Bank_Compliance_Statement.pdf
-  Invoice_and_Payment_Terms.pdf
+├── L_C_Documentary_Requirements.pdf
+├── Bank_Compliance_Statement.pdf
+└── Invoice_and_Payment_Terms.pdf
 10_Legal/
-  Limitation_of_Liability.pdf
-  Master_Supply_Terms.pdf
-  RMA_Quality_Dispute_Policy.pdf</div></section>
+├── Limitation_of_Liability.pdf
+├── Master_Supply_Terms.pdf
+└── RMA_Quality_Dispute_Policy.pdf</div></section>
 <section class="yyk-vdr-panel" data-vdr-panel="qualification"><h3 class="section-title" data-i18n="auto.t4394">Buyer Self?�Qualification Checklist</h3><p data-i18n="auto.t4395">Two-minute pre-screening for procurement teams. In production this should export a signed PDF. In this autonomous file it generates a downloadable HTML report.</p><div class="yyk-vdr-checker" id="vdrQualificationForm"><label><input data-vdr-check="ISO 9001 / quality management evidence available" type="checkbox"/><span data-i18n="auto.t4396"> ISO 9001 quality management evidence available</span></label><label><input data-vdr-check="ISO 14001 / environmental management evidence available" type="checkbox"/><span data-i18n="auto.t4397"> ISO 14001 environmental management evidence available</span></label><label><input data-vdr-check="REACH / RoHS declaration pathway defined" type="checkbox"/><span data-i18n="auto.t4398"> REACH / RoHS declaration pathway defined</span></label><label><input data-vdr-check="Cargo insurance and RMA policy available" type="checkbox"/><span data-i18n="auto.t4399"> Cargo insurance and RMA policy available</span></label><label><input data-vdr-check="Sanctions screening and EUC policy available" type="checkbox"/><span data-i18n="auto.t4400"> Sanctions screening and EUC policy available</span></label><label><input data-vdr-check="Foundry TDS with U/Th and gas impurity controls available" type="checkbox"/><span data-i18n="auto.t4401"> Foundry TDS with U/Th and gas impurity controls available</span></label><label><input data-vdr-check="SPC history and lab calibration evidence available" type="checkbox"/><span data-i18n="auto.t4402"> SPC history and lab calibration evidence available</span></label><div class="yyk-vdr-actions"><button class="yyk-vdr-btn primary" data-i18n="auto.t4403" id="vdrRunQualification" type="button">Run Pre?�Qualification</button><button class="yyk-vdr-btn" data-i18n="auto.t4404" id="vdrDownloadQualification" type="button">Download Report</button></div><div class="yyk-vdr-result" data-i18n="auto.t4405" id="vdrQualificationResult">Select evidence controls and run the buyer qualification gate.</div></div></section>
 <section class="yyk-vdr-panel" data-vdr-panel="tone"><h3 class="section-title" data-i18n="auto.t4406">APAC Brand Tone &amp; Voice</h3><p data-i18n="auto.t4407">Procurement language must be dry, technical and auditable. Replace emotional superiority claims with verification language.</p><div class="yyk-vdr-card"><div class="yyk-vdr-tone-row"><s data-i18n="auto.t4408">Best supplier for advanced industries</s><b data-i18n="auto.t4409">Qualified supplier pathway for high-purity metals procurement</b></div><div class="yyk-vdr-tone-row"><s data-i18n="auto.t4410">Innovative sourcing ecosystem</s><b data-i18n="auto.t4411">Structured RFQ intake with compliance gating</b></div><div class="yyk-vdr-tone-row"><s data-i18n="auto.t4412">Unique supply chain integrity</s><b data-i18n="auto.t4413">Traceability audit trails at batch and document level</b></div><div class="yyk-vdr-tone-row"><s data-i18n="auto.t4414">Logistics risk wording</s><b data-i18n="auto.t4415">Bonded stock strategy with documented logistics risk controls</b></div><div class="yyk-vdr-tone-row"><s data-i18n="auto.t4416">Premium semiconductor-ready materials</s><b data-i18n="auto.t4417">Foundry-facing TDS with impurity, U/Th, gas and SPC evidence</b></div><div class="yyk-vdr-tone-row"><s data-i18n="auto.t4418">Trusted global partner</s><b data-i18n="auto.t4419">Sanctions-screened counterparty workflow and EUC validation</b></div></div><div class="yyk-vdr-grid3" style="margin-top:14px"><div class="yyk-vdr-card"><strong data-i18n="auto.t4420">Preferred nouns</strong><p data-i18n="auto.t4421">Precision, verification, compliance, traceability, calibration, audit trail, release gate.</p></div><div class="yyk-vdr-card"><strong data-i18n="auto.t4422">Avoid</strong><p data-i18n="auto.t4423">Best, unique, revolutionary, zero risk, guaranteed, unbeatable, smart ecosystem.</p></div><div class="yyk-vdr-card"><strong data-i18n="auto.t4424">Rule</strong><p data-i18n="auto.t4425">Every claim should point to a document, method, standard, batch number or decision log.</p></div></div></section>
 </main>
