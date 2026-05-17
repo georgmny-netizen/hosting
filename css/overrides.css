@@ -241,3 +241,16 @@ header .yyk-hard-primary-tabs .d21-hard-tab:hover {
 html body .yyk-data-room-engine .yyk-killer-a {
     padding: 16px !important;
 }
+
+/* =========================================================
+   Task 04: Make number input spin buttons always visible
+   ========================================================= */
+.yyk-data-room-engine input[type="number"]::-webkit-inner-spin-button,
+.yyk-data-room-engine input[type="number"]::-webkit-outer-spin-button {
+    opacity: 0.6 !important;
+    display: block !important;
+}
+.yyk-data-room-engine input[type="number"]::-webkit-inner-spin-button:hover,
+.yyk-data-room-engine input[type="number"]::-webkit-outer-spin-button:hover {
+    opacity: 1 !important;
+}
