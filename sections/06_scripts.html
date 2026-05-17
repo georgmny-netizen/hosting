@@ -1142,7 +1142,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var opener = event.target.closest && event.target.closest('[data-open-product]');
     if(!opener) return;
     var key = opener.getAttribute('data-open-product') || 'cu';
-    setTimeout(function(){ activateProductPassportPanel(key); }, 0);
+    activateProductPassportPanel(key);
   }, true);
 
   function boot(){
@@ -1266,10 +1266,10 @@ document.addEventListener("DOMContentLoaded", function(){
   function findTrustPanel(){var panels=qsa(".trust-control-panel");for(var i=0;i<panels.length;i++){if(txt(panels[i]).indexOf("Trust Control Status")!==-1)return panels[i];}return panels[0]||null;}
   function findModeFromCard(card){var key=txt(card&&card.querySelector(".k")).toLowerCase();if(key.indexOf("scsp")!==-1)return"scsp";if(key.indexOf("elements")!==-1)return"elements";if(key.indexOf("rfq")!==-1)return"rfq";if(key.indexOf("esg")!==-1)return"esg";return"scsp";}
   function getMaterial(){try{var raw=localStorage.getItem("yyk_terminal_state_v1")||localStorage.getItem("yyk_terminal_state");if(raw){var st=JSON.parse(raw);if(st&&st.material)return st.material;if(st&&st.active)return st.active;}}catch(e){}var active=qsa(".route-option.active,.product-tab.active,[data-terminal-material].active,[data-terminal-material][aria-pressed='true']")[0];if(active)return txt(active).split(/\s+/)[0]||"Cu";var rfq=document.getElementById("rfqMaterial");if(rfq&&rfq.value)return rfq.value;return"Cu";}
-  function updateDecisionTable(mode){var panel=findTrustPanel();if(!panel)return;var table=(panel.parentElement&&panel.parentElement.querySelector(".table-panel table"))||document.querySelector(".hero-stack .table-panel table");if(!table)return;var tbody=table.querySelector("tbody");if(!tbody)return;tbody.innerHTML=MODES[mode].rows.map(function(r){return"<tr><td>"+r[0]+"</td><td class=\"warn\">"+r[1]+"</td><td class=\"ok\">"+r[2]+"</td></tr>";}).join("");}
+  function updateDecisionTable(mode){var tp=document.getElementById('trustControlTablePanel');if(!tp)return;var tbody=tp.querySelector('tbody');if(!tbody)return;tbody.innerHTML=MODES[mode].rows.map(function(r){return"<tr><td>"+r[0]+"</td><td class=\"warn\">"+r[1]+"</td><td class=\"ok\">"+r[2]+"</td></tr>";}).join("");tp.style.display='block';}
   function syncToRFQ(mode){var material=getMaterial();var note=MODES[mode].rfqNote+" Material context: "+material+".";var docs=document.getElementById("rfqDocs");if(docs){var base=docs.value?docs.value.replace(/\s*Trust Control:.*$/,'')+" · ":"";docs.value=base+"Trust Control: "+note;try{docs.dispatchEvent(new Event("input",{bubbles:true}));docs.dispatchEvent(new Event("change",{bubbles:true}));}catch(e){}}var sogo=document.getElementById("sogoStatus");if(sogo)sogo.textContent="Trust Control synced · "+MODES[mode].title+" · "+material+".";try{var state={mode:mode,title:MODES[mode].title,material:material,updatedAt:new Date().toISOString(),note:note};localStorage.setItem(STORE_KEY,JSON.stringify(state));window.YYK_TRUST_STATE=state;}catch(e){window.YYK_TRUST_STATE={mode:mode,title:MODES[mode].title,material:material,note:note};}try{if(typeof window.updateRFQ==="function")window.updateRFQ();}catch(e){}try{if(typeof window.renderRiskEngine==="function")window.renderRiskEngine(null);}catch(e){}try{if(typeof window.renderEsgDecisionEngine==="function")window.renderEsgDecisionEngine(null);}catch(e){}}
   function markActive(mode){var panel=findTrustPanel();if(!panel)return;qsa(".trust-control-card",panel).forEach(function(card){var m=findModeFromCard(card);card.setAttribute("role","button");card.setAttribute("tabindex","0");card.setAttribute("aria-pressed","false");card.setAttribute("data-trust-control",m);card.setAttribute("aria-label","Trust Control: "+MODES[m].title);card.classList.remove("active","selected","is-active");});}
-  function apply(mode){if(!MODES[mode])mode="scsp";markActive(mode);updateDecisionTable(mode);syncToRFQ(mode);}
+  function apply(mode){if(!MODES[mode])mode="scsp";markActive(mode);updateDecisionTable(mode);syncToRFQ(mode);var panel=findTrustPanel();if(panel){var activeCard=panel.querySelector('.trust-control-card[data-trust-control="'+mode+'"]');if(activeCard){activeCard.classList.add('is-active');activeCard.setAttribute('aria-pressed','true');}}}
   function init(){var panel=findTrustPanel();if(!panel)return;markActive("scsp");document.addEventListener("click",function(e){var card=e.target.closest&&e.target.closest(".trust-control-card[data-trust-control]");if(!card)return;var panel=findTrustPanel();if(panel&&!panel.contains(card))return;e.preventDefault();apply(card.getAttribute("data-trust-control"));},true);document.addEventListener("keydown",function(e){if(e.key!=="Enter"&&e.key!==" ")return;var card=e.target.closest&&e.target.closest(".trust-control-card[data-trust-control]");if(!card)return;e.preventDefault();apply(card.getAttribute("data-trust-control"));},true);try{var saved=JSON.parse(localStorage.getItem(STORE_KEY)||"{}");if(saved&&MODES[saved.mode])markActive(saved.mode);}catch(e){}}
   window.YYK_TRUST_CONTROL={apply:apply,getState:function(){return window.YYK_TRUST_STATE||null;}};
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
@@ -1314,22 +1314,7 @@ document.addEventListener("DOMContentLoaded", function(){
   setTimeout(enhance,4000);
 })();
 </script>
-<script id="yyk-trust-hover-only-final-guard">
-(function(){
-  function resetTrustSticky(){
-    var cards=document.querySelectorAll('.trust-control-panel .trust-control-card[data-trust-control]');
-    cards.forEach(function(card){
-      card.setAttribute('aria-pressed','false');
-      card.classList.remove('active','selected','is-active');
-    });
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',resetTrustSticky);else resetTrustSticky();
-  document.addEventListener('click',function(e){
-    if(e.target.closest && e.target.closest('.trust-control-panel .trust-control-card[data-trust-control]')){setTimeout(resetTrustSticky,0);}
-  },true);
-  window.YYK_TRUST_HOVER_ONLY_RESET=resetTrustSticky;
-})();
-</script>
+<!-- Task 08: yyk-trust-hover-only-final-guard removed — was resetting .active on every click -->
 <script id="yyk-trust-decision-engine">
 (function(){
   "use strict";
@@ -3175,7 +3160,7 @@ document.addEventListener("DOMContentLoaded", function(){
       navigator.clipboard.writeText(email).catch(function(){ fallbackCopy(email); });
     } else { fallbackCopy(email); }
     btn.classList.add('copied');
-    showCopyTooltip(event, 'Copied');
+    /* Task 09: tooltip removed — was calling showCopyTooltip here */
     window.setTimeout(function(){ btn.classList.remove('copied'); }, 950);
   });
 })();
@@ -3795,8 +3780,15 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
   }
   function position(el){
     var tip=ensureTip(), r=el.getBoundingClientRect(), pad=14;
+    var wrap = document.querySelector('.wrap') || document.body;
+    var wr = wrap.getBoundingClientRect();
     var h=tip.offsetHeight || 150;
-    var w=tip.offsetWidth || 380; var left=r.left + (r.width / 2) - (w / 2); if(left < pad) left = pad; if(left + w + pad > window.innerWidth) left = window.innerWidth - w - pad;
+    var w=tip.offsetWidth || 380; 
+    var left=r.left + (r.width / 2) - (w / 2); 
+    var minLeft = Math.max(pad, wr.left);
+    var maxLeft = Math.min(window.innerWidth - w - pad, wr.right - w);
+    if(left < minLeft) left = minLeft; 
+    if(left > maxLeft) left = maxLeft;
     var top=r.bottom+10;
     if(top+h+pad>window.innerHeight) top=Math.max(pad,r.top-h-10);
     tip.style.left=left+'px';
@@ -5342,6 +5334,114 @@ var run=q('runLegalGate'); if(run)run.addEventListener('click',function(){var da
 })();
 </script>
 
+<script id="yyk-custom-select-init">
+(function(){
+  function initCustomSelects(){
+    document.querySelectorAll('select:not([multiple])').forEach(function(select){
+      if(select.dataset.customized) return;
+      if(!select.closest('.sogo-inline, .sogo-field, .yyk-pricing-field, .yyk-legal-field, .yyk-partnership-field, .rt-field, .yyk-tds-field, .yyk-euc-checker, .rfq-field, .rfq-auto-field, .tier1-select, .sim-field, .g27-field, .field, .product-profit-risk-controls')) return;
+
+      select.dataset.customized = 'true';
+      select.style.display = 'none';
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'yyk-custom-select';
+
+      var trigger = document.createElement('div');
+      trigger.className = 'yyk-custom-select-trigger';
+
+      var list = document.createElement('div');
+      list.className = 'yyk-custom-select-list';
+
+      function updateTrigger(){
+        var opt = select.options[select.selectedIndex];
+        trigger.innerHTML = (opt ? opt.innerHTML : '') + '<span class="yyk-custom-arrow">▼</span>';
+      }
+      updateTrigger();
+
+      Array.prototype.forEach.call(select.options, function(opt, index){
+        var item = document.createElement('div');
+        item.className = 'yyk-custom-select-item';
+        item.innerHTML = opt.innerHTML;
+        item.addEventListener('mousedown', function(e){
+          e.stopPropagation();
+          e.preventDefault();
+          select.selectedIndex = index;
+          updateTrigger();
+          select.dispatchEvent(new Event('change', {bubbles: true}));
+          select.dispatchEvent(new Event('input', {bubbles: true}));
+          wrapper.classList.remove('open');
+        });
+        list.appendChild(item);
+      });
+
+      trigger.addEventListener('mousedown', function(e){
+        e.stopPropagation();
+        var isOpen = wrapper.classList.contains('open');
+        document.querySelectorAll('.yyk-custom-select').forEach(function(w){ w.classList.remove('open'); });
+        if(!isOpen) wrapper.classList.add('open');
+      });
+
+      wrapper.appendChild(trigger);
+      wrapper.appendChild(list);
+      select.parentNode.insertBefore(wrapper, select.nextSibling);
+
+      select.addEventListener('change', updateTrigger);
+      select.addEventListener('input', updateTrigger);
+    });
+
+    document.addEventListener('mousedown', function(e){
+      if(e.target.closest('.yyk-custom-select-list')) return;
+      document.querySelectorAll('.yyk-custom-select').forEach(function(w){ w.classList.remove('open'); });
+    });
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initCustomSelects);
+  else initCustomSelects();
+
+  setTimeout(initCustomSelects, 500);
+  setTimeout(initCustomSelects, 1500);
+})();
+</script>
+
+<!-- Task 09: Copy email buttons -->
+<script id="yyk-copy-email-handler">
+(function(){
+  function initCopyButtons(){
+    document.querySelectorAll('.yyk-copy-email[data-copy-email]').forEach(function(btn){
+      // Remove native browser tooltip
+      btn.removeAttribute('title');
+      btn.setAttribute('data-no-intel', '1');
+      if(btn._copyInited) return;
+      btn._copyInited = true;
+      btn.addEventListener('click', function(){
+        var email = btn.getAttribute('data-copy-email');
+        if(!email) return;
+        var original = btn.textContent;
+        navigator.clipboard ? navigator.clipboard.writeText(email).then(function(){
+          btn.textContent = 'Copied!';
+          btn.style.borderColor = 'rgba(201,162,39,0.8)';
+          btn.style.color = '#c9a227';
+          setTimeout(function(){ btn.textContent = original; btn.style.borderColor = ''; btn.style.color = ''; }, 1800);
+        }) : (function(){
+          var ta = document.createElement('textarea');
+          ta.value = email; ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select();
+          try{ document.execCommand('copy'); } catch(e){}
+          document.body.removeChild(ta);
+          btn.textContent = 'Copied!';
+          btn.style.borderColor = 'rgba(201,162,39,0.8)';
+          btn.style.color = '#c9a227';
+          setTimeout(function(){ btn.textContent = original; btn.style.borderColor = ''; btn.style.color = ''; }, 1800);
+        })();
+      });
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initCopyButtons);
+  else initCopyButtons();
+  setTimeout(initCopyButtons, 500);
+})();
+</script>
 
 
 

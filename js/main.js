@@ -1078,7 +1078,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeProductEngine()
     const status=document.getElementById("sogoStatus");
     if(status)status.textContent=score>=95?"Ready for Lanthanex workspace.":"Progress cached automatically. Complete missing RFQ fields to accelerate review.";
   }
-  function open(){if(!drawer)return;drawer.classList.add("active");drawer.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";load();apply();}
+  function open(){if(!drawer)return;drawer.classList.add("active");drawer.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";load();setTimeout(apply,560);}
   function close(){if(!drawer)return;drawer.classList.remove("active");drawer.setAttribute("aria-hidden","true");document.body.style.overflow="";}
   window.apexOpenSogoFlow=open; window.apexCloseSogoFlow=close;
   document.querySelectorAll("[data-open-sogo]").forEach(btn=>btn.addEventListener("click",e=>{e.preventDefault();open();}));

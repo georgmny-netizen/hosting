@@ -2,7 +2,7 @@
 section[id], div[id], article[id] { scroll-margin-top: 100px !important; }
 
 /* Allow mouse to enter the tooltip so it doesn't close immediately */
-.yyk-hover-intel-tooltip { pointer-events: auto !important; }
+.yyk-hover-intel-tooltip.active { pointer-events: auto !important; }
 
 /* Center tooltip scaling animation */
 .yyk-hover-intel-tooltip { transform-origin: top center !important; }
@@ -279,3 +279,199 @@ html body #yykAuditControlPanel .yyk-audit-modes .yyk-mode-btn:hover {
     border-bottom-width: 1px !important;
     box-shadow: none !important;
 }
+
+/* =========================================================
+   Task 06: SOGO RFQ Select Customization (Native with SVG)
+   ========================================================= */
+.sogo-field select, .sogo-field input, .yyk-pricing-field select, .rfq-field {
+    background-color: #111 !important;
+    color: #fff !important;
+    border: 1px solid rgba(255,255,255,.18) !important;
+    outline: none !important;
+    border-radius: 4px !important;
+    padding: 8px 12px !important;
+    transition: all 0.3s ease-in-out !important;
+}
+.sogo-field select, .yyk-pricing-field select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+    background-size: 10px auto !important;
+    padding-right: 30px !important;
+    cursor: pointer !important;
+}
+.sogo-field select:focus, .sogo-field input:focus, .yyk-pricing-field select:focus, .rfq-field:focus {
+    border-color: rgba(201,162,39,.70) !important;
+    box-shadow: 0 0 0 2px rgba(201,162,39,.2) !important;
+}
+.sogo-field select option, .yyk-pricing-field select option {
+    background-color: #1a1a1a !important;
+    color: #fff !important;
+    padding: 8px !important;
+}
+
+/* =========================================================
+   Task 07: Custom Select UI for all dropdowns (Replaces Native)
+   ========================================================= */
+.yyk-custom-select { position: relative; user-select: none; width: 100%; }
+.yyk-custom-select-trigger { width: 100%; box-sizing: border-box;
+    background-color: #111; color: #fff;
+    border: 1px solid rgba(255,255,255,.18); border-radius: 4px;
+    padding: 8px 12px; cursor: pointer; display: flex;
+    justify-content: space-between; align-items: center;
+    transition: all 0.3s ease; font-size: inherit; min-height: 38px;
+}
+.yyk-custom-select.open .yyk-custom-select-trigger {
+    border-color: rgba(201,162,39,.70); box-shadow: 0 0 0 2px rgba(201,162,39,.2);
+}
+.yyk-custom-arrow { pointer-events: none; font-size: 10px; color: #fff; transition: transform 0.3s ease; margin-left: 8px; }
+.yyk-custom-select.open .yyk-custom-arrow { transform: rotate(180deg); }
+.yyk-custom-select-list {
+    position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+    background-color: #111; border: 1px solid rgba(201,162,39,.70); border-radius: 4px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.8); z-index: 9999;
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+.yyk-custom-select.open .yyk-custom-select-list { max-height: 250px; opacity: 1; overflow-y: auto; }
+.yyk-custom-select-item { display: block; width: 100%; box-sizing: border-box;
+    padding: 10px 12px; color: #fff; cursor: pointer; transition: background-color 0.2s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.yyk-custom-select-item:last-child { border-bottom: none; }
+.yyk-custom-select-item:hover, .yyk-custom-select-item.selected {
+    background-color: rgba(201,162,39,.3); color: #fff;
+}
+
+.yyk-custom-select.open { z-index: 10000; }
+
+/* =========================================================
+   Task 07: Sogo Drawer — smooth slide timing
+   ========================================================= */
+html {
+  scrollbar-gutter: stable !important;
+}
+.sogo-drawer {
+  transition: visibility 0.55s ease !important;
+  overflow: hidden !important;
+}
+.sogo-drawer .sogo-backdrop {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(5,5,5,0.85) !important;
+  transition: opacity 0.55s ease !important;
+}
+.sogo-panel {
+  will-change: transform !important;
+  transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  box-shadow: -4px 12px 40px rgba(0,0,0,0.6) !important;
+  contain: layout style !important;
+}
+/* Prevent content reflow causing bottom jerk */
+.sogo-body {
+  overflow-y: scroll !important;
+  padding-bottom: 0 !important;
+}
+.sogo-actions {
+  position: sticky !important;
+  bottom: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+/* =========================================================
+   Task 08: Trust Control Status — clickable tiles
+   ========================================================= */
+.trust-control-card {
+  cursor: pointer !important;
+  transition: border-color 0.2s ease, background 0.2s ease !important;
+}
+.trust-control-card:hover {
+  border-color: rgba(201,162,39,0.5) !important;
+  background: rgba(201,162,39,0.06) !important;
+}
+.trust-control-card.is-active,
+.trust-control-card[aria-pressed="true"] {
+  border-color: rgba(201,162,39,0.8) !important;
+  background: rgba(201,162,39,0.12) !important;
+}
+#trustControlTablePanel {
+  animation: trustTableReveal 0.35s ease forwards;
+}
+/* Override legacy .hero .table-panel { display:none !important } */
+#trustControlTablePanel[style*="display: block"],
+#trustControlTablePanel[style*="display:block"] {
+  display: block !important;
+  visibility: visible !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  margin-top: 10px !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+/* Override legacy .hero table { display:none !important } */
+#trustControlTablePanel[style*="display: block"] table,
+#trustControlTablePanel[style*="display:block"] table {
+  display: table !important;
+  visibility: visible !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  width: 100% !important;
+}
+#trustControlTablePanel[style*="display: block"] th,
+#trustControlTablePanel[style*="display: block"] td,
+#trustControlTablePanel[style*="display:block"] th,
+#trustControlTablePanel[style*="display:block"] td {
+  display: table-cell !important;
+  visibility: visible !important;
+}
+@keyframes trustTableReveal {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Task 09: suppress hover tooltip on Copy email buttons */
+.yyk-copy-email::after,
+.yyk-copy-email::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Task 09: email link styling ? remove underline */
+.yyk-contact-email {
+  text-decoration: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  color: rgba(201,162,39,0.9) !important;
+  transition: color 0.2s ease !important;
+}
+.yyk-contact-email:hover {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+/* Prevent button resizing when text changes to Copied */
+.yyk-copy-email {
+  min-width: 80px !important;
+  text-align: center !important;
+}
+
+/* Task 10: Prevent jitter between Aluminum/Zinc */
+.product-panel {
+  min-height: 520px;
+}
+
+/* Fix for Product Passport tables: hide empty headers and center cell text */
+.passport .table-panel thead,
+.passport .table-panel th:empty {
+  display: none !important;
+}
+.passport .table-panel td {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+

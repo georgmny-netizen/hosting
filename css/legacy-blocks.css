@@ -10589,11 +10589,7 @@ button:focus,button:focus-visible,a:focus,a:focus-visible,input:focus,select:foc
   margin-top: 8px !important;
   display: block !important;
 }
-/* Sogo panel: start below sticky nav */
-.sogo-panel {
-  top: 112px !important;
-  height: calc(100% - 112px) !important;
-}
+/* Sogo panel centered fix */
 .sogo-external-close {
   position: fixed !important;
   top: 68px !important;

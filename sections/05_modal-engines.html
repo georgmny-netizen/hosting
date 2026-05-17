@@ -44,7 +44,11 @@ document.querySelectorAll("[data-contact-form]").forEach(form=>{
 const productEngine=document.getElementById("productEngine");
 function setProductTab(tab){
   document.querySelectorAll(".product-tab").forEach(b=>b.classList.toggle("active",b.dataset.productTab===tab));
-  document.querySelectorAll(".product-panel").forEach(p=>p.classList.toggle("active",p.dataset.productPanel===tab));
+  document.querySelectorAll(".product-panel").forEach(p=>{
+    const isActive = p.dataset.productPanel===tab;
+    p.classList.toggle("active", isActive);
+    p.style.display = isActive ? "block" : "none";
+  });
 }
 function openProductEngine(tab="cu"){
   if(productEngine){
