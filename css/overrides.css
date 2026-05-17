@@ -516,3 +516,7 @@ html {
 /* Match apac command text size with tech status row */
 .yyk-apac-command-inner { font-size: 13px !important; }
 
+
+/* Hide full-width bottom border on compact workspace */
+#yyk-procurement-workspace-compact { border-bottom: none !important; }
+
