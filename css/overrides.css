@@ -235,3 +235,9 @@ header .yyk-hard-primary-tabs .d21-hard-tab:hover {
   text-shadow: 0 0 8px rgba(201,162,39,0.4) !important;
 }
 
+/* =========================================================
+   Task 03: Center text vertically in Defense Script answers
+   ========================================================= */
+html body .yyk-data-room-engine .yyk-killer-a {
+    padding: 16px !important;
+}
