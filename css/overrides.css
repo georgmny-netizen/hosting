@@ -520,3 +520,7 @@ html {
 /* Hide full-width bottom border on compact workspace */
 #yyk-procurement-workspace-compact { border-bottom: none !important; }
 
+
+/* Align all sections to site boundaries to prevent full-width overflow */
+section { max-width: 1480px !important; margin-left: auto !important; margin-right: auto !important; border-bottom: none !important; border-top: none !important; }
+
