@@ -492,3 +492,12 @@ html {
   border-top: none !important;
 }
 
+
+/* Force equal height rows in passport tables */
+.passport .table-panel table {
+  height: 100% !important;
+}
+.passport .table-panel tr {
+  height: 25% !important;
+}
+
