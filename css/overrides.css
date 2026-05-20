@@ -849,6 +849,27 @@ html body .table-panel tbody tr:first-child td {
 html body .table-panel tbody tr:last-child td {
     border-bottom: none !important;
 }
+/* Exception: restore borders for #industries and #passports tables */
+html body #industries .table-panel tbody tr:last-child td,
+html body .passport .table-panel tbody tr:last-child td {
+    border-bottom: 1px solid rgba(255,255,255,.08) !important;
+}
+html body .passport .table-panel tbody tr:first-child td {
+    border-top: 1px solid rgba(255,255,255,.08) !important;
+}
+/* Stabilize passport tables to prevent layout shift on load */
+html body .passport .table-panel table {
+    table-layout: fixed !important;
+    width: 100% !important;
+}
+html body .passport .table-panel td {
+    min-height: 38px !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+html body .passport .table-panel td:first-child {
+    width: 35% !important;
+}
 
 /* =========================================================
    Session 3 / Extra: Fix Infrastructure Control borders
@@ -860,4 +881,57 @@ html body .hero,
 html body .footer {
     border-top: none !important;
     border-bottom: none !important;
+}
+
+/* =========================================================
+   Session 4: Add gap between evidence router nodes
+   ========================================================= */
+html body #decision-compliance-output.yyk-evidence-router {
+    gap: 10px !important;
+    border: none !important;
+    background: none !important;
+}
+html body #decision-compliance-output .yyk-evidence-node {
+    border: 1px solid rgba(255,255,255,.10) !important;
+}
+
+/* =========================================================
+   Session 4: Normalize Legal Risk Panel border thickness
+   ========================================================= */
+html body #yykLegalRiskPanel.yyk-legal-risk-panel {
+    box-shadow: none !important;
+    border: 1px solid rgba(176,184,194,.16) !important;
+    background: rgba(0,0,0,.18) !important;
+}
+html body #yykLegalRiskPanel.open {
+    background: rgba(0,0,0,.18) !important;
+    box-shadow: none !important;
+    border-color: rgba(176,184,194,.16) !important;
+}
+html body #yykLegalRiskPanel .yyk-legal-risk-head {
+    border-bottom: 1px solid rgba(176,184,194,.16) !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+html body #yykLegalRiskPanel .yyk-legal-risk-head:hover,
+html body #yykLegalRiskPanel .yyk-legal-risk-head:focus,
+html body #yykLegalRiskPanel .yyk-legal-risk-head:focus-visible,
+html body #yykLegalRiskPanel .yyk-legal-risk-head:active {
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border-color: rgba(176,184,194,.16) !important;
+}
+
+/* =========================================================
+   Session 4: Flatten Legal Shield section background
+   ========================================================= */
+html body .yyk-legal-shield {
+    background: rgba(255,255,255,.018) !important;
+}
+/* Remove double border: outer .yyk-legal-panel wrapping the risk panel */
+html body #legal-shield .yyk-legal-panel {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
 }
