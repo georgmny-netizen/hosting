@@ -910,8 +910,12 @@ html body #yykLegalRiskPanel.open {
 }
 html body #yykLegalRiskPanel .yyk-legal-risk-head {
     border-bottom: 1px solid rgba(176,184,194,.16) !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
     box-shadow: none !important;
     outline: none !important;
+    background: transparent !important;
 }
 html body #yykLegalRiskPanel .yyk-legal-risk-head:hover,
 html body #yykLegalRiskPanel .yyk-legal-risk-head:focus,
@@ -928,6 +932,8 @@ html body #yykLegalRiskPanel .yyk-legal-risk-head:active {
    ========================================================= */
 html body .yyk-legal-shield {
     background: rgba(255,255,255,.018) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 /* Remove double border: outer .yyk-legal-panel wrapping the risk panel */
 html body #legal-shield .yyk-legal-panel {
@@ -935,3 +941,350 @@ html body #legal-shield .yyk-legal-panel {
     background: transparent !important;
     padding: 0 !important;
 }
+
+/* =========================================================
+   Session 4: Adjust 99.9999% watermark position & spacing
+   ========================================================= */
+html body .watermark {
+    letter-spacing: .12em !important;
+}
+
+/* =========================================================
+   Session 4+5: Align d24 tiles across left/right cards
+   Use CSS subgrid to synchronize row heights so that
+   .d24-matrix grids start at the same vertical level.
+   Left card:  title | card-text | d24-badge | d24-matrix | details
+   Right card: title | d24-alert |  (empty)  | d24-matrix | details
+   Row map: 1=title  2=text/alert  3=badge  4=matrix  5=details
+   ========================================================= */
+#directive24-china-resource-monolith .d24-grid {
+    display: grid !important;
+    grid-template-columns: 1.05fr .95fr !important;
+    grid-template-rows: auto auto auto auto auto !important;
+    gap: 14px !important;
+    align-items: stretch !important;
+}
+#directive24-china-resource-monolith .d24-card {
+    display: grid !important;
+    grid-row: 1 / -1 !important;
+    grid-template-rows: subgrid !important;
+}
+/* Row 1: Title */
+#directive24-china-resource-monolith .d24-card > .card-title {
+    grid-row: 1 !important;
+}
+/* Row 2: Description text or alert */
+#directive24-china-resource-monolith .d24-card > .card-text {
+    grid-row: 2 !important;
+}
+#directive24-china-resource-monolith .d24-card > .d24-alert {
+    grid-row: 2 !important;
+}
+/* Row 3: Badge (left card only, right card has nothing here — row collapses to 0) */
+#directive24-china-resource-monolith .d24-card > .d24-badge {
+    grid-row: 3 !important;
+}
+/* Row 4: Matrix tiles — these MUST be at the same level */
+#directive24-china-resource-monolith .d24-card > .d24-matrix {
+    grid-row: 4 !important;
+}
+/* Row 5: Details toggle */
+#directive24-china-resource-monolith .d24-card > .d24-native-toggle {
+    grid-row: 5 !important;
+}
+/* Ensure tiles within each matrix have equal height */
+#directive24-china-resource-monolith .d24-matrix {
+    grid-auto-rows: 1fr !important;
+}
+/* =========================================================
+   Session 5: Remove empty strips in D24 expanded tables
+   
+   FULL ELEMENT CHAIN between <summary> and <table>:
+     summary  (border from module 08)
+       └─ .d24-panel   (module 08: border + background + padding)
+            └─ .d24-table-wrap  (module 10: border + background + margin)
+                 └─ table  (browser default: border-spacing 2px)
+
+   ALL THREE layers must be transparent, otherwise visible
+   strips appear between the button and the table content.
+   
+   CSS DEBUG PROTOCOL: when fixing visual gaps, ALWAYS grep
+   ALL css/modules/ files for every element in the chain.
+   ========================================================= */
+#directive24-china-resource-monolith .d24-panel {
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+}
+#directive24-china-resource-monolith .d24-table-wrap {
+    margin-top: 0 !important;
+    border: none !important;
+    background: transparent !important;
+}
+#directive24-china-resource-monolith .d24-table-wrap table {
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+}
+
+/* =========================================================
+   Session 5: Lock D20 grid to "table-open" proportions
+   
+   Problem: when the left <details> opens, the table
+   (min-width:940px) pushes the left column wider via CSS Grid
+   min-content sizing. When closed, columns snap back to
+   equal (1.05fr .95fr). User wants the "wide left" look
+   permanently.
+   
+   Fix: min-width on left card keeps it wide even when
+   the table is collapsed. fr units stay, so layout is fluid.
+   ========================================================= */
+#directive20-logistics-dictate .d20-card:first-child {
+    min-width: 800px !important;
+}
+
+/* =========================================================
+   Session 5: Compact right D20 card (always-open details)
+   Reduce margins/padding so it fits without stretching
+   taller than the left card with closed table.
+   ========================================================= */
+#directive20-logistics-dictate .d20-card:last-child .d20-note {
+    margin-top: 8px !important;
+    padding: 9px 11px !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+}
+#directive20-logistics-dictate .d20-card:last-child .d20-native-toggle {
+    margin-top: 8px !important;
+}
+#directive20-logistics-dictate .d20-card:last-child summary {
+    padding: 9px 12px !important;
+    font-size: 11px !important;
+}
+#directive20-logistics-dictate .d20-card:last-child .d20-panel {
+    padding: 10px !important;
+    border: none !important;
+    background: transparent !important;
+}
+#directive20-logistics-dictate .d20-card:last-child .d20-form {
+    margin-top: 6px !important;
+    gap: 6px !important;
+}
+#directive20-logistics-dictate .d20-card:last-child .d20-field label {
+    margin-bottom: 4px !important;
+}
+#directive20-logistics-dictate .d20-card:last-child .d20-field input {
+    padding: 7px 10px !important;
+}
+#directive20-logistics-dictate .d20-card:last-child .d20-btn {
+    margin-top: 8px !important;
+    padding: 8px 12px !important;
+}
+#directive20-logistics-dictate .d20-card:last-child .d20-result {
+    margin-top: 8px !important;
+    padding: 10px !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+}
+
+/* =========================================================
+   Session 5 (2026-05-21): G27 Guardian — engine-style modal
+   ─────────────────────────────────────────────────────────
+   Full-screen overlay for Guardian <details> panels.
+   Matches the product-engine / compliance-engine pattern.
+
+   Why separate styles are needed:
+   The original .g27-field, .g27-btn, .g27-result styles are
+   scoped to #yyk-d27-guardian-canonical in the canonical CSS.
+   The modal is created dynamically via document.body.appendChild,
+   so it lives OUTSIDE that container. All form element styles
+   must be duplicated here under .g27-detail-content scope.
+
+   See 06_scripts.html inline script for the JS logic.
+   ========================================================= */
+.g27-detail-engine {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: none;
+    background: rgba(5,5,5,.74);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    padding: 28px;
+    overflow: auto;
+    pointer-events: none;
+}
+.g27-detail-engine.active {
+    display: block;
+    pointer-events: auto;
+}
+.g27-detail-shell {
+    max-width: 1380px;
+    margin: 0 auto;
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
+    box-shadow: 0 32px 130px rgba(0,0,0,.58);
+    overflow: hidden;
+}
+.g27-detail-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 26px 28px;
+    border-bottom: 1px solid var(--line);
+}
+.g27-detail-title {
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: -.035em;
+    color: #fff;
+    margin: 8px 0 0;
+}
+.g27-detail-head .eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .30em;
+    color: var(--gold, #c9a227);
+}
+.g27-detail-close {
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.025);
+    color: var(--text);
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    font-size: 22px;
+    transition: .3s ease;
+    flex-shrink: 0;
+}
+.g27-detail-close:hover {
+    border-color: rgba(201,162,39,.55);
+    background: rgba(201,162,39,.10);
+}
+.g27-detail-content {
+    padding: 28px;
+    max-height: 72vh;
+    overflow: auto;
+}
+.g27-detail-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+}
+.g27-detail-content th,
+.g27-detail-content td {
+    border: 1px solid var(--line);
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 13px;
+}
+.g27-detail-content th {
+    color: var(--gold, #c9a227);
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,.025);
+}
+.g27-detail-content td {
+    color: var(--muted, #C8CCD2);
+}
+.g27-detail-content .g27-panel {
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(0,0,0,.20);
+    padding: 24px;
+}
+.g27-detail-content .g27-form {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+.g27-detail-content .g27-field label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--gold, #c9a227);
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+}
+.g27-detail-content .g27-field input,
+.g27-detail-content .g27-field select {
+    width: 100%;
+    border: 1px solid var(--line, rgba(255,255,255,.12));
+    background: rgba(0,0,0,.24);
+    color: var(--text, #E5E8EC);
+    padding: 11px 12px;
+    outline: none;
+    font-size: 14px;
+    font-family: inherit;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.g27-detail-content .g27-field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23c9a227' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+}
+.g27-detail-content .g27-field input:focus,
+.g27-detail-content .g27-field select:focus {
+    border-color: rgba(201,162,39,.55);
+    background: rgba(0,0,0,.35);
+}
+.g27-detail-content .g27-btn {
+    border: 1px solid rgba(201,162,39,.68);
+    background: rgba(201,162,39,.13);
+    color: #fff;
+    padding: 13px 22px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .10em;
+    text-transform: uppercase;
+    font-family: inherit;
+    transition: .3s ease;
+}
+.g27-detail-content .g27-btn:hover {
+    background: rgba(201,162,39,.25);
+    border-color: rgba(201,162,39,.85);
+}
+.g27-detail-content .g27-result {
+    margin-top: 18px;
+    border: 1px solid rgba(201,162,39,.62);
+    background: rgba(201,162,39,.08);
+    padding: 16px 18px;
+    color: #E5E8EC;
+    font-size: 13px;
+    line-height: 1.55;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    letter-spacing: .04em;
+}
+.g27-detail-content .g27-result.block {
+    border-color: rgba(198,106,74,.72);
+    background: rgba(198,106,74,.10);
+    color: #f0a087;
+}
+.g27-detail-content .g27-table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.g27-detail-content .g27-code {
+    white-space: pre-wrap;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(0,0,0,.22);
+    padding: 12px;
+    color: #E5E8EC;
+    font-size: 12px;
+    line-height: 1.55;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+@media (max-width: 960px) {
+    .g27-detail-engine { padding: 14px; }
+    .g27-detail-content { max-height: none; }
+    .g27-detail-content .g27-form { grid-template-columns: 1fr; }
+}
+

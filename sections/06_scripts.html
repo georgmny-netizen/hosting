@@ -690,6 +690,137 @@
 <!-- YYK_D27_GUARDIAN_CANONICAL_JS_START -->
 <script id="yyk-d27-guardian-canonical-js" src="js/modules/yyk-d27-guardian-canonical-js.js"></script>
 <!-- YYK_D27_GUARDIAN_CANONICAL_JS_END -->
+<!-- G27 DETAILS-TO-MODAL ENGINE (inlined to avoid browser cache issues)
+     ─────────────────────────────────────────────────────────────────
+     Problem solved (Session 5, 2026-05-21):
+     The Guardian section uses <details>/<summary> elements for its panels.
+     This script intercepts summary clicks and opens content in a full-screen
+     engine-style modal instead of expanding inline.
+
+     Key issues resolved:
+     1. CUSTOM SELECT CONFLICT — yyk-custom-select-init.js hides native <select>
+        elements (display:none) and replaces them with div wrappers. When we clone
+        the <details> content, the cloned <select> stays hidden and the custom
+        wrapper loses its event listeners. Fix: after cloning, remove all
+        .yyk-custom-select wrappers and restore native <select> visibility.
+
+     2. EVENT LISTENER LOSS — addEventListener on cloned buttons was unreliable
+        (possibly due to i18n re-rendering or other scripts). Fix: use event
+        delegation on the engine div itself via e.target.closest('.g27-btn').
+
+     3. ID COLLISION — cloned elements would create duplicate IDs. Fix: move
+        original ID to data-orig-id attribute, then query by [data-orig-id="..."]
+        inside the modal for direct-read validation.
+
+     4. VALIDATION DIRECT-READ — instead of relying on document.getElementById
+        (which points to the original hidden DOM), we read values directly from
+        the cloned modal inputs via data-orig-id selectors, then call
+        G.validateRfq(params) and G.simulateSanctionsScan(params) directly.
+
+     CSS: see overrides.css ".g27-detail-*" section for modal styling.
+     ───────────────────────────────────────────────────────────────── -->
+<script>
+(function(){
+  'use strict';
+  var container = document.getElementById('yyk-d27-guardian-canonical');
+  if (!container) return;
+
+  /* Create the full-screen engine overlay (matches product-engine pattern) */
+  var engine = document.createElement('div');
+  engine.className = 'g27-detail-engine';
+  engine.id = 'g27DetailEngine';
+  engine.setAttribute('aria-hidden', 'true');
+  engine.innerHTML = '<div class="g27-detail-shell"><div class="g27-detail-head"><div><div class="eyebrow">GUARDIAN \u00b7 DIRECTIVE 27</div><div class="g27-detail-title"></div></div><button class="g27-detail-close" type="button" aria-label="Close">\u00d7</button></div><div class="g27-detail-content"></div></div>';
+  document.body.appendChild(engine);
+  var titleEl = engine.querySelector('.g27-detail-title');
+  var contentEl = engine.querySelector('.g27-detail-content');
+  var closeBtn = engine.querySelector('.g27-detail-close');
+
+  /**
+   * openEngine — clone <details> content into the modal
+   * - Moves IDs to data-orig-id to prevent duplicates
+   * - Removes onclick attributes (they reference page-level functions)
+   * - Strips custom-select wrappers and restores native <select>
+   * - Syncs current input values from original to cloned elements
+   */
+  function openEngine(txt, detailsEl) {
+    titleEl.textContent = txt;
+    contentEl.innerHTML = '';
+    for (var i = 0; i < detailsEl.children.length; i++) {
+      if (detailsEl.children[i].tagName === 'SUMMARY') continue;
+      var clone = detailsEl.children[i].cloneNode(true);
+      clone.querySelectorAll('[id]').forEach(function(el){ el.setAttribute('data-orig-id', el.id); el.id = ''; });
+      clone.querySelectorAll('[onclick]').forEach(function(el){ el.removeAttribute('onclick'); });
+      contentEl.appendChild(clone);
+    }
+    /* FIX: custom-select-init.js hides native <select> and adds .yyk-custom-select
+       wrappers. Cloned wrappers have no event listeners, so we remove them and
+       restore native selects for the modal to work properly. */
+    contentEl.querySelectorAll('.yyk-custom-select').forEach(function(w){ w.remove(); });
+    contentEl.querySelectorAll('select').forEach(function(s){ s.style.display = ''; s.removeAttribute('data-customized'); });
+    /* Sync current values from original inputs to modal clones */
+    var oI = detailsEl.querySelectorAll('input, select');
+    var cI = contentEl.querySelectorAll('input, select');
+    for (var j = 0; j < oI.length && j < cI.length; j++) cI[j].value = oI[j].value;
+    engine.classList.add('active');
+    engine.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('apex-modal-open');
+  }
+
+  /* Event delegation: catches .g27-btn clicks anywhere inside the engine.
+     This is more reliable than addEventListener on cloned buttons. */
+  engine.addEventListener('click', function(e) {
+    if (e.target.closest('.g27-btn')) { e.preventDefault(); e.stopPropagation(); runValidation(); }
+    if (e.target === engine) closeEngine();
+  });
+
+  /**
+   * runValidation — reads values from modal clones (via data-orig-id),
+   * calls Guardian API directly, updates both modal and original DOM.
+   */
+  function runValidation() {
+    try {
+      var G = window.YYK_G27_GUARDIAN;
+      if (!G) return;
+      var mat = contentEl.querySelector('[data-orig-id="yykG27Material"]');
+      var pur = contentEl.querySelector('[data-orig-id="yykG27Purity"]');
+      var uth = contentEl.querySelector('[data-orig-id="yykG27UTh"]');
+      var fe  = contentEl.querySelector('[data-orig-id="yykG27Fe"]');
+      var san = contentEl.querySelector('[data-orig-id="yykG27Sanctions"]');
+      var p = { material: mat?mat.value:'CORE', purity: pur?pur.value:'99.9999', uThPpb: uth?uth.value:'0.01', fePpb: fe?fe.value:'5', sanctions: san?san.value:'clear' };
+      var scan = G.simulateSanctionsScan(p);
+      var rfq = G.validateRfq(p);
+      var blocked = scan.blocked || rfq.blocked;
+      var msg = blocked ? 'HIGH RISK \u00b7 ' + rfq.release + ' \u00b7 ' + rfq.violations.join('; ') : 'PASS \u00b7 Controlled RFQ path available \u00b7 ' + rfq.release;
+      /* Update both modal result and original page result */
+      var mr = contentEl.querySelector('[data-orig-id="yykG27Result"]');
+      if (mr) { mr.textContent = msg; mr.classList.toggle('block', blocked); }
+      var or = document.getElementById('yykG27Result');
+      if (or) { or.textContent = msg; or.classList.toggle('block', blocked); }
+    } catch(err) { alert('G27 Error: ' + err.message); }
+  }
+
+  function closeEngine() {
+    engine.classList.remove('active');
+    engine.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('apex-modal-open');
+    document.body.style.overflow = '';
+  }
+  closeBtn.addEventListener('click', closeEngine);
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && engine.classList.contains('active')) closeEngine(); });
+
+  /* Intercept all <summary> clicks inside the Guardian section → open modal */
+  container.querySelectorAll('details').forEach(function(detail) {
+    var summary = detail.querySelector('summary');
+    if (!summary) return;
+    summary.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (detail.open) detail.removeAttribute('open');
+      openEngine(summary.textContent, detail);
+    });
+  });
+})();
+</script>
 <!-- YYK_HYBRID_CANONICAL_JS_START -->
 <script id="yyk-hybrid-canonical-js" src="js/modules/yyk-hybrid-canonical-js.js"></script>
 <!-- YYK_HYBRID_CANONICAL_JS_END -->
