@@ -129,21 +129,7 @@
 {"@context":"https://schema.org","@type":"ItemList","name":"YONGYEOKYO Knowledge SEO Cluster","itemListElement":[{"@type":"ListItem","position":1,"url":"https://yongyeokyo.com/knowledge/7n-integrity-standard","name":"7N+ Integrity Standard"},{"@type":"ListItem","position":2,"url":"https://yongyeokyo.com/knowledge/gdms-spc-validation","name":"GDMS + SPC Validation"},{"@type":"ListItem","position":3,"url":"https://yongyeokyo.com/knowledge/foundry-material-qualification","name":"Foundry Material Qualification"},{"@type":"ListItem","position":4,"url":"https://yongyeokyo.com/knowledge/apac-supply-risk","name":"APAC Supply Risk and BCP"}]}
 </script>
 
-<script id="yyk-footer-integrity-toggle-fix">
-(function(){
-  function init(){
-    var btn=document.querySelector('.yyk-integrity-toggle');
-    var panel=document.getElementById('yykFooterIntegrityPanel');
-    if(!btn||!panel) return;
-    btn.addEventListener('click',function(){
-      var open=panel.hasAttribute('hidden');
-      if(open){panel.removeAttribute('hidden');btn.setAttribute('aria-expanded','true');}
-      else{panel.setAttribute('hidden','');btn.setAttribute('aria-expanded','false');}
-    });
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-})();
-</script>
+<script id="yyk-footer-integrity-toggle-fix" src="js/modules/head/yyk-footer-integrity-toggle-fix.js"></script>
 
 
 
@@ -161,541 +147,49 @@
 <!-- YYK_TABLE_PLACEMENT_ANTI_STRETCH_PATCH_END -->
 <!-- YYK_HERO_AUDIT_VDR_TABLE_GOVERNANCE_START -->
 
-<script id="yyk-hero-audit-vdr-table-governance-script">
-(function(){
-  'use strict';
-
-  function isLargeTable(table){
-    if(!table) return false;
-    const rows = table.querySelectorAll('tr').length;
-    const cols = table.querySelectorAll('tr:first-child th, tr:first-child td').length;
-    return rows >= 3 || cols >= 4;
-  }
-
-  function moveHeroTablesToAuditVdr(){
-    const hero = document.querySelector('.hero');
-    if(!hero) return;
-
-    let target = document.querySelector('#directive26-fiscal-passport-2026');
-    if(!target){
-      target = document.querySelector('section[id*="audit"]') || document.querySelector('section[id*="vdr"]');
-    }
-    if(!target) return;
-
-    hero.querySelectorAll('table').forEach(function(table){
-      if(!isLargeTable(table)) return;
-      const wrapper = table.closest('[class*="table-wrap"], .table-panel') || table;
-      wrapper.setAttribute('data-moved-from-hero', 'true');
-      target.appendChild(wrapper);
-    });
-  }
-
-  function enforceHeroSummaryOnly(){
-    const hero = document.querySelector('.hero');
-    if(!hero) return;
-    hero.setAttribute('data-yyk-hero-policy', 'ticker-executive-summary-only');
-  }
-
-  function init(){
-    enforceHeroSummaryOnly();
-    moveHeroTablesToAuditVdr();
-  }
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', init, {once:true});
-  }else{
-    init();
-  }
-})();
-</script>
+<script id="yyk-hero-audit-vdr-table-governance-script" src="js/modules/head/yyk-hero-audit-vdr-table-governance-script.js"></script>
 <!-- YYK_HERO_AUDIT_VDR_TABLE_GOVERNANCE_END -->
 <!-- YYK_RSI_COMPACT_WIDGET_FIX_START -->
 
-<script id="yyk-rsi-compact-widget-script">
-(function(){
-  'use strict';
-
-  function compactRsi(){
-    var panel = document.querySelector('#yykRegionalSynergyLivePanel');
-    if(!panel) return;
-
-    panel.setAttribute('data-yyk-layout', 'compact-kpi-widget');
-
-    var drivers = document.querySelector('#yykRsiDrivers');
-    if(drivers){
-      var text = drivers.textContent || '';
-      if(text.length > 150){
-        drivers.setAttribute('title', text);
-        drivers.textContent = text.slice(0, 147) + '…';
-      }
-    }
-
-    var source = document.querySelector('#yykRsiLiveSource');
-    if(source){
-      var s = source.textContent || '';
-      if(s.length > 90){
-        source.setAttribute('title', s);
-        source.textContent = s.slice(0, 87) + '…';
-      }
-    }
-  }
-
-  function init(){
-    compactRsi();
-    document.addEventListener('YYK:RSI_UPDATED', function(){
-      setTimeout(compactRsi, 0);
-    });
-    setTimeout(compactRsi, 300);
-    setTimeout(compactRsi, 1200);
-  }
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', init, {once:true});
-  }else{
-    init();
-  }
-})();
-</script>
+<script id="yyk-rsi-compact-widget-script" src="js/modules/head/yyk-rsi-compact-widget-script.js"></script>
 <!-- YYK_RSI_COMPACT_WIDGET_FIX_END -->
 <!-- YYK_D26_FINAL_PLACEMENT_GUARD_START -->
 
-<script id="yyk-d26-final-placement-guard-script">
-(function(){
-  'use strict';
-
-  function q(sel){ return document.querySelector(sel); }
-
-  function ensureDock(){
-    var dock = q('#yyk-audit-vdr-dock');
-    if(dock) return dock;
-
-    dock = document.createElement('section');
-    dock.className = 'section safe-layout-block';
-    dock.id = 'yyk-audit-vdr-dock';
-    dock.setAttribute('data-department','Audit,VDR,Compliance');
-    dock.innerHTML = '<div class="wrap"><div class="section-head"><div><div class="eyebrow">AUDIT / VDR · CONTROLLED APPENDIX</div><h2>Fiscal, Compliance & Backend Governance Dock</h2></div><div class="hint">Large matrices dock here, not under logistics map or hero.</div></div></div>';
-
-    var legal = q('section[id*="legal"]') || q('footer');
-    if(legal && legal.parentNode){
-      legal.parentNode.insertBefore(dock, legal);
-    }else{
-      document.body.appendChild(dock);
-    }
-    return dock;
-  }
-
-  function placeD26(){
-    var d26 = q('#directive26-fiscal-passport-2026');
-    if(!d26) return;
-    var dock = ensureDock();
-
-    if(dock.nextElementSibling !== d26){
-      dock.parentNode.insertBefore(d26, dock.nextSibling);
-    }
-    d26.setAttribute('data-placement','audit-vdr-dock');
-  }
-
-  function hideVisiblePolicy(){
-    var policy = q('#directive25-rsi-zero-trust-security-policy');
-    if(policy){
-      policy.classList.add('yyk-technical-appendix-hidden');
-      policy.setAttribute('aria-hidden','true');
-    }
-  }
-
-  function init(){
-    placeD26();
-    hideVisiblePolicy();
-    setTimeout(placeD26, 200);
-    setTimeout(placeD26, 900);
-  }
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', init, {once:true});
-  }else{
-    init();
-  }
-})();
-</script>
+<script id="yyk-d26-final-placement-guard-script" src="js/modules/head/yyk-d26-final-placement-guard-script.js"></script>
 <!-- YYK_D26_FINAL_PLACEMENT_GUARD_END -->
 <!-- YYK_D27_TABLE_COLLAPSE_AND_PLACEMENT_FIX_START -->
 <!-- YYK_D27_TABLE_COLLAPSE_AND_PLACEMENT_FIX_END -->
 <!-- YYK_D26_ORPHAN_MATRIX_KILL_SWITCH_START -->
 
-<script id="yyk-d26-orphan-matrix-kill-switch-script">
-(function(){
-  'use strict';
-  function kill(){
-    ['directive26-fiscal-passport-2026','d26FiscalPassportLiveTable','d26MadeInMalaysiaEcerCertificate','d26VdrFiscalPassportTab'].forEach(function(id){
-      var n = document.getElementById(id);
-      if(n){
-        n.setAttribute('aria-hidden','true');
-        n.style.display='none';
-        n.style.visibility='hidden';
-        n.style.height='0';
-        n.style.overflow='hidden';
-      }
-    });
-    document.querySelectorAll('table').forEach(function(t){
-      var txt = (t.textContent || '').toLowerCase();
-      if(txt.includes('jurisdiction') && txt.includes('2026 fiscal lever') && txt.includes('eligible yongyeokyo route')){
-        t.setAttribute('data-killed','legacy-d26-open-matrix');
-        t.style.display='none';
-      }
-    });
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', kill, {once:true}); else kill();
-  setTimeout(kill,250);
-  setTimeout(kill,1000);
-})();
-</script>
+<script id="yyk-d26-orphan-matrix-kill-switch-script" src="js/modules/head/yyk-d26-orphan-matrix-kill-switch-script.js"></script>
 <!-- YYK_D26_ORPHAN_MATRIX_KILL_SWITCH_END -->
 <!-- YYK_RSI_EXECUTIVE_REPLACEMENT_START -->
 
-<script id="yyk-rsi-hard-remove-script">
-(function(){
- function killRSI(){
-   ['yykRegionalSynergyLivePanel','yykRsiDrivers','yykRsiLiveSource'].forEach(function(id){
-      var n=document.getElementById(id);
-      if(n){
-        n.remove();
-      }
-   });
-
-   document.querySelectorAll('*').forEach(function(el){
-      var txt=(el.textContent||'').trim();
-      if(txt.startsWith('LIVE BACKEND · REGIONAL SYNERGY INDEX')){
-         el.remove();
-      }
-   });
- }
-
- function injectExecutiveStrip(){
-   var target=document.querySelector('#yyk-d26-executive-only .d26x-shell');
-   if(!target || document.getElementById('yyk-rsi-executive-strip')) return;
-
-   var wrap=document.createElement('div');
-   wrap.innerHTML = `
-     <div id="yyk-rsi-executive-strip">
-       <div class="yyk-rsi-kpi"><strong>CN</strong><span>88%</span></div>
-       <div class="yyk-rsi-kpi"><strong>KR</strong><span>94%</span></div>
-       <div class="yyk-rsi-kpi"><strong>JP</strong><span>91%</span></div>
-       <div class="yyk-rsi-kpi"><strong>TW</strong><span>95%</span></div>
-     </div>
-     <div id="yyk-rsi-executive-summary">
-       Regional Synergy Index is reduced to executive KPI format. Full backend telemetry and route diagnostics are hidden from visible website flow and reserved for Audit/VDR backend dashboards.
-     </div>
-   `;
-   target.appendChild(wrap);
- }
-
- function init(){
-   killRSI();
-   injectExecutiveStrip();
- }
- if(document.readyState==='loading'){
-   document.addEventListener('DOMContentLoaded',init,{once:true});
- } else { init(); }
- setTimeout(init,300);
- setTimeout(init,1200);
-})();
-</script>
+<script id="yyk-rsi-hard-remove-script" src="js/modules/head/yyk-rsi-hard-remove-script.js"></script>
 <!-- YYK_RSI_EXECUTIVE_REPLACEMENT_END -->
 <!-- YYK_BANKING_ARBITRATION_ORPHAN_KILL_START -->
 
-<script id="yyk-banking-arbitration-orphan-kill-script">
-(function(){
-  function kill(){
-    document.querySelectorAll('table').forEach(function(t){
-      var txt=(t.textContent||'').toLowerCase();
-      if(txt.includes('risk area') && txt.includes('unstructured supply') && txt.includes('yongyeokyo platform')){
-        t.setAttribute('data-killed','banking-arbitration-risk-table');
-        t.style.display='none';
-      }
-    });
-    document.querySelectorAll('*').forEach(function(el){
-      var txt=(el.textContent||'').trim().toLowerCase();
-      if(txt.startsWith('audit / banking arbitration') && el.id !== 'yyk-banking-arbitration-compact' && !el.closest('#yyk-banking-arbitration-compact')){
-        var section=el.closest('section,div');
-        if(section && section.id !== 'yyk-banking-arbitration-compact'){
-          section.style.display='none';
-          section.setAttribute('data-killed','legacy-banking-arbitration');
-        }
-      }
-    });
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',kill,{once:true});else kill();
-  setTimeout(kill,300);
-  setTimeout(kill,1200);
-})();
-</script>
+<script id="yyk-banking-arbitration-orphan-kill-script" src="js/modules/head/yyk-banking-arbitration-orphan-kill-script.js"></script>
 <!-- YYK_BANKING_ARBITRATION_ORPHAN_KILL_END -->
 <!-- YYK_TRADE_DECISION_ENGINE_ORPHAN_KILL_START -->
 
-<script id="yyk-trade-decision-engine-orphan-kill-script">
-(function(){
-  function kill(){
-    document.querySelectorAll('pre,code,div,section').forEach(function(el){
-      if(el.closest('#yyk-trade-decision-engine-compact')) return;
-      var txt=(el.textContent||'').toLowerCase();
-      if(txt.includes('trade decision engine · v1.5') ||
-         txt.includes('backend json contract') && txt.includes('yongyeokyo.trade_decision.v1_5') ||
-         txt.includes('"schema": "yongyeokyo.trade_decision.v1_5"')){
-        el.setAttribute('data-killed','legacy-trade-decision-engine');
-        el.style.display='none';
-      }
-    });
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',kill,{once:true});else kill();
-  setTimeout(kill,300);
-  setTimeout(kill,1200);
-})();
-</script>
+<script id="yyk-trade-decision-engine-orphan-kill-script" src="js/modules/head/yyk-trade-decision-engine-orphan-kill-script.js"></script>
 <!-- YYK_TRADE_DECISION_ENGINE_ORPHAN_KILL_END -->
 <!-- YYK_KNOWLEDGE_RFQ_ORPHAN_KILL_START -->
 
-<script id="yyk-knowledge-rfq-orphan-kill-script">
-(function(){
-  function kill(){
-    document.querySelectorAll('section,div').forEach(function(el){
-      if(el.closest('#yyk-knowledge-leadership-clean') || el.closest('#yyk-rfq-legal-warning-clean')) return;
-      var txt=(el.textContent||'').toLowerCase();
-      if(txt.includes('knowledge leadership hub') && txt.includes('rfq legal warning')){
-        el.setAttribute('data-killed','legacy-knowledge-rfq-mixed-block');
-        el.style.display='none';
-      }
-    });
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',kill,{once:true});else kill();
-  setTimeout(kill,300);
-  setTimeout(kill,1200);
-})();
-</script>
+<script id="yyk-knowledge-rfq-orphan-kill-script" src="js/modules/head/yyk-knowledge-rfq-orphan-kill-script.js"></script>
 <!-- YYK_KNOWLEDGE_RFQ_ORPHAN_KILL_END -->
 <!-- YYK_RFQ_ESG_DECISION_STRETCH_ROOT_FIX_START -->
 
-<script id="yyk-rfq-esg-decision-stretch-root-fix-script">
-(function(){
-  function killLegacyWideBlocks(){
-    document.querySelectorAll('table').forEach(function(t){
-      if(t.closest('#yyk-procurement-workspace-compact')) return;
-      var txt=(t.textContent||'').toLowerCase();
-      if(
-        (txt.includes('risk') && txt.includes('control method') && txt.includes('evidence required') && txt.includes('status')) ||
-        (txt.includes('mandatory node') && txt.includes('quote effect')) ||
-        (txt.includes('layer') && txt.includes('trigger') && txt.includes('required evidence')) ||
-        (txt.includes('esg / sustainability check') || txt.includes('responsible sourcing'))
-      ){
-        t.setAttribute('data-killed','legacy-rfq-esg-wide-table');
-        t.style.display='none';
-      }
-    });
-
-    document.querySelectorAll('section,div').forEach(function(el){
-      if(el.closest('#yyk-procurement-workspace-compact')) return;
-      var txt=(el.textContent||'').toLowerCase();
-      if(
-        txt.includes('trading os · decision engine stage 1') ||
-        (txt.includes('rfq scoring ai') && txt.includes('sogo shosha procurement gate')) ||
-        (txt.includes('decision-driven esg / compliance output') && txt.includes('auto-linked to selected rfq material')) ||
-        (txt.includes('primary logistics route:') && txt.includes('routing output'))
-      ){
-        el.setAttribute('data-killed','legacy-rfq-decision-stream');
-        el.style.display='none';
-      }
-    });
-  }
-
-  function injectCompactWorkspace(){
-    if(document.getElementById('yyk-procurement-workspace-compact')) return;
-
-    var section=document.createElement('section');
-    section.className='section safe-layout-block';
-    section.id='yyk-procurement-workspace-compact';
-    section.setAttribute('data-department','RFQ,ESG,Compliance,Deal');
-    section.innerHTML = `
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">PROCUREMENT WORKSPACE · RFQ / ESG / DECISION</div>
-            <h2>Controlled RFQ Decision Desk · Compact View</h2>
-          </div>
-          <div class="hint">Legacy wide RFQ, ESG and decision tables are collapsed into controlled drawers. Visible layer shows only decision KPIs.</div>
-        </div>
-        <div class="pwc-shell">
-          <div class="pwc-grid">
-            <main class="pwc-card">
-              <strong>RFQ Decision State</strong>
-              <p>RFQ remains controlled until material, CoA, sanctions, route, ESG and buyer specification evidence are complete.</p>
-              <div class="pwc-kpis">
-                <div class="pwc-kpi"><strong>RFQ</strong><span>Data Hold</span></div>
-                <div class="pwc-kpi"><strong>Risk</strong><span>Senior Review</span></div>
-                <div class="pwc-kpi"><strong>Route</strong><span>APAC hub</span></div>
-                <div class="pwc-kpi"><strong>Release</strong><span>No Quote</span></div>
-              </div>
-              <details>
-                <summary>Open RFQ Evidence Matrix</summary>
-                <div class="pwc-drawer">Detailed RFQ, ESG and scoring matrices are reserved for VDR / engineering review and no longer render as open wide tables in the page flow.</div>
-              </details>
-            </main>
-            <aside class="pwc-rail">
-              <strong>Control Rail</strong>
-              <div class="pwc-row"><span>EUC</span><span>Required</span></div>
-              <div class="pwc-row"><span>Sanctions</span><span>Required</span></div>
-              <div class="pwc-row"><span>CoA Method</span><span>Required</span></div>
-              <div class="pwc-row"><span>Foundry Map</span><span>Required</span></div>
-            </aside>
-          </div>
-        </div>
-      </div>`;
-
-    var anchor=document.querySelector('#yyk-rfq-legal-warning-clean') ||
-               document.querySelector('#yyk-trade-decision-engine-compact') ||
-               document.querySelector('footer');
-    if(anchor && anchor.parentNode){
-      anchor.parentNode.insertBefore(section, anchor);
-    } else {
-      document.body.appendChild(section);
-    }
-  }
-
-  function init(){
-    killLegacyWideBlocks();
-    injectCompactWorkspace();
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true}); else init();
-  setTimeout(init,300);
-  setTimeout(init,1200);
-})();
-</script>
+<script id="yyk-rfq-esg-decision-stretch-root-fix-script" src="js/modules/head/yyk-rfq-esg-decision-stretch-root-fix-script.js"></script>
 <!-- YYK_RFQ_ESG_DECISION_STRETCH_ROOT_FIX_END -->
 <!-- YYK_BUYER_GATEKEEPER_LEFT_PANEL_CONTENT_FIX_START -->
 
-<script id="yyk-buyer-gatekeeper-left-panel-content-fix-script">
-(function(){
-  'use strict';
-
-  const defaultContent = {
-    title: 'Buyer Gatekeeper Matrix',
-    subtitle: 'Qualified counterparty access, document release and RFQ control.',
-    primary: 'Buyer Gatekeeper Requirements',
-    intro: 'This panel controls what the buyer must provide before CoA access, sample release or RFQ execution.',
-    items: [
-      'Corporate identity and business email verification.',
-      'KYC / KYB and sanctions screening.',
-      'Material, purity, form, destination and end-use scope.',
-      'NDA/VDR approval where controlled documents are requested.',
-      'No binding quote or supply obligation before written agreement.'
-    ]
-  };
-
-  function q(sel){ return document.querySelector(sel); }
-
-  function renderLeftPanel(data){
-    data = data || defaultContent;
-
-    const title = q('#yykBgmModalTitle');
-    const sub = q('#yykBgmModalSub');
-    const primary = q('#yykBgmPrimaryTitle');
-    const list = q('#yykBgmEvidenceList');
-
-    if(title && !title.textContent.trim()) title.textContent = data.title;
-    if(sub && !sub.textContent.trim()) sub.textContent = data.subtitle;
-    if(primary) primary.textContent = data.primary;
-
-    if(list){
-      list.innerHTML = data.items.map(x => '<li>' + x + '</li>').join('');
-    }
-
-    const panel = primary ? primary.closest('.bgm-panel') : null;
-    if(panel && !panel.querySelector('.bgm-left-summary')){
-      const summary = document.createElement('div');
-      summary.className = 'bgm-left-summary';
-      summary.innerHTML = '<strong>Access Logic</strong>' + data.intro;
-      panel.insertBefore(summary, primary.nextSibling);
-    }
-
-    if(panel){
-      panel.classList.remove('is-empty-warning');
-      panel.setAttribute('data-content-state','filled');
-    }
-  }
-
-  function repairEmptyLeftPanel(){
-    const list = q('#yykBgmEvidenceList');
-    const primary = q('#yykBgmPrimaryTitle');
-
-    const empty = !list || !list.textContent.trim() || list.children.length === 0;
-    if(empty){
-      renderLeftPanel(defaultContent);
-    }
-
-    const panel = primary ? primary.closest('.bgm-panel') : null;
-    if(panel && (!panel.textContent || panel.textContent.trim().length < 40)){
-      panel.classList.add('is-empty-warning');
-      renderLeftPanel(defaultContent);
-    }
-  }
-
-  function bindOpenStateRepair(){
-    const modal = q('#yykBuyerGatekeeperModal');
-    if(!modal || modal.dataset.leftPanelObserver === 'true') return;
-    modal.dataset.leftPanelObserver = 'true';
-
-    const observer = new MutationObserver(function(){
-      if(modal.classList.contains('active')) repairEmptyLeftPanel();
-    });
-    observer.observe(modal, {attributes:true, childList:true, subtree:true});
-  }
-
-  function init(){
-    renderLeftPanel(defaultContent);
-    repairEmptyLeftPanel();
-    bindOpenStateRepair();
-    document.addEventListener('click', function(e){
-      if(e.target && e.target.closest && e.target.closest('[data-bgm-action]')){
-        setTimeout(repairEmptyLeftPanel, 0);
-        setTimeout(repairEmptyLeftPanel, 200);
-      }
-    });
-  }
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', init, {once:true});
-  }else{
-    init();
-  }
-  setTimeout(init,300);
-  setTimeout(init,1200);
-})();
-</script>
+<script id="yyk-buyer-gatekeeper-left-panel-content-fix-script" src="js/modules/head/yyk-buyer-gatekeeper-left-panel-content-fix-script.js"></script>
 <!-- YYK_BUYER_GATEKEEPER_LEFT_PANEL_CONTENT_FIX_END -->
 <!-- YYK_INTELLIGENCE_ORPHAN_FINAL_KILL_START -->
 
-<script id="yyk-intelligence-orphan-final-kill-script">
-(function(){
-  function kill(){
-    var sigs=[
-      'Quantum Materials Roadmap 2035',
-      'Green Transformation of Korean Chaebols',
-      'Failure Modes in Ultra-Pure Supply Chains',
-      'Ultra-Pure Supply Failure Modes',
-      'this hub advocates stricter verification'
-    ];
-    document.querySelectorAll('section,article,div,p,li').forEach(function(el){
-      if(el.closest('#yyk-intelligence-hub-canonical')) return;
-      var txt=el.textContent||'';
-      if(sigs.some(function(s){ return txt.indexOf(s) !== -1; })){
-        el.setAttribute('data-killed','final-knowledge-orphan');
-        el.style.display='none';
-      }
-    });
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',kill,{once:true}); else kill();
-  setTimeout(kill,300);
-  setTimeout(kill,1200);
-})();
-</script>
+<script id="yyk-intelligence-orphan-final-kill-script" src="js/modules/head/yyk-intelligence-orphan-final-kill-script.js"></script>
 <!-- YYK_INTELLIGENCE_ORPHAN_FINAL_KILL_END -->
 <!-- YYK_D27_GUARDIAN_CANONICAL_CSS_START -->
 
