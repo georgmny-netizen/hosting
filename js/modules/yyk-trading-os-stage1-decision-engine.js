@@ -1,0 +1,41 @@
+(function(){
+  "use strict";
+  var materialProfile={
+    cu:{label:"Copper 6N/7N",baseMargin:18,volatility:26,hedge:"LME copper collar + supplier price lock",docs:"CoA + GDMS/ICP-MS impurity table"},
+    al:{label:"Aluminum 6N",baseMargin:14,volatility:18,hedge:"LME aluminum forward band",docs:"CoA + TDS + origin record"},
+    zn:{label:"Zinc 5N5",baseMargin:12,volatility:22,hedge:"LME zinc hedge + powder PSD hold",docs:"CoA + SDS + PSD evidence"},
+    ree:{label:"Rare Earth / controlled",baseMargin:22,volatility:38,hedge:"Back-to-back PO + FX reserve + destination gate",docs:"End-use statement + compliance release + batch CoA"}
+  };
+  var destinationProfile={
+    kr:{label:"KR · Busan/Incheon",days:5,cost:4,risk:10,gate:"PIPA + APAC logistics check"},
+    jp:{label:"JP · Osaka/Yokohama",days:7,cost:6,risk:14,gate:"APPI + METI export-control review"},
+    tw:{label:"TW · Kaohsiung",days:8,cost:7,risk:16,gate:"UBN + Taiwan PDPA + port review"},
+    cn:{label:"CN · Shanghai/Ningbo/Shenzhen",days:10,cost:9,risk:24,gate:"PIPL + entity/end-use screening"},
+    apac:{label:"APAC mixed route",days:9,cost:8,risk:20,gate:"Multi-market compliance routing"}
+  };
+  function q(id){return document.getElementById(id)}
+  function val(id){var el=q(id);return el?String(el.value||el.textContent||"").toLowerCase():""}
+  function material(){var s=val("rfqMaterial")+" "+val("rfqAutoApplication")+" "+val("rfqAutoPurity"); if(/rare|ree|oxide|salt|magnet/.test(s))return"ree"; if(/aluminum|\bal\b/.test(s))return"al"; if(/zinc|\bzn\b/.test(s))return"zn"; return"cu"}
+  function dest(){var s=val("rfqMarket")+" "+val("rfqAutoDestination")+" "+val("sogoRegion")+" "+val("rfqRegion"); if(/china|shanghai|ningbo|shenzhen|\bcn\b/.test(s))return"cn"; if(/taiwan|kaohsiung|\btw\b/.test(s))return"tw"; if(/japan|osaka|yokohama|\bjp\b/.test(s))return"jp"; if(/apac/.test(s))return"apac"; return"kr"}
+  function qtyFactor(){var s=val("rfqQty")+" "+val("rfqAutoVolume"); if(/long|annual|production|ton|t\b/.test(s))return 1.18; if(/pilot/.test(s))return 1.05; if(/sample|qualification/.test(s))return .86; return 1}
+  function docFactor(){var s=val("rfqDocs")+" "+val("rfqAutoQC"); return /customer|advanced|batch|sds|tds/.test(s)?-2:3}
+  function completeness(){var ids=["rfqMaterial","rfqForm","rfqPurity","rfqQty","rfqParticle","rfqApp","rfqMarket","rfqDocs","rfqTerm"]; var done=ids.filter(function(id){var el=q(id);return el&&String(el.value||"").trim()}).length; return Math.round(done/ids.length*100)}
+  function score(){var m=materialProfile[material()],d=destinationProfile[dest()],complete=completeness(); var margin=Math.max(6,Math.round((m.baseMargin*qtyFactor())-d.cost+docFactor())); var risk=Math.min(99,Math.max(1,Math.round(m.volatility*.55+d.risk+((100-complete)*.22)))); var profit=Math.max(0,Math.round(margin*complete/100)); var readiness=complete>=78&&risk<56?"TRADE READY":complete>=55?"REVIEW GATE":"DATA HOLD"; return {m:m,d:d,margin:margin,risk:risk,profit:profit,complete:complete,readiness:readiness};}
+  function ensurePanel(){
+    var anchor=q("rfqPricingModel") || q("rfqComplianceNotice") || q("missingText"); if(!anchor||q("yykTradingOSStage1"))return;
+    var panel=document.createElement("div"); panel.className="trading-os-stage1"; panel.id="yykTradingOSStage1";
+    panel.innerHTML='<div class="trading-os-stage1-head"><div><div class="trading-os-stage1-title">Trading OS · Decision Engine Stage 1</div><div class="trading-os-stage1-n">Catalog → RFQ → compliance → logistics → execution. Injected as an internal logic layer; URL and navigation skeleton unchanged.</div></div><div class="trading-os-stage1-state" id="tosReadiness">DATA HOLD</div></div><div class="trading-os-stage1-grid"><div class="trading-os-stage1-cell"><span class="trading-os-stage1-k">Profitability Lens</span><span class="trading-os-stage1-v" id="tosProfit">0%</span><span class="trading-os-stage1-n" id="tosProfitNote">awaiting RFQ inputs</span></div><div class="trading-os-stage1-cell"><span class="trading-os-stage1-k">Risk Score</span><span class="trading-os-stage1-v" id="tosRisk">0</span><span class="trading-os-stage1-n" id="tosRiskNote">material + destination risk</span></div><div class="trading-os-stage1-cell"><span class="trading-os-stage1-k">Auto Hedge</span><span class="trading-os-stage1-v" id="tosHedge"></span><span class="trading-os-stage1-n">pre-trade exposure control</span></div><div class="trading-os-stage1-cell"><span class="trading-os-stage1-k">Logistics Precalc</span><span class="trading-os-stage1-v" id="tosLogistics"></span><span class="trading-os-stage1-n" id="tosGate">compliance gate</span></div></div><div class="trading-os-stage1-flow"><div class="trading-os-stage1-step"><strong>1 · Catalog</strong><span id="tosFlowCatalog">Product not locked</span></div><div class="trading-os-stage1-step"><strong>2 · RFQ Intake</strong><span id="tosFlowRfq">Completeness pending</span></div><div class="trading-os-stage1-step"><strong>3 · Risk</strong><span id="tosFlowRisk">Risk not scored</span></div><div class="trading-os-stage1-step"><strong>4 · Hedge/Logistics</strong><span id="tosFlowOps">Route not priced</span></div><div class="trading-os-stage1-step"><strong>5 · Execution</strong><span id="tosFlowExec">Approval gate closed</span></div></div><div class="trading-os-stage1-actions"><button class="micro-btn" type="button" id="tosApplyRoute">Apply route to RFQ</button><button class="micro-btn" type="button" id="tosExportSnapshot">Copy decision snapshot</button></div><div class="trading-os-stage1-alert" id="tosAlert">Decision Engine waiting for catalog/RFQ data.</div>';
+    anchor.parentNode.insertBefore(panel, anchor.nextSibling);
+  }
+  function set(id,t){var el=q(id); if(el)el.textContent=t}
+  function render(){ensurePanel(); if(!q("yykTradingOSStage1"))return; var s=score();
+    set("tosReadiness",s.readiness); set("tosProfit",s.profit+"%"); set("tosProfitNote","gross margin lens "+s.margin+"% before final quote"); set("tosRisk",s.risk+" / 100"); set("tosRiskNote",s.risk>=60?"manual approval required":"controlled route acceptable"); set("tosHedge",s.m.hedge); set("tosLogistics",s.d.days+"-"+(s.d.days+3)+" days"); set("tosGate",s.d.gate); set("tosFlowCatalog",s.m.label+" · "+s.m.docs); set("tosFlowRfq",s.complete+"% RFQ completeness"); set("tosFlowRisk",s.risk<45?"Low/medium - proceed":"Elevated - hold for review"); set("tosFlowOps",s.d.label+" · "+s.m.hedge); set("tosFlowExec",s.readiness==="TRADE READY"?"Ready for Architect approval":"Frozen until evidence is complete");
+    set("tosAlert", "Decision: "+s.readiness+". Profitability "+s.profit+"%, risk "+s.risk+"/100, logistics "+s.d.label+" "+s.d.days+"-"+(s.d.days+3)+" days. Required evidence: "+s.m.docs+".");
+    var pricing=q("rfqPricingModel"); if(pricing){pricing.setAttribute("data-profitability-score",String(s.profit)); pricing.setAttribute("data-risk-score",String(s.risk));}
+  }
+  function applyRoute(){var s=score(); var term=q("rfqTerm"), docs=q("rfqDocs"), particle=q("rfqParticle"); if(term&&!term.value)term.value=s.d.risk>18?"CIF":"CPT"; if(docs&&!docs.value)docs.value=s.m.docs.indexOf("SDS")>-1?"CoA + TDS + SDS":"CoA + TDS"; if(particle&&!particle.value&&material()==="zn")particle.value="PSD required before quote lock"; if(window.updateRFQ)window.updateRFQ(); render();}
+  function copySnapshot(){var s=score(); var text="Trading OS Stage 1 Snapshot\nMaterial: "+s.m.label+"\nRoute: "+s.d.label+"\nReadiness: "+s.readiness+"\nProfitability: "+s.profit+"%\nRisk: "+s.risk+"/100\nHedge: "+s.m.hedge+"\nLogistics: "+s.d.days+"-"+(s.d.days+3)+" days\nGate: "+s.d.gate; if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).catch(function(){});} set("tosAlert","Decision snapshot copied for review / approval gate.");}
+  document.addEventListener("input",render,true); document.addEventListener("change",render,true); document.addEventListener("click",function(e){if(e.target&&e.target.id==="tosApplyRoute")applyRoute(); if(e.target&&e.target.id==="tosExportSnapshot")copySnapshot();},true);
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",render); else render();
+  window.YYKTradingOSStage1={render:render,score:score,applyRoute:applyRoute};
+})();

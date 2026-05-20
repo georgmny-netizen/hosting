@@ -1,0 +1,16 @@
+(function(){
+  'use strict';
+  function q(s){return document.querySelector(s)}
+  function qa(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
+  function n(id){var el=q(id);return Number(el&&el.value||0)}
+  function gradePremium(grade){return grade==='7N'?0.60:(grade==='6N'?0.22:0)}
+  function contractPremium(contract){return contract==='fixed6'?0.06:(contract==='fixed3'?0.035:(contract==='reservation'?0.025:0))}
+  function calc(){var index=(q('#pricingIndex')||{}).value||'LME';var grade=(q('#pricingGrade')||{}).value||'6N';var contract=(q('#pricingContract')||{}).value||'spot';var base=n('#pricingBase'),logistics=n('#pricingLogistics'),compliance=n('#pricingCompliance');var premium=base*gradePremium(grade);var hedge=(base+premium)*contractPremium(contract);var price=base+premium+logistics+compliance+hedge;var risk=contract==='spot'?'Medium':(contract==='fixed6'?'Low':'Controlled');if(q('#pricingFinalPrice'))q('#pricingFinalPrice').textContent='$'+price.toFixed(2)+'/kg';if(q('#pricingFormulaBreakdown'))q('#pricingFormulaBreakdown').textContent=index+' index '+base.toFixed(2)+' + purity premium '+premium.toFixed(2)+' + logistics '+logistics.toFixed(2)+' + compliance '+compliance.toFixed(2)+' + protection '+hedge.toFixed(2);if(q('#pricingRisk'))q('#pricingRisk').textContent=risk;window.YYK_PRICING_LAST={index:index,grade:grade,contract:contract,base:base,purityPremium:premium,logistics:logistics,compliance:compliance,hedge:hedge,finalPrice:price,risk:risk};}
+  function setTab(key){qa('[data-pricing-tab]').forEach(function(t){t.classList.toggle('active',t.getAttribute('data-pricing-tab')===key)});qa('[data-pricing-panel]').forEach(function(p){p.classList.toggle('active',p.getAttribute('data-pricing-panel')===key)});}
+  function close(){var el=q('#pricingEngine');if(el){el.classList.remove('active');el.setAttribute('aria-hidden','true')}document.body.classList.remove('apex-modal-open');}
+  function downloadMemo(){calc();var p=window.YYK_PRICING_LAST||{};var html=`<!doctype html><html><head><meta charset="utf-8"><title>Pricing Memo</title>
+
+
+
+
+</head><body><h1>YONGYEOKYO Pricing & Analytics Memo</h1><div class="price">${(p.finalPrice||0).toFixed(2)}/kg</div><p><b>Formula:</b> Index Price + Purity Premium + Logistics & Compliance Cost + Contract Protection Premium.</p><table><tr><th>Input</th><th>Value</th></tr><tr><td>Index</td><td>${p.index}</td></tr><tr><td>Base</td><td>${(p.base||0).toFixed(2)}</td></tr><tr><td>Grade</td><td>${p.grade}</td></tr><tr><td>Purity premium</td><td>${(p.purityPremium||0).toFixed(2)}</td></tr><tr><td>Logistics</td><td>${(p.logistics||0).toFixed(2)}</td></tr><tr><td>Compliance</td><td>${(p.compliance||0).toFixed(2)}</td></tr><tr><td>Contract protection</td><td>${(p.hedge||0).toFixed(2)}</td></tr><tr><td>Risk</td><td>${p.risk}</td></tr></table>`;var blob=new Blob([html],{type:'text/html'});var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download='YONGYEOKYO_Pricing_Analytics_Memo.html';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);} q('#pricingDownload').addEventListener('click',downloadMemo);})();
