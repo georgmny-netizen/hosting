@@ -1,0 +1,153 @@
+/* YONGYEOKYO Directive 25 APAC Interdependency CSS START */
+#directive25-apac-interdependency{
+  position:relative;
+  z-index:4;
+}
+#directive25-apac-interdependency .d25-shell{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.050),rgba(255,255,255,.018));
+  padding:22px;
+}
+#directive25-apac-interdependency .d25-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:14px;
+  align-items:stretch;
+}
+#directive25-apac-interdependency .d25-card{
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.18);
+  padding:18px;
+}
+#directive25-apac-interdependency .d25-matrix{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin-top:14px;
+}
+#directive25-apac-interdependency .d25-tile{
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.025);
+  padding:12px;
+  color:#E5E8EC;
+  font-size:12px;
+  line-height:1.45;
+}
+#directive25-apac-interdependency .d25-tile strong{
+  display:block;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+#directive25-apac-interdependency .d25-badge{
+  display:inline-flex;
+  border:1px solid rgba(201,162,39,.62);
+  background:rgba(201,162,39,.10);
+  color:#d4b85c;
+  padding:6px 10px;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-top:12px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+#directive25-apac-interdependency .d25-alert{
+  border-left:3px solid var(--gold);
+  background:rgba(201,162,39,.08);
+  padding:14px 16px;
+  color:#fff;
+  font-size:15px;
+  line-height:1.55;
+  margin-top:14px;
+}
+#directive25-apac-interdependency .d25-native-toggle{
+  margin-top:14px;
+}
+#directive25-apac-interdependency summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  border:1px solid rgba(201,162,39,.68);
+  background:rgba(201,162,39,.12);
+  color:#fff;
+  padding:13px 15px;
+  cursor:pointer;
+  user-select:none;
+  list-style:none;
+  pointer-events:auto !important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-size:12px;
+}
+#directive25-apac-interdependency summary::-webkit-details-marker{display:none}
+#directive25-apac-interdependency summary:after{
+  content:"OPEN";
+  color:var(--gold);
+  font-size:10px;
+}
+#directive25-apac-interdependency details[open] summary:after{content:"CLOSE"}
+#directive25-apac-interdependency .d25-panel{
+  border:1px solid var(--line);
+  border-top:0;
+  background:rgba(0,0,0,.22);
+  padding:16px;
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
+}
+#directive25-apac-interdependency .d25-table-wrap{
+  margin-top:14px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-gutter:stable;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.14);
+  max-width:100%;
+}
+#directive25-apac-interdependency table{
+  width:max-content;
+  min-width:920px;
+  max-width:none;
+  table-layout:auto;
+}
+#directive25-apac-interdependency th,
+#directive25-apac-interdependency td{
+  white-space:normal;
+  overflow-wrap:anywhere;
+}
+#directive25-apac-interdependency .d25-index{
+  margin-top:14px;
+  border:1px solid rgba(201,162,39,.62);
+  background:rgba(201,162,39,.08);
+  padding:16px;
+}
+#directive25-apac-interdependency .d25-index-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:10px;
+}
+#directive25-apac-interdependency .d25-index-score{
+  color:#fff;
+  font-size:34px;
+  line-height:1;
+  letter-spacing:-.04em;
+}
+#directive25-apac-interdependency .d25-bar{
+  height:10px;
+  background:rgba(255,255,255,.08);
+  overflow:hidden;
+}
+#directive25-apac-interdependency .d25-bar span{
+  display:block;
+  height:100%;
+  width:92%;
+  background:var(--gold);
+  transition:width .35s ease;
+}

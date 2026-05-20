@@ -1,0 +1,97 @@
+/* YONGYEOKYO D25 Overflow Stabilizer START */
+#directive25-apac-interdependency,
+#directive25-enhanced-matrix,
+#directive25-apac-interdependency *,
+#directive25-enhanced-matrix *{
+  box-sizing:border-box;
+  max-width:100%;
+}
+
+#directive25-apac-interdependency .wrap,
+#directive25-enhanced-matrix .wrap,
+#directive25-apac-interdependency .d25-shell,
+#directive25-enhanced-matrix .d25e-shell,
+#directive25-apac-interdependency .d25-grid,
+#directive25-enhanced-matrix .d25e-grid,
+#directive25-apac-interdependency .d25-card,
+#directive25-enhanced-matrix .d25e-card,
+#directive25-apac-interdependency .d25-panel,
+#directive25-enhanced-matrix .d25e-panel{
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
+}
+
+#directive25-apac-interdependency .d25-grid,
+#directive25-enhanced-matrix .d25e-grid{
+  align-items:start;
+}
+
+#directive25-apac-interdependency .d25-table-wrap,
+#directive25-enhanced-matrix .d25e-table-wrap{
+  width:100%;
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-gutter:stable;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.12);
+}
+
+#directive25-apac-interdependency .d25-table-wrap table,
+#directive25-enhanced-matrix .d25e-table-wrap table{
+  width:100%;
+  min-width:0 !important;
+  max-width:none;
+  table-layout:fixed;
+  border-collapse:collapse;
+}
+
+#directive25-apac-interdependency th,
+#directive25-apac-interdependency td,
+#directive25-enhanced-matrix th,
+#directive25-enhanced-matrix td{
+  white-space:normal;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+  vertical-align:top;
+}
+
+#directive25-enhanced-matrix .d25e-radar,
+#directive25-enhanced-matrix .d25e-radar-core{
+  max-width:100%;
+  overflow:hidden;
+}
+
+#directive25-enhanced-matrix .d25e-radar-core{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+@media(max-width:1100px){
+  #directive25-apac-interdependency .d25-grid,
+  #directive25-enhanced-matrix .d25e-grid{
+    /* grid-template-columns not needed for flex layout */
+  }
+}
+
+@media(max-width:760px){
+  #directive25-apac-interdependency .d25-shell,
+  #directive25-enhanced-matrix .d25e-shell{
+    padding:14px;
+  }
+
+  #directive25-apac-interdependency .d25-panel,
+  #directive25-enhanced-matrix .d25e-card{
+    padding:12px;
+  }
+
+  #directive25-enhanced-matrix .d25e-radar-core{
+    width:200px !important;
+    height:200px !important;
+  }
+}
+/* YONGYEOKYO D25 Overflow Stabilizer END */
+
+

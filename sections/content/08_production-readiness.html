@@ -1,0 +1,1044 @@
+<!-- YK-D27-PRODUCTION-READINESS-START -->
+
+<!-- YYK-BATCH-TRUST-FLOW-GATE: Product Passport -> CoA / ISO 17025 evidence -> Batch Verification -> Smart RFQ. No RFQ final gate without verified batch evidence or manual compliance override. -->
+<section class="section" id="batch">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t860">Batch Verification · Trust Flow Gate</div>
+<h2 data-i18n="auto.t861">Product Passport and CoA ID check for controlled trust flow.</h2>
+</div>
+<div class="hint" data-i18n="auto.t862">Placed after Product Passport and ISO 17025 testing, before RFQ execution. Demo logic for platform UX; real deployment can connect this module to an internal batch database.</div>
+</div>
+<div class="batch-grid">
+<div class="panel">
+<div class="field">
+<label class="field-label" data-i18n="auto.t863" for="batchId">Batch / CoA ID</label>
+<input autocomplete="off" class="input" id="batchId" placeholder="COA-CU6N-2024-001" value="COA-CU6N-2024-001"/>
+</div>
+<button class="micro-btn" data-i18n="auto.t864" onclick="verifyBatch()" type="button">Verify Batch</button>
+<div class="passport-inline-note"><strong data-i18n="auto.t865">SEQUENCE RULE:</strong><br/><span data-i18n="auto.t866">Passport → CoA / ISO 17025 evidence → Batch Verification → Smart RFQ. RFQ cannot pass final gate without verified batch evidence or manual compliance override.</span></div>
+</div>
+<div class="table-panel batch-result" id="batchResult">
+<table>
+<thead><tr><th data-i18n="auto.t867">Field</th><th data-i18n="auto.t868">Status</th></tr></thead>
+<tbody id="batchRows"></tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<!-- YYK-BATCH-BACKEND-RFQ-LOCK:START -->
+
+<section class="section" id="batch-backend-rfq-lock">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t870">Batch Backend · Internal Database + RFQ-Lock</div>
+<h2 data-i18n="auto.t871">Batch Verification is now a controlled backend gate before RFQ execution.</h2>
+</div>
+<div class="hint" data-i18n="auto.t872">Placed immediately after Batch Verification and before Production Readiness / Executive Decision Layer. This is a frontend-ready API contract: real deployment must bind it to the internal batch database, KYC service and sanctions orchestration.</div>
+</div>
+<div class="batch-backend-grid">
+<div class="batch-backend-card">
+<h3 data-i18n="auto.t873">Internal Batch Database Connector</h3>
+<div class="card-text" data-i18n="auto.t874">The Batch / CoA ID is treated as a database key, not a visual-only field. The RFQ path must remain locked until the batch record, CoA identity, ISO 17025 lab evidence and material passport match.</div>
+<div class="batch-api-contract"><span data-i18n="auto.t875">
+          GET /api/internal/batches/{coa_id}</span><br/><span data-i18n="auto.t876">
+          POST /api/rfq/lock</span><br/><span data-i18n="auto.t877">
+          Required response keys: batch_verified, coa_match, material_match, iso17025_lab_id, ppb_tolerance, kyc_status, sanctions_status, bonded_route_confirmed.
+        </span></div>
+<div class="batch-lock-state" data-i18n="auto.t878" id="batchBackendLockState">RFQ LOCKED · BACKEND BINDING REQUIRED</div>
+</div>
+<div class="table-panel">
+<table>
+<thead><tr><th data-i18n="auto.t879">Control</th><th data-i18n="auto.t880">Backend Gate</th><th data-i18n="auto.t881">RFQ Effect</th></tr></thead>
+<tbody id="batchBackendRows">
+<tr><td data-i18n="auto.t882">Batch / CoA ID</td><td data-i18n="auto.t883">Must resolve in internal batch database.</td><td class="warn" data-i18n="auto.t884">LOCKED until verified</td></tr>
+<tr><td data-i18n="auto.t885">CoA + ISO 17025</td><td data-i18n="auto.t886">Lab method ID and calibration ID required.</td><td class="warn" data-i18n="auto.t887">No quote release without evidence</td></tr>
+<tr><td data-i18n="auto.t888">KYC / Sanctions</td><td data-i18n="auto.t889">Counterparty must pass KYC and OFAC / METI / KOSTI screening.</td><td class="warn" data-i18n="auto.t890">Unauthorized RFQ path blocked</td></tr>
+<tr><td data-i18n="auto.t891">Manual Override</td><td data-i18n="auto.t892">Compliance officer override allowed only with audit note.</td><td class="ok" data-i18n="auto.t893">CONDITIONAL path only</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="batch-gate-grid">
+<div class="batch-gate-item"><strong data-i18n="auto.t894">LOCKED</strong><span data-i18n="auto.t895">Batch missing, CoA mismatch, missing ISO 17025 lab ID, failed KYC or failed sanctions check.</span></div>
+<div class="batch-gate-item"><strong data-i18n="auto.t896">CONDITIONAL</strong><span data-i18n="auto.t897">Batch exists but requires compliance note, manual override, route confirmation or calibration attachment.</span></div>
+<div class="batch-gate-item"><strong data-i18n="auto.t898">RELEASED</strong><span data-i18n="auto.t899">Batch verified, CoA/passport match, ISO 17025 evidence attached, KYC and sanctions pass, bonded route confirmed.</span></div>
+</div>
+</div>
+</section>
+<!-- YYK-BATCH-BACKEND-RFQ-LOCK:END -->
+<section class="section" id="production-readiness-control">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t901">Production Readiness · Consolidated Tier-1 Backlog</div>
+<h2 data-i18n="auto.t902">Data Room, backend locks and batch intelligence consolidated into one launch-control layer.</h2>
+</div>
+<div class="hint" data-i18n="auto.t903">This block replaces repeated recommendation notes. It must sit after Batch Verification and before technical specifications / Smart RFQ so evidence, identity and risk gates are resolved before quotation routing.</div>
+</div>
+<div class="production-readiness-grid">
+<div class="readiness-card">
+<h3 data-i18n="auto.t904">Evidence Data Room Gate</h3>
+<div class="card-text" data-i18n="auto.t905">Controlled file vault for CoA, TDS, SDS, ISO 17025 laboratory reports and banking arbitration evidence. Public UX may show status only; document retrieval remains role-based.</div>
+<div class="readiness-stack">
+<div class="readiness-row"><span data-i18n="auto.t906">CoA / Batch</span><span data-i18n="auto.t907">Batch-specific certificate must match Product Passport and RFQ material identity.</span><b class="readiness-status lock" data-i18n="auto.t908">LOCK</b></div>
+<div class="readiness-row"><span data-i18n="auto.t909">TDS / SDS</span><span data-i18n="auto.t910">Technical and safety data sheets required before industrial buyer release.</span><b class="readiness-status lock" data-i18n="auto.t911">LOCK</b></div>
+<div class="readiness-row"><span data-i18n="auto.t912">ISO 17025</span><span data-i18n="auto.t913">Accredited laboratory evidence required for GDMS / ICP-MS / impurity claims.</span><b class="readiness-status lock" data-i18n="auto.t914">LOCK</b></div>
+<div class="readiness-row"><span data-i18n="auto.t915">Banking Arbitration</span><span data-i18n="auto.t916">Audit evidence for payment dispute route and non-court escalation path.</span><b class="readiness-status lock" data-i18n="auto.t917">LOCK</b></div>
+</div>
+</div>
+<div class="readiness-card">
+<h3 data-i18n="auto.t918">Backend/API Final Gate</h3>
+<div class="readiness-formula"><strong data-i18n="auto.t919">RFQ PASS CONDITION</strong><span data-i18n="auto.t920">ppb_tolerance + KYC + Sanctions Screening + Verified Batch ID + Data Room Evidence = RFQ Eligible</span></div>
+<div class="readiness-stack">
+<div class="readiness-row"><span data-i18n="auto.t921">KYC-lock</span><span data-i18n="auto.t922">Unauthorized counterparties cannot reach price lock, contract draft or shipment routing.</span><b class="readiness-status block" data-i18n="auto.t923">BLOCK</b></div>
+<div class="readiness-row"><span data-i18n="auto.t924">Sanctions</span><span data-i18n="auto.t925">Screening must run before final RFQ decision; front-end display is not sufficient for production.</span><b class="readiness-status block" data-i18n="auto.t926">BLOCK</b></div>
+<div class="readiness-row"><span data-i18n="auto.t927">ppb tolerance</span><span data-i18n="auto.t928">Engineering tolerance remains a required hidden/inline RFQ field and must not render as an orphan card.</span><b class="readiness-status lock" data-i18n="auto.t929">LOCK</b></div>
+<div class="readiness-row"><span data-i18n="auto.t930">Batch DB</span><span data-i18n="auto.t931">Connect Batch Verification to internal database for CoA ID, material, origin, lab method and expiry status.</span><b class="readiness-status" data-i18n="auto.t932">API</b></div>
+<div class="readiness-row"><span data-i18n="auto.t933">RFQ-lock</span><span data-i18n="auto.t934">Backend must reject RFQ completion unless every control above returns pass or manual compliance override.</span><b class="readiness-status block" data-i18n="auto.t935">BLOCK</b></div>
+</div>
+</div>
+</div>
+<div class="passport-inline-note"><strong data-i18n="auto.t936">ANTI-DUPLICATION RULE:</strong><br/><span data-i18n="auto.t937">All repeated recommendations are consolidated here as a single production-readiness control layer. Do not create separate recommendation cards for Data Room, KYC-lock, sanctions, ppb tolerance, batch database or RFQ-lock.</span></div>
+</div>
+</section>
+<!-- YK-D27-PRODUCTION-READINESS-END -->
+<section class="section" id="yongyeokyo-technical-specifications"><div class="wrap"><div class="section-head"><div><div class="eyebrow" data-i18n="auto.t939">YONGYEOKYO Technical Data Loaded from </div><h2 data-i18n="auto.t940">Product specification and claim-control matrix.</h2></div><div class="hint" data-i18n="auto.t941">This section preserves the YONGYEOKYO RFQ auto-decision structure while loading YONGYEOKYO material identity, legal constraints, APAC routes and evidence logic.</div></div><div class="table-panel"><table><thead><tr><th data-i18n="auto.t942">Material</th><th data-i18n="auto.t943">Identity</th><th data-i18n="auto.t944">Purity / Form</th><th data-i18n="auto.t945">Control Method</th><th data-i18n="auto.t946">RFQ / Commercial Scope</th></tr></thead><tbody><tr><td data-i18n="auto.t947">Copper · Cu</td><td data-i18n="auto.t948">CAS 7440-50-8 · Internal Ref KE-08896</td><td data-i18n="auto.t949">Up to 99.99999% (7N) when supported by released batch CoA · ingot / bar / ultrafine powder</td><td data-i18n="auto.t950">GDMS · ICP-MS / ICP-OES · SSMS · O/H/N · SEM / laser diffraction for powder</td><td data-i18n="auto.t951">Semiconductor-adjacent conductive route, thin-film / vacuum / precision electronics; CoA and impurity table required before price lock.</td></tr><tr><td data-i18n="auto.t952">Aluminum · Al</td><td data-i18n="auto.t953">CAS 7429-90-5</td><td data-i18n="auto.t954">99.996%-99.9999% subject to supplier and CoA scope · ingot route; public powder scope excluded</td><td data-i18n="auto.t955">GDMS · ICP-MS · O/H/N gas analysis where required</td><td data-i18n="auto.t956">Thin-film, sputtering, electronics and specialty alloy input; impurity limits by RFQ.</td></tr><tr><td data-i18n="auto.t957">Zinc · Zn</td><td data-i18n="auto.t958">CAS 7440-66-6</td><td data-i18n="auto.t959">Up to 99.9995% (5N5) · powder / formulations / coatings / material processing</td><td data-i18n="auto.t960">GDMS · ICP-MS · PSD · morphology review</td><td data-i18n="auto.t961">Batteries, corrosion control, precision chemistry and hydrogen-related material processing; ingot/granule public block excluded.</td></tr><tr><td data-i18n="auto.t962">Rare Earth Materials · REE</td><td data-i18n="auto.t963">RFQ-defined origin and composition</td><td data-i18n="auto.t964">Custom grades · metals / oxides / salts / alloys</td><td data-i18n="auto.t965">ICP-MS / ICP-OES · GDMS when applicable · origin / export-control review</td><td data-i18n="auto.t966">Magnets, optics, catalysts, advanced ceramics, energy and semiconductor-adjacent applications; controlled release only.</td></tr></tbody></table></div><div class="result-box"><div class="result-main" data-i18n="auto.t967">Claim Rule</div><div class="result-sub" data-i18n="auto.t968">No public claim without value, method, document and limitation. CAS identifies chemistry; specification, impurity profile, analytical route and contract scope define quotation validity.</div></div></div></section>
+<section class="section" id="rfq"><div class="wrap"><div class="section-head"><div><div class="eyebrow" data-i18n="auto.t969">Request a Quote</div><h2 data-i18n="auto.t970">Structured RFQ input for specification-driven quotation.</h2></div><div class="hint" data-i18n="auto.t971">Select material, purity, form, documentation scope and commercial terms. CAS identifies chemistry; specification and impurity profile define the quotation scope.</div></div>
+<div class="yyk-execution-engine" id="deal-execution-engine">
+<div class="yyk-execution-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t972">DEAL EXECUTION ENGINE</div>
+<h3 data-i18n="auto.t973">Smart RFQ → Control Gates → Deal Room</h3>
+<p class="result-sub" data-i18n="auto.t974">The RFQ is treated as an execution workflow: material scope, bonded route, evidence pack, compliance gate and commercial owner are resolved before quotation release.</p>
+</div>
+<div class="yyk-execution-live"><span data-i18n="auto.t975">EXECUTION READY </span><b>●</b></div>
+</div>
+<div class="yyk-execution-grid">
+<div class="yyk-execution-step"><span>01</span><strong data-i18n="auto.t976">Material Scope</strong><small data-i18n="auto.t977">Cu / Al / Zn / REE, form factor, purity and buyer application.</small></div>
+<div class="yyk-execution-step"><span>02</span><strong data-i18n="auto.t978">Bonded Route</strong><small data-i18n="auto.t979">Kuantan ECER origin, Busan/Incheon bonded hub, destination port and Incoterms path.</small></div>
+<div class="yyk-execution-step"><span>03</span><strong data-i18n="auto.t980">Evidence Pack</strong><small data-i18n="auto.t981">CoA, ISO 17025 accredited lab route, GDMS / ICP-MS, ppb tolerance window, SDS / TDS and batch traceability documents.</small></div>
+<div class="yyk-execution-step"><span>04</span><strong data-i18n="auto.t982">Release Gate</strong><small data-i18n="auto.t983">SCSP, EUC, sanctions, export-control and final YONGYEOKYO authorization.</small></div>
+</div>
+</div>
+<h3 data-i18n="auto.t984" id="yykAiKnowledgeTitle">Recommended intelligence: Foundry Qualification Pack</h3>
+<p data-i18n="auto.t985" id="yykAiKnowledgeSummary">Based on the current RFQ context, the buyer should review GDMS evidence, SPC release discipline, CoA method ID and foundry end-use mapping before quote release.</p>
+</div>
+<div class="yyk-ai-rec-card"><strong data-i18n="auto.t986">RFQ action</strong><span data-i18n="auto.t987">Attach CoA method ID, lab calibration ID and buyer foundry spec mapping.</span></div>
+<div class="result-box" id="rfqEntryMode" style="margin-bottom:14px">
+<div class="result-main" data-i18n="auto.t988">RFQ Entry</div>
+<div class="result-sub" data-i18n="auto.t989">Router Mode - structured sourcing workflow. Manual Product Mode - for expert buyers with defined specifications.</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+<button class="micro-btn active" data-i18n="auto.t990" data-rfq-mode="router" onclick="console.log('Button activated');" type="button">Router Mode</button>
+<button class="micro-btn" data-i18n="auto.t991" data-rfq-mode="manual" onclick="console.log('Button activated');" type="button">Manual Product Mode</button>
+</div>
+</div>
+<div class="table-panel" id="structuredRfqRouter" style="margin-bottom:14px">
+<table>
+<tbody>
+<tr><td data-i18n="auto.t992">Application</td><td><select class="select rfq-auto-field" id="rfqAutoApplication"><option data-i18n="auto.t993">Semiconductor</option><option data-i18n="auto.t994">Aerospace</option><option data-i18n="auto.t995">Industrial Processing</option><option data-i18n="auto.t996">Clean Energy</option><option data-i18n="auto.t997">EV / Magnets</option><option data-i18n="auto.t998">Research</option></select></td></tr>
+<tr><td data-i18n="auto.t999">Purity Priority</td><td><select class="select rfq-auto-field" id="rfqAutoPurity"><option data-i18n="auto.t1000">Ultra-high purity</option><option data-i18n="auto.t1001">Industrial purity</option><option data-i18n="auto.t1002">Controlled REE</option><option data-i18n="auto.t1003">Custom</option></select></td></tr>
+<tr><td data-i18n="auto.t1004">Form Factor</td><td><select class="select rfq-auto-field" id="rfqAutoForm"><option data-i18n="auto.t1005">Ingot</option><option data-i18n="auto.t1006">Powder</option><option data-i18n="auto.t1007">Rod</option><option data-i18n="auto.t1008">Sputtering Target</option><option data-i18n="auto.t1009">Oxide / Salt</option></select></td></tr>
+<tr><td data-i18n="auto.t1010">Destination</td><td><select class="select rfq-auto-field" id="rfqAutoDestination"><option data-i18n="auto.t1011">South Korea</option><option data-i18n="auto.t1012">Japan</option><option data-i18n="auto.t1013">Taiwan</option><option data-i18n="auto.t1014">China</option><option data-i18n="auto.t1015">Japan / Taiwan / China</option><option data-i18n="auto.t1016">APAC</option></select></td></tr>
+<tr><td data-i18n="auto.t1017">Volume Tier</td><td><select class="select rfq-auto-field" id="rfqAutoVolume"><option data-i18n="auto.t1018">Sample / qualification lot</option><option data-i18n="auto.t1019">Pilot lot</option><option data-i18n="auto.t1020">Production volume</option><option data-i18n="auto.t1021">Long-term supply</option></select></td></tr>
+<tr><td data-i18n="auto.t1022">Engineering Tolerance</td><td><input class="input rfq-auto-field" id="rfqAutoPpbTolerance" placeholder="ppb tolerance / max impurity window"/></td></tr>
+<tr><td data-i18n="auto.t1023">QC Requirement</td><td><select class="select rfq-auto-field" id="rfqAutoQC"><option data-i18n="auto.t1024">Standard QC</option><option data-i18n="auto.t1025">Advanced analytical route</option><option data-i18n="auto.t1026">Batch-specific CoA</option><option data-i18n="auto.t1027">Customer-specific testing</option></select></td></tr>
+</tbody>
+</table>
+</div>
+<div class="passport-inline-note"><strong data-i18n="auto.t1028">PRIMARY LOGISTICS ROUTE:</strong><br/><span data-i18n="auto.t1029">Primary route Malaysia ECER / Kuantan Bonded Warehouse → Busan / Incheon Regional Hub → Yokohama / Niigata / Shanghai / Hong Kong / Qingdao / Tianjin · Bonded Warehouse Status: ACTIVE · Shipment Mode: 24-48h after document clearance.</span></div><div class="result-box" id="rfqAutoDecision">
+<div class="result-main" data-i18n="auto.t1030">Routing Output</div>
+<div class="result-sub" data-i18n="auto.t1031" id="rfqAutoSummary">Recommended Product · Route · QC Logic · Risk Logic · Pricing Lens</div>
+<div class="table-panel" style="margin-top:12px">
+<table>
+<tbody>
+<tr><td data-i18n="auto.t1032">Recommended Product</td><td id="autoProduct">-</td></tr>
+<tr><td data-i18n="auto.t1033">Recommended Route</td><td id="autoRoute">-</td></tr>
+<tr><td data-i18n="auto.t1034">QC Logic</td><td id="autoQCLogic">-</td></tr>
+<tr><td data-i18n="auto.t1035">Risk Logic</td><td id="autoRisk">-</td></tr>
+<tr><td data-i18n="auto.t1036">Pricing Lens</td><td id="autoPricing">-</td></tr>
+<tr><td data-i18n="auto.t1037">Commercial Owner</td><td id="autoOwner">-</td></tr>
+</tbody>
+</table>
+</div>
+<div class="risk-engine-box" id="rfqRiskEngine">
+<div class="risk-engine-head">
+<div>
+<div class="risk-engine-title" data-i18n="auto.t1038">Risk Elimination Matrix</div>
+<div class="result-sub" data-i18n="auto.t1039" style="margin-top:5px">Auto-linked to selected material, destination and QC route.</div>
+</div>
+<div class="risk-engine-context" id="riskEngineContext"><span class="risk-status-pill" data-i18n="auto.t1040">Awaiting RFQ input</span></div>
+</div>
+<div class="table-panel" style="border:0;background:transparent">
+<table class="risk-matrix-table">
+<thead><tr><th data-i18n="auto.t1041">Risk</th><th data-i18n="auto.t1042">Control Method</th><th data-i18n="auto.t1043">Evidence Required</th><th data-i18n="auto.t1044">Status</th></tr></thead>
+<tbody id="riskMatrixBody">
+<tr><td data-i18n="auto.t1045">Impurity drift</td><td class="risk-control" data-i18n="auto.t1046">Select material to resolve control route</td><td class="risk-evidence" data-i18n="auto.t1047">Batch CoA / analytical method pending</td><td data-i18n="auto.t1048">Pending</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="esg-decision-box" id="rfqEsgDecisionEngine">
+<div class="esg-decision-head">
+<div>
+<div class="esg-decision-title" data-i18n="auto.t1049">ESG &amp; Responsible Sourcing Decision Layer</div>
+<div class="result-sub" data-i18n="auto.t1050" style="margin-top:5px">Auto-linked to material form, destination and documentation scope. ESG is treated as supplier-review evidence, not a separate marketing page.</div>
+<div class="esg-decision-actions">
+<button class="micro-btn" data-i18n="auto.t1051" id="openEsgPolicyDirect" onclick="console.log('Button activated');" type="button">Open Controlled ESG Policy</button>
+<button class="micro-btn" data-i18n="auto.t1052" data-open-compliance="ethics" onclick="console.log('Button activated');" type="button">Open Ethics / Hotline Layer</button>
+</div>
+</div>
+<div class="esg-decision-context" id="esgDecisionContext"><span class="risk-status-pill" data-i18n="auto.t1053">Awaiting RFQ input</span></div>
+</div>
+<div class="table-panel">
+<table class="risk-matrix-table">
+<thead><tr><th data-i18n="auto.t1054">ESG / Sustainability Check</th><th data-i18n="auto.t1055">Control Method</th><th data-i18n="auto.t1056">Evidence Required</th><th data-i18n="auto.t1057">Decision Status</th></tr></thead>
+<tbody id="esgDecisionBody">
+<tr><td data-i18n="auto.t1058">Responsible sourcing</td><td class="esg-control" data-i18n="auto.t1059">Select RFQ material to resolve supplier-review scope</td><td class="esg-evidence" data-i18n="auto.t1060">Supplier disclosure / CoA / SDS pending</td><td data-i18n="auto.t1061">Pending</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<button class="micro-btn" data-i18n="auto.t1062" id="applyAutoDecision" onclick="console.log('Button activated');" style="margin-top:12px" type="button">Apply to RFQ</button>
+</div>
+<div class="rfq-layout"><div class="rfq-card"><div class="grid2"><div class="field"><label class="field-label" data-i18n="auto.t1063">Material</label><select class="select rfq-field" id="rfqMaterial"><option></option><option data-i18n="auto.t1064">Copper Cu · CAS 7440-50-8 · KE-08896 · Up to 99.99999% (7N)</option><option data-i18n="auto.t1065">Aluminum Al · CAS 7429-90-5 · High-purity ingot route</option><option data-i18n="auto.t1066">Zinc Zn · CAS 7440-66-6 · Up to 99.9995% (5N5)</option><option data-i18n="auto.t1067">Rare Earth Materials · REE</option></select></div><div class="field"><label class="field-label" data-i18n="auto.t1068">Form</label><select class="select rfq-field" id="rfqForm"><option></option><option data-i18n="auto.t1069">Ingots</option><option data-i18n="auto.t1070">Bars</option><option data-i18n="auto.t1071">Powder</option><option data-i18n="auto.t1072">Sputtering Targets</option><option data-i18n="auto.t1073">Oxide / Salt</option></select></div><div class="field"><label class="field-label" data-i18n="auto.t1074">Purity / Grade</label><input class="input rfq-field" id="rfqPurity" placeholder="6N / 99.9999%"/></div><div class="field"><label class="field-label" data-i18n="auto.t1075">Quantity</label><input class="input rfq-field" id="rfqQty" placeholder="kg / ton / annual volume"/></div><div class="field"><label class="field-label" data-i18n="auto.t1076">Particle Size</label><input class="input rfq-field" id="rfqParticle" placeholder="5-10 µm / 15-30 µm"/></div><div class="field"><label class="field-label" data-i18n="auto.t1077">Engineering Tolerance (ppb)</label><input class="input rfq-field" id="rfqPpbTolerance" placeholder="Fe &lt; 8 ppb / U-Th &lt; 0.05 ppb / custom tolerance"/></div><div class="field"><label class="field-label" data-i18n="auto.t1078">Application</label><input class="input rfq-field" id="rfqApp" placeholder="Semiconductor / Aerospace / EV"/></div><div class="field"><label class="field-label" data-i18n="auto.t1079">Destination Port / Market</label><select class="select rfq-field" id="rfqMarket"><option></option><option data-i18n="auto.t1080">South Korea · Busan / Incheon</option><option data-i18n="auto.t1081">Japan · Yokohama / Niigata</option><option data-i18n="auto.t1082">Taiwan · Kaohsiung</option><option data-i18n="auto.t1083">China / Hong Kong · Shanghai / Hong Kong / Qingdao / Tianjin</option></select></div><div class="field"><label class="field-label" data-i18n="auto.t1084">Documentation</label><select class="select rfq-field" id="rfqDocs"><option></option><option data-i18n="auto.t1085">CoA</option><option data-i18n="auto.t1086">CoA + TDS</option><option data-i18n="auto.t1087">CoA + TDS + SDS</option></select></div><div class="field"><label class="field-label" data-i18n="auto.t1088">Incoterms</label><select class="select rfq-field" id="rfqTerm"><option></option><option data-i18n="auto.t1089">EXW</option><option data-i18n="auto.t1090">FOB</option><option data-i18n="auto.t1091">CPT</option><option data-i18n="auto.t1092">CIF</option><option data-i18n="auto.t1093">DAP</option></select></div></div></div><div class="rfq-card"><h3 data-i18n="auto.t1094">RFQ Status Engine</h3><div class="bar"><div class="bar-fill" id="scoreBar"></div></div><div class="missing" data-i18n="auto.t1095" id="scoreText">Completeness: 0%</div><div class="missing" data-i18n="auto.t1096" id="missingText">Missing RFQ inputs.</div>
+<div class="result-box" id="apacLiveCalculator" style="margin-top:12px">
+<div class="result-main" data-i18n="auto.t1097">APAC Live Calculator</div>
+<div class="result-sub" data-i18n="auto.t1098" id="apacCalcSummary">Select Material and Destination to resolve RCEP benefit, technical standard, documentation and logistics.</div>
+<div class="kv" style="margin-top:12px">
+<div class="kv-row"><span data-i18n="auto.t1099">RCEP Benefit</span><span data-i18n="auto.t1100" id="apacCalcRcep">Pending material / destination</span></div>
+<div class="kv-row"><span data-i18n="auto.t1101">Technical Standard</span><span data-i18n="auto.t1102" id="apacCalcStandard">Pending</span></div>
+<div class="kv-row"><span data-i18n="auto.t1103">Required Documents</span><span data-i18n="auto.t1104" id="apacCalcDocs">Pending</span></div>
+<div class="kv-row"><span data-i18n="auto.t1105">Logistics Status</span><span data-i18n="auto.t1106" id="apacCalcLogistics">Malaysia → South Korea QC Hub → Destination</span></div>
+<div class="kv-row"><span data-i18n="auto.t1107">Legal Landing</span><span><a href="#contact"><strong class="yyk-kim-verified" data-i18n="auto.t1108">Representative Director / CEO Kim Irina</strong><span data-i18n="auto.t1109"> · Business Reg No 877-88-03332</span></a></span></div>
+</div>
+</div>
+<div class="result-box" id="rfqPricingModel">
+<div class="result-sub" data-i18n="auto.t1110">
+    Pricing Model: LME reference price + purification premium + form factor premium + packaging + documentation + logistics / Incoterms.
+  </div>
+</div>
+<div class="result-box" id="rfqComplianceNotice">
+<div class="result-sub" data-i18n="auto.t1111">
+    All requests are subject to technical validation, specification alignment and compliance review. Rare earth, isotopically enriched and ultra-high purity materials may require additional documentation before release.
+  </div>
+<label style="display:flex;gap:10px;align-items:flex-start;margin-top:12px;color:var(--muted);font-size:13px;line-height:1.45">
+<input id="rfqComplianceCheck" style="margin-top:2px" type="checkbox"/>
+<span data-i18n="auto.t1112">I acknowledge that this RFQ is subject to specification validation, export-control review and batch-specific certification.</span>
+</label>
+<div class="missing" data-i18n="auto.t1113" id="rfqComplianceDynamic">Compliance status: standard review.</div>
+</div>
+<button class="micro-btn" data-i18n="auto.t1114" onclick="location.hash='rfq'; return false;" style="margin-top:14px">Submit Controlled RFQ</button></div></div></section><section class="section advisory-deal-room" id="advisory-deal-room">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t1115">Advisory Deal Room · $1M+ Procurement Readiness</div>
+<h2 data-i18n="auto.t1116">Dense evidence layer for Sogo Shosha, Sony, TSMC, LG and semiconductor-chain gatekeepers.</h2>
+</div>
+<div class="hint" data-i18n="auto.t1117">This block converts the portal from a product brochure into a buyer qualification desk: authority, analytical proof, document readiness, compliance routing and two-click CoA logic are visible before RFQ.</div>
+</div>
+<div aria-label="Deal Room execution status" class="yyk-dealroom-execution-strip">
+<div><span data-i18n="auto.t1118">RFQ Intake</span><strong data-i18n="auto.t1119">Structured</strong></div>
+<div><span data-i18n="auto.t1120">Route Control</span><strong data-i18n="auto.t1121">Bonded / APAC</strong></div>
+<div><span data-i18n="auto.t1122">Evidence Pack</span><strong data-i18n="auto.t1123">CoA · GDMS · ICP-MS</strong></div>
+<div><span data-i18n="auto.t1124">Release Authority</span><strong data-i18n="auto.t1125">YONGYEOKYO</strong></div>
+</div>
+<div class="advisory-score-grid">
+<div class="advisory-score-card"><div><div class="kicker" data-i18n="auto.t1126">Trust Factor</div><div class="score" data-i18n="auto.t1127">High</div></div><div class="score-note"><span data-i18n="auto.t1128">Korean legal entity, BRN 877-88-03332, </span><span class="yyk-director-seal"><strong class="yyk-kim-verified" data-i18n="auto.t1129">Representative Director / CEO Kim Irina</strong> <span class="yyk-signature-badge" data-i18n="auto.t1130">Company Profile</span></span><span data-i18n="auto.t1131">, co-founder-level production participation and exclusive APAC desk are stated in the first screen.</span></div></div>
+<div class="advisory-score-card"><div><div class="kicker" data-i18n="auto.t1132">Market Entry</div><div class="score" data-i18n="auto.t1133">APAC Fit</div></div><div class="score-note" data-i18n="auto.t1134">KR / JP / TW / CN legal route, K-REACH, APPI, PIPL, PDPA and semiconductor-chain documentation are mapped to procurement workflows.</div></div>
+<div class="advisory-score-card"><div><div class="kicker" data-i18n="auto.t1135">UX Efficiency</div><div class="score" data-i18n="auto.t1136">2 Clicks</div></div><div class="score-note" data-i18n="auto.t1137">Product passport → document vault path supports CoA / TDS / SDS discovery without hiding qualification evidence behind a generic contact form.</div></div>
+<div class="advisory-score-card"><div><div class="kicker" data-i18n="auto.t1138">Technical Weight</div><div class="score">70+</div></div><div class="score-note" data-i18n="auto.t1139">Trace-element analysis, GDMS / ICP-MS / SSMS, O/H/N and morphology controls are presented as commercial decision gates.</div></div>
+<div class="advisory-score-card"><div><div class="kicker" data-i18n="auto.t1140">Deal Control</div><div class="score" data-i18n="auto.t1141">NDA → PO</div></div><div class="score-note" data-i18n="auto.t1142">Authority claims and batch documents remain controlled: strong enough for trust, limited enough for review-safe buyer onboarding.</div></div>
+</div>
+<div class="dense-proof-strip">
+<div class="dense-proof"><div class="k" data-i18n="auto.t1143">Legal Counterparty</div><div class="v" data-i18n="auto.t1144">YONGYEOKYO Trading House Co., Ltd</div></div>
+<div class="dense-proof"><div class="k" data-i18n="auto.t1145">BRN</div><div class="v">877-88-03332</div></div>
+<div class="dense-proof"><div class="k" data-i18n="auto.t1146">Representative</div><div class="v"><strong class="yyk-kim-verified" data-i18n="auto.t1147">Representative Director / CEO Kim Irina</strong></div></div>
+<div class="dense-proof"><div class="k" data-i18n="auto.t1148">Authority</div><div class="v" data-i18n="auto.t1149">Co-Founder-Level Production Participation</div></div>
+<div class="dense-proof"><div class="k" data-i18n="auto.t1150">Distribution</div><div class="v" data-i18n="auto.t1151">Exclusive APAC 6N Desk</div></div>
+<div class="dense-proof"><div class="k" data-i18n="auto.t1152">Evidence Pack</div><div class="v" data-i18n="auto.t1153">CoA · TDS · SDS · GDMS / ICP-MS</div></div>
+</div>
+<div class="dealroom-grid">
+<div class="dealroom-card">
+<h3 data-i18n="auto.t1154">Buyer Gatekeeper Matrix</h3>
+<div class="table-panel"><table class="buyer-gate-table"><thead><tr><th data-i18n="auto.t1155">Buyer Class</th><th data-i18n="auto.t1156">Barrier</th><th data-i18n="auto.t1157">Current Portal Evidence</th><th data-i18n="auto.t1158">Contract Action</th></tr></thead><tbody>
+<tr><td data-i18n="auto.t1159">Sogo Shosha</td><td data-i18n="auto.t1160">Counterparty credibility, authority chain, export route</td><td data-i18n="auto.t1161">KR registry data, co-founder-level status, exclusive APAC desk, Incoterms route</td><td data-i18n="auto.t1162">Release corporate authority proof under NDA, then quote by batch.</td></tr>
+<tr><td data-i18n="auto.t1163">Sony / Japanese Electronics</td><td data-i18n="auto.t1164">APPI, Tokushoho disclosure, technical document discipline</td><td data-i18n="auto.t1165">JP compliance switch, J-STD mapping, CoA / TDS / SDS and impurity method route</td><td data-i18n="auto.t1166">Prepare Japanese-language commercial disclosure and buyer-specific SDS route.</td></tr>
+<tr><td data-i18n="auto.t1167">TSMC / Taiwan Chain</td><td data-i18n="auto.t1168">Traceability, semiconductor-grade impurity control, supplier onboarding</td><td data-i18n="auto.t1169">TW PDPA / UBN route, GDMS / ICP-MS matrix, batch traceability and RFQ completeness scoring</td><td data-i18n="auto.t1170">Use application-aligned impurity limits, not generic purity-only claims.</td></tr>
+<tr><td data-i18n="auto.t1171">LG / Korean Industrial Buyer</td><td data-i18n="auto.t1172">Domestic legal counterparty, quality repeatability, ESG due diligence</td><td data-i18n="auto.t1173">KR BRN, PIPA, K-REACH, responsible sourcing controls and document vault workflow</td><td data-i18n="auto.t1174">Attach CoA, TDS, SDS, BCP and origin file to first commercial package.</td></tr>
+</tbody></table></div>
+</div>
+<div class="dealroom-card">
+<h3 data-i18n="auto.t1175">Two-Click CoA / Qualification Path</h3>
+<div class="coa-click-path">
+<div class="coa-step"><strong data-i18n="auto.t1176">Click 01</strong><span data-i18n="auto.t1177">Open Cu / Al / Zn / REE passport from the first-screen product data strip.</span></div>
+<div class="coa-step"><strong data-i18n="auto.t1178">Click 02</strong><span data-i18n="auto.t1179">Open Docs Layer or Batch verification to view required CoA / TDS / SDS route.</span></div>
+<div class="coa-step"><strong data-i18n="auto.t1180">RFQ Lock</strong><span data-i18n="auto.t1181">Buyer selects material, form, purity, destination, docs and Incoterms; completeness engine blocks vague requests.</span></div>
+<div class="coa-step"><strong data-i18n="auto.t1182">NDA Release</strong><span data-i18n="auto.t1183">Batch CoA, corporate authority evidence and supplier disclosures are released under controlled onboarding.</span></div>
+</div>
+<div class="micro-ledger" style="margin-top:12px">
+<div><span data-i18n="auto.t1184">Minimum Quote Pack</span><span data-i18n="auto.t1185">CAS · purity · form · quantity · destination · CoA scope</span></div>
+<div><span data-i18n="auto.t1186">Technical Quote Pack</span><span data-i18n="auto.t1187">Impurity targets · GDMS / ICP-MS route · PSD / morphology where applicable</span></div>
+<div><span data-i18n="auto.t1188">Compliance Quote Pack</span><span data-i18n="auto.t1189">End-use statement · sanctions/entity screen · Incoterms 2020 · origin file</span></div>
+<div><span data-i18n="auto.t1190">Contract Pack</span><span data-i18n="auto.t1191">NDA · PO · batch release · shipment docs · payment milestone</span></div>
+</div>
+</div>
+</div>
+<div class="table-panel" style="margin-top:12px"><table><thead><tr><th data-i18n="auto.t1192">Content Density Upgrade</th><th data-i18n="auto.t1193">Why It Matters For $1M+ Deals</th><th data-i18n="auto.t1194">Implemented Control</th></tr></thead><tbody>
+<tr><td data-i18n="auto.t1195">Replace marketing whitespace with proof ledgers</td><td data-i18n="auto.t1196">Large buyers trust evidence density more than slogans.</td><td data-i18n="auto.t1197">Added authority, buyer-gatekeeper, document path and contract pack tables.</td></tr>
+<tr><td data-i18n="auto.t1198">Make CoA path obvious</td><td data-i18n="auto.t1199">Procurement and SQE must see the evidence route before submitting RFQ.</td><td data-i18n="auto.t1200">Two-click CoA / Qualification Path added to Deal Room.</td></tr>
+<tr><td data-i18n="auto.t1201">Show jurisdictional readiness near commercial logic</td><td data-i18n="auto.t1202">APAC buyers reject suppliers that cannot localize legal and data obligations.</td><td data-i18n="auto.t1203">KR / JP / TW / CN standards already switch dynamically and are reinforced here.</td></tr>
+<tr><td data-i18n="auto.t1204">Keep co-founder claim review-safe</td><td data-i18n="auto.t1205">Strong authority claims need controlled disclosure, not overexposure.</td><td data-i18n="auto.t1206">NDA-release wording preserved; no unsupported plant-ownership overclaim added.</td></tr>
+</tbody></table></div>
+</div>
+</section>
+<!-- YYK_D27_GUARDIAN_CANONICAL_START -->
+<section class="section safe-layout-block" data-department="Audit,Compliance,Logistics,R&amp;D" data-master-directive="27-guardian-self-healing" id="yyk-d27-guardian-canonical">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t1208">AUDIT SCORE 10/10 · DIRECTIVE 27 · GUARDIAN SELF-HEALING</div>
+<h2 data-i18n="auto.t1209">Global Double Audit &amp; Continuous Monitoring Engine</h2>
+</div>
+<div class="hint" data-i18n="auto.t1210">Final acceptance layer: Clean-Sweep Audit, Strategic Shield 2026, AI-Guardian Tracker, Logic Self-Repair and Smart RFQ anomaly detection.</div>
+</div>
+<div class="g27-shell">
+<div class="g27-grid">
+<main class="g27-card">
+<span class="g27-status" data-i18n="auto.t1211" id="yykG27Status">CLEAN BILL OF HEALTH · 10/10</span>
+<p data-i18n="auto.t1212">This canonical Guardian module protects SUPPLY, AUDIT, VDR, Backend RFQ-Lock, Executive Decision Layer and Smart RFQ. Static HTML runs the monitoring simulation; production 24h sanctions scanning requires backend/API deployment.</p>
+<div class="g27-kpis">
+<div class="g27-kpi"><strong data-i18n="auto.t1213">AI-Guardian Tracker</strong><span data-i18n="auto.t1214">Every 24h: simulated OFAC / METI / KOSTI sanctions delta check. Any hit blocks the transaction path.</span></div>
+<div class="g27-kpi"><strong data-i18n="auto.t1215">Logic Self-Repair</strong><span data-i18n="auto.t1216">Deduplicates draft tails and repairs CORE / PRECISION / ULTRA nomenclature to the Master-file structure.</span></div>
+<div class="g27-kpi"><strong data-i18n="auto.t1217">Anomaly Detection</strong><span data-i18n="auto.t1218">RFQ purity, U/Th, Fe and tolerance breaches are marked HIGH RISK and require Compliance Officer intervention.</span></div>
+</div>
+<details><summary data-i18n="auto.t1219">Open Clean-Sweep Audit Matrix</summary>
+<div class="g27-panel"><div class="g27-table-wrap"><table>
+<thead><tr><th data-i18n="auto.t1220">Control</th><th data-i18n="auto.t1221">Master Constant</th><th data-i18n="auto.t1222">Required State</th><th data-i18n="auto.t1223">Status</th></tr></thead>
+<tbody>
+<tr><td data-i18n="auto.t1224">U / Th impurity</td><td data-i18n="auto.t1225">&lt; 0.05 ppb</td><td data-i18n="auto.t1226">RFQ / CoA / Product Passport synchronized</td><td class="ok" data-i18n="auto.t1227">ACTIVE</td></tr>
+<tr><td data-i18n="auto.t1228">Fe impurity</td><td data-i18n="auto.t1229">&lt; 8 ppb</td><td data-i18n="auto.t1230">RFQ / CoA / Product Passport synchronized</td><td class="ok" data-i18n="auto.t1231">ACTIVE</td></tr>
+<tr><td data-i18n="auto.t1232">Legal Shield</td><td data-i18n="auto.t1233">Liability Cap = 100% Invoice</td><td data-i18n="auto.t1234">No indirect / consequential loss exposure path</td><td class="ok" data-i18n="auto.t1235">ACTIVE</td></tr>
+<tr><td data-i18n="auto.t1236">SUPPLY nodes</td><td data-i18n="auto.t1237">Kuantan, Busan, Yokohama, Shanghai, Tianjin</td><td data-i18n="auto.t1238">Bonded Warehouse Status ACTIVE · Shipment Mode 24-48h</td><td class="ok" data-i18n="auto.t1239">ACTIVE</td></tr>
+<tr><td data-i18n="auto.t1240">RFQ release</td><td data-i18n="auto.t1241">Batch + CoA + ISO 17025 + KYC + sanctions + bonded route</td><td data-i18n="auto.t1242">Otherwise NO QUOTE RELEASE</td><td class="ok" data-i18n="auto.t1243">ACTIVE</td></tr>
+</tbody>
+</table></div></div>
+</details>
+<details><summary data-i18n="auto.t1244">Open Smart RFQ Anomaly Detector</summary>
+<div class="g27-panel">
+<div class="g27-form">
+<div class="g27-field"><label data-i18n="auto.t1245" for="yykG27Material">Material</label><select id="yykG27Material"><option data-i18n="auto.t1246">CORE</option><option data-i18n="auto.t1247">PRECISION</option><option data-i18n="auto.t1248">ULTRA</option><option>Cu</option><option>Al</option><option>Zn</option><option data-i18n="auto.t1249">REE</option></select></div>
+<div class="g27-field"><label data-i18n="auto.t1250" for="yykG27Purity">Purity %</label><input id="yykG27Purity" step="0.000001" type="number" value="99.9999"/></div>
+<div class="g27-field"><label data-i18n="auto.t1251" for="yykG27UTh">U/Th ppb</label><input id="yykG27UTh" step="0.001" type="number" value="0.01"/></div>
+<div class="g27-field"><label data-i18n="auto.t1252" for="yykG27Fe">Fe ppb</label><input id="yykG27Fe" step="0.1" type="number" value="5"/></div>
+<div class="g27-field"><label data-i18n="auto.t1253" for="yykG27Sanctions">Sanctions</label><select id="yykG27Sanctions"><option data-i18n="auto.t1254">clear</option><option data-i18n="auto.t1255">watch</option><option data-i18n="auto.t1256">hit</option></select></div>
+</div>
+<button class="g27-btn" data-i18n="auto.t1257" onclick="window.YYK_G27_GUARDIAN &amp;&amp; window.YYK_G27_GUARDIAN.validateCurrentRfq()" type="button">Run Guardian Validation</button>
+<div class="g27-result" data-i18n="auto.t1258" id="yykG27Result">READY · Smart RFQ anomaly detector is armed.</div>
+</div>
+</details>
+</main>
+<aside class="g27-rail">
+<div class="card-title" data-i18n="auto.t1259">Strategic Shield 2026</div>
+<div class="g27-shield">
+<div class="g27-tile"><strong data-i18n="auto.t1260">KOSTI / Korea</strong><span data-i18n="auto.t1261">0% tariff pathway for 14 critical minerals incl. Cu, Zn, Li, Ni and REE. Directive date: 3 Apr 2026.</span></div>
+<div class="g27-tile"><strong data-i18n="auto.t1262">MOFCOM / China</strong><span data-i18n="auto.t1263">Export-control suspension window ends 10 Nov 2026; post-date route escalation is mandatory.</span></div>
+<div class="g27-tile"><strong data-i18n="auto.t1264">Malaysia NIF</strong><span data-i18n="auto.t1265">Kuantan / ECER Tier-1 incentive logic mapped to 1 Mar 2026 NIF framework; up to 15-year tax holiday eligibility path.</span></div>
+</div>
+<details><summary data-i18n="auto.t1266">Open SUPPLY Active Nodes</summary>
+<div class="g27-panel"><div class="g27-table-wrap"><table>
+<thead><tr><th data-i18n="auto.t1267">Region</th><th data-i18n="auto.t1268">Hub</th><th data-i18n="auto.t1269">Bonded Warehouse</th><th data-i18n="auto.t1270">Shipment Mode</th><th data-i18n="auto.t1271">Control</th></tr></thead>
+<tbody>
+<tr><td data-i18n="auto.t1272">Malaysia</td><td data-i18n="auto.t1273">Kuantan / ECER</td><td class="ok" data-i18n="auto.t1274">ACTIVE</td><td data-i18n="auto.t1275">24-48h</td><td data-i18n="auto.t1276">Origin / NIF / CoA route</td></tr>
+<tr><td data-i18n="auto.t1277">South Korea</td><td data-i18n="auto.t1278">Busan</td><td class="ok" data-i18n="auto.t1279">ACTIVE</td><td data-i18n="auto.t1280">24-48h</td><td data-i18n="auto.t1281">KOSTI / regional distribution</td></tr>
+<tr><td data-i18n="auto.t1282">Japan</td><td data-i18n="auto.t1283">Yokohama</td><td class="ok" data-i18n="auto.t1284">ACTIVE</td><td data-i18n="auto.t1285">24-48h</td><td data-i18n="auto.t1286">METI / buyer QA handoff</td></tr>
+<tr><td data-i18n="auto.t1287">China</td><td data-i18n="auto.t1288">Shanghai</td><td class="ok" data-i18n="auto.t1289">ACTIVE</td><td data-i18n="auto.t1290">24-48h</td><td data-i18n="auto.t1291">MOFCOM / GAC review</td></tr>
+<tr><td data-i18n="auto.t1292">China</td><td data-i18n="auto.t1293">Tianjin</td><td class="ok" data-i18n="auto.t1294">ACTIVE</td><td data-i18n="auto.t1295">24-48h</td><td data-i18n="auto.t1296">North China bonded route</td></tr>
+</tbody>
+</table></div></div>
+</details>
+<div class="g27-code" data-i18n="auto.t1297">MASTER CONSTANTS:
+U/Th &lt; 0.05 ppb
+Fe &lt; 8 ppb
+Liability Cap = 100% Invoice
+Bonded Warehouse Status = ACTIVE
+Shipment Mode = 24-48h
+Nomenclature = CORE / PRECISION / ULTRA
+RFQ FAILSAFE = HIGH RISK → COMPLIANCE OFFICER → NO QUOTE RELEASE</div>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<!-- YYK_D27_GUARDIAN_CANONICAL_END -->
+<section class="section" id="sourcing">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t1299">Responsible Sourcing · Compliance &amp; Certifications</div>
+<h2 data-i18n="auto.t1300">APAC-market compliance layer for ethical sourcing, import readiness and technical trust.</h2>
+</div>
+<div class="hint" data-i18n="auto.t1301">
+        Built for APAC and APAC / Global Buyer Desk buyer review: OECD due diligence, APAC conflict minerals alignment, REACH / RoHS statements and supplier risk screening.
+      </div>
+</div>
+<div class="compliance-grid">
+<div class="compliance-card">
+<div class="eyebrow" data-i18n="auto.t1302">OECD Alignment</div>
+<h3 data-i18n="auto.t1303">Responsible Minerals Due Diligence</h3>
+<p class="card-text" data-i18n="auto.t1304">Supplier screening, origin review and risk-based due diligence are maintained as part of SCSP qualification logic.</p>
+</div>
+<div class="compliance-card">
+<div class="eyebrow" data-i18n="auto.t1305">APAC Market</div>
+<h3 data-i18n="auto.t1306">Conflict Minerals Regulation</h3>
+<p class="card-text" data-i18n="auto.t1307">The platform supports customer due diligence requirements for conflict-affected and high-risk areas, including documentation review for relevant minerals.</p>
+</div>
+<div class="compliance-card">
+<div class="eyebrow" data-i18n="auto.t1308">Chemical Compliance</div>
+<h3 data-i18n="auto.t1309">REACH / RoHS Statements</h3>
+<p class="card-text" data-i18n="auto.t1310">Product technical vault records include REACH (EC 1907/2006) and RoHS statement fields for PDF data sheets and buyer review packages.</p>
+</div>
+<div class="compliance-card">
+<div class="eyebrow" data-i18n="auto.t1311">Certification Bar</div>
+<h3 data-i18n="auto.t1312">Conflict-Free Smelter</h3>
+<p class="card-text" data-i18n="auto.t1313">Footer trust badges include ISO 9001, ISO 14001, REACH, RoHS and Conflict-Free Smelter / Minerals declarations.</p>
+</div>
+</div>
+<div class="table-panel" style="margin-top:14px">
+<table>
+<thead>
+<tr><th data-i18n="auto.t1314">Compliance Item</th><th data-i18n="auto.t1315">Platform Output</th><th data-i18n="auto.t1316">Buyer Use</th></tr>
+</thead>
+<tbody>
+<tr><td data-i18n="auto.t1317">REACH EC 1907/2006</td><td data-i18n="auto.t1318">Statement included in technical PDF records</td><td data-i18n="auto.t1319">APAC chemical compliance review</td></tr>
+<tr><td data-i18n="auto.t1320">RoHS</td><td data-i18n="auto.t1321">Hazardous-substance restriction field included</td><td data-i18n="auto.t1322">Electronics and equipment supply chains</td></tr>
+<tr><td data-i18n="auto.t1323">APAC Conflict Minerals</td><td data-i18n="auto.t1324">OECD-aligned responsible sourcing declaration</td><td data-i18n="auto.t1325">Importer due diligence file</td></tr>
+<tr><td data-i18n="auto.t1326">GDMS Certified</td><td data-i18n="auto.t1327">Stamped on 99.9999% Cu / Al product passports</td><td data-i18n="auto.t1328">Technical qualification and CoA review</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="margin-top:16px">
+</div>
+<!-- ESG policy card removed: controls integrated inside RFQ Auto Decision Engine. -->
+</section><section class="section" id="sustainability"><div class="wrap"><div class="section-head"><div><div class="eyebrow" data-i18n="auto.t1330">Sustainability = Engineering Module</div><h2 data-i18n="auto.t1331">Sustainable sourcing is treated as a material stability factor.</h2></div><div class="hint" data-i18n="auto.t1332">ESG is connected to SCSP controls: supplier verification, documentation scope, batch consistency and qualification readiness.</div></div><div class="panel esg-module"><div class="esg-bg"></div><div class="esg-inner"><div><div class="eyebrow" data-i18n="auto.t1333">Sustainable Smelting / Supply Integrity</div><h2 data-i18n="auto.t1334">Clean energy, controlled supply, lower material risk.</h2><p class="lead" data-i18n="auto.t1335">YONGYEOKYO links sustainability practices to technical confidence: responsible sourcing, supplier screening, traceability documentation and low-carbon production pathways for 6N Cu / Al programs.</p><div class="grid4" style="margin-top:22px"><div class="metric"><div class="k" data-i18n="auto.t1336">Energy Recovery</div><div class="v">94.2%</div></div><div class="metric"><div class="k" data-i18n="auto.t1337">CO₂ Reduction</div><div class="v" data-i18n="auto.t1338">-2.4t / ton</div></div><div class="metric"><div class="k" data-i18n="auto.t1339">RE100 Target</div><div class="v">2040</div></div><div class="metric"><div class="k" data-i18n="auto.t1340">Review Status</div><div class="v" data-i18n="auto.t1341">OECD Aligned</div></div></div></div><div class="hero-stack"><div class="panel"><div class="eyebrow" data-i18n="auto.t1342">ESG Control Status</div><div class="kv"><div class="kv-row"><span data-i18n="auto.t1343">Supply Chain</span><span data-i18n="auto.t1344">Risk-Based Due Diligence</span></div><div class="kv-row"><span data-i18n="auto.t1345">Disclosure</span><span data-i18n="auto.t1346">CoA / TDS / SDS / Supplier Review</span></div><div class="kv-row"><span data-i18n="auto.t1347">Compliance</span><span data-i18n="auto.t1348">Export / Trade / PIPA</span></div><div class="kv-row"><span data-i18n="auto.t1349">Limitation</span><span data-i18n="auto.t1350">No unverified recycled-content claims</span></div></div></div><div class="panel"><div class="eyebrow" data-i18n="auto.t1351">Professional Limitation</div><p class="card-text" data-i18n="auto.t1352">YONGYEOKYO does not claim recycled content, mine ownership or refining ownership unless explicitly verified and documented. ESG statements are based on supplier disclosure, documentation review and risk-based due diligence.</p></div></div></div></div></div></section><section class="section" id="sandbox"><div class="wrap"><div class="section-head"><div><div class="eyebrow" data-i18n="auto.t1353">Simulation Sandbox</div><h2 data-i18n="auto.t1354">Estimate qualification friction before procurement cycle reset.</h2></div><div class="hint" data-i18n="auto.t1355">Engineering-facing decision aid. It shows how incomplete inputs can create approval delay.</div></div><div class="grid3"><div class="sandbox"><h3 data-i18n="auto.t1356">Delay Risk Model</h3><div class="field"><label class="field-label" data-i18n="auto.t1357">Documentation completeness</label><select class="select sim-field" id="simDocs"><option data-i18n="auto.t1358" value="0">Complete</option><option data-i18n="auto.t1359" value="2">Partial</option><option data-i18n="auto.t1360" value="4">Missing</option></select></div><div class="field"><label class="field-label" data-i18n="auto.t1361">Impurity clarity</label><select class="select sim-field" id="simImp"><option data-i18n="auto.t1362" value="0">Application-aligned</option><option data-i18n="auto.t1363" value="2">Generic</option><option data-i18n="auto.t1364" value="4">Unclear</option></select></div><div class="field"><label class="field-label" data-i18n="auto.t1365">Supplier qualification</label><select class="select sim-field" id="simQual"><option data-i18n="auto.t1366" value="0">Aligned</option><option data-i18n="auto.t1367" value="2">Under review</option><option data-i18n="auto.t1368" value="4">Not aligned</option></select></div></div><div class="sandbox"><h3 data-i18n="auto.t1369">Estimated Impact</h3><div class="result-box"><div class="result-main" data-i18n="auto.t1370" id="delayWeeks">+0 weeks</div><div class="result-sub" data-i18n="auto.t1371" id="delayText">Low qualification friction. Evaluation can proceed with documentation review.</div></div><div class="kv"><div class="kv-row"><span data-i18n="auto.t1372">Primary cost driver</span><span data-i18n="auto.t1373">Delay / rework</span></div><div class="kv-row"><span data-i18n="auto.t1374">SCSP target</span><span data-i18n="auto.t1375">First-cycle alignment</span></div></div></div><div class="sandbox"><h3 data-i18n="auto.t1376">Fit / Not Fit Logic</h3><div class="table-panel"><table><tbody><tr><td class="ok" data-i18n="auto.t1377">Fit</td><td data-i18n="auto.t1378">Engineering-led RFQ, traceability, CoA, supplier qualification.</td></tr><tr><td class="warn" data-i18n="auto.t1379">Not Fit</td><td data-i18n="auto.t1380">Price-first sourcing, vague requirements, no documentation need.</td></tr></tbody></table></div></div></div></div></section><section class="section safe-layout-block" id="yyk-terminal-ux">
+<div class="wrap">
+<div class="section-head">
+<h2 data-i18n="auto.t1381">Procurement Terminal UX - Materials Decision Desk</h2>
+<p class="hint" data-i18n="auto.t1382">A buyer-facing decision layer that connects material, CoA evidence, stock signal, compliance route and RFQ action in one screen.</p>
+</div>
+<div class="yyk-terminal-wrap">
+<div class="yyk-terminal-head">
+<div>
+<div class="yyk-terminal-title" data-i18n="auto.t1383">YONGYEOKYO / APAC 6N-7N MATERIALS TERMINAL</div>
+<div class="yyk-terminal-sub" data-i18n="auto.t1384">Designed for Sogo Shosha, semiconductor procurement and advanced materials qualification: no marketing path, only evidence, availability and release conditions.</div>
+</div>
+<div class="yyk-terminal-clock" data-i18n="auto.t1385" id="yykTerminalClock">LIVE · CONTRACT DESK</div>
+</div>
+<div class="yyk-terminal-grid">
+<div class="yyk-terminal-rail">
+<button class="yyk-terminal-btn active" data-terminal-target="term-cu" onclick="console.log('Button activated');">
+<span class="yyk-terminal-code">Cu</span><span class="yyk-terminal-name" data-i18n="auto.t1386">Copper · 6N/7N</span><span class="yyk-terminal-signal" data-i18n="auto.t1387">CoA</span>
+</button>
+<button class="yyk-terminal-btn" data-terminal-target="term-al" onclick="console.log('Button activated');">
+<span class="yyk-terminal-code">Al</span><span class="yyk-terminal-name" data-i18n="auto.t1388">Aluminum · 6N</span><span class="yyk-terminal-signal rfq" data-i18n="auto.t1389">RFQ</span>
+</button>
+<button class="yyk-terminal-btn" data-terminal-target="term-zn" onclick="console.log('Button activated');">
+<span class="yyk-terminal-code">Zn</span><span class="yyk-terminal-name" data-i18n="auto.t1390">Zinc · 5N5</span><span class="yyk-terminal-signal rfq" data-i18n="auto.t1391">RFQ</span>
+</button>
+<button class="yyk-terminal-btn" data-terminal-target="term-ree" onclick="console.log('Button activated');">
+<span class="yyk-terminal-code" data-i18n="auto.t1392">REE</span><span class="yyk-terminal-name" data-i18n="auto.t1393">Rare Earth · Custom</span><span class="yyk-terminal-signal rfq" data-i18n="auto.t1394">Screen</span>
+</button>
+<button class="yyk-terminal-btn" data-terminal-target="term-quality" onclick="console.log('Button activated');">
+<span class="yyk-terminal-code">QA</span><span class="yyk-terminal-name" data-i18n="auto.t1395">Quality Chain</span><span class="yyk-terminal-signal" data-i18n="auto.t1396">Ready</span>
+</button>
+<button class="yyk-terminal-btn" data-terminal-target="term-logistics" onclick="console.log('Button activated');">
+<span class="yyk-terminal-code">LX</span><span class="yyk-terminal-name" data-i18n="auto.t1397">Logistics / Incoterms</span><span class="yyk-terminal-signal" data-i18n="auto.t1398">Route</span>
+</button>
+</div>
+<div class="yyk-terminal-content">
+<div class="yyk-terminal-panel active" id="term-cu">
+<div class="yyk-terminal-kpi">
+<div class="cell"><div class="k" data-i18n="auto.t1399">Purity Evidence</div><div class="v" data-i18n="auto.t1400">99.999989% GD-MS</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1401">Powder Batch</div><div class="v" data-i18n="auto.t1402">99.9999% · 15-30 μm</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1403">Live Stock</div><div class="v" data-i18n="auto.t1404">320 kg · Dubai</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1405">Release Path</div><div class="v" data-i18n="auto.t1406">CoA + End-use review</div></div>
+</div>
+<table class="yyk-terminal-table">
+<tr><th data-i18n="auto.t1407">Evidence</th><th data-i18n="auto.t1408">Data</th><th data-i18n="auto.t1409">Buyer Interpretation</th></tr>
+<tr><td data-i18n="auto.t1410">ISE GD-MS</td><td data-i18n="auto.t1411">Cu remainder 99.999989%; impurity sum 0.115 μg/g; Lot 1506/Cu</td><td data-i18n="auto.t1412">7N-level copper ingot evidence for qualification files.</td></tr>
+<tr><td data-i18n="auto.t1413">IGAS / ICP / SEM</td><td data-i18n="auto.t1414">Ultrafine copper powder; 15-30 μm; 99.9999% by impurity content</td><td data-i18n="auto.t1415">Powder route is visible, test-backed and sample-ready.</td></tr>
+<tr><td data-i18n="auto.t1416">Stock Proof</td><td data-i18n="auto.t1417">320 kg Dubai warehouse; EXW/FCA/DAP by agreement; USD 175/kg EXW FZ basis</td><td data-i18n="auto.t1418">Commercial availability exists before long-form contract.</td></tr>
+</table>
+<div class="yyk-terminal-note" data-i18n="auto.t1419">Decision signal: Cu is the strongest entry product for APAC outreach because it combines lab evidence, physical stock and scalable commercial terms.</div>
+<div class="yyk-terminal-actions"><span class="yyk-terminal-action primary" data-i18n="auto.t1420">Request CoA Pack</span><span class="yyk-terminal-action" data-i18n="auto.t1421">Reserve Sample</span><span class="yyk-terminal-action" data-i18n="auto.t1422">Start RFQ</span></div>
+</div>
+<div class="yyk-terminal-panel" id="term-al">
+<div class="yyk-terminal-kpi">
+<div class="cell"><div class="k" data-i18n="auto.t1423">Target Grade</div><div class="v" data-i18n="auto.t1424">6N Aluminum</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1425">Evidence</div><div class="v" data-i18n="auto.t1426">Batch CoA required</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1427">Use Case</div><div class="v" data-i18n="auto.t1428">Semiconductor / sputter</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1429">Route</div><div class="v" data-i18n="auto.t1430">RFQ-only</div></div>
+</div>
+<table class="yyk-terminal-table">
+<tr><th data-i18n="auto.t1431">Control Point</th><th data-i18n="auto.t1432">Requirement</th><th data-i18n="auto.t1433">Procurement Use</th></tr>
+<tr><td data-i18n="auto.t1434">Purity</td><td data-i18n="auto.t1435">99.996%-99.9999%, subject to supplier and batch CoA scope</td><td data-i18n="auto.t1436">Prevents overclaiming; buyer receives batch-specific release.</td></tr>
+<tr><td data-i18n="auto.t1437">Analysis</td><td data-i18n="auto.t1438">GDMS / ICP-MS requested before contract release</td><td data-i18n="auto.t1439">Supports electronics-grade qualification.</td></tr>
+<tr><td data-i18n="auto.t1440">Documentation</td><td data-i18n="auto.t1441">CoA / TDS / SDS / packing list / origin statement</td><td data-i18n="auto.t1442">Complete file for internal vendor onboarding.</td></tr>
+</table>
+<div class="yyk-terminal-note" data-i18n="auto.t1443">Decision signal: Al should be kept RFQ-only until a live batch certificate is available.</div>
+</div>
+<div class="yyk-terminal-panel" id="term-zn">
+<div class="yyk-terminal-kpi">
+<div class="cell"><div class="k" data-i18n="auto.t1444">Target Grade</div><div class="v" data-i18n="auto.t1445">Up to 5N5</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1446">Form</div><div class="v" data-i18n="auto.t1447">Powder / custom</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1448">Control</div><div class="v" data-i18n="auto.t1449">PSD + CoA</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1450">Route</div><div class="v" data-i18n="auto.t1451">RFQ-only</div></div>
+</div>
+<table class="yyk-terminal-table">
+<tr><th data-i18n="auto.t1452">Control Point</th><th data-i18n="auto.t1453">Requirement</th><th data-i18n="auto.t1454">Procurement Use</th></tr>
+<tr><td data-i18n="auto.t1455">Purity</td><td data-i18n="auto.t1456">Up to 99.9995%, batch and PSD dependent</td><td data-i18n="auto.t1457">Qualification based on actual lot release, not catalog promise.</td></tr>
+<tr><td data-i18n="auto.t1458">Particle Control</td><td data-i18n="auto.t1459">Particle-size distribution required for powder lots</td><td data-i18n="auto.t1460">Reduces technical rejection risk.</td></tr>
+<tr><td data-i18n="auto.t1461">Compliance</td><td data-i18n="auto.t1462">End-use / destination screening before release</td><td data-i18n="auto.t1463">Supports regulated advanced-material supply chains.</td></tr>
+</table>
+<div class="yyk-terminal-note" data-i18n="auto.t1464">Decision signal: Zn is viable as a precision RFQ product, not as a mass catalog commodity.</div>
+</div>
+<div class="yyk-terminal-panel" id="term-ree">
+<div class="yyk-terminal-kpi">
+<div class="cell"><div class="k" data-i18n="auto.t1465">Scope</div><div class="v" data-i18n="auto.t1466">Metals / oxides / salts</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1467">Mode</div><div class="v" data-i18n="auto.t1468">Custom RFQ</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1469">Risk</div><div class="v" data-i18n="auto.t1470">End-use sensitive</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1471">Route</div><div class="v" data-i18n="auto.t1472">Screen first</div></div>
+</div>
+<table class="yyk-terminal-table">
+<tr><th data-i18n="auto.t1473">Stage</th><th data-i18n="auto.t1474">Action</th><th data-i18n="auto.t1475">Reason</th></tr>
+<tr><td data-i18n="auto.t1476">Material Screening</td><td data-i18n="auto.t1477">Confirm element, form, purity, isotope / oxide scope</td><td data-i18n="auto.t1478">REE demand is highly application-specific.</td></tr>
+<tr><td data-i18n="auto.t1479">Compliance Review</td><td data-i18n="auto.t1480">Destination, end-use and restricted-party screening</td><td data-i18n="auto.t1481">Protects both buyer and seller in APAC routes.</td></tr>
+<tr><td data-i18n="auto.t1482">Release</td><td data-i18n="auto.t1483">CoA and origin documentation before shipment</td><td data-i18n="auto.t1484">Reduces customs and customer review friction.</td></tr>
+</table>
+<div class="yyk-terminal-note" data-i18n="auto.t1485">Decision signal: REE should be presented as controlled sourcing capability, not public-stock commodity.</div>
+</div>
+<div class="yyk-terminal-panel" id="term-quality">
+<div class="yyk-terminal-kpi">
+<div class="cell"><div class="k" data-i18n="auto.t1486">Chemical</div><div class="v" data-i18n="auto.t1487">GDMS / ICP-MS</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1488">Physical</div><div class="v" data-i18n="auto.t1489">SEM / PSD / BET</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1490">Release</div><div class="v" data-i18n="auto.t1491">Batch-specific CoA</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1492">File</div><div class="v" data-i18n="auto.t1493">CoA / TDS / SDS</div></div>
+</div>
+<table class="yyk-terminal-table">
+<tr><th data-i18n="auto.t1494">Layer</th><th data-i18n="auto.t1495">Evidence</th><th data-i18n="auto.t1496">Buyer Value</th></tr>
+<tr><td data-i18n="auto.t1497">Analytical</td><td data-i18n="auto.t1498">GDMS / ICP / ICP-MS where applicable</td><td data-i18n="auto.t1499">Confirms impurity profile and purity claim.</td></tr>
+<tr><td data-i18n="auto.t1500">Physical</td><td data-i18n="auto.t1501">SEM image, particle-size distribution, density, BET, oxygen</td><td data-i18n="auto.t1502">Confirms process usability, not just chemistry.</td></tr>
+<tr><td data-i18n="auto.t1503">Contract</td><td data-i18n="auto.t1504">Quotation, CoA, packing list, origin, end-use review</td><td data-i18n="auto.t1505">Turns inquiry into reviewable procurement file.</td></tr>
+</table>
+<div class="yyk-terminal-note" data-i18n="auto.t1506">Decision signal: qualification path is now visible in one place; this is the trust bridge for Sogo Shosha and semiconductor buyers.</div>
+</div>
+<div class="yyk-terminal-panel" id="term-logistics">
+<div class="yyk-terminal-kpi">
+<div class="cell"><div class="k" data-i18n="auto.t1507">Terms</div><div class="v" data-i18n="auto.t1508">EXW / FCA / DAP</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1509">Hub</div><div class="v" data-i18n="auto.t1510">Dubai UAE</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1511">Scale</div><div class="v" data-i18n="auto.t1512">320 kg → 40,000 kg/mo</div></div>
+<div class="cell"><div class="k" data-i18n="auto.t1513">Control</div><div class="v" data-i18n="auto.t1514">Export review</div></div>
+</div>
+<table class="yyk-terminal-table">
+<tr><th data-i18n="auto.t1515">Route</th><th data-i18n="auto.t1516">Condition</th><th data-i18n="auto.t1517">Buyer Value</th></tr>
+<tr><td data-i18n="auto.t1518">Immediate stock</td><td data-i18n="auto.t1519">320 kg in Dubai warehouse</td><td data-i18n="auto.t1520">Samples and first shipment can be structured quickly.</td></tr>
+<tr><td data-i18n="auto.t1521">Fast replenishment</td><td data-i18n="auto.t1522">Up to 2,000 kg under deposit, bank guarantee or SBLC</td><td data-i18n="auto.t1523">Shows real liquidity and short-cycle restocking.</td></tr>
+<tr><td data-i18n="auto.t1524">Contract program</td><td data-i18n="auto.t1525">Up to 40,000 kg / month under long-form contract</td><td data-i18n="auto.t1526">Supports strategic supply planning beyond spot trade.</td></tr>
+</table>
+<div class="yyk-terminal-note" data-i18n="auto.t1527">Decision signal: logistics are now procurement-readable: availability, terms, security and scale.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section class="section" id="operating-model">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t1528">Operating Model</div>
+<h2 data-i18n="auto.t1529">Integrated supply routing by purity, volume and control level.</h2>
+</div>
+<div class="hint" data-i18n="auto.t1530">The selected route updates Platform, SCSP, Risk, Pricing, Supplier Routing and RFQ logic without changing the interface.</div>
+</div>
+<div class="grid3">
+<div class="dense-card route-option" data-route-option="ultra">
+<div class="card-title" data-i18n="auto.t1531">Ultra-High Purity Route</div>
+<p class="card-text" data-i18n="auto.t1532">6N-7N materials for semiconductor, aerospace, precision electronics and advanced manufacturing environments.</p>
+<div class="kv">
+<div class="kv-row"><span data-i18n="auto.t1533">Analytics</span><span data-i18n="auto.t1534">GDMS · ICP-MS</span></div>
+<div class="kv-row"><span data-i18n="auto.t1535">Best Fit</span><span data-i18n="auto.t1536">Semiconductor · aerospace</span></div>
+</div>
+<button class="micro-btn" data-apply-route="ultra" data-i18n="auto.t1537" onclick="console.log('Button activated');" type="button">Select route</button>
+</div>
+<div class="dense-card route-option" data-route-option="industrial">
+<div class="card-title" data-i18n="auto.t1538">Industrial Supply Route</div>
+<p class="card-text" data-i18n="auto.t1539">Industrial non-ferrous metals, bulk supply logic, repeat orders and destination-aligned logistics.</p>
+<div class="kv">
+<div class="kv-row"><span data-i18n="auto.t1540">Volume</span><span data-i18n="auto.t1541">Industrial scale</span></div>
+<div class="kv-row"><span data-i18n="auto.t1542">Best Fit</span><span data-i18n="auto.t1543">Coatings · processing</span></div>
+</div>
+<button class="micro-btn" data-apply-route="industrial" data-i18n="auto.t1544" onclick="console.log('Button activated');" type="button">Select route</button>
+</div>
+<div class="dense-card route-option" data-route-option="controlled">
+<div class="card-title" data-i18n="auto.t1545">Controlled Materials Route</div>
+<p class="card-text" data-i18n="auto.t1546">Rare earths, strategic materials and controlled release logic for regulated destinations and applications.</p>
+<div class="kv">
+<div class="kv-row"><span data-i18n="auto.t1547">Control</span><span data-i18n="auto.t1548">Export / compliance</span></div>
+<div class="kv-row"><span data-i18n="auto.t1549">Best Fit</span><span data-i18n="auto.t1550">Magnets · high-tech</span></div>
+</div>
+<button class="micro-btn" data-apply-route="controlled" data-i18n="auto.t1551" onclick="console.log('Button activated');" type="button">Select route</button>
+</div>
+</div>
+</div>
+</section></main><script id="yykCustomerJourneyMapConfig" type="application/json">{
+  "directive": "Directive #2: Logical sequence of Golden Master master sections",
+  "status": "approved-for-architect-review",
+  "urlIntegrity": "unchanged: all existing section IDs and anchors preserved",
+  "customerJourney": [
+    {
+      "stage": "Awareness",
+      "sequence": 1,
+      "section": "product-architecture",
+      "purpose": "Catalog / product architecture first; buyer identifies material, purity, form and application."
+    },
+    {
+      "stage": "Decision",
+      "sequence": 2,
+      "section": "productProfitRiskOverlay",
+      "purpose": "Profitability and risk overlay resolves commercial lens before trust evidence and RFQ action."
+    },
+    {
+      "stage": "Trust",
+      "sequence": 3,
+      "sections": [
+        "trust-coa",
+        "supplier-qualification",
+        "scsp",
+        "passports",
+        "testing",
+        "batch",
+        "yongyeokyo-technical-specifications"
+      ],
+      "purpose": "Certificates, supplier qualification, analytical evidence and batch traceability validate the decision."
+    },
+    {
+      "stage": "Action",
+      "sequence": 4,
+      "sections": [
+        "rfq",
+        "advisory-deal-room",
+        "apac-regional-supply-desk"
+      ],
+      "purpose": "Selected product context is passed into RFQ, commercial routing, logistics and deal execution."
+    }
+  ],
+  "priorityMoves": [
+    {
+      "section": "product-architecture",
+      "from": "after supplier-qualification",
+      "to": "immediately after hero"
+    },
+    {
+      "section": "trust-coa",
+      "from": "first section after hero",
+      "to": "after product/decision layers"
+    },
+    {
+      "section": "advisory-deal-room",
+      "from": "before product catalog",
+      "to": "after RFQ action layer"
+    },
+    {
+      "section": "yyk-terminal-ux",
+      "from": "before deal/product flow",
+      "to": "supporting operational layer after action/supply blocks"
+    }
+  ],
+  "dataContinuity": [
+    "Product buttons keep existing data-open-product attributes.",
+    "Product selection now updates rfqAutoForm, rfqAutoPurity, rfqAutoQC and rfqAutoApplication when corresponding controls are present.",
+    "RFQ change events are dispatched so existing auto-decision/risk/pricing scripts can recalculate without new page routes."
+  ]
+}</script>
+<section class="section" id="yongyeokyo-apac-compliance"><div class="wrap"><div class="section-head"><div><div class="eyebrow" data-i18n="auto.t1552">YONGYEOKYO APAC Legal Framework</div><h2 data-i18n="auto.t1553">KR / JP / TW / CN compliance layer for controlled APAC procurement.</h2></div><div class="hint" data-i18n="auto.t1554">Regional obligations are treated as procurement controls, not decorative statements. Final obligations depend on material form, purity, end-use and buyer role.</div></div><div class="compliance-grid"><div class="compliance-card"><h3 data-i18n="auto.t1555">Korea</h3><p class="card-text"><span data-i18n="auto.t1556">PIPA privacy handling, Business Registration No. 877-88-03332, </span><span class="yyk-director-seal"><strong class="yyk-kim-verified" data-i18n="auto.t1557">Representative Director / CEO Kim Irina</strong> <span class="yyk-signature-badge" data-i18n="auto.t1558">Company Profile</span></span><span data-i18n="auto.t1559">, K-REACH, customs/export review and supplier qualification records.</span></p></div><div class="compliance-card"><h3 data-i18n="auto.t1560">Japan</h3><p class="card-text" data-i18n="auto.t1561">Tokushoho commercial disclosures, APPI privacy controls, METI export-control review and J-STD / buyer technical documentation mapping where buyer applicable.</p></div><div class="compliance-card"><h3 data-i18n="auto.t1562">China</h3><p class="card-text" data-i18n="auto.t1563">Compliance with PIPL (Privacy Law) and GB/T 2024 standards for ultra-pure non-ferrous metals; entity / end-use screening and customs documentation for controlled industrial materials.</p></div><div class="compliance-card"><h3 data-i18n="auto.t1564">Taiwan</h3><p class="card-text" data-i18n="auto.t1565">PDPA privacy basis, UBN verification, semiconductor supply-chain requirements, CoA / TDS / SDS and traceability review.</p></div></div><div class="result-box"><div class="result-main" data-i18n="auto.t1566">Responsible Sourcing</div><div class="result-sub" data-i18n="auto.t1567">OECD-aligned due diligence, REACH/RoHS workflow, conflict-minerals relevance review, anti-bribery and sanctions screening, end-use declaration before shipment, Incoterms 2020 allocation by quotation and contract.</div></div></div></section>
+<!-- Regional compliance monolith removed: information distributed into footer, compliance and RFQ context. -->
+<div class="yyk-evidence-router yyk-enterprise-router" data-evidence-router="" id="decision-compliance-output">
+<a aria-label="Open material evidence passport" class="yyk-evidence-node" data-evidence-material-link="" href="#passports">
+<span class="yyk-evidence-label" data-i18n="auto.t1569">MATERIAL</span>
+<span class="yyk-evidence-value" data-evidence-material="" data-i18n="auto.t1570">Copper · Cu · Up to 99.99999% (7N)</span>
+<span class="yyk-evidence-meta" data-evidence-material-risk="" data-i18n="auto.t1571">Material risk: controlled purity evidence</span>
+<span class="yyk-evidence-action" data-i18n="auto.t1572">View Passport →</span>
+</a>
+<a aria-label="Open destination route control" class="yyk-evidence-node" data-evidence-route-link="" href="#apac-regional-supply-desk">
+<span class="yyk-evidence-label" data-i18n="auto.t1573">DESTINATION</span>
+<span class="yyk-evidence-value" data-evidence-destination="" data-i18n="auto.t1574">Korea</span>
+<span class="yyk-evidence-meta" data-evidence-route="" data-i18n="auto.t1575">Busan/Incheon route control</span>
+<span class="yyk-evidence-action" data-i18n="auto.t1576">Route Control →</span>
+</a>
+<a aria-label="Open compliance evidence" class="yyk-evidence-node" data-evidence-compliance-link="" href="#yongyeokyo-apac-compliance">
+<span class="yyk-evidence-label" data-i18n="auto.t1577">COMPLIANCE TAB</span>
+<span class="yyk-evidence-value" data-evidence-compliance="" data-i18n="auto.t1578">PIPA / K-REACH</span>
+<span class="yyk-evidence-meta" data-evidence-rule="" data-i18n="auto.t1579">Privacy + chemical review required</span>
+<span class="yyk-evidence-action" data-i18n="auto.t1580">View Evidence →</span>
+</a>
+<a aria-label="Continue controlled RFQ" class="yyk-evidence-node yyk-evidence-node-primary" data-evidence-decision-link="" href="#rfq">
+<span class="yyk-evidence-label" data-i18n="auto.t1581">DECISION STATUS</span>
+<span class="yyk-evidence-value" data-evidence-status="" data-i18n="auto.t1582">Controlled RFQ</span>
+<span class="yyk-evidence-meta"><span data-evidence-score="" data-i18n="auto.t1583">Risk score: 42</span> · <span data-evidence-tier="" data-i18n="auto.t1584">Tier: Controlled</span></span>
+<span class="yyk-evidence-action" data-i18n="auto.t1585">Continue RFQ →</span>
+</a>
+</div>
+<div class="yyk-risk-meter" data-evidence-risk-meter="">
+<div class="yyk-risk-meter-head">
+<span data-i18n="auto.t1586">LIVE COMPLIANCE RISK SCORE</span>
+<strong data-evidence-score-large="">42 / 100</strong>
+</div>
+<div class="yyk-risk-track"><span data-evidence-risk-fill="" style="width:42%"></span></div>
+<div class="yyk-risk-copy" data-evidence-summary="" data-i18n="auto.t1587">Copper · Cu routed to Korea: Korean privacy handling, K-REACH chemical review, Busan/Incheon route control</div>
+</div>
+<section class="section" id="decision-compliance-output-legacy">
+<div class="wrap" style="max-width:1280px;margin:0 auto">
+<div class="section-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t1588">Decision-Driven ESG / Compliance Output</div>
+<h2 data-i18n="auto.t1589">Decision-Driven ESG / Compliance Output</h2>
+</div>
+<div class="hint" data-i18n="auto.t1590">Live buyer-facing output for APAC RFQ decisions: material, destination, RCEP benefit, technical standard and document readiness through the South Korea QC hub.</div>
+</div>
+<div class="rfq-layout">
+<div class="rfq-card">
+<div class="grid2">
+<div class="field">
+<label class="field-label" data-i18n="auto.t1591" for="decisionMaterial">Material</label>
+<select class="select" id="decisionMaterial">
+<option data-i18n="auto.t1592" value="copper">Copper · 6N / 7N</option>
+<option data-i18n="auto.t1593" value="aluminum">Aluminum · 6N</option>
+<option data-i18n="auto.t1594" value="zinc">Zinc · 5N5</option>
+<option data-i18n="auto.t1595" value="ree">Rare Earth Materials</option>
+</select>
+</div>
+<div class="field">
+<label class="field-label" data-i18n="auto.t1596" for="decisionDestination">Destination</label>
+<select class="select" id="decisionDestination">
+<option data-i18n="auto.t1597" value="south_korea">South Korea</option>
+<option data-i18n="auto.t1598" value="japan">Japan</option>
+<option data-i18n="auto.t1599" value="taiwan">Taiwan</option>
+<option data-i18n="auto.t1600" value="china">China</option>
+</select>
+</div>
+</div>
+<div class="result-box" style="margin-top:12px;border-color:rgba(16,185,129,.55);background:rgba(16,185,129,.06)">
+<div class="result-main" data-i18n="auto.t1601" id="decisionRcepHeadline" style="color:#d4b85c">🛡 RCEP Benefit Pending</div>
+<div class="result-sub" data-i18n="auto.t1602" id="decisionRcepSub">Select a destination to resolve preferential duty logic through the South Korea QC hub.</div>
+</div>
+<a class="micro-btn" data-i18n="auto.t1603" href="#rfq" style="display:inline-flex;margin-top:14px">Verify Compliance for RFQ</a>
+</div>
+<div class="rfq-card">
+<div class="table-panel">
+<table>
+<thead>
+<tr><th data-i18n="auto.t1604">Decision Field</th><th data-i18n="auto.t1605">Compliance Output</th></tr>
+</thead>
+<tbody>
+<tr><td data-i18n="auto.t1606">RCEP Benefit</td><td id="decisionRcepCell" style="color:#d4b85c">-</td></tr>
+<tr><td data-i18n="auto.t1607">Technical Standard</td><td id="decisionStandardCell">-</td></tr>
+<tr><td data-i18n="auto.t1608">Required Documents</td><td id="decisionDocsCell">-</td></tr>
+<tr><td data-i18n="auto.t1609">ESG / Traceability Status</td><td id="decisionEsgCell">-</td></tr>
+<tr><td data-i18n="auto.t1610">Logistics Route</td><td id="decisionRouteCell">-</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="compliance-calculator">
+<div class="wrap" style="max-width:1280px">
+<div class="section-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t1611">APAC Regional Supply Desk</div>
+<h2 data-i18n="auto.t1612">Live RCEP Procurement Calculator</h2>
+</div>
+<div class="hint" data-i18n="auto.t1613">Bloomberg-terminal style route logic: Malaysia production → South Korea hub → Japan / Taiwan / China. Duty band, standards and document pack update instantly.</div>
+</div>
+<div class="rfq-layout">
+<div class="rfq-card">
+<div class="grid2">
+<div class="field">
+<label class="field-label" data-i18n="auto.t1614" for="calcMaterial">Material</label>
+<select class="select" id="calcMaterial">
+<option data-i18n="auto.t1615" value="copper">Copper · 6N / 7N</option>
+<option data-i18n="auto.t1616" value="aluminum">Aluminum · 6N</option>
+<option data-i18n="auto.t1617" value="zinc">Zinc · 5N5</option>
+<option data-i18n="auto.t1618" value="ree">Rare Earth Materials</option>
+</select>
+</div>
+<div class="field">
+<label class="field-label" data-i18n="auto.t1619" for="calcDestination">Destination</label>
+<select class="select" id="calcDestination">
+<option data-i18n="auto.t1620" value="south_korea">South Korea · Hub Release</option>
+<option data-i18n="auto.t1621" value="japan">Japan · RCEP Form AJ</option>
+<option data-i18n="auto.t1622" value="taiwan">Taiwan · TSMC-grade PPT</option>
+<option data-i18n="auto.t1623" value="china">China · Shanghai / Ningbo / Shenzhen</option>
+</select>
+</div>
+</div>
+<div class="result-box" style="margin-top:12px;border-color:rgba(16,185,129,.36)">
+<div class="result-main" data-i18n="auto.t1624" id="calcRouteTitle">Malaysia → South Korea Hub</div>
+<div class="result-sub" data-i18n="auto.t1625" id="calcRouteText">Select material and destination to resolve RCEP duty, standards and buyer-facing document pack.</div>
+</div>
+</div>
+<div class="rfq-card">
+<div class="table-panel">
+<table>
+<thead>
+<tr><th data-i18n="auto.t1626">Procurement Output</th><th data-i18n="auto.t1627">Live Terminal Result</th></tr>
+</thead>
+<tbody>
+<tr><td data-i18n="auto.t1628">RCEP Duty Band</td><td id="calcRcepBenefit">-</td></tr>
+<tr><td data-i18n="auto.t1629">Standards Marker</td><td id="calcStandard">-</td></tr>
+<tr><td data-i18n="auto.t1630">Route / Lead Time</td><td id="calcLeadTime">-</td></tr>
+<tr><td data-i18n="auto.t1631">Document Pack</td><td id="calcRequiredDocs">-</td></tr>
+</tbody>
+</table>
+</div>
+<div class="result-box" style="margin-top:12px">
+<div class="result-sub"><span data-i18n="auto.t1632">Legal landing: </span><span class="yyk-director-seal"><strong class="yyk-kim-verified" data-i18n="auto.t1633">Representative Director / CEO Kim Irina</strong> <span class="yyk-signature-badge" data-i18n="auto.t1634">Company Profile</span></span><span data-i18n="auto.t1635"> · Registration No. 877-88-03332 · APAC Desk verification through footer and RFQ records.</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="yykLegalShieldTitle" class="yyk-legal-shield" id="legal-shield">
+<div class="wrap">
+<div class="yyk-legal-grid">
+<div class="yyk-legal-panel">
+<div class="eyebrow" data-i18n="auto.t1636">Legal Shield · APAC B2B Trust</div>
+<h2 class="yyk-legal-title" data-i18n="auto.t1637" id="yykLegalShieldTitle">Balanced legal protection for qualified industrial counterparties.</h2>
+<p class="yyk-legal-lead" data-i18n="auto.t1638">YONGYEOKYO treats legal clarity as part of supply-chain reliability: every RFQ, data-room interaction and purity claim is handled as a reviewed B2B process, not a public promise.</p>
+<div aria-label="Legal framework pillars" class="yyk-legal-pillrow">
+<span class="yyk-legal-pill" data-i18n="auto.t1639">Mutual trust</span>
+<span class="yyk-legal-pill" data-i18n="auto.t1640">Data protection</span>
+<span class="yyk-legal-pill" data-i18n="auto.t1641">Export control</span>
+<span class="yyk-legal-pill" data-i18n="auto.t1642">CoA dependency</span>
+</div>
+<div class="yyk-legal-actions">
+<button class="yyk-legal-btn" data-i18n="auto.t1643" data-open-legal-shield="" type="button">Read legal framework</button>
+<a class="yyk-legal-btn" data-i18n="auto.t1644" href="#contact">Contact compliance desk</a>
+</div>
+</div>
+<div class="yyk-legal-risk-panel" data-risk-state="review" id="yykLegalRiskPanel">
+<button aria-controls="yykLegalRiskBody" aria-expanded="false" aria-label="Open or close Legal Intelligence Risk Panel" class="yyk-legal-risk-head" id="yykLegalRiskToggle" type="button">
+<span class="yyk-legal-risk-left">
+<span aria-hidden="true" class="yyk-risk-led"></span>
+<span>
+<strong data-i18n="auto.t1645">Legal Intelligence Risk Panel</strong>
+<em data-i18n="auto.t1646">Bloomberg-style control layer · RFQ-sensitive warnings</em>
+</span>
+</span>
+<span class="yyk-legal-risk-summary" data-i18n="auto.t1647" id="yykLegalRiskSummary">REVIEW REQUIRED · RFQ IS NON-BINDING</span>
+<span aria-hidden="true" class="yyk-legal-risk-chevron">⌄</span>
+</button>
+<div aria-hidden="true" class="yyk-legal-risk-body" hidden="" id="yykLegalRiskBody">
+<div class="yyk-legal-alert" id="yykLegalDynamicWarning">
+<strong data-i18n="auto.t1648">RFQ LEGAL WARNING</strong>
+<span data-i18n="auto.t1649">No quote release should be treated as binding until EUC, sanctions, CoA method ID, laboratory calibration ID, bonded route confirmation and buyer foundry spec mapping are validated.</span>
+</div>
+<div aria-label="Legal control cards" class="yyk-legal-risk-grid">
+<article class="yyk-legal-risk-card" data-legal-node="rfq">
+<strong data-i18n="auto.t1650">RFQ Status</strong>
+<p data-i18n="auto.t1651">RFQ is non-binding. Submitted requests initiate technical, commercial and compliance review only. No supply obligation, allocation, price or delivery commitment exists until a written agreement is executed by authorized representatives.</p>
+</article>
+<article class="yyk-legal-risk-card" data-legal-node="purity">
+<strong data-i18n="auto.t1652">Purity Validation</strong>
+<p data-i18n="auto.t1653">Purity, impurity profile, analytical method and suitability are batch-specific and depend on released CoA, laboratory method, calibration record and end-use context. Website data remains preliminary.</p>
+</article>
+<article class="yyk-legal-risk-card" data-legal-node="vdr">
+<strong data-i18n="auto.t1654">Data Room Access</strong>
+<p data-i18n="auto.t1655">VDR access is intended for qualified counterparties. Uploaded or downloaded materials may be subject to NDA, KYC/KYB, export-control review and internal recordkeeping obligations.</p>
+</article>
+<article class="yyk-legal-risk-card" data-legal-node="esg">
+<strong data-i18n="auto.t1656">ESG Position</strong>
+<p data-i18n="auto.t1657">Carbon, circularity and responsible-sourcing statements are planning or evidence-based disclosures, not absolute guarantees, unless verified in a signed contract or third-party certificate.</p>
+</article>
+</div>
+<div class="yyk-legal-risk-footer" data-i18n="auto.t1658">
+            APAC B2B balance: the framework protects both sides by reducing ambiguity, preventing unsupported claims and keeping procurement decisions tied to verified evidence, applicable law and written commercial terms.
+          </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div aria-hidden="true" aria-labelledby="yykLegalModalTitle" aria-modal="true" class="yyk-legal-modal" id="yykLegalShieldModal" role="dialog">
+<div class="yyk-legal-modalbox">
+<div class="yyk-legal-modalhead">
+<div>
+<div class="eyebrow" data-i18n="auto.t1659">YONGYEOKYO Legal Shield</div>
+<h3 data-i18n="auto.t1660" id="yykLegalModalTitle">APAC B2B Legal Framework</h3>
+</div>
+<button aria-label="Close legal framework" class="yyk-legal-close" data-close-legal-shield="" type="button">×</button>
+</div>
+<h4 data-i18n="auto.t1661">1. Terms of use</h4>
+<p data-i18n="auto.t1662">This website is provided for qualified industrial and institutional counterparties. Content is informational and does not constitute a public offer, investment advice, technical warranty or binding supply commitment.</p>
+<h4 data-i18n="auto.t1663">2. RFQ and commercial review</h4>
+<p data-i18n="auto.t1664">Any RFQ, qualification request or automated indication is preliminary. Final acceptance is subject to KYC/KYB, end-use screening, export-control checks, supplier allocation, payment terms and a signed written agreement.</p>
+<h4 data-i18n="auto.t1665">3. Product purity and technical suitability</h4>
+<p data-i18n="auto.t1666">Purity grades, impurity values and processing assumptions are batch-specific. The governing evidence is the released CoA, analytical method, chain-of-custody record and agreed specification. Suitability for a particular end use must be separately validated by the buyer.</p>
+<h4 data-i18n="auto.t1667">4. Data protection and confidentiality</h4>
+<p data-i18n="auto.t1668">Business contact data, RFQ information and VDR activity should be processed for legitimate B2B purposes: qualification, compliance review, technical communication and recordkeeping. Confidential materials must not be redistributed without written authorization.</p>
+<h4 data-i18n="auto.t1669">5. Export control and sanctions</h4>
+<p data-i18n="auto.t1670">Materials, technical data and samples may be restricted by applicable export-control, sanctions, customs and end-use regulations. YONGYEOKYO may decline, delay or request additional documentation for any transaction.</p>
+<h4 data-i18n="auto.t1671">6. ESG and sustainability claims</h4>
+<p data-i18n="auto.t1672">ESG, circularity, low-carbon or energy-origin statements are evidence-dependent and may rely on supplier declarations, third-party certificates or project documentation. They are not absolute claims unless expressly incorporated into binding terms.</p>
+<h4 data-i18n="auto.t1673">7. Limitation of liability</h4>
+<p data-i18n="auto.t1674">To the maximum extent permitted by applicable law, website content is provided without warranty. Liability is limited to the terms of the executed agreement between the parties.</p>
+</div>
+</div>
+
+
+<section aria-label="Supplier credibility and trust scoring module" class="yyk-supplier-credibility" id="yykSupplierCredibility">
+<div class="yyk-supplier-wrap">
+<div class="yyk-supplier-head">
+<div>
+<div class="yyk-supplier-kicker" data-i18n="auto.t1675">Supplier Credibility Module · Executive Layer</div>
+<div class="yyk-supplier-title" data-i18n="auto.t1676">Yongyeokyo Trading House Co., Ltd.</div>
+<div class="yyk-supplier-sub" data-i18n="auto.t1677">International trading company headquartered in South Korea, with production-linked presence in Malaysia ECER and APAC bonded logistics routes for qualification-driven high-purity materials programs.</div>
+</div>
+<div aria-live="polite" class="yyk-trust-badge"><span data-i18n="auto.t1678">Trust Score</span><b id="yykTrustScore">94</b></div>
+</div>
+<div class="yyk-supplier-grid">
+<div class="yyk-supplier-card">
+<h3 data-i18n="auto.t1679">Company + Product Evidence</h3>
+<p data-i18n="auto.t1680">YONGYEOKYO supplies high and ultra-high purity non-ferrous and rare-earth materials under a qualification-first model. Product suitability remains batch-specific and is confirmed through released CoA, laboratory method and end-use context.</p>
+<div class="yyk-product-grid">
+<div class="yyk-product-pill"><b data-i18n="auto.t1681">Copper · Cu</b><span data-i18n="auto.t1682">Ingots and powder · 99.9999% target grade</span></div>
+<div class="yyk-product-pill"><b data-i18n="auto.t1683">Aluminum · Al</b><span data-i18n="auto.t1684">Ingots · 99.9999% target grade</span></div>
+<div class="yyk-product-pill"><b data-i18n="auto.t1685">Zinc · Zn</b><span data-i18n="auto.t1686">High-purity powder · 99.999% target grade</span></div>
+<div class="yyk-product-pill"><b data-i18n="auto.t1687">Rare Earths</b><span data-i18n="auto.t1688">Broad high-purity portfolio · RFQ-specific review</span></div>
+</div>
+</div>
+<div class="yyk-supplier-card">
+<h3 data-i18n="auto.t1689">APAC Logistics Hub</h3>
+<p data-i18n="auto.t1690">Bonded warehouse routes support faster transit, tax-efficient staging and controlled regional distribution after document clearance.</p>
+<div class="yyk-hub-list">
+<div class="yyk-hub-row"><span data-i18n="auto.t1691">Malaysia</span><b data-i18n="auto.t1692">Kuantan Port · production / bonded hub</b></div>
+<div class="yyk-hub-row"><span data-i18n="auto.t1693">Korea</span><b data-i18n="auto.t1694">Busan / Incheon · bonded distribution</b></div>
+<div class="yyk-hub-row"><span data-i18n="auto.t1695">Japan</span><b data-i18n="auto.t1696">Yokohama / Niigata · technical buyer lanes</b></div>
+<div class="yyk-hub-row"><span data-i18n="auto.t1697">China + Hong Kong</span><b data-i18n="auto.t1698">Shanghai / Qingdao / Tianjin / HK free ports</b></div>
+</div>
+</div>
+</div>
+<div class="yyk-supplier-card" style="margin-top:14px">
+<h3 data-i18n="auto.t1699">Trust Scoring Factors</h3>
+<div class="yyk-trust-grid">
+<div class="yyk-trust-factor"><span data-i18n="auto.t1700">Identity</span><b>20/20</b><em data-i18n="auto.t1701">Official business identity declared.</em></div>
+<div class="yyk-trust-factor"><span data-i18n="auto.t1702">Production Link</span><b>18/20</b><em data-i18n="auto.t1703">Malaysia ECER co-founder position.</em></div>
+<div class="yyk-trust-factor"><span data-i18n="auto.t1704">Bonded Logistics</span><b>19/20</b><em data-i18n="auto.t1705">APAC ports and warehouse structure.</em></div>
+<div class="yyk-trust-factor"><span data-i18n="auto.t1706">Evidence Discipline</span><b>18/20</b><em data-i18n="auto.t1707">CoA / GDMS / ICP-MS confirmation model.</em></div>
+<div class="yyk-trust-factor"><span data-i18n="auto.t1708">Compliance Readiness</span><b id="yykTrustComplianceFactor">19/20</b><em data-i18n="auto.t1709">OFAC / METI / KOSTI / EUC gating.</em></div>
+</div>
+<div class="yyk-exec-signal"><strong data-i18n="auto.t1710">Executive signal:</strong><span data-i18n="auto.t1711"> supplier credibility is </span><span class="green" data-i18n="auto.t1712" id="yykTrustSignal">APPROVED FOR QUALIFICATION REVIEW</span><span data-i18n="auto.t1713">. Final quote release remains controlled by RFQ hard-gate, sanctions screening, route confirmation and batch-specific certification.</span></div>
+</div>
+</div>
+</section>
+<script id="yyk-supplier-credibility-trust-js">
+(function(){
+  'use strict';
+  if(window.YYKTrustScoringV47){return;} window.YYKTrustScoringV47=true;
+  function q(s){return document.querySelector(s)}
+  function readVal(id){var el=document.getElementById(id);return el?String(el.value||''):''}
+  function computeTrust(){
+    var score=94;
+    ['v15Ofac','v15Meti','v15Kosti'].forEach(function(id){var v=readVal(id); if(v==='review') score-=5; if(v==='hit') score-=24;});
+    var kyc=readVal('v15Kyc'); if(kyc==='review')score-=5; if(kyc==='blocked')score-=22;
+    score=Math.max(0,Math.min(100,score));
+    var badge=q('#yykTrustScore'), sig=q('#yykTrustSignal'), comp=q('#yykTrustComplianceFactor');
+    if(badge) badge.textContent=String(score);
+    if(comp) comp.textContent=(score>=85?'19/20':score>=70?'14/20':'6/20');
+    if(sig){
+      sig.textContent=score>=85?'APPROVED FOR QUALIFICATION REVIEW':score>=70?'CONDITIONAL REVIEW REQUIRED':'DO NOT QUOTE · COUNTERPARTY REVIEW';
+      sig.style.color=score>=85?'#FFCC33':score>=70?'#10b981':'#ff8a66';
+    }
+  }
+  document.addEventListener('change',function(e){if(e.target&&/^v15(Ofac|Meti|Kosti|Kyc)$/.test(e.target.id||''))computeTrust();});
+  document.addEventListener('input',function(e){if(e.target&&/^v15(Ofac|Meti|Kosti|Kyc)$/.test(e.target.id||''))computeTrust();});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',computeTrust);else computeTrust();
+})();
+</script>
+<script id="yyk-v15-trade-decision-engine-js">
+(function(){
+  'use strict';
+  var root=document.getElementById('yykTradeDecisionV15');
+  if(!root || window.YYKTradeDecisionEngineV15){return;}
+  var q=function(sel){return root.querySelector(sel)};
+  var qa=function(sel){return Array.prototype.slice.call(root.querySelectorAll(sel))};
+  var readNum=function(id){var el=q('#'+id);var n=Number(el&&el.value);return isFinite(n)?n:0};
+  var readVal=function(id){var el=q('#'+id);return el?String(el.value||''):''};
+  var adapters={
+    LME:function(){return {copper_usd_mt:readNum('v15Base'),source:'placeholder:lme'}},
+    FX:function(){return {usdkrw:1320,usdjpy:155,usdcny:7.24,source:'placeholder:fx'}},
+    freight:function(){return {apac_lane_premium:readNum('v15Port'),source:'placeholder:freight'}},
+    suppliers:function(){return {premium_usd_mt:0.8,capacity:'review',source:'placeholder:supplier'}},
+    risk:function(){return {route_disruption:'medium',source:'placeholder:risk'}}
+  };
+  function screeningRisk(){
+    var score=0;
+    ['v15Ofac','v15Meti','v15Kosti'].forEach(function(id){var v=readVal(id); if(v==='review')score+=18; if(v==='hit')score+=80;});
+    if(readVal('v15Kyc')==='review')score+=16;
+    if(readVal('v15Kyc')==='blocked')score+=80;
+    return Math.min(score,100);
+  }
+  function routeCost(){
+    var direct=readNum('v15Base')+readNum('v15Warehouse')+readNum('v15Port')+readNum('v15Customs')+readNum('v15Insurance')+readNum('v15ComplianceCost')+(readNum('v15LeadDays')*readNum('v15TimeFactor'));
+    var factor=Number(readVal('v15Incoterms'))||1;
+    return Math.round(direct*factor);
+  }
+  function buildContract(){
+    var risk=screeningRisk();
+    var total=routeCost();
+    var status=risk>=70?'reject':(risk>=35?'conditional_approval':'approved');
+    var action=risk>=70?'DO_NOT_QUOTE':(risk>=35?'APPROVE_WITH_CONDITIONS':'APPROVE');
+    return {
+      schema:'yongyeokyo.trade_decision.v1_5',
+      rfq_id:'YYK-RFQ-V15-DEMO',
+      generated_at:new Date().toISOString(),
+      counterparty:{legal_name:readVal('v15LegalName'),country:readVal('v15Country'),kyc_status:readVal('v15Kyc'),external_checks:{ofac:readVal('v15Ofac'),meti:readVal('v15Meti'),kosti:readVal('v15Kosti')}},
+      material:{type:'Cu',grade:'7N+',evidence_policy:'released CoA / GDMS / ICP-MS required'},
+      market_data:{lme:adapters.LME(),fx:adapters.FX(),freight:adapters.freight(),supplier:adapters.suppliers(),risk:adapters.risk()},
+      route:{path:'MY → BUSAN → YOKOHAMA',warehouse:'bonded',incoterms:document.getElementById('v15Incoterms').selectedOptions[0].textContent,lead_time_days:readNum('v15LeadDays')},
+      cost:{total_usd_per_mt:total,currency:'USD',formula_components:{base:readNum('v15Base'),warehouse:readNum('v15Warehouse'),port:readNum('v15Port'),customs:readNum('v15Customs'),insurance:readNum('v15Insurance'),compliance:readNum('v15ComplianceCost'),time_premium:readNum('v15LeadDays')*readNum('v15TimeFactor'),incoterms_factor:Number(readVal('v15Incoterms'))||1}},
+      compliance:{status:risk>=70?'blocked':(risk>=35?'review':'pass'),euc_required:true,sanctions_status:risk>=70?'blocked':(risk>=35?'review':'clear')},
+      decision:{status:status,risk_score:risk,action:action,release_rule:'No Quote Release unless mandatory compliance nodes are validated.'},
+      role_views:{buyer:['price','lead_time','delivery_condition'],supplier:['capacity','premium','route'],compliance:['euc','sanctions','screening'],executive:['action','risk_score','commercial_summary']}
+    };
+  }
+  function render(){
+    var c=buildContract();
+    q('#v15TotalCost').textContent='$'+c.cost.total_usd_per_mt.toLocaleString()+'/MT';
+    q('#v15Risk').textContent=c.decision.risk_score+'%';
+    q('#v15Decision').textContent=c.decision.action.replace(/_/g,' ');
+    var status=q('#yykV15Status');
+    status.classList.toggle('warn',c.decision.action==='DO_NOT_QUOTE');
+    status.textContent=c.decision.action==='DO_NOT_QUOTE'?'GATE BLOCKED':'API CONTRACT READY';
+    q('#yykV15Json').textContent=JSON.stringify(c,null,2);
+    window.YYKTradeDecisionEngineV15.lastContract=c;
+    document.dispatchEvent(new CustomEvent('yyk:v15-decision-updated',{detail:c}));
+  }
+  function copyJson(){
+    var txt=q('#yykV15Json').textContent||'';
+    if(navigator.clipboard){navigator.clipboard.writeText(txt);}
+  }
+  qa('input,select').forEach(function(el){el.addEventListener('input',render);el.addEventListener('change',render);});
+  qa('[data-v15-role]').forEach(function(btn){btn.addEventListener('click',function(){qa('[data-v15-role]').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.body.setAttribute('data-yyk-v15-role',btn.getAttribute('data-v15-role'));render();});});
+  q('#v15Recompute').addEventListener('click',render);
+  q('#v15CopyJson').addEventListener('click',copyJson);
+  window.YYKTradeDecisionEngineV15={adapters:adapters,buildContract:buildContract,render:render,lastContract:null};
+  document.body.setAttribute('data-yyk-v15-role','buyer');
+  render();
+})();
+</script>

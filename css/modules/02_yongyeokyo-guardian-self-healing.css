@@ -1,0 +1,185 @@
+/* YONGYEOKYO GUARDIAN SELF-HEALING CSS START */
+#guardian-self-healing-final{
+  position:relative;
+  z-index:4;
+}
+#guardian-self-healing-final .guardian-shell{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.050),rgba(255,255,255,.018));
+  padding:22px;
+}
+#guardian-self-healing-final .guardian-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:14px;
+  align-items:stretch;
+}
+#guardian-self-healing-final .guardian-card{
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.18);
+  padding:18px;
+}
+#guardian-self-healing-final .guardian-status{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid rgba(201,162,39,.62);
+  background:rgba(201,162,39,.10);
+  color:#d4b85c;
+  padding:7px 10px;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+#guardian-self-healing-final .guardian-status.warn{
+  border-color:rgba(198,106,74,.62);
+  background:rgba(198,106,74,.10);
+  color:#f0a087;
+}
+#guardian-self-healing-final .guardian-kpi-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin-top:14px;
+}
+#guardian-self-healing-final .guardian-kpi,
+#guardian-self-healing-final .guardian-tile{
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.025);
+  padding:11px;
+  color:#E5E8EC;
+  font-size:12px;
+  line-height:1.45;
+}
+#guardian-self-healing-final .guardian-kpi strong,
+#guardian-self-healing-final .guardian-tile strong{
+  display:block;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+#guardian-self-healing-final .guardian-native-toggle{
+  margin-top:14px;
+}
+#guardian-self-healing-final summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  border:1px solid rgba(201,162,39,.68);
+  background:rgba(201,162,39,.12);
+  color:#fff;
+  padding:13px 15px;
+  cursor:pointer;
+  user-select:none;
+  list-style:none;
+  pointer-events:auto !important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-size:12px;
+}
+#guardian-self-healing-final summary::-webkit-details-marker{display:none}
+#guardian-self-healing-final summary:after{
+  content:"OPEN";
+  color:var(--gold);
+  font-size:10px;
+}
+#guardian-self-healing-final details[open] summary:after{content:"CLOSE"}
+#guardian-self-healing-final summary:hover,
+#guardian-self-healing-final summary:focus-visible{
+  background:rgba(201,162,39,.20);
+  outline:none;
+}
+#guardian-self-healing-final .guardian-panel{
+  border:1px solid var(--line);
+  border-top:0;
+  background:rgba(0,0,0,.22);
+  padding:16px;
+}
+#guardian-self-healing-final .guardian-table-wrap{
+  margin-top:14px;
+  overflow:auto;
+}
+#guardian-self-healing-final table{
+  min-width:860px;
+}
+#guardian-self-healing-final .guardian-form{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin-top:14px;
+}
+#guardian-self-healing-final .guardian-field label{
+  display:block;
+  margin-bottom:7px;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+#guardian-self-healing-final .guardian-field input,
+#guardian-self-healing-final .guardian-field select{
+  width:100%;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.24);
+  color:var(--text);
+  padding:11px 12px;
+  outline:none;
+}
+#guardian-self-healing-final .guardian-btn{
+  border:1px solid rgba(201,162,39,.68);
+  background:rgba(201,162,39,.13);
+  color:#fff;
+  padding:12px 14px;
+  cursor:pointer;
+  font-weight:700;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  margin-top:14px;
+}
+#guardian-self-healing-final .guardian-btn:hover{
+  background:rgba(201,162,39,.22);
+}
+#guardian-self-healing-final .guardian-result{
+  margin-top:14px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.24);
+  padding:14px;
+  color:#E5E8EC;
+  font-size:13px;
+  line-height:1.55;
+}
+#guardian-self-healing-final .guardian-result.block{
+  border-color:rgba(198,106,74,.72);
+  background:rgba(198,106,74,.10);
+}
+#guardian-self-healing-final .guardian-result.pass{
+  border-color:rgba(201,162,39,.62);
+  background:rgba(201,162,39,.08);
+}
+#guardian-self-healing-final .guardian-code{
+  margin-top:12px;
+  white-space:pre-wrap;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  color:#fff;
+  font-size:12px;
+  line-height:1.55;
+}
+#guardian-self-healing-final .hub-active{
+  color:#d4b85c;
+  font-weight:700;
+}
+@media(max-width:960px){
+  #guardian-self-healing-final .guardian-grid,
+  #guardian-self-healing-final .guardian-kpi-grid,
+  #guardian-self-healing-final .guardian-form{grid-template-columns:1fr}
+  #guardian-self-healing-final summary{display:block}
+  #guardian-self-healing-final summary:after{display:block;margin-top:8px}
+}
+/* YONGYEOKYO GUARDIAN SELF-HEALING CSS END */
+
+

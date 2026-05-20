@@ -1,0 +1,342 @@
+<div aria-hidden="true" class="contact-engine" id="contactEngine">
+<div aria-labelledby="contactEngineTitle" aria-modal="true" class="contact-shell" role="dialog">
+<div class="contact-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t3542">YONGYEOKYO · Contact Engine</div>
+<div class="contact-title" data-i18n="auto.t3543" id="contactEngineTitle">Inquiry, Media and Privacy Routing</div>
+<p class="card-text" data-i18n="auto.t3544">A controlled contact layer for product inquiries, quotation routing, media requests and privacy access.</p>
+</div>
+<button aria-label="Close Contact Engine" class="contact-close" data-close-contact="" onclick="console.log('Button activated');" type="button">×</button>
+</div>
+<div class="contact-body">
+<aside class="contact-toc">
+<h2 data-i18n="auto.t3545">Contact</h2>
+<a data-i18n="auto.t3546" href="#ce-overview">Overview</a>
+<a data-i18n="auto.t3547" href="#ce-inquiry">Product &amp; Business Inquiries</a>
+<a data-i18n="auto.t3548" href="#ce-media">Media Inquiries</a>
+<a data-i18n="auto.t3549" href="#ce-accounts">Official Social Media</a>
+<button data-i18n="auto.t3550" data-open-compliance="cookies" onclick="console.log('Button activated');" type="button">Cookie Settings</button>
+<button data-i18n="auto.t3551" data-open-compliance="privacy" onclick="console.log('Button activated');" type="button">Privacy Policy</button>
+<a data-i18n="auto.t3552" href="#ce-company">Company Information</a>
+</aside>
+<article class="contact-content"><section id="ce-overview">
+<h2 class="section-title" data-i18n="auto.t3553">Overview</h2>
+<div class="intro" data-i18n="auto.t3554">
+            This page is designed for YONGYEOKYO’s legal-compliance and contact layer. It supports product and business inquiries relating to high-purity and ultra-high-purity non-ferrous and rare earth metals, media contact requests, and privacy settings management for website visitors.
+          </div>
+<div class="note" data-i18n="auto.t3555">
+            For production deployment in South Korea, the consent manager should be connected to a backend log endpoint so that consent status, timestamp, policy version, and source can be recorded server-side.
+          </div>
+</section>
+<section id="ce-inquiry">
+<h3 data-i18n="auto.t3556">Product, Supply &amp; Business Inquiries</h3>
+<p data-i18n="auto.t3557">For inquiries relating to product specifications, purity grades, quotation requests, supply availability, technical information, logistics coordination, or business cooperation, please use the inquiry form below. Your inquiry will be routed to the appropriate department.</p>
+<div class="grid3 contact-cards">
+<div class="mini">
+<strong data-i18n="auto.t3558">Typical inquiry topics</strong>
+<ul>
+<li data-i18n="auto.t3559">product specifications and purity</li>
+<li data-i18n="auto.t3560">quotation requests</li>
+<li data-i18n="auto.t3561">supply availability and lead time</li>
+<li data-i18n="auto.t3562">commercial and technical discussions</li>
+</ul>
+</div>
+<div class="mini">
+<strong data-i18n="auto.t3563">Materials</strong>
+<ul>
+<li data-i18n="auto.t3564">copper ingots</li>
+<li data-i18n="auto.t3565">copper powder</li>
+<li data-i18n="auto.t3566">aluminum ingots</li>
+<li data-i18n="auto.t3567">zinc powder and rare earth materials</li>
+</ul>
+</div>
+<div class="mini">
+<strong data-i18n="auto.t3568">Response routing</strong>
+<ul>
+<li data-i18n="auto.t3569">sales and quotation desk</li>
+<li data-i18n="auto.t3570">technical review</li>
+<li data-i18n="auto.t3571">logistics and supply coordination</li>
+<li data-i18n="auto.t3572">compliance and documentation support</li>
+</ul>
+</div>
+</div>
+<form data-contact-form="">
+<div class="field">
+<label data-i18n="auto.t3573" for="companyName">Company Name</label>
+<input id="companyName" name="companyName" placeholder="Enter company name" type="text"/>
+</div>
+<div class="grid2">
+<div class="field">
+<label data-i18n="auto.t3574" for="contactName">Contact Name</label>
+<input id="contactName" name="contactName" placeholder="Enter contact name" type="text"/>
+</div>
+<div class="field">
+<label data-i18n="auto.t3575" for="position">Position / Title</label>
+<input id="position" name="position" placeholder="Enter position or title" type="text"/>
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label data-i18n="auto.t3576" for="email">Business Email</label>
+<input id="email" name="email" placeholder="Enter email address" type="email"/>
+</div>
+<div class="field">
+<label data-i18n="auto.t3577" for="phone">Phone</label>
+<input id="phone" name="phone" placeholder="Enter phone number" type="tel"/>
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label data-i18n="auto.t3578" for="topic">Inquiry Topic</label>
+<select id="topic" name="topic">
+<option data-i18n="auto.t3579" value="">Select a topic</option>
+<option data-i18n="auto.t3580">Quotation Request</option>
+<option data-i18n="auto.t3581">Product Specification</option>
+<option data-i18n="auto.t3582">Supply Capacity</option>
+<option data-i18n="auto.t3583">Logistics / Delivery</option>
+<option data-i18n="auto.t3584">Business Cooperation</option>
+<option data-i18n="auto.t3585">Request for Materials</option>
+<option data-i18n="auto.t3586">Other</option>
+</select>
+</div>
+<div class="field">
+<label data-i18n="auto.t3587" for="region">Region / Market</label>
+<select id="region" name="region">
+<option data-i18n="auto.t3588" value="">Select region</option>
+<option data-i18n="auto.t3589">Republic of Korea</option>
+<option data-i18n="auto.t3590">Japan</option>
+<option data-i18n="auto.t3591">China</option>
+<option data-i18n="auto.t3592">Other</option>
+</select>
+</div>
+</div>
+<div class="field">
+<label data-i18n="auto.t3593" for="message">Inquiry Details</label>
+<textarea id="message" name="message" placeholder="Provide product, purity, quantity, timing, and any relevant commercial or technical details."></textarea>
+</div>
+<label style="color:var(--muted);font-size:13px"><input required="" type="checkbox"/> <span data-i18n="auto.t3594">I agree</span><span data-i18n="auto.t3595">. By submitting this request, you agree to our Terms of Service and Privacy Policy. </span><button class="btn" data-i18n="auto.t3596" data-open-compliance="privacy" onclick="console.log('Button activated');" type="button">View Privacy</button></label><div class="actions">
+<button class="btn primary" data-i18n="auto.t3597" onclick="console.log('Button activated');" type="submit">Submit Inquiry</button>
+<button class="btn" data-i18n="auto.t3598" onclick="console.log('Button activated');" type="reset">Reset Form</button>
+</div>
+</form>
+</section>
+<section id="ce-media">
+<h3 data-i18n="auto.t3599">Media Inquiries</h3>
+<p data-i18n="auto.t3600">For interview requests, media inquiries, or requests for corporate information materials relating to YONGYEOKYO’s business activities, please use the media inquiry form below.</p>
+<form data-contact-form="">
+<div class="grid2">
+<div class="field">
+<label data-i18n="auto.t3601" for="mediaOrg">Media Organization</label>
+<input id="mediaOrg" name="mediaOrg" placeholder="Enter media organization" type="text"/>
+</div>
+<div class="field">
+<label data-i18n="auto.t3602" for="mediaContact">Journalist / Contact Name</label>
+<input id="mediaContact" name="mediaContact" placeholder="Enter journalist or contact name" type="text"/>
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label data-i18n="auto.t3603" for="mediaEmail">Email</label>
+<input id="mediaEmail" name="mediaEmail" placeholder="Enter email address" type="email"/>
+</div>
+<div class="field">
+<label data-i18n="auto.t3604" for="mediaPhone">Phone</label>
+<input id="mediaPhone" name="mediaPhone" placeholder="Enter phone number" type="tel"/>
+</div>
+</div>
+<div class="field">
+<label data-i18n="auto.t3605" for="mediaRequest">Request Details</label>
+<textarea id="mediaRequest" name="mediaRequest" placeholder="Describe the interview request, topic, publication timing, and any materials requested."></textarea>
+</div>
+<div class="actions">
+<button class="btn primary" data-i18n="auto.t3606" onclick="console.log('Button activated');" type="submit">Submit Media Inquiry</button>
+</div>
+</form>
+</section>
+<section id="ce-accounts">
+<h3 data-i18n="auto.t3607">Official Social Media Accounts</h3>
+<p data-i18n="auto.t3608">Official social media channels should be linked through this page and aligned with the Company’s Social Media Policy and Privacy Policy.</p>
+<div class="social-list">
+<a data-i18n="auto.t3609" href="https://www.linkedin.com/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+<a data-i18n="auto.t3610" href="https://www.youtube.com/" rel="noopener noreferrer" target="_blank">YouTube</a>
+</div>
+<div class="warn" data-i18n="auto.t3611">
+            Replace the placeholder links above with YONGYEOKYO’s actual official account URLs before publication. Do not link to generic platform homepages in production.
+          </div>
+</section>
+<section id="ce-privacy">
+<h3 data-i18n="auto.t3612">Privacy Settings</h3>
+<p data-i18n="auto.t3613">Privacy and cookie preferences are managed through the Compliance Engine.</p>
+<div class="actions" style="margin-top:12px;">
+<button class="btn primary" data-i18n="auto.t3614" data-open-compliance="cookies" onclick="console.log('Button activated');" type="button">Open Cookie Settings</button>
+<button class="btn" data-i18n="auto.t3615" data-open-compliance="privacy" onclick="console.log('Button activated');" type="button">View Privacy Policy</button>
+</div>
+</section>
+<section id="ce-company">
+<h3 data-i18n="auto.t3616">Company Information</h3>
+<div class="grid2">
+<div class="mini">
+<strong data-i18n="auto.t3617">Company</strong>
+<p data-i18n="auto.t3618">YONGYEOKYO Trading House Co., Ltd</p>
+<strong data-i18n="auto.t3619">Address</strong>
+<p data-i18n="auto.t3620">Room 201, 47, Hogupo-ro 764beon-gil, Namdong-gu, Incheon 21536, Republic of Korea</p>
+</div>
+<div class="mini">
+<strong data-i18n="auto.t3621">Compliance Department</strong>
+<p><span data-i18n="auto.t3622">Email: </span><a data-i18n="auto.t3623" href="mailto:compliance@yongyeokyo.com">compliance@yongyeokyo.com</a><br/><span data-i18n="auto.t3624">
+              Tel: </span><a href="tel:+10000000000">+82 10-8010-5275</a><br/><span data-i18n="auto.t3625">
+              Business Hours: Korea Standard Time / APAC Desk</span></p>
+</div>
+</div>
+</section>
+</article>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="sogo-drawer" id="sogoDrawer">
+<div class="sogo-backdrop" data-close-sogo=""></div>
+<aside aria-labelledby="sogoTitle" aria-modal="true" class="sogo-panel" role="dialog">
+<div class="sogo-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t3626">YONGYEOKYO Qualification Flow · Just-in-Time RFQ</div>
+<div class="sogo-title" data-i18n="auto.t3627" id="sogoTitle">Request Supply</div>
+<div class="card-text" data-i18n="auto.t3628" style="color:#AEB4BC;font-size:13px;line-height:1.55;margin-top:8px;">One controlled request. The system resolves material, compliance, logistics and RFQ intake.</div>
+</div>
+<button aria-label="Close Request Supply" class="sogo-close" data-close-sogo="" onclick="console.log('Button activated');" type="button">×</button>
+</div>
+<div class="sogo-body">
+<div class="sogo-step">
+<div class="sogo-step-title" data-i18n="auto.t3629">1. Material</div>
+<div class="sogo-options" id="sogoMaterialOptions">
+<button class="sogo-option" data-i18n="auto.t3630" data-sogo-material="Copper" onclick="console.log('Button activated');" type="button">Cu · Copper</button>
+<button class="sogo-option" data-i18n="auto.t3631" data-sogo-material="Aluminum" onclick="console.log('Button activated');" type="button">Al · Aluminum</button>
+<button class="sogo-option" data-i18n="auto.t3632" data-sogo-material="Zinc" onclick="console.log('Button activated');" type="button">Zn · Zinc</button>
+<button class="sogo-option" data-i18n="auto.t3633" data-sogo-material="Rare Earths" onclick="console.log('Button activated');" type="button">REE · Rare Earths</button>
+</div>
+</div>
+<div class="sogo-step">
+<div class="sogo-step-title" data-i18n="auto.t3634">2. Auto-expanded specification</div>
+<div class="sogo-inline">
+<div class="sogo-field"><label data-i18n="auto.t3635">Purity</label><select id="sogoPurity"><option>5N</option><option>6N</option><option data-i18n="auto.t3636">6N+</option><option>7N</option><option data-i18n="auto.t3637">Custom</option></select></div>
+<div class="sogo-field"><label data-i18n="auto.t3638">Form</label><select id="sogoForm"><option data-i18n="auto.t3639">Ingot</option><option data-i18n="auto.t3640">Powder</option><option data-i18n="auto.t3641">Rod</option><option data-i18n="auto.t3642">Sputtering Target</option><option data-i18n="auto.t3643">Oxide / Salt</option></select></div>
+<div class="sogo-field"><label data-i18n="auto.t3644">Region</label><select id="sogoRegion"><option data-i18n="auto.t3645">Japan</option><option data-i18n="auto.t3646">Korea</option><option data-i18n="auto.t3647">China</option><option data-i18n="auto.t3648">Taiwan</option><option data-i18n="auto.t3649">APAC / Global Buyer Desk</option><option data-i18n="auto.t3650">Europe</option></select></div>
+<div class="sogo-field"><label data-i18n="auto.t3651">Volume</label><input id="sogoVolume" placeholder="50 kg / annual volume"/></div>
+<div class="sogo-field"><label data-i18n="auto.t3652">Application</label><select id="sogoApplication"><option data-i18n="auto.t3653">Semiconductor</option><option data-i18n="auto.t3654">Aerospace</option><option>EV</option><option data-i18n="auto.t3655">Optics</option><option data-i18n="auto.t3656">Research</option></select></div>
+<div class="sogo-field"><label data-i18n="auto.t3657">Delivery Term</label><select id="sogoTerm"><option data-i18n="auto.t3658">CIF</option><option data-i18n="auto.t3659">FOB</option><option data-i18n="auto.t3660">DAP</option><option data-i18n="auto.t3661">EXW</option><option data-i18n="auto.t3662">FCA</option><option data-i18n="auto.t3663">CIP</option></select></div>
+</div>
+</div>
+<div class="sogo-step">
+<div class="sogo-step-title" data-i18n="auto.t3664">3. Instant intelligence</div>
+<div class="sogo-intel">
+<div class="sogo-check"><span data-i18n="auto.t3665">SCSP status</span><strong data-i18n="auto.t3666" id="sogoScsp">Specification route ready</strong></div>
+<div class="sogo-check"><span data-i18n="auto.t3667">Compliance</span><strong data-i18n="auto.t3668" id="sogoCompliance">Required</strong></div>
+<div class="sogo-check"><span data-i18n="auto.t3669">Export control</span><strong data-i18n="auto.t3670" id="sogoExport">Destination review</strong></div>
+<div class="sogo-check"><span data-i18n="auto.t3671">Batch availability</span><strong data-i18n="auto.t3672" id="sogoBatch">Limited / verify</strong></div>
+<div class="sogo-check"><span data-i18n="auto.t3673">Next system</span><strong data-i18n="auto.t3674">RFQ Intake</strong></div>
+</div>
+</div>
+</div>
+<div class="sogo-actions">
+<button class="sogo-submit" data-i18n="auto.t3675" id="sogoSubmit" onclick="console.log('Button activated');" type="button">Submit Request → RFQ</button>
+<div class="sogo-progress"><span id="sogoProgress"></span></div>
+<div class="sogo-status" data-i18n="auto.t3676" id="sogoStatus">Progress is cached automatically. Closing this panel will not erase input.</div>
+</div>
+</aside>
+</div>
+<div class="sogo-toast" data-i18n="auto.t3677" id="sogoToast">RFQ synchronized. Opening RFQ form…</div>
+<script id="sogo-shosha-flow-js">
+(function(){
+  const KEY="apex_sogo_rfq_state_v1";
+  const drawer=document.getElementById("sogoDrawer");
+  const toast=document.getElementById("sogoToast");
+  const materialButtons=[].slice.call(document.querySelectorAll("[data-sogo-material]"));
+  const fields=["sogoPurity","sogoForm","sogoRegion","sogoVolume","sogoApplication","sogoTerm"].map(id=>document.getElementById(id)).filter(Boolean);
+  const defaults={
+    "Copper":{purity:"6N+",form:"Powder",app:"Semiconductor",compliance:"Required",export:"Destination review",batch:"Limited / verify"},
+    "Aluminum":{purity:"6N",form:"Ingot",app:"Semiconductor",compliance:"Standard",export:"Route review",batch:"Available / verify"},
+    "Zinc":{purity:"5N",form:"Powder",app:"EV",compliance:"Standard",export:"Route review",batch:"Verify PSD"},
+    "Rare Earths":{purity:"Custom",form:"Oxide / Salt",app:"EV",compliance:"Enhanced",export:"End-use validation",batch:"Controlled release"}
+  };
+  let state={material:"Copper",purity:"6N+",form:"Powder",region:"Japan",volume:"50 kg",application:"Semiconductor",term:"CIF"};
+  function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+  function load(){try{const s=JSON.parse(localStorage.getItem(KEY)||"null"); if(s)state=Object.assign(state,s);}catch(e){}}
+  function apply(){
+    materialButtons.forEach(b=>b.classList.toggle("active",b.dataset.sogoMaterial===state.material));
+    const map={sogoPurity:state.purity,sogoForm:state.form,sogoRegion:state.region,sogoVolume:state.volume,sogoApplication:state.application,sogoTerm:state.term};
+    Object.keys(map).forEach(id=>{const el=document.getElementById(id); if(el)el.value=map[id];});
+    const d=defaults[state.material]||defaults.Copper;
+    const c=document.getElementById("sogoCompliance"); if(c)c.textContent=d.compliance;
+    const ex=document.getElementById("sogoExport"); if(ex)ex.textContent=d.export;
+    const ba=document.getElementById("sogoBatch"); if(ba)ba.textContent=d.batch;
+    updateProgress();
+  }
+  function updateProgress(){
+    let score=20;
+    if(state.material)score+=20;if(state.purity)score+=15;if(state.form)score+=15;if(state.region)score+=10;if(state.volume)score+=10;if(state.application)score+=5;if(state.term)score+=5;
+    score=Math.min(score,100);
+    const bar=document.getElementById("sogoProgress"); if(bar)bar.style.width=score+"%";
+    const status=document.getElementById("sogoStatus");
+    if(status)status.textContent=score>=95?"Ready for Lanthanex workspace.":"Progress cached automatically. Complete missing RFQ fields to accelerate review.";
+  }
+  function open(){if(!drawer)return;drawer.classList.add("active");drawer.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";load();apply();}
+  function close(){if(!drawer)return;drawer.classList.remove("active");drawer.setAttribute("aria-hidden","true");document.body.style.overflow="";}
+  window.apexOpenSogoFlow=open; window.apexCloseSogoFlow=close;
+  document.querySelectorAll("[data-open-sogo]").forEach(btn=>btn.addEventListener("click",e=>{e.preventDefault();open();}));
+  document.querySelectorAll("[data-close-sogo]").forEach(btn=>btn.addEventListener("click",e=>{e.preventDefault();close();}));
+  if(drawer)drawer.addEventListener("click",e=>{if(e.target.classList.contains("sogo-backdrop"))close();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});
+  materialButtons.forEach(btn=>{btn.addEventListener("click",()=>{const m=btn.dataset.sogoMaterial;const d=defaults[m]||defaults.Copper;state.material=m;state.purity=d.purity;state.form=d.form;state.application=d.app;save();apply();});});
+  fields.forEach(el=>{el.addEventListener("input",()=>{state.purity=document.getElementById("sogoPurity")?.value||state.purity;state.form=document.getElementById("sogoForm")?.value||state.form;state.region=document.getElementById("sogoRegion")?.value||state.region;state.volume=document.getElementById("sogoVolume")?.value||state.volume;state.application=document.getElementById("sogoApplication")?.value||state.application;state.term=document.getElementById("sogoTerm")?.value||state.term;save();updateProgress();});el.addEventListener("change",()=>el.dispatchEvent(new Event("input")));});
+  const submit=document.getElementById("sogoSubmit");
+  if(submit){submit.addEventListener("click",()=>{save();submit.textContent="Processing…";if(toast){toast.classList.add("active");}setTimeout(()=>{close();if(toast){toast.textContent="RFQ synchronized. Opening RFQ form.";setTimeout(()=>toast.classList.remove("active"),2200);}if(window.apexOpenLanthanex){window.apexOpenLanthanex("workspace");}submit.textContent="Submit Request → RFQ";},650);});}
+  load();apply();
+})();
+</script>
+<script id="industry-product-link-logic">
+(function(){
+  function setRFQMaterial(material){
+    var select = document.getElementById("rfqMaterial");
+    if(!select || !material) return;
+    var found = false;
+    Array.prototype.slice.call(select.options).forEach(function(opt){
+      if(opt.textContent === material || opt.value === material){ found = true; }
+    });
+    if(!found){
+      var option = document.createElement("option");
+      option.value = material;
+      option.textContent = material;
+      select.appendChild(option);
+    }
+    select.value = material;
+    select.dispatchEvent(new Event("change", { bubbles:true }));
+  }
+
+  function openLinkedProduct(card){
+    var product = card.getAttribute("data-product") || "cu";
+    var material = card.getAttribute("data-rfq-material") || "";
+    setRFQMaterial(material);
+
+    if(typeof window.openProductEngine === "function"){
+      window.openProductEngine(product);
+      return;
+    }
+    if(typeof window.apexOpenProduct === "function"){
+      window.apexOpenProduct(product);
+      return;
+    }
+
+    var btn = document.querySelector('[data-open-product="' + product + '"]');
+    if(btn){ btn.click(); }
+  }
+
+  document.addEventListener("click", function(event){
+    var card = event.target.closest("[data-industry-link]");
+    if(!card) return;
+
+    var isInteractiveChild = event.target.closest("a, input, select, textarea");
+    if(isInteractiveChild) return;
+
+    event.preventDefault();
+    openLinkedProduct(card);
+  });
+})();</script>

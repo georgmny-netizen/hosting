@@ -1,0 +1,49 @@
+<!-- D25_RSI_ZERO_TRUST_SECURITY_POLICY_START -->
+<section class="section safe-layout-block yyk-technical-appendix-hidden" data-department="Compliance, R&amp;D, Strategic" data-master-directive="25-rsi-zero-trust" id="directive25-rsi-zero-trust-security-policy">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="eyebrow" data-i18n="auto.t2111">SECURITY · ZERO-TRUST RSI BACKEND POLICY</div>
+<h2 data-i18n="auto.t2112">Regional Synergy Index · Server-Side Only Enforcement</h2>
+</div>
+<div class="hint" data-i18n="auto.t2113">RSI must never be calculated from exposed browser secrets. CRM, VDR and compliance database access is restricted to server-side adapters with audit trace logging.</div>
+</div>
+<div class="grid4">
+<div class="dense-card">
+<div class="card-title" data-i18n="auto.t2114">No Secrets in HTML</div>
+<p class="card-text" data-i18n="auto.t2115">CRM/VDR/API keys are forbidden in frontend HTML, JavaScript, localStorage, query strings and public config files.</p>
+</div>
+<div class="dense-card">
+<div class="card-title" data-i18n="auto.t2116">Server Endpoint Only</div>
+<p class="card-text"><span data-i18n="auto.t2117">The browser may call only </span><strong data-i18n="auto.t2118">/api/regional-synergy-index</strong><span data-i18n="auto.t2119">. All database calls must occur behind the backend service boundary.</span></p>
+</div>
+<div class="dense-card">
+<div class="card-title" data-i18n="auto.t2120">KYC / Sanctions Block</div>
+<p class="card-text"><span data-i18n="auto.t2121">If KYC or sanctions status is unresolved, RSI returns </span><strong data-i18n="auto.t2122">blocked</strong><span data-i18n="auto.t2123"> and the visual score is suppressed.</span></p>
+</div>
+<div class="dense-card">
+<div class="card-title" data-i18n="auto.t2124">Audit Trace Required</div>
+<p class="card-text"><span data-i18n="auto.t2125">Every RSI calculation must emit </span><strong data-i18n="auto.t2126">X-YYK-Audit-Trace</strong><span data-i18n="auto.t2127">, timestamp, source status and compliance decision state.</span></p>
+</div>
+</div>
+</div>
+</section>
+<script id="d25-rsi-zero-trust-client-guard">
+(function(){
+  'use strict';
+  document.addEventListener('YYK:RSI_UPDATED', function(evt){
+    var data = evt.detail || {};
+    var blocked = data.source_status === 'blocked' || data.rsi_blocked === true || data.compliance_decision === 'blocked';
+    var score = document.querySelector('#yykRsiLiveScore');
+    var source = document.querySelector('#yykRsiLiveSource');
+    var drivers = document.querySelector('#yykRsiDrivers');
+    if(blocked){
+      if(score) score.textContent = 'BLOCKED';
+      if(source) source.textContent = 'Source: backend blocked · KYC/Sanctions unresolved · RSI suppressed';
+      if(drivers) drivers.textContent = 'RSI calculation is blocked until server-side KYC and sanctions clearance is complete.';
+    }
+  });
+})();
+</script>
+<!-- D25_RSI_ZERO_TRUST_SECURITY_POLICY_END -->
+<!-- YYK_HYBRID_CANONICAL_INTELLIGENCE_REMOVED: duplicated existing site content -->

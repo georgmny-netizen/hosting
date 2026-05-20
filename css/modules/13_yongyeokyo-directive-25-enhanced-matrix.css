@@ -1,0 +1,96 @@
+/* YONGYEOKYO Directive 25 Enhanced Matrix START */
+#directive25-enhanced-matrix .d25e-shell{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));
+  padding:22px;
+  margin-top:18px;
+}
+#directive25-enhanced-matrix .d25e-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+#directive25-enhanced-matrix .d25e-card{
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.18);
+  padding:18px;
+}
+#directive25-enhanced-matrix .d25e-table-wrap{
+  overflow-x:auto;
+  max-width:100%;
+  border:1px solid rgba(255,255,255,.08);
+  margin-top:14px;
+}
+#directive25-enhanced-matrix table{
+  width:max-content;
+  min-width:980px;
+}
+#directive25-enhanced-matrix .d25e-alert{
+  border-left:3px solid var(--gold);
+  background:rgba(201,162,39,.08);
+  padding:14px;
+  margin-top:14px;
+}
+#directive25-enhanced-matrix .d25e-radar{
+  margin-top:18px;
+  border:1px solid rgba(201,162,39,.5);
+  background:rgba(201,162,39,.06);
+  padding:16px;
+}
+#directive25-enhanced-matrix .d25e-radar-core{
+  position:relative;
+  width:280px;
+  height:280px;
+  margin:12px auto;
+  border-radius:50%;
+  border:1px dashed rgba(255,255,255,.18);
+}
+#directive25-enhanced-matrix .d25e-ring{
+  position:absolute;
+  inset:12%;
+  border-radius:50%;
+  border:1px dashed rgba(255,255,255,.12);
+}
+#directive25-enhanced-matrix .d25e-ring.r2{inset:24%}
+#directive25-enhanced-matrix .d25e-ring.r3{inset:36%}
+#directive25-enhanced-matrix .d25e-node{
+  position:absolute;
+  color:#fff;
+  font-size:11px;
+  letter-spacing:.08em;
+}
+#directive25-enhanced-matrix .n-cn{top:4%;left:44%}
+#directive25-enhanced-matrix .n-kr{top:44%;right:2%}
+#directive25-enhanced-matrix .n-jp{bottom:6%;left:42%}
+#directive25-enhanced-matrix .n-tw{top:44%;left:2%}
+#directive25-enhanced-matrix .d25e-web{
+  position:absolute;
+  inset:18%;
+  border:2px solid var(--gold);
+  clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+  opacity:.85;
+}
+#directive25-enhanced-matrix .d25e-state{
+  margin-top:12px;
+  display:inline-flex;
+  border:1px solid rgba(201,162,39,.62);
+  background:rgba(201,162,39,.10);
+  color:#d4b85c;
+  padding:6px 10px;
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+@media(max-width:980px){
+  #directive25-enhanced-matrix .d25e-grid{grid-template-columns:1fr}
+  #directive25-enhanced-matrix table{min-width:760px}
+}
+@media(max-width:760px){
+  #directive25-enhanced-matrix table{min-width:620px}
+  #directive25-enhanced-matrix .d25e-radar-core{
+    width:220px;height:220px;
+  }
+}
+/* YONGYEOKYO Directive 25 Enhanced Matrix END */
+
+

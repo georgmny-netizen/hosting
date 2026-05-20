@@ -1,0 +1,67 @@
+/* YONGYEOKYO Advanced Material Matrix Overflow Patch START */
+#directive22-japan-tech-standard,
+#directive22-japan-tech-standard *{
+  max-width:100%;
+  box-sizing:border-box;
+}
+
+#directive22-japan-tech-standard .d22-shell,
+#directive22-japan-tech-standard .d22-card,
+#directive22-japan-tech-standard .d22-panel{
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
+}
+
+#directive22-japan-tech-standard .d22-table-wrap{
+  width:100%;
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-gutter:stable;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.14);
+}
+
+#directive22-japan-tech-standard .d22-table-wrap table{
+  width:max-content;
+  min-width:720px;
+  max-width:none;
+  table-layout:auto;
+}
+
+#directive22-japan-tech-standard .d22-table-wrap th,
+#directive22-japan-tech-standard .d22-table-wrap td{
+  white-space:normal;
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+
+#directive22-japan-tech-standard details[open]{
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
+}
+
+#directive22-japan-tech-standard summary{
+  max-width:100%;
+}
+
+@media(max-width:960px){
+  #directive22-japan-tech-standard .d22-table-wrap table{
+    min-width:640px;
+  }
+}
+
+@media(max-width:760px){
+  #directive22-japan-tech-standard .d22-table-wrap table{
+    min-width:560px;
+  }
+  #directive22-japan-tech-standard .d22-panel{
+    padding:12px;
+  }
+}
+/* YONGYEOKYO Advanced Material Matrix Overflow Patch END */
+
+

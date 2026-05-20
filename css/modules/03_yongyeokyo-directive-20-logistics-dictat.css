@@ -1,0 +1,161 @@
+/* YONGYEOKYO Directive 20 Logistics Dictate CSS START */
+#directive20-logistics-dictate{
+  position:relative;
+  z-index:4;
+}
+#directive20-logistics-dictate .d20-shell{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.050),rgba(255,255,255,.018));
+  padding:22px;
+}
+#directive20-logistics-dictate .d20-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:14px;
+  align-items:stretch;
+}
+#directive20-logistics-dictate .d20-card{
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.18);
+  padding:18px;
+}
+#directive20-logistics-dictate .d20-hub-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin-top:14px;
+}
+#directive20-logistics-dictate .d20-hub{
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.025);
+  padding:11px;
+  color:#E5E8EC;
+  font-size:12px;
+  line-height:1.45;
+}
+#directive20-logistics-dictate .d20-hub strong{
+  display:block;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+#directive20-logistics-dictate .d20-active{
+  display:inline-flex;
+  border:1px solid rgba(201,162,39,.62);
+  background:rgba(201,162,39,.10);
+  color:#d4b85c;
+  padding:5px 8px;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-top:7px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+#directive20-logistics-dictate .d20-native-toggle{
+  margin-top:14px;
+}
+#directive20-logistics-dictate summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  border:1px solid rgba(201,162,39,.68);
+  background:rgba(201,162,39,.12);
+  color:#fff;
+  padding:13px 15px;
+  cursor:pointer;
+  user-select:none;
+  list-style:none;
+  pointer-events:auto !important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-size:12px;
+}
+#directive20-logistics-dictate summary::-webkit-details-marker{display:none}
+#directive20-logistics-dictate summary:after{
+  content:"OPEN";
+  color:var(--gold);
+  font-size:10px;
+}
+#directive20-logistics-dictate details[open] summary:after{content:"CLOSE"}
+#directive20-logistics-dictate .d20-panel{
+  border:1px solid var(--line);
+  border-top:0;
+  background:rgba(0,0,0,.22);
+  padding:16px;
+}
+#directive20-logistics-dictate .d20-table-wrap{
+  margin-top:14px;
+  overflow:auto;
+}
+#directive20-logistics-dictate table{
+  min-width:940px;
+}
+#directive20-logistics-dictate .d20-note{
+  margin-top:14px;
+  border:1px solid rgba(201,162,39,.35);
+  background:rgba(201,162,39,.07);
+  padding:13px 14px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+}
+#directive20-logistics-dictate .d20-form{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+#directive20-logistics-dictate .d20-field label{
+  display:block;
+  margin-bottom:7px;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+#directive20-logistics-dictate .d20-field input{
+  width:100%;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.24);
+  color:var(--text);
+  padding:11px 12px;
+  outline:none;
+}
+#directive20-logistics-dictate .d20-btn{
+  border:1px solid rgba(201,162,39,.68);
+  background:rgba(201,162,39,.13);
+  color:#fff;
+  padding:12px 14px;
+  cursor:pointer;
+  font-weight:700;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  margin-top:14px;
+}
+#directive20-logistics-dictate .d20-result{
+  margin-top:14px;
+  border:1px solid rgba(201,162,39,.62);
+  background:rgba(201,162,39,.08);
+  padding:14px;
+  color:#E5E8EC;
+  font-size:13px;
+  line-height:1.55;
+}
+#directive20-logistics-dictate .d20-result.block{
+  border-color:rgba(198,106,74,.72);
+  background:rgba(198,106,74,.10);
+}
+@media(max-width:960px){
+  #directive20-logistics-dictate .d20-grid,
+  #directive20-logistics-dictate .d20-hub-grid,
+  #directive20-logistics-dictate .d20-form{grid-template-columns:1fr}
+  #directive20-logistics-dictate summary{display:block}
+  #directive20-logistics-dictate summary:after{display:block;margin-top:8px}
+}
+/* YONGYEOKYO Directive 20 Logistics Dictate CSS END */
+
+

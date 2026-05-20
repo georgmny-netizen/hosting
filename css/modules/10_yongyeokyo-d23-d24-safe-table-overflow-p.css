@@ -1,0 +1,81 @@
+/* YONGYEOKYO D23 D24 Safe Table Overflow Patch START */
+#directive23-taiwan-silicon-shield,
+#directive24-china-resource-monolith,
+#directive23-taiwan-silicon-shield *,
+#directive24-china-resource-monolith *{
+  max-width:100%;
+  box-sizing:border-box;
+}
+
+#directive23-taiwan-silicon-shield .d23-shell,
+#directive23-taiwan-silicon-shield .d23-card,
+#directive23-taiwan-silicon-shield .d23-panel,
+#directive24-china-resource-monolith .d24-shell,
+#directive24-china-resource-monolith .d24-card,
+#directive24-china-resource-monolith .d24-panel{
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
+}
+
+#directive23-taiwan-silicon-shield .d23-table-wrap,
+#directive24-china-resource-monolith .d24-table-wrap{
+  width:100%;
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-gutter:stable;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.14);
+}
+
+#directive23-taiwan-silicon-shield .d23-table-wrap table,
+#directive24-china-resource-monolith .d24-table-wrap table{
+  width:max-content;
+  min-width:720px;
+  max-width:none;
+  table-layout:auto;
+}
+
+#directive23-taiwan-silicon-shield .d23-table-wrap th,
+#directive23-taiwan-silicon-shield .d23-table-wrap td,
+#directive24-china-resource-monolith .d24-table-wrap th,
+#directive24-china-resource-monolith .d24-table-wrap td{
+  white-space:normal;
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+
+#directive23-taiwan-silicon-shield details[open],
+#directive24-china-resource-monolith details[open]{
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
+}
+
+#directive23-taiwan-silicon-shield summary,
+#directive24-china-resource-monolith summary{
+  max-width:100%;
+}
+
+@media(max-width:960px){
+  #directive23-taiwan-silicon-shield .d23-table-wrap table,
+  #directive24-china-resource-monolith .d24-table-wrap table{
+    min-width:640px;
+  }
+}
+
+@media(max-width:760px){
+  #directive23-taiwan-silicon-shield .d23-table-wrap table,
+  #directive24-china-resource-monolith .d24-table-wrap table{
+    min-width:560px;
+  }
+  #directive23-taiwan-silicon-shield .d23-panel,
+  #directive24-china-resource-monolith .d24-panel{
+    padding:12px;
+  }
+}
+/* YONGYEOKYO D23 D24 Safe Table Overflow Patch END */
+
+

@@ -1,0 +1,50 @@
+/* D25 LIVE RSI BACKEND INDICATOR START */
+#directive25-apac-interdependency .d25-index[data-live-status="live"]{
+  border-color:rgba(201,162,39,.72);
+  box-shadow:0 0 0 1px rgba(201,162,39,.08),0 18px 48px rgba(0,0,0,.18);
+}
+#directive25-apac-interdependency .d25-index[data-live-status="fallback"]{
+  border-color:rgba(201,162,39,.62);
+}
+#directive25-apac-interdependency .d25-live-meta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+#directive25-apac-interdependency .d25-live-pill{
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.18);
+  color:#E5E8EC;
+  padding:6px 8px;
+  font-size:10px;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+#directive25-apac-interdependency .d25-live-pill strong{color:var(--gold);font-weight:700}
+#directive25-apac-interdependency .d25-live-source{
+  margin-top:9px;
+  color:var(--muted2);
+  font-size:11px;
+  line-height:1.45;
+}
+/* D25 LIVE RSI BACKEND INDICATOR END */
+
+@media(max-width:1200px){
+  #directive25-apac-interdependency .d25-matrix{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:960px){
+  #directive25-apac-interdependency .d25-grid,
+  #directive25-apac-interdependency .d25-matrix{grid-template-columns:1fr}
+  #directive25-apac-interdependency summary{display:block}
+  #directive25-apac-interdependency summary:after{display:block;margin-top:8px}
+  #directive25-apac-interdependency table{min-width:720px}
+}
+@media(max-width:760px){
+  #directive25-apac-interdependency table{min-width:600px}
+  #directive25-apac-interdependency .d25-panel{padding:12px}
+}
+/* YONGYEOKYO Directive 25 APAC Interdependency CSS END */
+
+

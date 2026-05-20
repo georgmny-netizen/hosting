@@ -1,0 +1,74 @@
+<div aria-hidden="true" class="modal" id="vaultModal"><div class="modal-box"><div class="modal-head"><div><div class="modal-title" data-i18n="auto.t2914">Controlled Technical Request</div><div class="message" data-i18n="auto.t2915" id="selectedProduct">Copper 6N</div></div><button class="modal-close" onclick="closeVault()">×</button></div><div class="field"><label class="field-label" data-i18n="auto.t2916">Corporate Email</label><input class="input" id="corpEmail" placeholder="name@company.com"/></div><div class="field"><label class="field-label" data-i18n="auto.t2917">Industry</label><select class="select" id="industrySelect"><option data-i18n="auto.t2918">Semiconductors</option><option data-i18n="auto.t2919">Aerospace</option><option>EV</option><option data-i18n="auto.t2920">Precision Chemistry</option></select></div><div class="field"><label class="field-label" data-i18n="auto.t2921">Documentation Scope</label><select class="select" id="docScope"><option data-i18n="auto.t2922">CoA</option><option data-i18n="auto.t2923">CoA + TDS</option><option data-i18n="auto.t2924">CoA + TDS + SDS</option><option data-i18n="auto.t2925">CoA + TDS + SDS + REACH/RoHS</option></select></div><label class="message"><input id="consent" type="checkbox"/><span data-i18n="auto.t2926"> I consent to data processing under applicable privacy regulations. The document may be generated with a unique security watermark.</span></label><div class="esg-policy-note"><span data-i18n="auto.t2927">Data processing is governed by YONGYEOKYO Trading House Co., Ltd Privacy Policy. </span><button class="micro-btn compliance-trigger" data-i18n="auto.t2928" data-open-compliance="privacy" onclick="console.log('Button activated');" style="margin-left:8px" type="button">View Privacy</button></div><div class="esg-policy-note"><span data-i18n="auto.t2929">ESG &amp; Responsible Sourcing Policy applies to all controlled technical requests. </span><button class="micro-btn esg-trigger" data-i18n="auto.t2930" data-open-compliance="esg" onclick="console.log('Button activated');" style="margin-left:8px" type="button">View ESG Policy</button></div><button class="micro-btn" data-i18n="auto.t2931" onclick="submitVault()" style="width:100%;margin-top:16px">Submit Controlled Request</button><div class="message" id="vaultMessage"></div></div></div>
+<script>
+const materialDefaults={"Copper Cu · CAS 7440-50-8 · KE-08896 · Up to 99.99999% (7N)":{purity:"Up to 99.99999% (7N)",form:"Powder",particle:"ingot / bar / ultrafine powder; PSD by RFQ"},"Aluminum Al · CAS 7429-90-5 · High-purity ingot route":{purity:"Up to 99.9999% (6N)",form:"Ingots",particle:""},"Zinc Zn · CAS 7440-66-6 · Up to 99.9995% (5N5)":{purity:"Up to 99.9995% (5N5)",form:"Powder",particle:"powder / formulations / coatings; PSD by RFQ"},"Rare Earth Materials · Metals / Oxides / Salts / Alloys · Custom grades":{purity:"Custom grades available",form:"Oxide / Salt",particle:""}};const required=["rfqMaterial","rfqForm","rfqPurity","rfqQty","rfqParticle","rfqApp","rfqMarket","rfqDocs","rfqTerm"];
+function selectMaterial(name){document.getElementById("rfqMaterial").value=name;const d=materialDefaults[name];if(d){document.getElementById("rfqPurity").value=d.purity;document.getElementById("rfqForm").value=d.form;document.getElementById("rfqParticle").value=d.particle;}location.hash="#rfq";updateRFQ()}
+function updateRFQ(){const missing=[];required.forEach(id=>{if(!document.getElementById(id).value.trim())missing.push(id.replace("rfq","").toLowerCase())});const score=Math.round(((required.length-missing.length)/required.length)*100);document.getElementById("scoreBar").style.width=score+"%";document.getElementById("scoreText").textContent="Completeness: "+score+"%";document.getElementById("missingText").textContent=missing.length?"Missing: "+missing.join(", ")+".":"Complete RFQ input. Ready for controlled technical review."; if(typeof renderRiskEngine==="function") renderRiskEngine(state.lastDecision||null)}
+function verifyBatch(){const id=(document.getElementById("batchId")?.value||"COA-CU6N-2024-001").trim()||"COA-CU6N-2024-001";const rows=document.getElementById("batchRows");if(!rows){return}const safeId=id.replace(/[<>]/g,"");rows.innerHTML=`<tr><td>Batch ID</td><td>${safeId}</td></tr><tr><td>Sequence Position</td><td>Product Passport → CoA / ISO 17025 evidence → Batch Verification → Smart RFQ</td></tr><tr><td>Material</td><td>Copper high-purity materials · KE-08896</td></tr><tr><td>CoA Evidence</td><td>Controlled trust-flow check initialized</td></tr><tr><td>RFQ Gate</td><td class="ok">Verified batch evidence or manual compliance override required before final quote release</td></tr><tr><td>KYC / Sanctions</td><td class="warn">Must remain blocked until counterparty screening is complete</td></tr>`;document.getElementById("batchResult")?.classList.add("active")}
+function updateSimulation(){const v=Number(document.getElementById("simDocs").value)+Number(document.getElementById("simImp").value)+Number(document.getElementById("simQual").value);let weeks="+0 weeks",text="Low qualification friction. Evaluation can proceed with documentation review.";if(v>=2&&v<6){weeks="+2-3 weeks";text="Moderate friction. Expect clarification cycles and internal SQE review."}if(v>=6){weeks="+4-6 weeks";text="High delay risk. Re-testing, supplier review or requalification may be triggered."}document.getElementById("delayWeeks").textContent=weeks;document.getElementById("delayText").textContent=text}
+function openVault(product){document.getElementById("selectedProduct").textContent=product;document.getElementById("vaultMessage").textContent="";document.getElementById("vaultModal").classList.add("active")}
+function closeVault(){document.getElementById("vaultModal").classList.remove("active")}
+function submitVault(){const email=document.getElementById("corpEmail").value.trim();const consent=document.getElementById("consent").checked;const blocked=/@(gmail|yahoo|hotmail|outlook|icloud|protonmail)\./i.test(email);if(!email||blocked){document.getElementById("vaultMessage").textContent="Corporate email required.";return}if(!consent){document.getElementById("vaultMessage").textContent="Consent is required.";return}console.log("Controlled request",{product:document.getElementById("selectedProduct").textContent,email,industry:document.getElementById("industrySelect").value,docScope:document.getElementById("docScope").value});document.getElementById("vaultMessage").textContent="Request received. A technical representative will contact you if purity or documentation clarification is required."}
+document.querySelectorAll(".rfq-field").forEach(el=>el.addEventListener("input",updateRFQ));document.querySelectorAll(".sim-field").forEach(el=>el.addEventListener("change",updateSimulation));document.querySelectorAll(".lang-btn").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");const v=btn.textContent.trim().toLowerCase();document.body.classList.remove("lang-en","lang-kr","lang-jp","lang-cn","lang-tw");document.body.classList.add(v==="tw"?"lang-cn":"lang-"+v);}));document.getElementById("vaultModal").addEventListener("click",e=>{if(e.target.id==="vaultModal")closeVault()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeVault()});var _riskMat=document.getElementById("rfqMaterial"); if(_riskMat) _riskMat.addEventListener("change",()=>{if(window.renderRiskEngine) window.renderRiskEngine(null)}); updateRFQ();updateSimulation(); if(window.renderRiskEngine) window.renderRiskEngine(null);
+
+const contactEngine=document.getElementById("contactEngine");
+function openContact(){
+  if(contactEngine){
+    contactEngine.classList.add("active");
+    contactEngine.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  }
+}
+function closeContact(){
+  if(contactEngine){
+    contactEngine.classList.remove("active");
+    contactEngine.setAttribute("aria-hidden","true");
+    document.body.style.overflow="";
+  }
+}
+document.querySelectorAll("[data-open-contact]").forEach(btn=>btn.addEventListener("click",e=>{e.preventDefault();openContact();}));
+document.querySelectorAll("[data-close-contact]").forEach(btn=>btn.addEventListener("click",closeContact));
+if(contactEngine){contactEngine.addEventListener("click",e=>{if(e.target===contactEngine)closeContact();});}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeContact();});
+document.querySelectorAll("[data-contact-form]").forEach(form=>{
+  form.addEventListener("submit",e=>{
+    e.preventDefault();
+    let note=form.querySelector(".contact-submit-note");
+    if(!note){note=document.createElement("div");note.className="contact-submit-note";form.appendChild(note);}
+    const email=form.querySelector('input[type="email"]')?.value||"";
+    const blocked=/@(gmail|yahoo|hotmail|outlook|icloud|protonmail)\./i.test(email);
+    if(blocked){note.textContent="Corporate email required for controlled B2B inquiry routing.";return;}
+    note.textContent="Inquiry captured for routing. Connect this form to CRM / email endpoint before production.";
+  });
+});
+
+const productEngine=document.getElementById("productEngine");
+function setProductTab(tab){
+  document.querySelectorAll(".product-tab").forEach(b=>b.classList.toggle("active",b.dataset.productTab===tab));
+  document.querySelectorAll(".product-panel").forEach(p=>{
+    const isActive = p.dataset.productPanel===tab;
+    p.classList.toggle("active", isActive);
+    p.style.display = isActive ? "block" : "none";
+  });
+}
+function openProductEngine(tab="cu"){
+  if(productEngine){
+    setProductTab(tab);
+    productEngine.classList.add("active");
+    productEngine.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  }
+}
+function closeProductEngine(){
+  if(productEngine){
+    productEngine.classList.remove("active");
+    productEngine.setAttribute("aria-hidden","true");
+    document.body.style.overflow="";
+  }
+}
+document.querySelectorAll("[data-open-product]").forEach(btn=>btn.addEventListener("click",e=>{e.preventDefault();openProductEngine(btn.dataset.openProduct||"cu");}));
+document.querySelectorAll("[data-close-product]").forEach(btn=>btn.addEventListener("click",closeProductEngine));
+document.querySelectorAll(".product-tab").forEach(btn=>btn.addEventListener("click",()=>setProductTab(btn.dataset.productTab)));
+if(productEngine){productEngine.addEventListener("click",e=>{if(e.target===productEngine)closeProductEngine();});}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeProductEngine();});
+
+</script>

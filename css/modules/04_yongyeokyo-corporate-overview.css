@@ -1,0 +1,71 @@
+/* YONGYEOKYO Corporate Overview CSS START */
+#corporate-overview-tier1{
+  position:relative;
+  z-index:3;
+}
+#corporate-overview-tier1 .corp-shell{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+  padding:22px;
+}
+#corporate-overview-tier1 .corp-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:14px;
+}
+#corporate-overview-tier1 .corp-card{
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.18);
+  padding:18px;
+}
+#corporate-overview-tier1 .corp-list{
+  margin-top:12px;
+}
+#corporate-overview-tier1 .corp-list li{
+  margin:8px 0;
+  color:#E5E8EC;
+  line-height:1.55;
+}
+#corporate-overview-tier1 .corp-status{
+  display:inline-flex;
+  border:1px solid rgba(201,162,39,.62);
+  background:rgba(201,162,39,.10);
+  color:#d4b85c;
+  padding:6px 10px;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-top:12px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+#corporate-overview-tier1 .corp-hub-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin-top:12px;
+}
+#corporate-overview-tier1 .corp-hub{
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.025);
+  padding:11px;
+  color:#E5E8EC;
+  font-size:12px;
+  line-height:1.45;
+}
+#corporate-overview-tier1 .corp-hub strong{
+  display:block;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+@media(max-width:960px){
+  #corporate-overview-tier1 .corp-grid,
+  #corporate-overview-tier1 .corp-hub-grid{
+    grid-template-columns:1fr;
+  }
+}
+/* YONGYEOKYO Corporate Overview CSS END */
+
+
