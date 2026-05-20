@@ -1,0 +1,25 @@
+/* === ID: tier1-card-uniform-fix === */
+
+.product-card, .material-card, .card, .bento-card {
+  min-height: 220px !important;
+  height: 220px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.product-card .title,
+.material-card .title {
+  min-height: 40px;
+}
+
+.product-card .content,
+.material-card .content {
+  flex-grow: 1;
+}
+
+.product-grid, .bento-grid {
+  align-items: stretch !important;
+}
+
+

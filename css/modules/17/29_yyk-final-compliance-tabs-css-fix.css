@@ -1,0 +1,7 @@
+/* === ID: yyk-final-compliance-tabs-css-fix === */
+
+.compliance-tab{pointer-events:auto!important;cursor:pointer!important}
+.compliance-panel[hidden]{display:none!important}
+.compliance-panel.active{display:block!important}
+
+

@@ -1,0 +1,49 @@
+/* === ID: yyk-permanent-language-core === */
+
+/* Permanent Language Core — default EN + controlled multilingual rendering */
+body:not(.lang-en):not(.lang-kr):not(.lang-jp):not(.lang-cn) [data-lang-block="en"]{
+  display:block!important;
+}
+body.lang-en [data-lang-block="en"],
+body.lang-kr [data-lang-block="kr"],
+body.lang-jp [data-lang-block="jp"],
+body.lang-cn [data-lang-block="cn"]{
+  display:block!important;
+}
+body.lang-en [data-lang-block="kr"],
+body.lang-en [data-lang-block="jp"],
+body.lang-en [data-lang-block="cn"],
+body.lang-kr [data-lang-block="en"],
+body.lang-kr [data-lang-block="jp"],
+body.lang-kr [data-lang-block="cn"],
+body.lang-jp [data-lang-block="en"],
+body.lang-jp [data-lang-block="kr"],
+body.lang-jp [data-lang-block="cn"],
+body.lang-cn [data-lang-block="en"],
+body.lang-cn [data-lang-block="kr"],
+body.lang-cn [data-lang-block="jp"]{
+  display:none!important;
+}
+#yyk-esg-compliance-panel [data-lang-block],
+.compliance-content [data-lang-block],
+.esg-layer-content [data-lang-block],
+.esg-layer-toc [data-lang-block],
+.compliance-toc [data-lang-block]{
+  min-height:1px;
+}
+.yyk-language-core-status{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border:1px solid rgba(201,162,39,.45);
+  background:rgba(201,162,39,.08);
+  color:#d4b85c;
+  
+  padding:5px 8px;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+
+

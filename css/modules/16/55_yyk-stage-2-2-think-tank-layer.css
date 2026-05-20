@@ -1,0 +1,34 @@
+/* === ID: yyk-stage-2-2-think-tank-layer === */
+
+/* Stage 2.2 — Think Tank / Knowledge Leadership Hub. Added in-place without restructuring the Gold Standard DOM. */
+#yykThinkTankHub{position:relative;z-index:1;border-bottom:1px solid var(--line);background:radial-gradient(circle at 16% 10%,rgba(255,215,0,.12),transparent 24%),linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.24));}
+#yykThinkTankHub .yyk-think-wrap{width:90vw;max-width:1500px;margin:0 auto;padding:58px 0;}
+#yykThinkTankHub .yyk-think-head{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:end;margin-bottom:22px;}
+#yykThinkTankHub .yyk-think-kicker{font-size:11px;text-transform:uppercase;letter-spacing:.30em;color:#FFD700;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;}
+#yykThinkTankHub h2{margin:8px 0 0;font-size:clamp(30px,4vw,52px);line-height:.98;letter-spacing:-.045em;color:#fff;}
+#yykThinkTankHub .yyk-think-lead{color:var(--muted);font-size:15px;line-height:1.65;max-width:760px;}
+#yykThinkTankHub .yyk-think-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:14px;}
+#yykThinkTankHub .yyk-think-card{border:1px solid var(--line);background:rgba(255,255,255,.035);padding:20px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between;}
+#yykThinkTankHub .yyk-think-card:hover{border-color:rgba(255,215,0,.55);background:rgba(255,215,0,.035);}
+#yykThinkTankHub .yyk-think-title{font-size:22px;line-height:1.12;color:#fff;margin:0 0 10px;}
+#yykThinkTankHub .yyk-think-text{color:var(--muted);font-size:14px;line-height:1.62;margin:0;}
+#yykThinkTankHub .yyk-standard-box{border:1px solid rgba(255,215,0,.46);background:rgba(255,215,0,.055);padding:20px;min-height:100%;}
+#yykThinkTankHub .yyk-standard-name{font-size:30px;line-height:1;color:#fff;letter-spacing:-.035em;margin:8px 0 12px;}
+#yykThinkTankHub .yyk-standard-points{display:grid;gap:8px;margin-top:16px;}
+#yykThinkTankHub .yyk-standard-row{display:flex;justify-content:space-between;gap:14px;border-top:1px solid rgba(255,255,255,.08);padding-top:9px;color:#E5E8EC;font-size:13px;}
+#yykThinkTankHub .yyk-standard-row span:first-child{color:#FFD700;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;}
+#yykThinkTankHub .yyk-whitepaper-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;}
+#yykThinkTankHub .yyk-paper{border:1px solid var(--line);background:rgba(0,0,0,.18);padding:16px;min-height:154px;}
+#yykThinkTankHub .yyk-paper strong{display:block;color:#fff;font-size:16px;line-height:1.22;margin-bottom:8px;}
+#yykThinkTankHub .yyk-paper span{display:block;color:var(--muted);font-size:13px;line-height:1.55;}
+#yykThinkTankHub .yyk-pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+#yykThinkTankHub .yyk-pill{border:1px solid rgba(255,215,0,.32);color:#FFD700;background:rgba(255,215,0,.045);padding:7px 9px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;}
+#yykThinkTankHub .yyk-think-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
+#yykThinkTankHub .yyk-think-btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,215,0,.48);background:rgba(255,215,0,.075);color:#fff;padding:11px 14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;}
+#yykThinkTankHub .yyk-think-btn:hover{background:rgba(255,215,0,.13);border-color:rgba(255,215,0,.75);}
+#yykThinkTankHub .yyk-think-btn.secondary{border-color:var(--line);background:rgba(255,255,255,.025);color:var(--text);}
+#yykThinkTankHub .yyk-ethics-note{margin-top:16px;border:1px solid var(--line);background:rgba(255,255,255,.025);padding:14px 16px;color:var(--muted2);font-size:12px;line-height:1.55;}
+@media(max-width:1200px){#yykThinkTankHub .yyk-think-head,#yykThinkTankHub .yyk-think-grid{grid-template-columns:1fr}#yykThinkTankHub .yyk-whitepaper-row{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){#yykThinkTankHub .yyk-think-wrap{width:calc(100vw - 36px);padding:44px 0}#yykThinkTankHub .yyk-whitepaper-row{grid-template-columns:1fr}#yykThinkTankHub .yyk-standard-row{display:block}#yykThinkTankHub .yyk-standard-row span:last-child{display:block;margin-top:5px}}
+
+

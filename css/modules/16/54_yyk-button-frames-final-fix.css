@@ -1,0 +1,52 @@
+/* === ID: yyk-button-frames-final-fix === */
+
+/* FINAL FIX: restore rectangular frames for all Control Panel / workspace action buttons */
+#tier1ControlPanel button,
+.tier1-control-panel button,
+.control-panel button,
+.yyk-control-panel button,
+.yyk-control-actions button,
+.yyk-mode-page-action,
+button[data-panel],
+button[data-control-open],
+[data-panel].nav-link,
+[data-control-open].nav-link {
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:38px !important;
+  padding:9px 12px !important;
+  border:1px solid rgba(201,162,39,.58) !important;
+  background:#17181A !important;
+  color:#F5F5F2 !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04) !important;
+  white-space:nowrap !important;
+  text-decoration:none !important;
+  cursor:pointer !important;
+  box-sizing:border-box !important;
+}
+#tier1ControlPanel button:hover,
+.tier1-control-panel button:hover,
+.control-panel button:hover,
+.yyk-control-panel button:hover,
+.yyk-control-actions button:hover,
+.yyk-mode-page-action:hover,
+button[data-panel]:hover,
+button[data-control-open]:hover {
+  border-color:rgba(201,162,39,.86) !important;
+  background:rgba(201,162,39,.14) !important;
+}
+/* specific named buttons reported by user */
+button[data-panel="partnership"],
+button[data-panel="pricing"],
+button[data-panel="data"],
+button[data-control-open="partnership"],
+button[data-control-open="pricing"],
+button[data-control-open="data"] {
+  border:1px solid rgba(201,162,39,.72) !important;
+  background:#17181A !important;
+}
+
+

@@ -1,0 +1,191 @@
+/* === ID: yyk-v32-interactive-command-rail-final === */
+
+/* Final single-row command rail: Exit + Executive + engines stay horizontal and clickable */
+#yykAuditControlPanel{
+  overflow:visible!important;
+}
+#yykAuditControlPanel .yyk-audit-wrap{
+  width:min(1500px,90vw)!important;
+  min-height:62px!important;
+  margin:0 auto!important;
+  padding:9px 0!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-areas:"title title" "actions modes"!important;
+  gap:16px!important;
+  align-items:center!important;
+}
+#yykAuditControlPanel .yyk-audit-top,
+#yykAuditControlPanel .yyk-audit-context{
+  display:block!important;
+}
+#yykAuditControlPanel .yyk-control-actions,
+#yykAuditControlPanel .yyk-control-actions.yyk-terminal-rail-ready,
+#yykAuditControlPanel .yyk-control-actions.yyk-v32-single-line-ready{
+  grid-area:actions!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  min-height:44px!important;
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  gap:8px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding:0 2px 8px 0!important;
+  margin:0!important;
+  border:0!important;
+  background:transparent!important;
+  scrollbar-gutter:stable!important;
+  -webkit-overflow-scrolling:touch!important;
+  scroll-snap-type:x proximity!important;
+}
+#yykAuditControlPanel .yyk-control-actions:before{
+  content:none!important;
+  display:none!important;
+}
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar{height:7px!important;}
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar-track{background:rgba(255,255,255,.045)!important;}
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar-thumb{background:rgba(201,162,39,.58)!important;border-radius:999px!important;}
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-return-site-btn,
+#yykAuditControlPanel .yyk-executive-primary-btn,
+#yykAuditControlPanel .yyk-v32-exec-btn{
+  position:relative!important;
+  flex:0 0 auto!important;
+  min-width:max-content!important;
+  min-height:40px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  padding:9px 12px!important;
+  margin:0!important;
+  border:1px solid rgba(176,184,194,.30)!important;
+  background:rgba(255,255,255,.026)!important;
+  color:#E0E0E0!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  font-size:10px!important;
+  font-weight:850!important;
+  letter-spacing:.095em!important;
+  text-transform:uppercase!important;
+  line-height:1.1!important;
+  white-space:nowrap!important;
+  text-decoration:none!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+  user-select:none!important;
+  transform:none!important;
+  scroll-snap-align:start!important;
+  box-shadow:none!important;
+  transition:border-color .18s ease,background-color .18s ease,color .18s ease,box-shadow .18s ease!important;
+}
+#yykAuditControlPanel .yyk-control-action:hover,
+#yykAuditControlPanel .yyk-control-action:focus-visible,
+#yykAuditControlPanel .yyk-return-site-btn:hover,
+#yykAuditControlPanel .yyk-return-site-btn:focus-visible{
+  border-color:rgba(201,162,39,.68)!important;
+  background:rgba(201,162,39,.13)!important;
+  color:#fff!important;
+  outline:none!important;
+  box-shadow:inset 0 -2px 0 rgba(201,162,39,.62)!important;
+}
+#yykAuditControlPanel .yyk-return-site-btn{
+  order:0!important;
+  border-color:rgba(224,224,224,.38)!important;
+  background:rgba(0,0,0,.28)!important;
+}
+#yykAuditControlPanel .yyk-return-site-btn::before{content:"←";margin-right:7px;}
+#yykAuditControlPanel .yyk-v32-exec-btn,
+#yykAuditControlPanel .yyk-executive-primary-btn{
+  order:1!important;
+  border-color:rgba(201,162,39,.84)!important;
+  background:linear-gradient(180deg,rgba(201,162,39,.22),rgba(201,162,39,.10))!important;
+  color:#fff!important;
+  box-shadow:inset 0 0 0 1px rgba(201,162,39,.16),0 0 18px rgba(201,162,39,.10)!important;
+}
+#yykAuditControlPanel .yyk-v32-exec-btn::before,
+#yykAuditControlPanel .yyk-executive-primary-btn::before{
+  content:"◆";
+  margin-right:8px;
+  color:var(--gold,#C9A227);
+  font-size:9px;
+}
+#yykAuditControlPanel .yyk-v32-exec-btn:hover,
+#yykAuditControlPanel .yyk-executive-primary-btn:hover{
+  background:linear-gradient(180deg,rgba(201,162,39,.30),rgba(201,162,39,.16))!important;
+  border-color:rgba(201,162,39,1)!important;
+}
+#yykAuditControlPanel .yyk-control-action[data-open-engine="vdr"]{order:2!important;}
+#yykAuditControlPanel .yyk-control-action[data-open-engine="legal"]{order:3!important;}
+#yykAuditControlPanel .yyk-control-action[data-open-engine="supply"]{order:4!important;}
+#yykAuditControlPanel .yyk-control-action[data-open-engine="data"]{order:5!important;}
+#yykAuditControlPanel .yyk-control-action[data-open-engine="pricing"]{order:6!important;}
+#yykAuditControlPanel .yyk-control-action[data-open-engine="tds"]{order:7!important;}
+#yykAuditControlPanel .yyk-control-action[data-open-engine="partnership"]{order:8!important;}
+#yykAuditControlPanel .yyk-audit-modes{
+  grid-area:modes!important;
+  justify-self:end!important;
+  align-self:center!important;
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:6px!important;
+  min-width:max-content!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  background:transparent!important;
+  overflow:visible!important;
+}
+#yykAuditControlPanel .yyk-mode-btn{
+  flex:0 0 auto!important;
+  min-width:max-content!important;
+  min-height:38px!important;
+  padding:9px 11px!important;
+  border:1px solid rgba(176,184,194,.28)!important;
+  background:rgba(255,255,255,.022)!important;
+  color:#D9DDE3!important;
+  font-size:9.5px!important;
+  letter-spacing:.095em!important;
+  white-space:nowrap!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+#yykAuditControlPanel .yyk-mode-btn.active,
+#yykAuditControlPanel .yyk-mode-btn:hover,
+#yykAuditControlPanel .yyk-mode-btn[aria-selected="true"]{
+  border-color:rgba(201,162,39,.64)!important;
+  background:rgba(201,162,39,.12)!important;
+  color:#fff!important;
+}
+#yykAuditModeWorkspace{
+  scroll-margin-top:86px!important;
+}
+@media(max-width:1120px){
+  #yykAuditControlPanel .yyk-audit-wrap{
+    /* grid-template-columns not needed for flex layout */
+    /* grid-template-areas removed for flex layout */
+    gap:8px!important;
+  }
+  #yykAuditControlPanel .yyk-audit-modes{
+    justify-self:start!important;
+    justify-content:flex-start!important;
+    overflow-x:auto!important;
+    max-width:100%!important;
+    padding-bottom:5px!important;
+  }
+}
+@media(max-width:640px){
+  #yykAuditControlPanel .yyk-audit-wrap{width:calc(100vw - 24px)!important;}
+  #yykAuditControlPanel .yyk-control-action,
+  #yykAuditControlPanel .yyk-return-site-btn,
+  #yykAuditControlPanel .yyk-v32-exec-btn,
+  #yykAuditControlPanel .yyk-executive-primary-btn{min-height:38px!important;font-size:9px!important;padding:8px 10px!important;}
+}
+
+

@@ -1,0 +1,13 @@
+/* === ID: yyk-port-label-site-style-final === */
+
+#yykFooterLogisticsMap .port-label{
+  fill:#d1fae5!important;
+  color:#d1fae5!important;
+  paint-order:stroke!important;
+  stroke:#0a0a0a!important;
+  stroke-width:3px!important;
+  stroke-linejoin:round!important;
+  text-shadow:0 0 4px rgba(201,162,39,.45),0 0 10px rgba(201,162,39,.18)!important;
+}
+
+

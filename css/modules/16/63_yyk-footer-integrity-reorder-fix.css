@@ -1,0 +1,43 @@
+/* === ID: yyk-footer-integrity-reorder-fix === */
+
+#yykFooterLogisticsMap{margin-top:22px;}
+.yyk-footer-integrity-row{
+  margin-top:18px;
+  align-items:center;
+}
+.yyk-integrity-toggle{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+  color:var(--muted);
+  padding:8px 10px;
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.yyk-integrity-toggle:hover{
+  border-color:rgba(201,162,39,.55);
+  color:#fff;
+  background:rgba(201,162,39,.08);
+}
+.yyk-footer-integrity-panel{
+  margin-top:10px;
+  margin-bottom:22px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.18);
+  padding:14px 16px;
+  display:grid;
+  gap:8px;
+}
+.yyk-footer-integrity-panel[hidden]{display:none!important;}
+.yyk-footer-integrity-panel .legal-micro{
+  margin:0;
+  color:#8f96a0;
+  line-height:1.6;
+}
+@media(max-width:760px){
+  .yyk-footer-integrity-row{display:grid;gap:10px;}
+  .yyk-integrity-toggle{text-align:left;width:100%;}
+}
+
+

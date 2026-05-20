@@ -1,0 +1,11 @@
+/* === ID: yyk-trade-decision-engine-orphan-kill === */
+
+[data-killed="legacy-trade-decision-engine"],
+[data-killed="legacy-trade-decision-json"]{
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  overflow:hidden!important;
+}
+
+

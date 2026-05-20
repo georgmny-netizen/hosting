@@ -1,0 +1,114 @@
+/* === ID: yyk-balanced-panorama-map === */
+
+/* Balanced panoramic map: left-shifted composition, brighter geography, no green background wash */
+
+#yykFooterLogisticsMap{
+  background:#0a0a0a!important;
+  cursor:default!important;
+  overflow:hidden!important;
+}
+#yykFooterLogisticsMap::after{
+  background:linear-gradient(180deg,rgba(10,10,10,.00),rgba(10,10,10,.72))!important;
+}
+#yykFooterLogisticsMap .terminal-crosshair,
+#yykFooterLogisticsMap .square-cursor,
+#yykFooterLogisticsMap [class*="crosshair"],
+#yykFooterLogisticsMap [class*="cursor"],
+#yykFooterLogisticsMap .signal-noise{
+  display:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+}
+#yykFooterLogisticsMap,
+#yykFooterLogisticsMap .map-shell,
+
+#yykFooterLogisticsMap .port-node,
+#yykFooterLogisticsMap button,
+#yykFooterLogisticsMap a,
+#yykFooterLogisticsMap [role="button"]{
+  cursor:pointer!important;
+}
+
+/* Full-width, balanced panorama */
+#yykFooterLogisticsMap .map-shell{
+  width:100%!important;
+  max-width:none!important;
+  min-width:100%!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  display:flex!important;
+  justify-content:center!important;
+  align-items:center!important;
+  overflow:hidden!important;
+}
+
+
+/* High-contrast geography */
+#yykFooterLogisticsMap .land{
+  fill:rgba(39,39,42,.40)!important;
+  stroke:#71717a!important;
+  stroke-width:1px!important;
+  stroke-linejoin:round!important;
+  filter:none!important;
+}
+#yykFooterLogisticsMap .sea-grid{
+  stroke:rgba(255,255,255,.035)!important;
+  stroke-width:1!important;
+  vector-effect:non-scaling-stroke!important;
+}
+#yykFooterLogisticsMap .bathymetry path{
+  stroke:rgba(255,255,255,.03)!important;
+  stroke-width:1!important;
+  vector-effect:non-scaling-stroke!important;
+  filter:none!important;
+}
+#yykFooterLogisticsMap .sea-label{
+  fill:rgba(255,255,255,.11)!important;
+  text-shadow:none!important;
+}
+
+/* Keep logistics clean and centered visually */
+#yykFooterLogisticsMap .route-base{
+  stroke:rgba(201,162,39,.10)!important;
+  stroke-width:3.5!important;
+  stroke-dasharray:4 6!important;
+  stroke-linecap:round!important;
+  filter:none!important;
+}
+#yykFooterLogisticsMap .route,
+#yykFooterLogisticsMap .route-glow{
+  stroke:#c9a227!important;
+  stroke-dasharray:4 6!important;
+  stroke-dashoffset:100!important;
+  stroke-linecap:round!important;
+  animation:panoramic-dash-flow 20s linear infinite!important;
+  filter:drop-shadow(0 0 4px #c9a227)!important;
+}
+#yykFooterLogisticsMap .route{
+  stroke-width:3.6!important;
+}
+#yykFooterLogisticsMap .route-glow{
+  stroke-width:.9!important;
+  opacity:.44!important;
+}
+@keyframes panoramic-dash-flow{
+  from{stroke-dashoffset:100}
+  to{stroke-dashoffset:0}
+}
+
+/* Ports remain small and emerald */
+#yykFooterLogisticsMap .port-dot,
+#yykFooterLogisticsMap .precision-core{
+  fill:#c9a227!important;
+  stroke:#c9a227!important;
+}
+#yykFooterLogisticsMap .precision-ring,
+#yykFooterLogisticsMap .precision-cross{
+  stroke:#c9a227!important;
+}
+
+
+/* === ID: yyk-rotation-injection === */
+
+
+

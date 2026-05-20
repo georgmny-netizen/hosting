@@ -1,0 +1,160 @@
+/* === ID: yyk-clean-proof-architecture === */
+
+/* CLEAN ARCHITECTURE: one proof panel, dynamic city data, no duplicate cards */
+#yykFooterLogisticsMap{
+  position:relative!important;
+}
+#yykFooterLogisticsMap .local-port-card,
+#yykFooterLogisticsMap .svg-city-card,
+#yykFooterLogisticsMap .svg-city-cards{
+  display:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+#yykFooterLogisticsMap .port-node{
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+
+#yykFooterLogisticsMap .yyk-proof-card-master{
+  position:absolute;
+  left:32px;
+  top:112px;
+  z-index:9999;
+  width:690px;
+  min-height:600px;
+  padding:28px 24px 26px;
+  background:rgba(10,10,10,.92);
+  border:1px solid rgba(201,162,39,.72);
+  box-shadow:0 0 0 1px rgba(201,162,39,.14),0 0 34px rgba(201,162,39,.12),inset 0 0 22px rgba(201,162,39,.04);
+  color:#fff;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(8px);
+  transition:opacity .16s linear,visibility .16s linear,transform .16s linear;
+  pointer-events:auto;
+  border-radius:0!important;
+}
+#yykFooterLogisticsMap .yyk-proof-card-master.is-open{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:translateY(0)!important;
+}
+#yykFooterLogisticsMap .yyk-proof-card-close{
+  position:absolute;
+  right:18px;
+  top:18px;
+  width:28px;
+  height:28px;
+  border:1px solid rgba(201,162,39,.45);
+  background:#0a0a0a;
+  color:#c9a227;
+  font:900 14px/26px ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  text-align:center;
+  cursor:pointer;
+  border-radius:0!important;
+}
+#yykFooterLogisticsMap .yyk-proof-card-head{
+  color:#c9a227;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.20em;
+  margin-bottom:28px;
+  text-shadow:0 0 8px rgba(201,162,39,.65);
+}
+#yykFooterLogisticsMap .yyk-proof-card-verified{
+  display:inline-block;
+  margin-bottom:34px;
+  padding:9px 13px;
+  border:1px solid rgba(201,162,39,.24);
+  background:rgba(201,162,39,.045);
+  color:#fff;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.12em;
+  border-radius:0!important;
+}
+#yykFooterLogisticsMap .yyk-proof-card-row{
+  display:grid;
+  grid-template-columns:160px 1fr;
+  gap:20px;
+  align-items:center;
+  margin:0 0 20px;
+  font-size:13px;
+  font-weight:900;
+}
+#yykFooterLogisticsMap .yyk-proof-card-row span:first-child{
+  color:rgba(255,255,255,.72);
+}
+#yykFooterLogisticsMap .yyk-proof-card-row span:last-child{
+  color:#fff;
+  text-align:right;
+}
+#yykFooterLogisticsMap .yyk-proof-card-chain{
+  margin:30px 0 26px;
+  color:#c9a227;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-shadow:0 0 8px rgba(201,162,39,.45);
+}
+#yykFooterLogisticsMap .yyk-proof-card-docs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px 12px;
+  margin-bottom:28px;
+}
+#yykFooterLogisticsMap .yyk-proof-card-doc{
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  padding:0 12px;
+  border:1px solid rgba(201,162,39,.38);
+  background:rgba(201,162,39,.035);
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  border-radius:0!important;
+}
+#yykFooterLogisticsMap .yyk-proof-card-rfq{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:58px;
+  border:2px solid #c9a227;
+  background:rgba(201,162,39,.055);
+  color:#c9a227;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-decoration:none;
+  cursor:pointer;
+  text-shadow:0 0 8px rgba(201,162,39,.55);
+  border-radius:0!important;
+}
+@media(max-width:900px){
+  #yykFooterLogisticsMap .yyk-proof-card-master{
+    left:20px;
+    right:20px;
+    top:76px;
+    width:auto;
+    min-height:0;
+  }
+  #yykFooterLogisticsMap .yyk-proof-card-row{
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+  #yykFooterLogisticsMap .yyk-proof-card-row span:last-child{
+    text-align:left;
+  }
+  #yykFooterLogisticsMap .yyk-proof-card-docs{
+    grid-template-columns:1fr;
+  }
+}
+
+

@@ -1,0 +1,36 @@
+/* === ID: yyk-v54-top-panel-map-repair === */
+
+/* v5.4: hard-stop layout drift in the top command panel */
+#yykAuditControlPanel,
+#yykAuditControlPanel *{box-sizing:border-box!important}
+#yykAuditControlPanel{width:100%!important;left:auto!important;right:auto!important;transform:none!important;margin:0!important;overflow:visible!important}
+#yykAuditControlPanel .yyk-audit-wrap{width:min(90vw,1480px)!important;max-width:1480px!important;margin-left:auto!important;margin-right:auto!important;padding:12px 0!important;display:grid!important;/* grid-template-columns not needed for flex layout */gap:10px!important}
+#yykAuditControlPanel .yyk-audit-top{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;gap:16px!important;width:100%!important;min-width:0!important;justify-content:normal!important;flex-wrap:nowrap!important}
+#yykAuditControlPanel .yyk-audit-top>div:first-child{min-width:0!important;text-align:left!important;justify-self:start!important}
+#yykAuditControlPanel .yyk-audit-modes{display:flex!important;flex-wrap:nowrap!important;gap:8px!important;justify-content:flex-end!important;align-items:center!important;justify-self:end!important;min-width:max-content!important;max-width:100%!important;margin:0!important;padding:0!important}
+#yykAuditControlPanel .yyk-audit-context{width:100%!important;max-width:980px!important;text-align:left!important;margin:0!important;padding:0!important;justify-self:start!important}
+#yykAuditControlPanel .yyk-control-actions{width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;padding:0 0 3px!important;display:flex!important;flex-wrap:nowrap!important;gap:8px!important;align-items:center!important;justify-content:flex-start!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin!important;-webkit-overflow-scrolling:touch!important;scroll-snap-type:x proximity!important}
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-v32-exec-btn,
+#yykAuditControlPanel .yyk-return-site-btn{flex:0 0 auto!important;white-space:nowrap!important;scroll-snap-align:start!important;position:relative!important;left:auto!important;right:auto!important;transform:none!important}
+#yykAuditControlPanel .yyk-mode-btn{flex:0 0 auto!important;white-space:nowrap!important;min-width:auto!important}
+@media(max-width:860px){
+  #yykAuditControlPanel .yyk-audit-top{/* grid-template-columns not needed for flex layout */gap:10px!important}
+  #yykAuditControlPanel .yyk-audit-modes{justify-self:start!important;justify-content:flex-start!important;overflow-x:auto!important;width:100%!important;min-width:0!important;padding-bottom:2px!important}
+  #yykAuditControlPanel .yyk-audit-wrap{width:calc(100vw - 36px)!important}
+}
+
+/* v5.4: make the APAC logistics map visibly replace the old static footer map */
+#yykApacInteractiveDesk.yyk-v54-map-primary{display:block!important;width:min(90vw,1480px)!important;max-width:1480px!important;margin:42px auto 28px!important;border-color:rgba(201,162,39,.36)!important;box-shadow:0 18px 50px rgba(0,0,0,.22)!important;position:relative!important;z-index:5!important;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(0,0,0,.20))!important}
+#yykApacInteractiveDesk.yyk-v54-map-primary .yyk-apac-desk-head{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:end!important;gap:18px!important;padding:20px!important;background:rgba(0,0,0,.18)!important}
+#yykApacInteractiveDesk.yyk-v54-map-primary .yyk-apac-desk-grid{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr)!important;align-items:center!important}
+#yykApacInteractiveDesk.yyk-v54-map-primary .yyk-apac-map{display:block!important;min-height:0!important;overflow:hidden!important}
+#yykApacInteractiveDesk.yyk-v54-map-primary .yyk-port{display:block!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+#yykApacInteractiveDesk.yyk-v54-map-primary .yyk-lane-svg{display:block!important;opacity:1!important;visibility:visible!important}
+#yykApacInteractiveDesk.yyk-v54-map-primary .yyk-apac-panel{display:flex!important;min-width:0!important}
+#yykApacInteractiveDesk.yyk-v54-map-primary .yyk-port-table{max-height:210px!important;overflow:auto!important}
+#yykFooterLogisticsMap.yyk-v54-legacy-hidden{display:none!important;visibility:hidden!important;pointer-events:none!important;height:0!important;margin:0!important;padding:0!important;overflow:hidden!important}
+@media(max-width:1180px){#yykApacInteractiveDesk.yyk-v54-map-primary .yyk-apac-desk-grid{grid-template-columns:1fr!important}#yykApacInteractiveDesk.yyk-v54-map-primary .yyk-apac-map{min-height:0!important;border-right:0!important;border-bottom:1px solid rgba(255,255,255,.08)!important}}
+@media(max-width:760px){#yykApacInteractiveDesk.yyk-v54-map-primary{width:calc(100vw - 36px)!important;margin:30px auto 22px!important}#yykApacInteractiveDesk.yyk-v54-map-primary .yyk-apac-desk-head{display:block!important}#yykApacInteractiveDesk.yyk-v54-map-primary .yyk-apac-map{min-height:auto!important;display:grid!important;gap:8px!important;padding:14px!important}#yykApacInteractiveDesk.yyk-v54-map-primary .yyk-lane-svg,#yykApacInteractiveDesk.yyk-v54-map-primary .yyk-sea-label{display:none!important}}
+
+

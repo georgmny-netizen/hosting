@@ -1,0 +1,23 @@
+/* === ID: yyk-tier1-control-panel-style === */
+
+/* Tier-1 Control Panel — replaces misplaced left dock buttons with in-layout context navigation */
+.yyk-control-panel{width:min(1500px,90vw);margin:0 auto 14px;padding:12px 0 0;border-top:1px solid rgba(176,184,194,.16)}
+.yyk-control-top{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.yyk-control-kicker{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+.yyk-control-title{margin-top:5px;font-size:16px;color:#fff;font-weight:800;letter-spacing:.02em}
+.yyk-mode-switch{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.yyk-mode-btn,.yyk-control-action{border:1px solid var(--line);background:rgba(255,255,255,.025);color:var(--platinum,var(--text));cursor:pointer;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;transition:.22s ease;box-shadow:none}
+.yyk-mode-btn{padding:8px 10px;font-size:10px;letter-spacing:.14em}
+.yyk-mode-btn.active,.yyk-mode-btn:hover{border-color:rgba(201,162,39,.62);background:rgba(201,162,39,.12);color:#fff}
+.yyk-control-body{display:grid;grid-template-columns:minmax(260px,.72fr) 1.28fr;gap:12px;align-items:stretch;margin-top:10px}
+.yyk-control-context{border:1px solid var(--line);background:rgba(0,0,0,.18);padding:12px 14px;color:var(--muted);font-size:12px;line-height:1.5}
+.yyk-control-actions{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.yyk-control-action{min-height:46px;padding:10px 11px;font-size:10.5px;line-height:1.25;letter-spacing:.08em;text-align:left;display:flex;align-items:center;justify-content:flex-start}
+.yyk-control-action:hover,.yyk-control-action.active{border-color:rgba(201,162,39,.62);background:rgba(201,162,39,.10);color:#fff}
+.yyk-control-action[data-hidden="true"]{opacity:.38}
+/* hard override: old engine launch buttons remain functional for JS, but are no longer visible/fixed on the left */
+.yyk-legal-launch,.yyk-data-room-launch,.yyk-rt-launch,.yyk-tds-launch{position:absolute!important;left:-9999px!important;top:auto!important;bottom:auto!important;right:auto!important;width:1px!important;height:1px!important;min-height:0!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important;margin:0!important;padding:0!important;display:block!important;box-shadow:none!important;transform:none!important}
+@media(max-width:1100px){.yyk-control-body{grid-template-columns:1fr}.yyk-control-actions{grid-template-columns:repeat(2,minmax(0,1fr))}.yyk-mode-switch{justify-content:flex-start}}
+@media(max-width:760px){.yyk-control-panel{width:calc(100vw - 36px);padding-top:10px}.yyk-control-actions{grid-template-columns:1fr}.yyk-control-action{min-height:42px}.yyk-control-title{font-size:36px}}
+
+

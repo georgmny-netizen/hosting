@@ -1,0 +1,18 @@
+/* === ID: yyk-d26-orphan-matrix-kill-switch === */
+
+/* Hard stop: legacy D26 open tables must not be visible. */
+#directive26-fiscal-passport-2026,
+#d26FiscalPassportLiveTable,
+#d26MadeInMalaysiaEcerCertificate,
+#d26VdrFiscalPassportTab{
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  max-height:0!important;
+  overflow:hidden!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+}
+
+

@@ -1,0 +1,12 @@
+/* === ID: final-merged-site-style === */
+
+#tier1ControlPanel button, .tier1-control-panel button, .control-panel button,
+#tier1ControlPanel .nav-link, .tier1-control-panel .nav-link, .control-panel .nav-link{
+  display:inline-flex !important; align-items:center !important; justify-content:center !important;
+  min-height:36px !important; padding:8px 12px !important; white-space:nowrap !important;
+  border:1px solid rgba(255,255,255,.22) !important; background:#1a1a1a !important; color:#fff !important;
+  box-sizing:border-box !important; opacity:1 !important; cursor:pointer !important; border-radius:0 !important;
+}
+#tier1ControlPanel, .tier1-control-panel, .control-panel{background:#121212 !important; opacity:1 !important; z-index:99999 !important;}
+
+

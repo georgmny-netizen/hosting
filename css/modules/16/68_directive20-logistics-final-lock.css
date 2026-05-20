@@ -1,0 +1,14 @@
+/* === ID: directive20-logistics-final-lock === */
+
+.yyk-logistics-dictate[data-master-directive="20"] .yyk-hub-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:stretch}
+.yyk-logistics-dictate[data-master-directive="20"] .yyk-hub-card{min-height:310px!important}
+.yyk-logistics-dictate[data-master-directive="20"] .yyk-hub-line{display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,.08);padding-top:9px;font-size:12px;color:#E5E8EC}
+.yyk-logistics-dictate[data-master-directive="20"] .yyk-hub-line span{color:var(--muted2)}
+.yyk-logistics-dictate[data-master-directive="20"] .yyk-hub-status{margin-top:auto;padding-top:14px;color:#d4b85c;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.yyk-logistics-dictate[data-master-directive="20"] .yyk-korea-distribution-note{border:1px solid rgba(201,162,39,.36);background:rgba(201,162,39,.055);padding:16px 18px;margin-bottom:14px;color:var(--muted);font-size:14px;line-height:1.6}
+@media(max-width:1200px){.yyk-logistics-dictate[data-master-directive="20"] .yyk-hub-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.yyk-logistics-dictate[data-master-directive="20"] .yyk-hub-grid{grid-template-columns:1fr}}
+
+
+/* === inline <style> === */
+

@@ -1,0 +1,44 @@
+/* === ID: yyk-brand-dedupe-fix === */
+
+/* Brand duplicate/layout correction — keep one header brand and one footer matte watermark */
+#brand-name{
+  display:block;
+  margin:6px 0 0;
+  padding:0;
+  text-align:left;
+}
+.footer-tier1,.footer{
+  position:relative;
+  overflow:hidden;
+}
+.footer-tier1 > :not(#footerMatteWatermark),
+.footer > :not(#footerMatteWatermark){
+  position:relative;
+  z-index:1;
+}
+#footerMatteWatermark{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:0;
+  pointer-events:none;
+  user-select:none;
+  margin:0;
+  padding:0;
+  width:100%;
+  overflow:hidden;
+  text-align:center;
+  white-space:nowrap;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(54px,15vw,220px);
+  line-height:.72;
+  letter-spacing:-.10em;
+  font-weight:900;
+  color:rgba(255,255,255,.035);
+  text-shadow:none;
+  filter:blur(.15px);
+  text-transform:uppercase;
+}
+
+

@@ -1,0 +1,17 @@
+/* === ID: yyk-map-shell-fix === */
+
+#yykFooterLogisticsMap .map-shell {
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    min-height: unset !important;
+    height: auto !important;
+    padding: 0 !important;
+}
+#yykFooterLogisticsMap .map-shell svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2752 / 1536;
+}
+
+

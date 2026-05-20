@@ -1,0 +1,35 @@
+/* === ID: yyk-tier2-interface-upgrade === */
+
+/* Tier-2 Interface Upgrade: auto-resize, density modes, in-card heatmap */
+:root{--yyk-density-card-min:220px;--yyk-density-card-pad:18px;--yyk-density-text-scale:1}
+body.density-compact{--yyk-density-card-min:168px;--yyk-density-card-pad:14px;--yyk-density-text-scale:.94}
+body.density-control{--yyk-density-card-min:236px;--yyk-density-card-pad:20px;--yyk-density-text-scale:1}
+body.density-executive{--yyk-density-card-min:260px;--yyk-density-card-pad:22px;--yyk-density-text-scale:1.06}
+.density-switch{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.density-btn{border:1px solid var(--line);background:rgba(0,0,0,.18);color:var(--text);padding:7px 9px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;cursor:pointer;transition:.2s ease}
+.density-btn:hover,.density-btn.active{border-color:rgba(201,162,39,.58);background:rgba(201,162,39,.12)}
+.product-card,.material-card,.card,.bento-card,.dense-card,.passport,.verification-card,.route-card,.compliance-card,.metric{height:auto!important;min-height:var(--yyk-density-card-min)!important;padding:var(--yyk-density-card-pad)!important}
+.grid4,.grid3,.grid2,.product-grid,.bento-grid,.compliance-grid,.route-grid,.status-grid,.data-strip{align-items:stretch!important}
+.dense-card,.passport,.verification-card,.product-card,.route-card,.compliance-card{display:flex;flex-direction:column;gap:0}
+.card-text,.product-card li,.kv-row,.hint,.result-sub{font-size:calc(1em * var(--yyk-density-text-scale))}
+body.density-compact .card-text{line-height:1.45;margin-top:10px}
+body.density-compact .kv{gap:6px;margin-top:10px}
+body.density-compact .pass-actions,body.density-compact .product-actions{padding-top:10px;margin-top:10px}
+body.density-control .yyk-heatmap{display:block}
+body.density-executive .yyk-heatmap{display:block}
+body.density-compact .yyk-heatmap{display:none}
+.yyk-heatmap{margin-top:auto;padding-top:14px}
+.yyk-heatmap-title{display:flex;justify-content:space-between;gap:10px;align-items:center;color:var(--gold);font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
+.yyk-heatmap-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.yyk-heat-cell{border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.18);padding:9px;position:relative;overflow:hidden}
+.yyk-heat-cell:before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--score,50%);background:linear-gradient(90deg,rgba(201,162,39,.24),rgba(201,162,39,.04));pointer-events:none}
+.yyk-heat-cell.risk:before{background:linear-gradient(90deg,rgba(198,106,74,.25),rgba(198,106,74,.04))}
+.yyk-heat-label{position:relative;display:block;color:var(--muted2);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.yyk-heat-value{position:relative;display:block;color:#fff;font-size:16px;line-height:1;margin-top:6px}
+.yyk-heat-note{margin-top:8px;color:var(--muted2);font-size:11px;line-height:1.45}
+body.density-executive .yyk-heatmap-grid{grid-template-columns:repeat(4,1fr)}
+body.density-executive .yyk-heat-note{display:none}
+body.density-control .yyk-heat-note{display:block}
+@media(max-width:760px){.density-switch{justify-content:flex-start}.yyk-heatmap-grid,body.density-executive .yyk-heatmap-grid{grid-template-columns:1fr 1fr}}
+
+

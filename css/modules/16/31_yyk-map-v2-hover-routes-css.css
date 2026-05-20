@@ -1,0 +1,26 @@
+/* === ID: yyk-map-v2-hover-routes-css === */
+
+#yykFooterLogisticsMap .route-group{
+  transition:opacity .18s linear, filter .18s linear;
+}
+#yykFooterLogisticsMap .route-group.is-dim{
+  opacity:.18!important;
+  filter:saturate(.5)!important;
+}
+#yykFooterLogisticsMap .route-group.is-active{
+  opacity:1!important;
+  filter:drop-shadow(0 0 10px rgba(201,162,39,.55))!important;
+}
+#yykFooterLogisticsMap .route-group.is-active .route{
+  stroke-width:3.6!important;
+  filter:drop-shadow(0 0 4px #c9a227) drop-shadow(0 0 20px rgba(201,162,39,.9))!important;
+}
+#yykFooterLogisticsMap .route-group.is-active .route-glow{
+  stroke-width:1.7!important;
+  opacity:1!important;
+}
+#yykFooterLogisticsMap .port-node.is-route-active .port-dot{
+  filter:drop-shadow(0 0 4px #c9a227) drop-shadow(0 0 18px rgba(201,162,39,.95))!important;
+}
+
+

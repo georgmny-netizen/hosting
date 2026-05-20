@@ -1,0 +1,33 @@
+/* === ID: yyk-table-placement-anti-stretch-patch === */
+
+.safe-layout-block{
+  max-width:100%;
+  overflow-x:clip;
+}
+.safe-layout-block .table-panel,
+.safe-layout-block [class*="table-wrap"],
+.safe-layout-block [class*="table-wrap"]{
+  max-width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.safe-layout-block table{
+  max-width:100%;
+}
+#directive26-fiscal-passport-2026{
+  clear:both;
+}
+#directive26-fiscal-passport-2026 .wrap{
+  max-width:1480px;
+}
+#directive26-fiscal-passport-2026 .d26-shell{
+  overflow:hidden;
+}
+@media(max-width:1200px){
+  #directive26-fiscal-passport-2026 .d26-table-wrap{
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
+  }
+}
+
+

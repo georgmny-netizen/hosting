@@ -1,0 +1,109 @@
+/* === ID: yyk-itochu-sticky-action-bar-final === */
+
+/* ITOCHU-STYLE STICKY ACTION BAR — Procurement Workspace buttons stay left and always clickable */
+#yykAuditControlPanel{
+  position:relative!important;
+  top:auto!important;
+  z-index:8800!important;
+  background:rgba(18,18,18,.96)!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.32)!important;
+}
+#yykAuditControlPanel .yyk-audit-wrap{
+  display:grid!important;
+  grid-template-columns:minmax(260px,.72fr) minmax(340px,1.28fr)!important;
+  grid-template-areas:
+    "head actions"
+    "context actions"!important;
+  align-items:center!important;
+  gap:8px 18px!important;
+}
+#yykAuditControlPanel .yyk-audit-top{
+  grid-area:head!important;
+  display:block!important;
+  min-width:0!important;
+}
+#yykAuditControlPanel .yyk-audit-modes{
+  margin-top:8px!important;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  justify-content:flex-start!important;
+  align-items:flex-start!important;
+  gap:8px!important;
+}
+#yykAuditControlPanel .yyk-audit-context{
+  grid-area:context!important;
+  max-width:100%!important;
+  min-width:0!important;
+}
+#yykAuditControlPanel .yyk-control-actions{
+  grid-area:actions!important;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  justify-content:flex-start!important;
+  align-items:flex-start!important;
+  align-content:flex-start!important;
+  gap:8px!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  margin:0!important;
+  padding:0!important;
+}
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-mode-btn{
+  margin-left:0!important;
+  margin-right:0!important;
+  text-align:left!important;
+  justify-content:flex-start!important;
+  min-height:40px!important;
+  max-width:100%!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  touch-action:manipulation!important;
+}
+#yykAuditModeWorkspace{
+  scroll-margin-top:210px!important;
+}
+@media(max-width:1180px){
+  #yykAuditControlPanel{top:64px!important;}
+  #yykAuditControlPanel .yyk-audit-wrap{
+    /* grid-template-columns not needed for flex layout */
+    grid-template-areas:
+      "head"
+      "context"
+      "actions"!important;
+  }
+  #yykAuditControlPanel .yyk-control-actions,
+  #yykAuditControlPanel .yyk-audit-modes{
+    justify-content:flex-start!important;
+  }
+}
+@media(max-width:760px){
+  #yykAuditControlPanel{
+    top:0!important;
+    max-height:42vh!important;
+    overflow:auto!important;
+  }
+  #yykAuditControlPanel .yyk-audit-wrap{
+    width:calc(100vw - 28px)!important;
+    padding:10px 0!important;
+  }
+  #yykAuditControlPanel .yyk-control-actions{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:7px!important;
+  }
+  #yykAuditControlPanel .yyk-control-action,
+  #yykAuditControlPanel .yyk-mode-btn{
+    font-size:10px!important;
+    padding:8px 9px!important;
+    min-height:38px!important;
+  }
+}
+@media(max-width:420px){
+  #yykAuditControlPanel .yyk-control-actions{/* grid-template-columns not needed for flex layout */}
+}
+
+

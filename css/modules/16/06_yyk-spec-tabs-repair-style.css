@@ -1,0 +1,13 @@
+/* === ID: yyk-spec-tabs-repair-style === */
+
+/* Spec tabs repair: Cu / Al / Zn / REE page switching */
+#industrial-specs .spec-panel{display:none!important}
+#industrial-specs .spec-panel.active{display:block!important}
+#industrial-specs .spec-tab{cursor:pointer}
+#industrial-specs .spec-tab.active{
+  border-color:rgba(201,162,39,.62)!important;
+  background:rgba(201,162,39,.10)!important;
+  color:#fff!important;
+}
+
+

@@ -1,0 +1,20 @@
+/* === ID: yyk-trust-control-hover-fix === */
+
+/* Trust Control Status: interactive hover/focus frame only. No layout or structure changes. */
+.trust-control-panel .trust-control-card[data-trust-control]{
+  cursor:pointer;
+  border-color:var(--line) !important;
+  transition:border-color .22s ease, background-color .22s ease, box-shadow .22s ease, transform .22s ease;
+}
+.trust-control-panel .trust-control-card[data-trust-control]:hover,
+.trust-control-panel .trust-control-card[data-trust-control]:focus-visible{
+  border-color:rgba(201,162,39,.72) !important;
+  background:rgba(201,162,39,.10) !important;
+  box-shadow:0 0 0 1px rgba(201,162,39,.22), 0 12px 28px rgba(0,0,0,.18) !important;
+  outline:none;
+}
+.trust-control-panel .trust-control-card[data-trust-control]:active{
+  transform:translateY(1px);
+}
+
+

@@ -1,0 +1,59 @@
+/* === ID: yyk-real-logistics-routes-only === */
+
+/* MASTER GOLD injection: real logistics routes only */
+#yykFooterLogisticsMap .yyk-real-logistics-routes{
+  pointer-events:none!important;
+}
+#yykFooterLogisticsMap .yyk-logistics-route-base{
+  fill:none!important;
+  stroke:rgba(201,162,39,.12)!important;
+  stroke-width:4!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+  stroke-dasharray:4 6!important;
+  vector-effect:non-scaling-stroke!important;
+}
+#yykFooterLogisticsMap .yyk-logistics-route-flow{
+  fill:none!important;
+  stroke:#c9a227!important;
+  stroke-width:3.6!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+  stroke-dasharray:4 6!important;
+  stroke-dashoffset:40!important;
+  animation:yyk-real-logistics-flow 10s linear infinite!important;
+  filter:drop-shadow(0 0 4px #c9a227)!important;
+  vector-effect:non-scaling-stroke!important;
+}
+#yykFooterLogisticsMap .yyk-logistics-route-pulse{
+  fill:none!important;
+  stroke:#c9a227!important;
+  stroke-width:.9!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+  stroke-dasharray:1 18!important;
+  stroke-dashoffset:80!important;
+  animation:yyk-real-logistics-pulse 6s linear infinite!important;
+  opacity:.62!important;
+  filter:drop-shadow(0 0 6px rgba(201,162,39,.75))!important;
+  vector-effect:non-scaling-stroke!important;
+}
+@keyframes yyk-real-logistics-flow{
+  from{stroke-dashoffset:40}
+  to{stroke-dashoffset:0}
+}
+@keyframes yyk-real-logistics-pulse{
+  from{stroke-dashoffset:80}
+  to{stroke-dashoffset:0}
+}
+
+/* Malaysia = origin, no extra decorative noise */
+#yykFooterLogisticsMap g[data-port="Malaysia"] .precision-core{
+  filter:drop-shadow(0 0 5px rgba(201,162,39,.9))!important;
+}
+#yykFooterLogisticsMap g[data-port="Malaysia"] .precision-ring{
+  stroke-width:1.35!important;
+  opacity:1!important;
+}
+
+

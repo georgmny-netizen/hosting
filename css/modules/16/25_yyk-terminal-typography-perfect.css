@@ -1,0 +1,278 @@
+/* === ID: yyk-terminal-typography-perfect === */
+
+/* PERFECT TERMINAL TYPOGRAPHY — optical baseline, kerning, separators, command density */
+:root{
+  --yyk-terminal-font:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  --yyk-terminal-size:11.5px;
+  --yyk-terminal-size-small:10px;
+  --yyk-terminal-line:1.32;
+  --yyk-terminal-track:.075em;
+  --yyk-terminal-track-wide:.16em;
+  --yyk-terminal-silver:rgba(200,204,210,.80);
+  --yyk-terminal-muted:rgba(174,180,188,.64);
+  --yyk-terminal-dim:rgba(174,180,188,.46);
+  --yyk-terminal-green:#c9a227;
+  --yyk-terminal-green-dim:rgba(201,162,39,.34);
+  --yyk-terminal-gold:rgba(201,162,39,.66);
+}
+
+/* Global terminal text discipline for operational UI only */
+header,
+.yyk-terminal-header,
+.yyk-terminal-command,
+.yyk-terminal-lang,
+.yyk-evidence-router,
+.yyk-risk-meter,
+.rfq-card,
+.sandbox,
+.table-panel,
+.metric,
+.strip-cell,
+.micro-btn,
+.sogo-primary-cta,
+.input,
+.select,
+.textarea{
+  font-family:var(--yyk-terminal-font)!important;
+  font-feature-settings:"tnum" 1,"lnum" 1,"zero" 1;
+  font-variant-numeric:tabular-nums lining-nums;
+}
+
+/* Header: same visual language as footer big uppercase systems */
+header .yyk-terminal-header,
+header .yyk-panoramic-command{
+  min-height:38px!important;
+  font-size:var(--yyk-terminal-size)!important;
+  line-height:1!important;
+  letter-spacing:var(--yyk-terminal-track)!important;
+  text-transform:uppercase!important;
+  align-items:center!important;
+}
+header .yyk-terminal-brand,
+header .yyk-pano-brand{
+  font-size:var(--yyk-terminal-size)!important;
+  line-height:1!important;
+  letter-spacing:.145em!important;
+  font-weight:900!important;
+  color:rgba(245,245,242,.94)!important;
+  transform:translateY(.2px);
+}
+header .yyk-terminal-command,
+header .yyk-pano-center,
+header .yyk-terminal-lang,
+header .yyk-pano-lang{
+  height:38px!important;
+  align-items:center!important;
+  font-size:var(--yyk-terminal-size)!important;
+  line-height:1!important;
+  letter-spacing:var(--yyk-terminal-track)!important;
+}
+header .yyk-terminal-group,
+header .yyk-pano-group{
+  height:38px!important;
+  align-items:center!important;
+  gap:6px!important;
+}
+header .yyk-terminal-prefix,
+header .yyk-pano-prefix{
+  color:var(--yyk-terminal-gold)!important;
+  font-size:var(--yyk-terminal-size-small)!important;
+  line-height:1!important;
+  letter-spacing:var(--yyk-terminal-track-wide)!important;
+  font-weight:900!important;
+  transform:translateY(.1px);
+}
+header .yyk-terminal-link,
+header .yyk-pano-link,
+header .yyk-terminal-lang-link,
+header .yyk-pano-lang-link{
+  height:38px!important;
+  align-items:center!important;
+  padding:0!important;
+  margin:0!important;
+  
+  font-size:var(--yyk-terminal-size)!important;
+  line-height:1!important;
+  letter-spacing:var(--yyk-terminal-track)!important;
+  font-weight:650!important;
+  color:var(--yyk-terminal-silver)!important;
+  text-rendering:geometricPrecision;
+}
+header .yyk-terminal-link::after,
+header .yyk-pano-link::after,
+header .yyk-terminal-lang-link::after,
+header .yyk-pano-lang-link::after{
+  bottom:6px!important;
+  height:1px!important;
+}
+header .yyk-terminal-sep,
+header .yyk-pano-sep,
+header .yyk-terminal-lang span,
+header .yyk-pano-lang-sep{
+  color:var(--yyk-terminal-green-dim)!important;
+  font-size:12px!important;
+  line-height:1!important;
+  font-weight:900!important;
+  letter-spacing:0!important;
+  transform:translateY(-.1px);
+}
+header .yyk-terminal-dot,
+header .yyk-pano-dot{
+  color:rgba(255,255,255,.24)!important;
+  font-size:13px!important;
+  line-height:1!important;
+  letter-spacing:0!important;
+  transform:translateY(-.2px);
+}
+
+/* Evidence Router: read as a terminal data ribbon, not card prose */
+.yyk-evidence-router{
+  font-size:var(--yyk-terminal-size)!important;
+  line-height:var(--yyk-terminal-line)!important;
+  letter-spacing:var(--yyk-terminal-track)!important;
+  text-transform:uppercase!important;
+}
+.yyk-evidence-node{
+  
+  padding:13px 14px!important;
+  gap:7px!important;
+}
+.yyk-evidence-label{
+  color:var(--yyk-terminal-muted)!important;
+  font-size:var(--yyk-terminal-size-small)!important;
+  line-height:1!important;
+  letter-spacing:.20em!important;
+  font-weight:850!important;
+  text-transform:uppercase!important;
+}
+.yyk-evidence-value{
+  color:rgba(245,245,242,.94)!important;
+  font-size:12px!important;
+  line-height:1.28!important;
+  letter-spacing:.055em!important;
+  font-weight:650!important;
+  text-transform:uppercase!important;
+  text-rendering:geometricPrecision;
+}
+.yyk-evidence-meta{
+  color:var(--yyk-terminal-dim)!important;
+  font-size:9.5px!important;
+  line-height:1.42!important;
+  letter-spacing:.105em!important;
+  font-weight:600!important;
+  text-transform:uppercase!important;
+}
+.yyk-evidence-action{
+  font-size:9.5px!important;
+  line-height:1!important;
+  letter-spacing:.18em!important;
+  font-weight:850!important;
+  text-transform:uppercase!important;
+}
+
+/* Risk meter: numeric terminal precision */
+.yyk-risk-meter{
+  
+  padding:12px 14px!important;
+}
+.yyk-risk-meter-head{
+  font-size:var(--yyk-terminal-size-small)!important;
+  line-height:1!important;
+  letter-spacing:.20em!important;
+  font-weight:850!important;
+}
+.yyk-risk-meter-head strong{
+  font-size:12px!important;
+  line-height:1!important;
+  letter-spacing:.115em!important;
+  font-weight:900!important;
+  font-variant-numeric:tabular-nums lining-nums;
+}
+.yyk-risk-copy{
+  font-size:10.5px!important;
+  line-height:1.52!important;
+  letter-spacing:.075em!important;
+  text-transform:uppercase!important;
+  color:rgba(200,204,210,.74)!important;
+}
+
+/* RFQ / calculator controls: rectangular, dense, terminal-consistent */
+.rfq-card .field-label,
+.field-label,
+.metric .k,
+.kicker,
+.eyebrow{
+  font-family:var(--yyk-terminal-font)!important;
+  font-size:10px!important;
+  line-height:1!important;
+  letter-spacing:.20em!important;
+  font-weight:850!important;
+  text-transform:uppercase!important;
+}
+.input,
+.select,
+.textarea,
+button,
+.micro-btn,
+.sogo-primary-cta{
+  
+  font-family:var(--yyk-terminal-font)!important;
+  font-size:11.5px!important;
+  line-height:1.25!important;
+  letter-spacing:.065em!important;
+}
+.table-panel th,
+.table-panel td,
+th,
+td{
+  font-family:var(--yyk-terminal-font)!important;
+  font-size:11.5px!important;
+  line-height:1.42!important;
+  letter-spacing:.035em!important;
+}
+th{
+  font-size:9.5px!important;
+  letter-spacing:.18em!important;
+  font-weight:850!important;
+}
+
+/* Footer optical sync: keep existing scale, refine uppercase rhythm only */
+.footer h4{
+  font-family:var(--yyk-terminal-font)!important;
+  letter-spacing:.20em!important;
+  line-height:1!important;
+}
+.footer p,
+.footer a,
+.footer li,
+.footer-bottom{
+  letter-spacing:.035em;
+}
+
+/* Reduce accidental bubble feel anywhere operational */
+.nav-link,
+.lang-btn,
+.micro-btn,
+.sogo-primary-cta,
+.input,
+.select,
+.textarea,
+.result-box,
+.risk-engine-box,
+.esg-decision-box{
+  
+}
+
+/* Mobile keeps readability but preserves terminal rhythm */
+@media(max-width:760px){
+  :root{
+    --yyk-terminal-size:10.5px;
+    --yyk-terminal-size-small:9px;
+    --yyk-terminal-track:.055em;
+  }
+  .yyk-evidence-value{
+    font-size:11px!important;
+  }
+}
+
+

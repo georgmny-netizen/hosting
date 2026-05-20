@@ -1,0 +1,65 @@
+/* === ID: yyk-state-driven-ui-final === */
+
+/* STATE-DRIVEN UI FINAL — single source of truth, no legacy left buttons */
+.yyk-legal-launch,
+.yyk-data-room-launch,
+.yyk-rt-launch,
+.yyk-tds-launch,
+#openLegalEngine,
+#openDataRoomStress,
+#openRedTeamAudit,
+#openTdsFoundryEngine{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  position:absolute!important;
+  left:-99999px!important;
+  top:auto!important;
+  bottom:auto!important;
+  width:0!important;
+  height:0!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  overflow:hidden!important;
+}
+.yyk-control-panel{
+  position:relative!important;
+  width:min(1500px,90vw)!important;
+  margin:0 auto 14px!important;
+  padding:14px!important;
+  border:1px solid rgba(176,184,194,.22)!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.018))!important;
+  box-shadow:none!important;
+}
+.yyk-control-panel::before{
+  content:"STATE-DRIVEN UI";
+  position:absolute;
+  right:14px;
+  top:-10px;
+  padding:3px 8px;
+  border:1px solid rgba(201,162,39,.45);
+  background:#121212;
+  color:var(--gold);
+  font:700 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.18em;
+}
+.yyk-control-body{grid-template-columns:minmax(280px,.66fr) 1.34fr!important;align-items:stretch!important}
+.yyk-control-context{display:flex!important;flex-direction:column!important;gap:8px!important;justify-content:space-between!important}
+.yyk-state-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.yyk-state-chip{border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.20);padding:8px 9px;color:var(--muted2);font-size:10px;letter-spacing:.10em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1.35}
+.yyk-state-chip b{display:block;color:#fff;font-size:12px;letter-spacing:.02em;text-transform:none;margin-top:4px}
+.yyk-control-actions{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+.yyk-control-action{position:relative!important;overflow:hidden!important;min-height:58px!important;padding:12px 12px 12px 14px!important;border-color:rgba(176,184,194,.22)!important;background:rgba(0,0,0,.18)!important}
+.yyk-control-action::after{content:attr(data-state-role);display:block;position:absolute;left:14px;bottom:7px;color:var(--muted2);font-size:9px;letter-spacing:.14em;text-transform:uppercase;opacity:.88}
+.yyk-control-action.is-primary,.yyk-control-action.active{border-color:rgba(201,162,39,.68)!important;background:rgba(201,162,39,.12)!important;color:#fff!important}
+.yyk-control-action.is-disabled{opacity:.34!important;filter:saturate(.65);cursor:not-allowed!important}
+body[data-yyk-mode="procurement"] .yyk-control-panel{border-color:rgba(201,162,39,.30)!important}
+body[data-yyk-mode="engineering"] .yyk-control-panel{border-color:rgba(201,162,39,.32)!important}
+body[data-yyk-mode="compliance"] .yyk-control-panel{border-color:rgba(198,106,74,.36)!important}
+@media(max-width:1100px){.yyk-control-body{grid-template-columns:1fr!important}.yyk-control-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}.yyk-state-meta{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.yyk-control-panel{width:calc(100vw - 36px)!important;padding:12px!important}.yyk-control-actions,.yyk-state-meta{grid-template-columns:1fr!important}.yyk-control-action{min-height:54px!important}}
+
+

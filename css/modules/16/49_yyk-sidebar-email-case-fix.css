@@ -1,0 +1,6 @@
+/* === ID: yyk-sidebar-email-case-fix === */
+
+.yyk-corporate-authority-card .yyk-contact-email,
+.yyk-corporate-authority-card .yyk-copy-email { text-transform: none !important; }
+
+

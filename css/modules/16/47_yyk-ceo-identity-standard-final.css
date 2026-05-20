@@ -1,0 +1,46 @@
+/* === ID: yyk-ceo-identity-standard-final === */
+
+.yyk-director-seal{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  border-radius:0!important;
+  white-space:nowrap!important;
+}
+.yyk-kim-verified,strong.yyk-kim-verified{
+  color:#fff!important;
+  font-weight:800!important;
+}
+.yyk-kim-verified::after,
+strong.yyk-kim-verified::after{
+  content:none!important;
+  display:none!important;
+}
+.yyk-signature-badge{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:1px solid #c9a227!important;
+  background:#c9a227!important;
+  color:#020617!important;
+  border-radius:0!important;
+  padding:3px 8px!important;
+  font:900 10px/1.2 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  letter-spacing:.10em!important;
+  text-transform:uppercase!important;
+  box-shadow:none!important;
+}
+@media print{
+  .yyk-print-proof-active #yykStablePrintReport .yyk-certified-export-footer,
+  .yyk-print-proof-active #yykPrintReport .yyk-certified-export-footer{
+    display:block!important;
+    margin-top:22px!important;
+    padding-top:12px!important;
+    border-top:1px solid #111!important;
+    font:700 10px/1.45 IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace!important;
+    color:#111!important;
+    letter-spacing:.02em!important;
+  }
+}
+
+

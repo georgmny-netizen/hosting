@@ -1,0 +1,134 @@
+/* === ID: yyk-real-geographic-apac-map === */
+
+#yykFooterLogisticsMap{
+  position:relative!important;
+  width:100%!important;
+  min-height:580px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  background:#000!important;
+  border:0!important;
+  
+}
+#yykFooterLogisticsMap::before{
+  content:"YONGYEOKYO";
+  position:absolute;
+  left:50%;
+  bottom:-.18em;
+  z-index:0;
+  transform:translateX(-50%);
+  font:900 clamp(58px,13vw,198px)/.8 Arial,Helvetica,sans-serif;
+  letter-spacing:.4em;
+  color:rgba(252,243,213,.025);
+  white-space:nowrap;
+  pointer-events:none;
+}
+#yykFooterLogisticsMap::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:radial-gradient(circle at 56% 45%,rgba(201,162,39,.10),transparent 32%),linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.68));
+}
+#footerMatteWatermark{display:none!important}
+#yykFooterLogisticsMap .map-head{
+  position:absolute!important;
+  z-index:6!important;
+  top:28px!important;
+  left:50%!important;
+  width:min(1440px,calc(100% - 40px))!important;
+  transform:translateX(-50%)!important;
+  display:flex!important;
+  justify-content:space-between!important;
+  gap:20px!important;
+  color:#c9a227!important;
+  font:900 11px/1.45 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  letter-spacing:.2em!important;
+  text-transform:uppercase!important;
+  text-shadow:0 0 3px #c9a227,0 0 12px rgba(201,162,39,.55)!important;
+}
+#yykFooterLogisticsMap .map-head strong{
+  color:#d1fae5!important;
+}
+
+
+#yykFooterLogisticsMap .sea-grid{
+  stroke:rgba(201,162,39,.07);
+  stroke-width:1;
+  vector-effect:non-scaling-stroke;
+}
+#yykFooterLogisticsMap .land{
+  fill:rgba(201,162,39,.105);
+  stroke:rgba(252,243,213,.56);
+  stroke-width:1.15;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+  filter:drop-shadow(0 0 4px rgba(201,162,39,.50));
+}
+#yykFooterLogisticsMap .route-base{
+  fill:none;
+  stroke:rgba(201,162,39,.16);
+  stroke-width:7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+#yykFooterLogisticsMap .route{
+  fill:none;
+  stroke:#c9a227;
+  stroke-width:2.4;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-dasharray:10 10;
+  stroke-dashoffset:20;
+  animation:yykRealMapFlow 1s linear infinite!important;
+  vector-effect:non-scaling-stroke;
+  filter:drop-shadow(0 0 3px #c9a227) drop-shadow(0 0 12px rgba(201,162,39,.55));
+}
+#yykFooterLogisticsMap .route-glow{
+  fill:none;
+  stroke:#d1fae5;
+  stroke-width:1;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-dasharray:10 10;
+  stroke-dashoffset:20;
+  animation:yykRealMapFlow 1s linear infinite!important;
+  vector-effect:non-scaling-stroke;
+  opacity:.7;
+}
+@keyframes yykRealMapFlow{
+  from{stroke-dashoffset:20}
+  to{stroke-dashoffset:0}
+}
+#yykFooterLogisticsMap .port-dot{
+  fill:#c9a227;
+  stroke:#d1fae5;
+  stroke-width:1;
+  filter:drop-shadow(0 0 3px #c9a227) drop-shadow(0 0 10px rgba(201,162,39,.75));
+}
+#yykFooterLogisticsMap .port-label{
+  fill:#d1fae5;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  font-size:19px !important;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  dominant-baseline:middle;
+  paint-order:stroke;
+  stroke:#000;
+  stroke-width:3px;
+  stroke-linejoin:round;
+}
+button,input,select,textarea,.micro-btn,.nav-link,.lang-btn,.sogo-primary-cta,.sogo-option,.sogo-submit,.density-btn,.region-btn,.btn,.input,.select,.textarea{
+  
+}
+@media(max-width:900px){
+  #yykFooterLogisticsMap{min-height:340px!important}
+  #yykFooterLogisticsMap .map-head{display:grid!important;gap:8px!important;font-size:10px!important}
+}
+
+

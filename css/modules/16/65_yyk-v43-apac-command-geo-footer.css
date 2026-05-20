@@ -1,0 +1,121 @@
+/* === ID: yyk-v43-apac-command-geo-footer === */
+
+/* v4.3 — APAC command status strip + geo-legal routing footer */
+.yyk-apac-command-strip{
+  width:100%;
+  margin:18px 0 0;
+  border-top:1px solid rgba(255,204,51,.25);
+  border-bottom:1px solid rgba(255,204,51,.25);
+  background:linear-gradient(90deg,rgba(0,0,0,.95),rgba(10,14,12,.98),rgba(0,0,0,.95));
+  color:#FFCC33;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 -14px 34px rgba(0,0,0,.24);
+}
+.yyk-apac-command-inner{
+  max-width:1500px;
+  margin:0 auto;
+  padding:13px 28px;
+  display:grid;
+  grid-template-columns:minmax(250px,1fr) minmax(320px,1.45fr) minmax(260px,1fr);
+  gap:22px;
+  align-items:center;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  font-size:11px;
+  line-height:1.35;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-shadow:0 0 5px rgba(255,204,51,.72),0 0 14px rgba(255,204,51,.28);
+}
+.yyk-apac-command-left,.yyk-apac-command-center,.yyk-apac-command-right{min-width:0;display:flex;align-items:center;gap:10px;color:#FFCC33;}
+.yyk-apac-command-center{justify-content:center;text-align:center;flex-wrap:wrap;}
+.yyk-apac-command-right{justify-content:flex-end;text-align:right;}
+.yyk-apac-dot{width:7px;height:7px;border-radius:50%;background:#FFCC33;box-shadow:0 0 7px rgba(255,204,51,.9),0 0 18px rgba(255,204,51,.42);animation:yykApacPulse 1.35s infinite ease-in-out;flex:0 0 auto;}
+.yyk-apac-route-sep{opacity:.42;color:#FFCC33;}
+@keyframes yykApacPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.38;transform:scale(.72)}}
+.yyk-geo-legal-footer{
+  max-width:1500px;
+  margin:14px auto 0;
+  padding:0 28px 22px;
+  color:var(--muted);
+}
+.yyk-geo-legal-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:10px;
+}
+.yyk-geo-card{
+  border:1px solid rgba(176,184,194,.20);
+  background:rgba(255,255,255,.022);
+  padding:13px 12px;
+  min-height:108px;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+.yyk-geo-card strong{
+  color:#fff;
+  font-size:13px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.yyk-geo-card em{
+  color:var(--gold);
+  font-style:normal;
+  font-size:12px;
+  line-height:1.35;
+}
+.yyk-geo-card span{
+  color:var(--muted2);
+  font-size:11.5px;
+  line-height:1.45;
+}
+.yyk-vcard-language-row{
+  margin-top:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.22);
+}
+.yyk-vcard-lang{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:10px 13px;
+  color:#d9dde3;
+  font-size:12px;
+  line-height:1;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border-right:1px solid rgba(255,255,255,.10);
+  white-space:nowrap;
+}
+.yyk-vcard-lang:first-child{border-left:1px solid rgba(255,255,255,.10)}
+.yyk-vcard-lang b{color:#fff;font-weight:800;}
+.yyk-vcard-lang span{color:var(--gold);font-size:13px;letter-spacing:.02em;text-transform:none;}
+.yyk-vcard-lang:hover{background:rgba(201,162,39,.08);color:#fff;}
+.yyk-footer-identity-min{
+  text-align:center;
+  padding:12px 28px 0;
+  color:#8f96a0;
+  font-size:11px;
+  line-height:1.6;
+}
+.yyk-footer-identity-min strong{color:#d9dde3;font-weight:700;}
+@media(max-width:1100px){
+  .yyk-apac-command-inner{grid-template-columns:1fr;gap:8px;text-align:center;}
+  .yyk-apac-command-left,.yyk-apac-command-center,.yyk-apac-command-right{justify-content:center;text-align:center;}
+  .yyk-geo-legal-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:680px){
+  .yyk-apac-command-inner{padding:12px 18px;font-size:10px;letter-spacing:.10em;}
+  .yyk-geo-legal-footer{padding:0 18px 20px;}
+  .yyk-geo-legal-grid{grid-template-columns:1fr;}
+  .yyk-vcard-language-row{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;}
+  .yyk-vcard-language-row::-webkit-scrollbar{display:none;}
+  .yyk-vcard-lang{flex:0 0 auto;}
+}
+
+

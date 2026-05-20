@@ -1,0 +1,26 @@
+/* === ID: yyk-d26-final-placement-guard === */
+
+#yyk-audit-vdr-dock + #directive26-fiscal-passport-2026{
+  margin-top:-24px;
+}
+#yyk-audit-vdr-dock{
+  clear:both;
+}
+#directive26-fiscal-passport-2026{
+  scroll-margin-top:90px;
+}
+#directive26-fiscal-passport-2026 .d26-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+}
+@media(max-width:1200px){
+  #directive26-fiscal-passport-2026 .d26-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:760px){
+  #directive26-fiscal-passport-2026 .d26-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+

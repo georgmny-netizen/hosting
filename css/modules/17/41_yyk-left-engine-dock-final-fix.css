@@ -1,0 +1,58 @@
+/* === ID: yyk-left-engine-dock-final-fix === */
+
+/* FINAL LEFT ENGINE DOCK — keeps module buttons on the left rail, aligned as a single stack, not on page margins */
+.yyk-legal-launch,
+.yyk-data-room-launch,
+.yyk-rt-launch,
+.yyk-tds-launch{
+  position:fixed !important;
+  left:max(24px, calc((100vw - min(1500px, 90vw)) / 2)) !important;
+  right:auto !important;
+  bottom:auto !important;
+  width:clamp(190px, 15vw, 260px) !important;
+  min-height:42px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  padding:11px 14px !important;
+  margin:0 !important;
+  border:1px solid rgba(201,162,39,.58) !important;
+  background:rgba(5,5,5,.90) !important;
+  color:#fff !important;
+  box-shadow:0 14px 36px rgba(0,0,0,.30) !important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace !important;
+  font-size:11px !important;
+  line-height:1.25 !important;
+  letter-spacing:.08em !important;
+  text-transform:uppercase !important;
+  text-align:left !important;
+  white-space:normal !important;
+  transform:none !important;
+}
+.yyk-legal-launch{top:176px !important;z-index:9350 !important}
+.yyk-data-room-launch{top:228px !important;z-index:9349 !important}
+.yyk-rt-launch{top:280px !important;z-index:9348 !important;border-color:rgba(198,106,74,.62) !important;background:rgba(5,5,5,.90) !important}
+.yyk-tds-launch{top:332px !important;z-index:9347 !important}
+.yyk-legal-launch:hover,
+.yyk-data-room-launch:hover,
+.yyk-rt-launch:hover,
+.yyk-tds-launch:hover{
+  background:rgba(201,162,39,.14) !important;
+  border-color:rgba(201,162,39,.72) !important;
+}
+@media(max-width:1200px){
+  .yyk-legal-launch,.yyk-data-room-launch,.yyk-rt-launch,.yyk-tds-launch{
+    left:18px !important;
+    width:220px !important;
+  }
+}
+@media(max-width:760px){
+  .yyk-legal-launch,.yyk-data-room-launch,.yyk-rt-launch,.yyk-tds-launch{
+    position:static !important;
+    width:100% !important;
+    margin:8px 0 !important;
+  }
+  body::before{content:none !important}
+}
+
+

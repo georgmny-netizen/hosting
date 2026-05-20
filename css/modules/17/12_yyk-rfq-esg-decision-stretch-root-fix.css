@@ -1,0 +1,108 @@
+/* === ID: yyk-rfq-esg-decision-stretch-root-fix === */
+
+/* Root-cause fix: legacy RFQ/ESG decision tables must not render as full-width exposed page content. */
+[data-killed="legacy-rfq-esg-wide-table"],
+[data-killed="legacy-rfq-decision-stream"],
+[data-killed="legacy-trading-os-stage"]{
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  max-height:0!important;
+  overflow:hidden!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+}
+#yyk-procurement-workspace-compact{
+  clear:both;
+  scroll-margin-top:90px;
+}
+#yyk-procurement-workspace-compact .pwc-shell{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+  padding:20px;
+  overflow:hidden;
+}
+#yyk-procurement-workspace-compact .pwc-grid{
+  display:grid;
+  grid-template-columns:1fr 320px;
+  gap:14px;
+  align-items:start;
+}
+#yyk-procurement-workspace-compact .pwc-card,
+#yyk-procurement-workspace-compact .pwc-rail{
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.20);
+  padding:16px;
+}
+#yyk-procurement-workspace-compact strong{
+  display:block;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+#yyk-procurement-workspace-compact p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+  margin:0;
+}
+#yyk-procurement-workspace-compact .pwc-kpis{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin-top:12px;
+}
+#yyk-procurement-workspace-compact .pwc-kpi{
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.025);
+  padding:10px;
+  color:#E5E8EC;
+  font-size:12px;
+}
+#yyk-procurement-workspace-compact .pwc-kpi strong{font-size:9px}
+#yyk-procurement-workspace-compact details{
+  margin-top:12px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.18);
+}
+#yyk-procurement-workspace-compact summary{
+  cursor:pointer;
+  list-style:none;
+  padding:12px 14px;
+  background:rgba(201,162,39,.10);
+  color:#fff;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+#yyk-procurement-workspace-compact summary::-webkit-details-marker{display:none}
+#yyk-procurement-workspace-compact .pwc-drawer{
+  padding:14px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+#yyk-procurement-workspace-compact .pwc-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:8px;
+  margin-top:8px;
+  color:#E5E8EC;
+  font-size:12px;
+}
+#yyk-procurement-workspace-compact .pwc-row span:first-child{color:var(--muted2)}
+@media(max-width:1000px){
+  #yyk-procurement-workspace-compact .pwc-grid{grid-template-columns:1fr}
+  #yyk-procurement-workspace-compact .pwc-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:640px){
+  #yyk-procurement-workspace-compact .pwc-kpis{grid-template-columns:1fr}
+}
+
+

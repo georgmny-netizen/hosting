@@ -1,0 +1,107 @@
+/* === ID: yyk-refined-geography-seamless-logistics === */
+
+/* MASTER BUILD: refined geography & seamless logistics */
+
+/* Cursor fix */
+#yykFooterLogisticsMap,
+#yykFooterLogisticsMap .map-shell,
+
+#yykFooterLogisticsMap .port-node,
+#yykFooterLogisticsMap button,
+#yykFooterLogisticsMap a,
+#yykFooterLogisticsMap [role="button"]{
+  cursor:pointer!important;
+}
+#yykFooterLogisticsMap .terminal-crosshair,
+#yykFooterLogisticsMap .square-cursor,
+#yykFooterLogisticsMap [class*="crosshair"],
+#yykFooterLogisticsMap [class*="cursor"]{
+  display:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+}
+
+/* Geography restoration */
+#yykFooterLogisticsMap{
+  background:#0a0a0a!important;
+}
+#yykFooterLogisticsMap::before{
+  z-index:0!important;
+}
+#yykFooterLogisticsMap::after{
+  background:linear-gradient(180deg,rgba(10,10,10,.02),rgba(10,10,10,.72))!important;
+}
+#yykFooterLogisticsMap .land{
+  fill:rgba(255,255,255,.05)!important;
+  stroke:#404040!important;
+  stroke-width:.8px!important;
+  stroke-linejoin:round!important;
+  filter:none!important;
+}
+#yykFooterLogisticsMap .sea-grid,
+#yykFooterLogisticsMap .bathymetry path{
+  stroke:rgba(255,255,255,.03)!important;
+  stroke-width:1!important;
+  vector-effect:non-scaling-stroke!important;
+  filter:none!important;
+}
+#yykFooterLogisticsMap .sea-label{
+  fill:rgba(255,255,255,.10)!important;
+  text-shadow:none!important;
+}
+
+/* Seamless dotted logistics */
+#yykFooterLogisticsMap .route-base{
+  stroke:rgba(201,162,39,.10)!important;
+  stroke-width:4!important;
+  stroke-dasharray:4 4!important;
+  stroke-linecap:round!important;
+  filter:none!important;
+}
+#yykFooterLogisticsMap .route,
+#yykFooterLogisticsMap .route-glow{
+  stroke:#c9a227!important;
+  stroke-dasharray:4 4!important;
+  stroke-dashoffset:40!important;
+  stroke-linecap:round!important;
+  animation:flow 10s linear infinite!important;
+  animation-timing-function:linear!important;
+  animation-iteration-count:infinite!important;
+  filter:drop-shadow(0 0 4px #c9a227)!important;
+}
+#yykFooterLogisticsMap .route{
+  stroke-width:2!important;
+}
+#yykFooterLogisticsMap .route-glow{
+  stroke-width:1!important;
+  opacity:.42!important;
+}
+@keyframes flow{
+  from{stroke-dashoffset:40}
+  to{stroke-dashoffset:0}
+}
+
+/* Centering / layer balance */
+#yykFooterLogisticsMap .map-shell{
+  z-index:3!important;
+  width:min(1440px,100%)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  display:flex!important;
+  justify-content:center!important;
+  align-items:center!important;
+}
+
+
+/* Keep only routes and markers vivid emerald */
+#yykFooterLogisticsMap .port-dot,
+#yykFooterLogisticsMap .precision-core{
+  fill:#c9a227!important;
+  stroke:#c9a227!important;
+}
+#yykFooterLogisticsMap .precision-ring,
+#yykFooterLogisticsMap .precision-cross{
+  stroke:#c9a227!important;
+}
+
+

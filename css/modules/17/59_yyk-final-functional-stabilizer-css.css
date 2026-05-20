@@ -1,0 +1,18 @@
+/* === ID: yyk-final-functional-stabilizer-css === */
+
+/* FINAL FUNCTIONAL STABILIZER — one visible control panel, no ghost launchers */
+header{z-index:12000!important;overflow:visible!important;background:#121212!important;}
+.yyk-control-panel-stable{display:block!important;visibility:visible!important;opacity:1!important;position:relative!important;z-index:12050!important;width:min(1500px,90vw)!important;margin:0 auto 12px!important;padding:12px 0 14px!important;background:#121212!important;border-top:1px solid rgba(176,184,194,.16)!important;border-bottom:1px solid rgba(176,184,194,.18)!important;clear:both!important;overflow:visible!important;}
+.yyk-control-panel-stable .yyk-control-top{display:flex!important;align-items:flex-end!important;justify-content:space-between!important;gap:18px!important;flex-wrap:wrap!important;margin-bottom:10px!important;}
+.yyk-control-panel-stable .yyk-mode-switch,.yyk-control-panel-stable .yyk-control-actions{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;gap:8px!important;align-items:center!important;justify-content:flex-end!important;position:relative!important;z-index:12060!important;overflow:visible!important;}
+.yyk-control-panel-stable .yyk-control-actions{margin-top:10px!important;}
+.yyk-control-panel-stable .yyk-control-action,.yyk-control-panel-stable .yyk-mode-btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;width:auto!important;min-width:0!important;max-width:none!important;height:auto!important;white-space:nowrap!important;position:relative!important;z-index:12070!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;background:#1A1A1A!important;color:#F5F5F2!important;border:1px solid rgba(176,184,194,.32)!important;padding:9px 12px!important;margin:0!important;font-size:11px!important;line-height:1.1!important;letter-spacing:.08em!important;text-transform:uppercase!important;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;cursor:pointer!important;transform:none!important;}
+.yyk-control-panel-stable .yyk-control-action:hover,.yyk-control-panel-stable .yyk-control-action.active,.yyk-control-panel-stable .yyk-mode-btn:hover,.yyk-control-panel-stable .yyk-mode-btn.active{background:rgba(201,162,39,.14)!important;border-color:rgba(201,162,39,.62)!important;color:#fff!important;}
+.yyk-control-panel-stable .yyk-control-context{color:#C8CCD2!important;font-size:12px!important;line-height:1.45!important;margin-top:4px!important;}
+/* Hide only legacy floating launchers/ghost triggers, not the official panel */
+.yyk-legal-launch,.yyk-data-room-launch,.yyk-rt-launch,.yyk-tds-launch,.yyk-proof-launch,.yyk-left-engine-dock,[class*="left-dock"],[class*="engine-dock"]{display:none!important;visibility:hidden!important;pointer-events:none!important;}
+/* Active engines should sit below header/panel, not above it */
+.compliance-engine,.product-engine,.contact-engine,.modal,.sogo-drawer,.data-room-stress-engine,.vdr-engine,.supply-chain-engine,.legal-engine,.tds-foundry-engine,.pricing-engine,.partnership-engine,#dataRoomStressEngine,#vdrEngine,#supplyChainEngine,#yykLegalEngine,#tdsFoundryEngine,#pricingEngine,#technicalPartnershipEngine{z-index:9000!important;}
+@media(max-width:760px){.yyk-control-panel-stable{width:calc(100vw - 28px)!important}.yyk-control-panel-stable .yyk-mode-switch,.yyk-control-panel-stable .yyk-control-actions{justify-content:flex-start!important}.yyk-control-panel-stable .yyk-control-action,.yyk-control-panel-stable .yyk-mode-btn{font-size:10px!important;padding:8px 10px!important}}
+
+

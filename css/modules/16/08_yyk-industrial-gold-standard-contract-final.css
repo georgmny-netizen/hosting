@@ -1,0 +1,47 @@
+/* === ID: yyk-industrial-gold-standard-contract-final === */
+
+/* Final contract-grade lock: visible monolithic region row, strict density, no marketing animation dependency */
+.regional-legal-switch{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  flex-wrap:wrap!important;
+  gap:0!important;
+  margin-top:4px!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  font-size:11px!important;
+  letter-spacing:.08em!important;
+  color:#E0E0E0!important;
+}
+.region-btn{
+  color:#E0E0E0!important;
+  background:transparent!important;
+  border:0!important;
+  
+  padding:4px 6px!important;
+  cursor:pointer!important;
+  font:inherit!important;
+}
+.region-btn:hover,.region-btn.active{
+  color:#fff!important;
+  background:rgba(201,162,39,.10)!important;
+}
+.region-sep{color:#444444!important;padding:0 2px!important}
+body{background:#121212!important}
+.panel,.metric,.passport,.dense-card,.rfq-card,.table-panel,.sandbox,.modal-box,.verification-card,.compliance-card,.route-card,.product-card,.spec-card,.region-standard,.region-dynamic-standards{
+  border:1px solid rgba(176,184,194,.22)!important;
+}
+.spec-impurity-table th,.spec-impurity-table td{white-space:normal}
+.contract-status-lock{
+  border:1px solid rgba(201,162,39,.42);
+  background:rgba(201,162,39,.07);
+  
+  padding:12px 14px;
+  margin-top:12px;
+  color:#C8CCD2;
+  font-size:12px;
+  line-height:1.55;
+}
+.contract-status-lock strong{color:#fff}
+
+

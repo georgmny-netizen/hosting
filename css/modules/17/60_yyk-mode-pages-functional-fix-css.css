@@ -1,0 +1,24 @@
+/* === ID: yyk-mode-pages-functional-fix-css === */
+
+/* MODE PAGES FUNCTIONAL FIX — Procurement / Engineering / Compliance open real pages with working module buttons */
+#yykStableControlPanel{position:relative!important;display:block!important;visibility:visible!important;opacity:1!important;z-index:12050!important;overflow:visible!important;background:#121212!important;}
+#yykStableControlPanel .yyk-mode-btn,#yykStableControlPanel .yyk-control-action{pointer-events:auto!important;position:relative!important;z-index:2!important;}
+#yykModePage{width:min(1500px,90vw);margin:0 auto 18px;padding:16px;border:1px solid rgba(176,184,194,.22);background:#121212;color:#F5F5F2;position:relative;z-index:12040;box-sizing:border-box;}
+.yyk-mode-page-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;border-bottom:1px solid rgba(176,184,194,.18);padding-bottom:14px;margin-bottom:14px;}
+.yyk-mode-page-kicker{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#C9A227;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;}
+.yyk-mode-page-title{margin-top:5px;font-size:22px;line-height:1.08;font-weight:800;color:#fff;letter-spacing:-.02em;}
+.yyk-mode-page-status{border:1px solid rgba(201,162,39,.45);background:rgba(201,162,39,.10);color:#fff;padding:8px 10px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;}
+.yyk-mode-page-copy{color:#C8CCD2;font-size:13px;line-height:1.55;max-width:980px;margin-bottom:14px;}
+.yyk-mode-page-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:stretch;}
+.yyk-mode-page-card{border:1px solid rgba(176,184,194,.22);background:rgba(255,255,255,.035);padding:14px;display:flex;flex-direction:column;min-height:148px;}
+.yyk-mode-page-card strong{display:block;color:#fff;font-size:14px;line-height:1.2;margin-bottom:8px;}
+.yyk-mode-page-card span{display:block;color:#AEB4BC;font-size:12px;line-height:1.45;margin-bottom:12px;}
+.yyk-mode-page-action{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;text-align:center;min-height:38px;border:1px solid rgba(201,162,39,.50);background:rgba(201,162,39,.10);color:#fff;padding:9px 10px;font-size:10px;letter-spacing:.11em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;cursor:pointer;white-space:normal;}
+.yyk-mode-page-action:hover{background:rgba(201,162,39,.18);border-color:rgba(201,162,39,.70);}
+.yyk-mode-page-mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px;}
+.yyk-mode-page-mini div{border:1px solid rgba(176,184,194,.16);background:rgba(0,0,0,.18);padding:10px;color:#C8CCD2;font-size:12px;line-height:1.45;}
+.yyk-mode-page-mini b{display:block;color:#C9A227;font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px;}
+@media(max-width:1100px){.yyk-mode-page-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.yyk-mode-page-mini{grid-template-columns:1fr;}}
+@media(max-width:760px){#yykModePage{width:calc(100vw - 28px);padding:14px}.yyk-mode-page-grid{grid-template-columns:1fr}.yyk-mode-page-title{font-size:20px}}
+
+

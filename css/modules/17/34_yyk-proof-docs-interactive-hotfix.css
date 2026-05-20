@@ -1,0 +1,14 @@
+/* === ID: yyk-proof-docs-interactive-hotfix === */
+
+#yykProofModeStablePanel .yyk-stable-proof-link,
+#yykProofModeStablePanel [data-batch],
+#yykProofModeStablePanel [data-lot],
+#yykProofModeStablePanel [data-lane],
+#yykProofModeStablePanel .yyk-stable-proof-rfq,
+#yykProofModeStablePanel .yyk-stable-proof-export{cursor:pointer!important;pointer-events:auto!important}
+#yykProofModeStablePanel .yyk-stable-proof-link:hover,
+#yykProofModeStablePanel [data-batch]:hover,
+#yykProofModeStablePanel [data-lot]:hover{border-color:rgba(230,184,0,.82)!important;color:#fff!important;background:rgba(230,184,0,.10)!important}
+#yykProofModeStablePanel .yyk-proof-doc-active-note{margin-top:10px;padding:8px 9px;border:1px solid rgba(230,184,0,.28);background:rgba(230,184,0,.045);color:rgba(226,232,240,.74);font:600 10px/1.35 'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;border-radius:0!important}
+
+

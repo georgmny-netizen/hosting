@@ -1,0 +1,47 @@
+/* === ID: yyk-stage-2-4-hover-frame-fix === */
+
+.yyk-return-site-btn,
+.yyk-stage-close-btn,
+.yyk-stage-top-btn{
+  position:relative !important;
+  text-decoration:none !important;
+  box-shadow:none !important;
+  outline:none !important;
+  transform:none !important;
+  background-clip:padding-box !important;
+}
+.yyk-return-site-btn::before,
+.yyk-return-site-btn::after,
+.yyk-stage-close-btn::before,
+.yyk-stage-close-btn::after,
+.yyk-stage-top-btn::before,
+.yyk-stage-top-btn::after{
+  content:none !important;
+  display:none !important;
+}
+.yyk-return-site-btn:hover,
+.yyk-return-site-btn:focus,
+.yyk-return-site-btn:focus-visible,
+.yyk-stage-close-btn:hover,
+.yyk-stage-close-btn:focus,
+.yyk-stage-close-btn:focus-visible,
+.yyk-stage-top-btn:hover,
+.yyk-stage-top-btn:focus,
+.yyk-stage-top-btn:focus-visible{
+  outline:none !important;
+  outline-offset:0 !important;
+  box-shadow:none !important;
+  text-decoration:none !important;
+  border-color:rgba(255,215,0,.68) !important;
+  background:rgba(255,215,0,.14) !important;
+}
+.yyk-return-site-control .yyk-return-site-btn + *,
+.yyk-stage-exitbar .yyk-stage-top-btn + *,
+.yyk-stage-exitbar .yyk-stage-close-btn + *{
+  border-top:0 !important;
+}
+.yyk-return-site-control{
+  overflow:hidden !important;
+}
+
+

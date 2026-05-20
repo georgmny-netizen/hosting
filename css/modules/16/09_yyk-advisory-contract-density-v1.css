@@ -1,0 +1,26 @@
+/* === ID: yyk-advisory-contract-density-v1 === */
+
+/* Advisory Mode contract-density additions: no theme replacement, only denser evidence modules */
+.advisory-deal-room{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(255,255,255,.018))}
+.advisory-score-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:stretch}
+.advisory-score-card{border:1px solid var(--line);background:rgba(255,255,255,.025);padding:14px;min-height:138px;display:flex;flex-direction:column;justify-content:space-between}
+.advisory-score-card .score{font-size:28px;line-height:1;color:#fff;letter-spacing:-.04em;margin-top:9px}
+.advisory-score-card .score-note{font-size:12px;line-height:1.45;color:var(--muted);margin-top:8px}
+.dealroom-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:10px;margin-top:12px}
+.dealroom-card{border:1px solid var(--line);background:rgba(255,255,255,.025);padding:14px}
+.dealroom-card h3{font-size:18px;margin:0 0 10px;color:#fff}
+.dealroom-card .micro-ledger{display:grid;gap:7px}
+.dealroom-card .micro-ledger div{display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,.08);padding-top:7px;font-size:12px;color:#E5E8EC}
+.dealroom-card .micro-ledger span:first-child{color:var(--muted2)}
+.buyer-gate-table td:nth-child(1){color:#fff;font-weight:700}
+.coa-click-path{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.coa-step{border:1px solid var(--line);background:rgba(0,0,0,.16);padding:12px;min-height:112px}
+.coa-step strong{display:block;color:var(--gold);font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
+.coa-step span{display:block;color:var(--muted);font-size:12px;line-height:1.5}
+.dense-proof-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:10px}
+.dense-proof{border:1px solid rgba(176,184,194,.22);background:rgba(0,0,0,.18);padding:9px 10px;min-height:70px}
+.dense-proof .k{font-size:9px;color:var(--gold);letter-spacing:.18em;text-transform:uppercase}.dense-proof .v{font-size:13px;color:#fff;line-height:1.25;margin-top:6px}
+@media(max-width:1200px){.advisory-score-grid,.dense-proof-strip{grid-template-columns:repeat(3,1fr)}.dealroom-grid{grid-template-columns:1fr}.coa-click-path{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.advisory-score-grid,.dense-proof-strip,.coa-click-path{grid-template-columns:1fr}}
+
+

@@ -1,0 +1,64 @@
+/* === ID: yyk-v32-precision-supply-mode === */
+
+/* v3.2 PRECISION SUPPLY MODE — controlled material flow, not air/sea gimmick */
+#yykFooterLogisticsMap .route{
+  stroke-dasharray:12 10!important;
+  stroke-dashoffset:22!important;
+  animation:yykPrecisionBatchFlow 3.5s linear infinite!important;
+  stroke-width:2.15!important;
+  filter:drop-shadow(0 0 2px #c9a227) drop-shadow(0 0 9px rgba(201,162,39,.46))!important;
+}
+#yykFooterLogisticsMap .route-glow{
+  stroke-dasharray:12 10!important;
+  stroke-dashoffset:22!important;
+  animation:yykPrecisionBatchFlow 3.5s linear infinite!important;
+  stroke-width:.85!important;
+  opacity:.58!important;
+  filter:drop-shadow(0 0 2px #c9a227)!important;
+}
+@keyframes yykPrecisionBatchFlow{
+  from{stroke-dashoffset:22}
+  to{stroke-dashoffset:0}
+}
+
+/* calmer batch markers: small sealed lot indicators, not fast cargo/aircraft */
+#yykFooterLogisticsMap .cargo-pulse{
+  r:4;
+  fill:#d1fae5!important;
+  opacity:.72!important;
+  filter:drop-shadow(0 0 3px #c9a227) drop-shadow(0 0 8px rgba(201,162,39,.55))!important;
+}
+
+/* reduce “signal noise”, increase controlled cleanroom feeling */
+#yykFooterLogisticsMap .signal-noise{
+  opacity:.075!important;
+}
+#yykFooterLogisticsMap .bathymetry path{
+  opacity:.55!important;
+}
+
+/* status panel becomes materials-control language */
+#yykFooterLogisticsMap .route-status-panel .title{
+  letter-spacing:.20em!important;
+}
+#yykFooterLogisticsMap .route-status-row span:first-child{
+  color:rgba(252,243,213,.62)!important;
+}
+#yykFooterLogisticsMap .route-status-panel.is-verified{
+  border-color:rgba(201,162,39,.82)!important;
+  box-shadow:0 0 30px rgba(201,162,39,.14), inset 0 0 20px rgba(201,162,39,.06)!important;
+}
+
+/* route focus: precision, not theatrics */
+#yykFooterLogisticsMap .route-group.is-active .route,
+#yykFooterLogisticsMap .route-group.is-locked .route{
+  stroke-width:6!important;
+  filter:drop-shadow(0 0 3px #c9a227) drop-shadow(0 0 16px rgba(201,162,39,.72))!important;
+}
+
+/* port cards use QC language */
+#yykFooterLogisticsMap .local-port-card .card-title{
+  letter-spacing:.10em!important;
+}
+
+

@@ -1,0 +1,11 @@
+/* === ID: YYK_LANG_CORE === */
+
+[data-lang-block]{display:none;}
+body.lang-en [data-lang-block="en"],
+body.lang-kr [data-lang-block="kr"],
+body.lang-jp [data-lang-block="jp"],
+body.lang-cn [data-lang-block="cn"]{
+ display:block;
+}
+
+

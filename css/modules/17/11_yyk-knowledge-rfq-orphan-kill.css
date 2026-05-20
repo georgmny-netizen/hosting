@@ -1,0 +1,10 @@
+/* === ID: yyk-knowledge-rfq-orphan-kill === */
+
+[data-killed="legacy-knowledge-rfq-mixed-block"]{
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  overflow:hidden!important;
+}
+
+

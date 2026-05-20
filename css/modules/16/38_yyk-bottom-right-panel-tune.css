@@ -1,0 +1,21 @@
+/* === ID: yyk-bottom-right-panel-tune === */
+
+/* Raise and enlarge the bottom-right terminal rectangle */
+#yykFooterLogisticsMap .route-status-panel{
+  right:clamp(20px,4vw,64px)!important;
+  bottom:72px!important;
+  width:min(370px,calc(100% - 40px))!important;
+  min-height:178px!important;
+  padding:17px 18px!important;
+}
+#yykFooterLogisticsMap .route-status-panel .title{
+  font-size:11px!important;
+  margin-bottom:12px!important;
+}
+#yykFooterLogisticsMap .route-status-row{
+  font-size:11px!important;
+  padding-top:8px!important;
+  margin-top:8px!important;
+}
+
+

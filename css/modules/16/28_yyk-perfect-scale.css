@@ -1,0 +1,15 @@
+/* === ID: yyk-perfect-scale === */
+
+#yykFooterLogisticsMap .map-shell{
+  transform:scale(1);
+  transform-origin:center center;
+  will-change:transform;
+  transition:transform 1.4s cubic-bezier(0.22,1,0.36,1), filter 1.4s ease;
+}
+
+#yykFooterLogisticsMap:hover .map-shell{
+  transform:scale(1.045);
+  filter:contrast(1.08) saturate(1.06);
+}
+
+

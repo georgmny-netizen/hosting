@@ -1,0 +1,22 @@
+/* === ID: yyk-geographic-outline-crisp-visibility-patch === */
+
+/* Geographic outline visibility — vivid, crisp, steel-gray landmass definition */
+#yykFooterLogisticsMap .land{
+  fill:rgba(255,255,255,0.05)!important;
+  stroke:#808080!important;
+  stroke-width:1.2px!important;
+  stroke-linejoin:round!important;
+  stroke-linecap:round!important;
+  vector-effect:non-scaling-stroke!important;
+  shape-rendering:geometricPrecision!important;
+  filter:none!important;
+}
+#yykFooterLogisticsMap svg path.land,
+#yykFooterLogisticsMap svg polygon.land,
+#yykFooterLogisticsMap svg polyline.land{
+  fill:rgba(255,255,255,0.05)!important;
+  stroke:#808080!important;
+  stroke-width:1.2px!important;
+}
+
+

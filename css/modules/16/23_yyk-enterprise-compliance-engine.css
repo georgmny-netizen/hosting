@@ -1,0 +1,88 @@
+/* === ID: yyk-enterprise-compliance-engine === */
+
+/* Enterprise compliance decision engine layer */
+.yyk-enterprise-router .yyk-evidence-node{
+  min-height:128px;
+}
+.yyk-evidence-meta{
+  color:rgba(174,180,188,.68);
+  font-size:10px;
+  line-height:1.45;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.yyk-evidence-node[data-risk-tier="low"]{box-shadow:inset 0 2px 0 rgba(201,162,39,.70)}
+.yyk-evidence-node[data-risk-tier="controlled"]{box-shadow:inset 0 2px 0 rgba(201,162,39,.72)}
+.yyk-evidence-node[data-risk-tier="enhanced"]{box-shadow:inset 0 2px 0 rgba(198,106,74,.82)}
+.yyk-evidence-node[data-risk-tier="restricted"]{box-shadow:inset 0 2px 0 rgba(239,68,68,.90)}
+.yyk-risk-meter{
+  margin-top:10px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.22);
+  padding:13px 15px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+.yyk-risk-meter-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  color:rgba(174,180,188,.72);
+  font-size:10px;
+  letter-spacing:.20em;
+  text-transform:uppercase;
+}
+.yyk-risk-meter-head strong{
+  color:#c9a227;
+  font-size:12px;
+  letter-spacing:.12em;
+}
+.yyk-risk-track{
+  margin-top:10px;
+  height:5px;
+  background:rgba(255,255,255,.08);
+  overflow:hidden;
+}
+.yyk-risk-track span{
+  display:block;
+  height:100%;
+  width:42%;
+  background:#c9a227;
+  transition:width .22s ease, background-color .22s ease;
+}
+.yyk-risk-copy{
+  margin-top:10px;
+  color:rgba(200,204,210,.78);
+  font-size:11px;
+  line-height:1.55;
+  letter-spacing:.04em;
+}
+.yyk-risk-meter[data-risk-tier="low"] .yyk-risk-track span{background:#b89b3a}
+.yyk-risk-meter[data-risk-tier="controlled"] .yyk-risk-track span{background:#C9A227}
+.yyk-risk-meter[data-risk-tier="enhanced"] .yyk-risk-track span{background:#C66A4A}
+.yyk-risk-meter[data-risk-tier="restricted"] .yyk-risk-track span{background:#ef4444}
+.yyk-risk-meter[data-risk-tier="restricted"] .yyk-risk-meter-head strong{color:#ef4444}
+.yyk-risk-meter[data-risk-tier="enhanced"] .yyk-risk-meter-head strong{color:#C66A4A}
+.yyk-risk-meter[data-risk-tier="controlled"] .yyk-risk-meter-head strong{color:#C9A227}
+
+/* Tier-1 Due Diligence Compliance Engine Add-on */
+.tier1-pack-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0 4px}
+.tier1-pack-card{border:1px solid var(--line);background:rgba(255,255,255,.025);padding:16px;min-height:138px}
+.tier1-pack-card strong{display:block;color:#fff;font-size:15px;line-height:1.25;margin-bottom:8px}
+.tier1-pack-card span{display:block;color:var(--muted);font-size:12px;line-height:1.55}
+.tier1-control-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.tier1-control-card{border:1px solid var(--line);background:rgba(0,0,0,.18);padding:16px}
+.tier1-control-card h4{margin:0 0 10px;color:#fff;font-size:17px;line-height:1.2}
+.tier1-mini-label{display:block;color:var(--gold);font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin:12px 0 7px}
+.tier1-input,.tier1-select{width:100%;border:1px solid var(--line);background:rgba(0,0,0,.24);color:var(--text);padding:11px 12px;outline:none}
+.tier1-output{border:1px solid rgba(201,162,39,.36);background:rgba(201,162,39,.06);padding:14px;margin-top:12px;color:var(--muted);font-size:13px;line-height:1.55}
+.tier1-output strong{color:#fff}
+.tier1-status{display:inline-flex;border:1px solid rgba(201,162,39,.45);background:rgba(201,162,39,.10);color:#d4b85c;padding:5px 8px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+.tier1-status.warn{border-color:rgba(201,162,39,.55);background:rgba(201,162,39,.10);color:#e8d28a}
+.tier1-status.stop{border-color:rgba(198,106,74,.62);background:rgba(198,106,74,.10);color:#f0a087}
+.tier1-coa-table{min-width:880px}
+.tier1-copy-clean td:first-child{color:#f0a087}.tier1-copy-clean td:nth-child(2){color:#d4b85c}
+@media(max-width:1200px){.tier1-pack-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.tier1-pack-grid,.tier1-control-grid{grid-template-columns:1fr}.tier1-pack-card{min-height:auto}}
+
+

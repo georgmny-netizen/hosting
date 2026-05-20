@@ -1,0 +1,138 @@
+/* === ID: yyk-v33-bloomberg-hover-intelligence-final === */
+
+/* Hover Intelligence: production-grade command feedback, no ghost letters, no layout shift */
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-v32-exec-btn,
+#yykAuditControlPanel .yyk-return-site-btn{
+  position:relative!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  line-height:1.15!important;
+  vertical-align:middle!important;
+  cursor:pointer!important;
+  isolation:isolate!important;
+  overflow:visible!important;
+  user-select:none!important;
+  transition:border-color .18s ease, background-color .18s ease, box-shadow .18s ease, color .18s ease!important;
+}
+#yykAuditControlPanel .yyk-control-action::before,
+#yykAuditControlPanel .yyk-control-action::after,
+#yykAuditControlPanel .yyk-v32-exec-btn::before,
+#yykAuditControlPanel .yyk-v32-exec-btn::after,
+#yykAuditControlPanel .yyk-return-site-btn::before,
+#yykAuditControlPanel .yyk-return-site-btn::after{
+  content:none!important;
+  display:none!important;
+}
+#yykAuditControlPanel .yyk-control-action:hover,
+#yykAuditControlPanel .yyk-control-action:focus-visible{
+  border-color:rgba(255,215,0,.72)!important;
+  background:linear-gradient(180deg,rgba(255,215,0,.12),rgba(201,162,39,.08))!important;
+  box-shadow:0 0 0 1px rgba(255,215,0,.12),0 12px 28px rgba(0,0,0,.22), inset 0 -1px 0 rgba(255,215,0,.28)!important;
+  color:#fff!important;
+  outline:none!important;
+}
+#yykAuditControlPanel .yyk-v32-exec-btn:hover,
+#yykAuditControlPanel .yyk-v32-exec-btn:focus-visible{
+  border-color:rgba(201,162,39,.95)!important;
+  background:linear-gradient(180deg,rgba(201,162,39,.24),rgba(201,162,39,.12))!important;
+  box-shadow:0 0 0 1px rgba(201,162,39,.18),0 14px 34px rgba(0,0,0,.24), inset 0 -1px 0 rgba(201,162,39,.42)!important;
+  outline:none!important;
+}
+#yykAuditControlPanel .yyk-return-site-btn:hover,
+#yykAuditControlPanel .yyk-return-site-btn:focus-visible{
+  border-color:rgba(176,184,194,.62)!important;
+  background:rgba(255,255,255,.07)!important;
+  box-shadow:0 10px 24px rgba(0,0,0,.20)!important;
+  outline:none!important;
+}
+.yyk-hover-intel-tooltip{
+  position:fixed;
+  z-index:2147483000;
+  width:min(380px,calc(100vw - 28px));
+  pointer-events:none;
+  opacity:0;
+  transform:translateY(6px) scale(.985);
+  transform-origin:top left;
+  transition:opacity .14s ease, transform .14s ease;
+  border:1px solid rgba(255,215,0,.35);
+  background:linear-gradient(180deg,rgba(8,12,14,.96),rgba(3,5,7,.98));
+  color:#F5F5F2;
+  box-shadow:0 20px 60px rgba(0,0,0,.42),0 0 0 1px rgba(201,162,39,.08) inset;
+  padding:13px 14px 12px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+.yyk-hover-intel-tooltip.active{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+.yyk-hover-intel-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding-bottom:9px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+}
+.yyk-hover-intel-title{
+  font-size:12px;
+  line-height:1.25;
+  font-weight:900;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  color:#fff;
+}
+.yyk-hover-intel-status{
+  flex:0 0 auto;
+  border:1px solid rgba(201,162,39,.46);
+  background:rgba(201,162,39,.10);
+  color:#E8D28A;
+  padding:4px 6px;
+  font-size:9px;
+  line-height:1;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.yyk-hover-intel-body{
+  color:#C8CCD2;
+  font-size:11px;
+  line-height:1.55;
+  padding-top:9px;
+}
+.yyk-hover-intel-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  margin-top:10px;
+}
+.yyk-hover-intel-kv{
+  border:1px solid rgba(255,255,255,.09);
+  background:rgba(255,255,255,.025);
+  padding:7px 8px;
+  min-width:0;
+}
+.yyk-hover-intel-kv b{
+  display:block;
+  color:#C9A227;
+  font-size:9px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.yyk-hover-intel-kv span{
+  display:block;
+  color:#F5F5F2;
+  font-size:11px;
+  line-height:1.2;
+  overflow-wrap:anywhere;
+}
+@media(max-width:760px){
+  .yyk-hover-intel-tooltip{display:none!important;}
+  #yykAuditControlPanel .yyk-control-action:active,
+  #yykAuditControlPanel .yyk-v32-exec-btn:active,
+  #yykAuditControlPanel .yyk-return-site-btn:active{filter:brightness(1.12)!important;}
+}
+
+

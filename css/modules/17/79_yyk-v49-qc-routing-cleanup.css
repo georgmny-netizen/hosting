@@ -1,0 +1,69 @@
+/* === ID: yyk-v49-qc-routing-cleanup === */
+
+/* QC Lab button is a technical shortcut, not a generic contact opener */
+.yyk-qc-lab-btn.yyk-qc-open{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  width:auto!important;
+  max-width:100%!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  text-align:left!important;
+}
+
+/* Contact Engine: prevent half-buttons / clipped controls on the right side */
+.contact-engine .contact-shell,
+.contact-engine .contact-body,
+.contact-engine .contact-content,
+.contact-engine .contact-toc{
+  box-sizing:border-box!important;
+}
+.contact-engine .contact-body{
+  grid-template-columns:minmax(220px,280px) minmax(0,1fr)!important;
+  overflow:hidden!important;
+}
+.contact-engine .contact-content{
+  min-width:0!important;
+  overflow-x:hidden!important;
+}
+.contact-engine .contact-toc a,
+.contact-engine .contact-toc button,
+.contact-engine .contact-content button,
+.contact-engine .contact-content .btn,
+.contact-engine .contact-content select,
+.contact-engine .contact-content input,
+.contact-engine .contact-content textarea{
+  max-width:100%!important;
+  box-sizing:border-box!important;
+}
+.contact-engine .contact-toc button{
+  border:1px solid transparent!important;
+  overflow-wrap:anywhere!important;
+}
+.contact-engine .contact-content .actions,
+.contact-engine .contact-content .hub-actions,
+.contact-engine .contact-content .contact-actions{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:10px!important;
+  justify-content:flex-start!important;
+  align-items:flex-start!important;
+  overflow:visible!important;
+}
+.contact-engine .contact-content table,
+.contact-engine .contact-content .table-panel{
+  width:100%!important;
+  max-width:100%!important;
+  overflow-x:auto!important;
+}
+.contact-engine .contact-content td,
+.contact-engine .contact-content th{
+  overflow-wrap:anywhere!important;
+}
+@media(max-width:960px){
+  .contact-engine .contact-body{/* grid-template-columns not needed for flex layout */overflow:visible!important;}
+  .contact-engine .contact-content{overflow:visible!important;}
+}
+
+

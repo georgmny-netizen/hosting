@@ -1,0 +1,7 @@
+/* === ID: yyk-banking-arbitration-orphan-kill === */
+
+table[data-killed="banking-arbitration-risk-table"]{
+  display:none!important;
+}
+
+

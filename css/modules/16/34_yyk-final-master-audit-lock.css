@@ -1,0 +1,52 @@
+/* === ID: yyk-final-master-audit-lock === */
+
+:root{--yyk-final-emerald:#c9a227!important}
+*,*::before,*::after{border-radius:0!important}
+button,input,select,textarea,a,
+.micro-btn,.nav-link,.lang-btn,.sogo-primary-cta,.sogo-option,.sogo-submit,.density-btn,.region-btn,.btn,.input,.select,.textarea,
+.panel,.metric,.passport,.dense-card,.rfq-card,.table-panel,.sandbox,.modal-box,.verification-card,.route-card,.compliance-card,.product-card,
+.local-port-card rect,.yyk-proof-panel,.yyk-proof-status,.yyk-proof-doc,.yyk-proof-rfq,.yyk-proof-close,
+.route-status-panel,.cert-stamp,.badge{border-radius:0!important}
+#yykFooterLogisticsMap .route,#yykFooterLogisticsMap .route-glow{
+  stroke-dasharray:10 10!important;
+  stroke-dashoffset:20!important;
+  animation:flow 1s linear infinite!important;
+  animation-timing-function:linear!important;
+  animation-iteration-count:infinite!important;
+}
+@keyframes flow{from{stroke-dashoffset:20}to{stroke-dashoffset:0}}
+@keyframes yykRealMapFlow{from{stroke-dashoffset:20}to{stroke-dashoffset:0}}
+@keyframes yykPrecisionBatchFlow{from{stroke-dashoffset:20}to{stroke-dashoffset:0}}
+.footer-tech-status-row,.footer-terminal-ticker{
+  background:#000!important;
+  border-top-color:rgba(201,162,39,.32)!important;
+  border-bottom-color:rgba(201,162,39,.32)!important;
+}
+.footer-tech-status-inner,.footer-terminal-inner,
+.footer-tech-left,.footer-tech-center,.footer-tech-right,
+.footer-terminal-left,.footer-terminal-core,.footer-terminal-right,
+.footer-terminal-core time,#footerApacClock,#apacClock{
+  color:#c9a227!important;
+  text-shadow:0 0 3px #c9a227,0 0 12px rgba(201,162,39,.55)!important;
+}
+#yykFooterLogisticsMap .port-dot,#yykFooterLogisticsMap .precision-core,#yykFooterLogisticsMap .precision-ring,
+#yykFooterLogisticsMap .precision-cross,#yykFooterLogisticsMap .route-status-dot,
+#yykFooterLogisticsMap .yyk-proof-rfq,#yykFooterLogisticsMap .yyk-proof-title{
+  color:#c9a227!important;fill:#c9a227!important;stroke:#c9a227!important;
+}
+.yyk-kim-verified,strong.yyk-kim-verified{color:#fff!important}
+.yyk-kim-verified::after{
+  content:" VERIFIED";
+  display:inline-block;
+  margin-left:8px;
+  padding:3px 7px;
+  border:1px solid #c9a227;
+  background:rgba(201,162,39,.12);
+  color:#c9a227;
+  font:900 10px/1 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  letter-spacing:.12em;
+  vertical-align:middle;
+}
+#yykFooterLogisticsMap .ping,#yykFooterLogisticsMap [class*="ping"],#yykFooterLogisticsMap circle.ping{display:none!important}
+
+

@@ -1,0 +1,42 @@
+/* === ID: yyk-port-local-tooltips === */
+
+/* Local port value cards: appear next to each dot, never in the corner */
+#yykFooterLogisticsMap .port-node{
+  cursor:pointer;
+}
+#yykFooterLogisticsMap .local-port-card{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform-box:fill-box;
+  transition:opacity .18s linear, visibility .18s linear;
+}
+#yykFooterLogisticsMap .port-node:hover .local-port-card,
+#yykFooterLogisticsMap .port-node.is-open .local-port-card{
+  opacity:1;
+  visibility:visible;
+}
+#yykFooterLogisticsMap .local-port-card rect{
+  fill:rgba(0,0,0,.96);
+  stroke:rgba(201,162,39,.72);
+  stroke-width:1;
+  filter:drop-shadow(0 0 14px rgba(201,162,39,.32));
+}
+#yykFooterLogisticsMap .local-port-card text{
+  fill:#d1fae5;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  font-size:9.5px;
+  font-weight:800;
+  letter-spacing:.06em;
+  paint-order:stroke;
+  stroke:#000;
+  stroke-width:2px;
+  stroke-linejoin:round;
+}
+#yykFooterLogisticsMap .local-port-card .card-title{
+  fill:#c9a227;
+  font-size:10.5px;
+  font-weight:900;
+}
+
+

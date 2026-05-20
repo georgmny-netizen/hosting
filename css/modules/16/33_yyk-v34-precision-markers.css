@@ -1,0 +1,46 @@
+/* === ID: yyk-v34-precision-markers === */
+
+/* Precision Port Markers — applied on clean v3.2 master */
+#yykFooterLogisticsMap .port-dot{
+  opacity:0!important;
+}
+
+#yykFooterLogisticsMap .precision-marker{
+  pointer-events:none;
+}
+
+#yykFooterLogisticsMap .precision-core{
+  fill:#c9a227;
+  filter:drop-shadow(0 0 4px #c9a227) drop-shadow(0 0 10px rgba(201,162,39,.65));
+}
+
+#yykFooterLogisticsMap .precision-ring{
+  fill:none;
+  stroke:#c9a227;
+  stroke-width:1;
+  opacity:.62;
+  filter:drop-shadow(0 0 3px rgba(201,162,39,.72));
+}
+
+#yykFooterLogisticsMap .precision-cross{
+  stroke:#c9a227;
+  stroke-width:1;
+  stroke-linecap:square;
+  opacity:.55;
+  vector-effect:non-scaling-stroke;
+}
+
+#yykFooterLogisticsMap .port-node:hover .precision-ring,
+#yykFooterLogisticsMap .port-node.is-open .precision-ring,
+#yykFooterLogisticsMap .port-node.is-intel-active .precision-ring{
+  opacity:1;
+  stroke-width:1.4;
+}
+
+#yykFooterLogisticsMap .port-node:hover .precision-cross,
+#yykFooterLogisticsMap .port-node.is-open .precision-cross,
+#yykFooterLogisticsMap .port-node.is-intel-active .precision-cross{
+  opacity:.95;
+}
+
+

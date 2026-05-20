@@ -1,0 +1,175 @@
+/* === ID: industrial-gold-standard-final === */
+
+/* INDUSTRIAL GOLD STANDARD — strict, dense, contract-grade interface */
+:root{
+  --bg:#121212;
+  --bg2:#161719;
+  --panel:rgba(255,255,255,.035);
+  --line:rgba(176,184,194,.22);
+  --line-strong:rgba(176,184,194,.34);
+  --text:#F5F5F2;
+  --muted:#C8CCD2;
+  --muted2:#AEB4BC;
+  --gold:#C9A227;
+  --platinum:#E0E0E0;
+  --steel:#6F7882;
+  --gunmetal:#444444;
+  --ok:#b89b3a;
+  --warn:#C66A4A;
+}
+html,body{background:#121212!important;color:var(--text)!important}
+.watermark{color:rgba(224,224,224,.028)!important}
+header{background:rgba(18,18,18,.94)!important;border-bottom:1px solid var(--line-strong)!important}
+.wrap{max-width:1500px}
+.hero{background:radial-gradient(circle at 16% 14%,rgba(201,162,39,.10),transparent 22%),linear-gradient(180deg,#121212 0%,#161719 100%)!important}
+.panel,.metric,.passport,.dense-card,.rfq-card,.table-panel,.sandbox,.modal-box,.verification-card,.compliance-card,.route-card,.product-card{
+  background:rgba(255,255,255,.035)!important;
+  border:1px solid var(--line)!important;
+  
+  box-shadow:none!important;
+}
+.nav-link,.lang-btn,.micro-btn,.sogo-primary-cta{
+  
+  background:rgba(255,255,255,.025)!important;
+  border:1px solid var(--line)!important;
+  color:var(--platinum)!important;
+  box-shadow:none!important;
+}
+.nav-link:hover,.nav-link.active,.micro-btn:hover,.sogo-primary-cta:hover{
+  background:rgba(201,162,39,.10)!important;
+  border-color:rgba(201,162,39,.58)!important;
+}
+.kicker,.eyebrow,.field-label,.metric .k,th{color:var(--gold)!important}
+h1{font-size:52px!important;letter-spacing:-.048em}
+h2{font-size:34px!important}
+h3{font-size:20px!important}
+.lead,.card-text{font-size:14px!important;line-height:1.58!important}
+.section{padding:42px 0!important;border-bottom:1px solid var(--line)!important}
+.section-head{margin-bottom:16px!important}
+.grid4,.grid3,.grid2,.status-grid,.data-strip{gap:10px!important}
+.data-strip{grid-template-columns:repeat(6,1fr)!important}
+.strip-cell,.metric{padding:12px!important;min-height:auto!important}
+.strip-cell .v,.metric .v{font-size:15px!important;line-height:1.24!important}
+.dense-card{min-height:172px!important;padding:16px!important}
+.passport{min-height:390px!important;padding:16px!important}
+.table-panel{font-size:12px!important}
+th{letter-spacing:.16em!important}
+.kv-row{font-size:12px!important}
+.cert-stamp{color:var(--platinum)!important}
+.footer-tier1,.footer{background:#111214!important}
+.footer-grid{padding:30px 0!important}
+
+/* Monolithic regional legal switch */
+.regional-legal-switch{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:0;
+  margin-top:2px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  font-size:11px;
+  letter-spacing:.08em;
+  color:var(--platinum);
+}
+.region-btn{
+  border:0;
+  background:transparent;
+  color:var(--platinum);
+  padding:4px 6px;
+  cursor:pointer;
+  text-transform:none;
+  font:inherit;
+}
+.region-btn:hover,.region-btn.active{
+  color:#fff;
+  background:rgba(201,162,39,.08);
+}
+.region-sep{
+  color:var(--gunmetal);
+  padding:0 2px;
+  user-select:none;
+}
+.lang-switch{display:none!important}
+
+/* Dense product/specification layer */
+#industrial-specs .spec-tabs{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+#industrial-specs .spec-tab{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+  color:var(--platinum);
+  
+  padding:9px 12px;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  cursor:pointer;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+#industrial-specs .spec-tab.active,#industrial-specs .spec-tab:hover{
+  border-color:rgba(201,162,39,.62);
+  background:rgba(201,162,39,.10);
+}
+.spec-panel{display:none}
+.spec-panel.active{display:block}
+.spec-matrix{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.spec-card{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+  
+  padding:14px;
+}
+.spec-card h3{margin:0 0 10px;color:#fff}
+.spec-note{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.55;
+  border:1px solid var(--line);
+  
+  padding:10px;
+  background:rgba(0,0,0,.14);
+}
+.region-standards-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:12px;
+}
+.region-standard{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+  
+  padding:14px;
+}
+.region-standard h3{font-size:17px;margin:0 0 8px}
+.region-standard p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+.region-legal-block{display:none}
+body.region-kr .region-legal-block[data-region="kr"],
+body.region-jp .region-legal-block[data-region="jp"],
+body.region-tw .region-legal-block[data-region="tw"],
+body.region-cn .region-legal-block[data-region="cn"],
+body.region-en .region-legal-block[data-region="en"]{display:block}
+.region-dynamic-standards{border:1px solid var(--line);background:rgba(0,0,0,.14);padding:14px;margin-top:12px}
+.region-dynamic-standards .region-title{color:#fff;font-size:18px;margin-bottom:8px}
+.region-dynamic-standards .region-body{color:var(--muted);font-size:13px;line-height:1.6}
+@media(max-width:1200px){
+  .data-strip{grid-template-columns:repeat(3,1fr)!important}
+  .spec-matrix,.region-standards-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .data-strip,.spec-matrix,.region-standards-grid{grid-template-columns:1fr!important}
+  h1{font-size:38px!important}
+  .regional-legal-switch{justify-content:flex-start;margin-top:8px}
+}
+
+

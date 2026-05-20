@@ -1,0 +1,24 @@
+/* === ID: yyk-buyer-gatekeeper-left-panel-content-fix-style === */
+
+#yykBuyerGatekeeperModal .bgm-left-summary{
+  margin-bottom:14px;
+  border:1px solid rgba(201,162,39,.32);
+  background:rgba(201,162,39,.06);
+  padding:12px;
+  color:#D8DEE7;
+  font-size:13px;
+  line-height:1.55;
+}
+#yykBuyerGatekeeperModal .bgm-left-summary strong{
+  display:block;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+#yykBuyerGatekeeperModal .bgm-panel.is-empty-warning{
+  border-color:rgba(198,106,74,.55)!important;
+}
+
+

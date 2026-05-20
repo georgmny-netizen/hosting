@@ -1,0 +1,27 @@
+/* === ID: yyk-corporate-authority-card-css === */
+
+.yyk-corporate-authority-card{border-radius:0!important;padding:18px!important;background:rgba(0,0,0,.18)!important;border:1px solid rgba(176,184,194,.24)!important;box-shadow:none!important;font-family:Arial,Helvetica,sans-serif!important}
+.yyk-corporate-authority-card *{border-radius:0!important}
+.yyk-authority-card-image{display:block;width:100%;height:auto;border:1px solid rgba(201,160,89,.32);background:rgba(0,0,0,.22);margin:0 0 16px 0}
+.yyk-authority-text-block{padding-top:14px;border-top:1px solid rgba(255,255,255,.09);font-family:Arial,Helvetica,sans-serif!important}
+.yyk-authority-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.09)}
+.yyk-authority-label,.yyk-contact-title{font-family:Arial,Helvetica,sans-serif!important;font-size:11px;line-height:1.2;letter-spacing:.20em;text-transform:uppercase;color:#C5A059;font-weight:800;margin-bottom:8px}
+.yyk-authority-entity{font-family:Arial,Helvetica,sans-serif!important;font-size:18px;line-height:1.25;color:#fff;font-weight:700;letter-spacing:-.01em}
+.yyk-authority-meta{margin-top:8px;color:#D9DDE3;font-size:13px;line-height:1.55}
+.yyk-business-identity-block{padding:16px 0 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.yyk-contact-channel-block{padding-top:16px}
+.yyk-contact-row{display:grid;grid-template-columns:minmax(92px,.44fr) minmax(0,1fr) auto;align-items:center;gap:10px;padding:10px 0;border-top:1px solid rgba(255,255,255,.07);font-size:13px;line-height:1.35}
+.yyk-contact-row:first-of-type{border-top:0}
+.yyk-contact-label{color:#AEB4BC;font-weight:700;letter-spacing:.02em}
+.yyk-contact-email{color:#E5E8EC;word-break:break-all;border-bottom:1px solid rgba(197,160,89,.28);padding-bottom:2px;transition:color .22s ease,border-color .22s ease,text-shadow .22s ease}
+.yyk-contact-email:hover,.yyk-contact-email:focus-visible{color:#fff;border-color:rgba(197,160,89,.70);text-shadow:0 0 10px rgba(197,160,89,.28);outline:none}
+.yyk-copy-email{appearance:none;border:1px solid rgba(197,160,89,.32);background:rgba(197,160,89,.06);color:#C5A059;padding:7px 9px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background-color .22s ease,border-color .22s ease,color .22s ease,box-shadow .22s ease}
+.yyk-copy-email:hover,.yyk-copy-email:focus-visible{background:rgba(197,160,89,.13);border-color:rgba(197,160,89,.72);color:#fff;box-shadow:0 0 18px rgba(197,160,89,.12);outline:none}
+.yyk-copy-email.copied{border-color:rgba(255,217,102,.45);color:#FFD966;background:rgba(255,217,102,.06);box-shadow:0 0 18px rgba(255,217,102,.12)}
+.yyk-contact-status{min-height:0!important;margin-top:0!important;font-size:0!important;line-height:0!important;color:transparent!important;text-shadow:none!important}
+.yyk-copy-tooltip{position:fixed;z-index:99999;pointer-events:none;transform:translate(12px,-50%);padding:7px 10px;border:1px solid rgba(255,217,102,.45);background:rgba(5,8,6,.92);color:#FFD966;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:10px;line-height:1;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 0 18px rgba(255,217,102,.18);text-shadow:0 0 8px rgba(255,217,102,.34);opacity:0;transition:opacity .16s ease,transform .16s ease;white-space:nowrap}
+.yyk-copy-tooltip.active{opacity:1;transform:translate(12px,-62%)}
+.yyk-contact-status{min-height:18px;margin-top:8px;color:#FFD966;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;text-shadow:0 0 8px rgba(255,217,102,.24)}
+@media(max-width:760px){.yyk-corporate-authority-card{padding:14px!important}.yyk-authority-card-image{margin-bottom:14px}.yyk-contact-row{grid-template-columns:1fr;gap:6px}.yyk-copy-email{width:max-content}}
+
+

@@ -1,0 +1,23 @@
+/* === ID: yyk-mapBW-background === */
+
+#yykFooterLogisticsMap .map-shell {
+    background-image: url('../img/new-map-color.jpg');
+    background-size: 100% 100%;
+    background-position: top center;
+    background-repeat: no-repeat;
+    border-radius: 8px; /* Optional, makes it look nicer */
+}
+#yykFooterLogisticsMap .route-base { stroke: rgba(255,255,255,0.15) !important; }
+#yykFooterLogisticsMap .route-flow, 
+#yykFooterLogisticsMap .route-pulse, 
+#yykFooterLogisticsMap .yyk-logistics-route-flow, 
+#yykFooterLogisticsMap .yyk-logistics-route-pulse,
+#yykFooterLogisticsMap .route { stroke: rgba(255,255,255,0.8) !important; }
+
+#yykFooterLogisticsMap .cargo-pulse { fill: #ffffff !important; filter: drop-shadow(0 0 5px #ffffff) !important; }
+#yykFooterLogisticsMap .port-dot, #yykFooterLogisticsMap .precision-core { fill: #ffffff !important; stroke: #dddddd !important; filter: drop-shadow(0 0 5px #ffffff) !important; }
+#yykFooterLogisticsMap .map-head strong { color: #ffffff !important; text-shadow: 0 0 5px rgba(255,255,255,.82), 0 0 18px rgba(255,255,255,.42) !important; }
+#yykFooterLogisticsMap .route-status-panel .title, #yykFooterLogisticsMap .route-status-dot { color: #ffffff !important; text-shadow: 0 0 8px rgba(255,255,255,.62) !important; background: #ffffff !important; box-shadow: 0 0 7px #ffffff, 0 0 16px rgba(255,255,255,.74) !important; }
+#yykFooterLogisticsMap .map-status-strip i { background: #ffffff !important; box-shadow: 0 0 7px #ffffff, 0 0 16px rgba(255,255,255,.75) !important; }
+
+

@@ -1,0 +1,15 @@
+/* === ID: d25-real-backend-rsi-style === */
+
+.d25-rsi-live-panel{margin-top:18px}
+.d25-rsi-card{border:1px solid var(--line);background:rgba(0,0,0,.22);padding:18px}
+.d25-rsi-score{font-size:58px;line-height:.95;letter-spacing:-.05em;color:#fff;margin-top:10px}
+.d25-rsi-score small{font-size:22px;color:var(--gold)}
+.d25-rsi-source{margin-top:8px;color:var(--muted);font-size:12px;line-height:1.45}
+.d25-rsi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:14px}
+.d25-rsi-grid div{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025);padding:11px}
+.d25-rsi-grid strong{display:block;color:var(--gold);font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:5px}
+.d25-rsi-grid span{color:#fff;font-size:18px}
+.d25-rsi-note{margin-top:12px;color:var(--muted);font-size:13px;line-height:1.55}
+@media(max-width:760px){.d25-rsi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.d25-rsi-score{font-size:44px}}
+
+

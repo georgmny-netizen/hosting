@@ -1,0 +1,76 @@
+/* === ID: yyk-master-spacious-rail-restore === */
+
+/* RESTORE MASTER SPACING — spacious 90vw / 1480px rail, no double gutters */
+:root{
+  --yyk-master-rail-width:90vw;
+  --yyk-master-rail-max:1480px;
+}
+
+/* One shared rail for header, page content and footer */
+.wrap,
+header .yyk-terminal-header,
+header .yyk-panoramic-command,
+.footer-grid,
+.footer-bottom,
+.footer-tech-status-inner,
+.footer-terminal-inner{
+  width:var(--yyk-master-rail-width)!important;
+  max-width:var(--yyk-master-rail-max)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding-left:0!important;
+  padding-right:0!important;
+  box-sizing:border-box!important;
+}
+
+/* Full-width backgrounds remain full-width */
+header,
+.hero,
+.section,
+.footer,
+.footer-tier1,
+.footer-tech-status-row,
+.footer-terminal-ticker{
+  width:100%!important;
+}
+
+/* Keep evidence router aligned to content rail, not compressed to a table strip */
+#decision-compliance-output.yyk-evidence-router,
+.yyk-risk-meter{
+  width:var(--yyk-master-rail-width)!important;
+  max-width:var(--yyk-master-rail-max)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+/* Header remains one-line terminal ribbon */
+header .yyk-terminal-header,
+header .yyk-panoramic-command{
+  white-space:nowrap!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scrollbar-width:none;
+}
+header .yyk-terminal-header::-webkit-scrollbar,
+header .yyk-panoramic-command::-webkit-scrollbar{
+  display:none;
+}
+
+/* Preserve original mobile rhythm */
+@media(max-width:760px){
+  .wrap,
+  header .yyk-terminal-header,
+  header .yyk-panoramic-command,
+  .footer-grid,
+  .footer-bottom,
+  .footer-tech-status-inner,
+  .footer-terminal-inner,
+  #decision-compliance-output.yyk-evidence-router,
+  .yyk-risk-meter{
+    width:calc(100vw - 36px)!important;
+    max-width:calc(100vw - 36px)!important;
+  }
+}
+
+

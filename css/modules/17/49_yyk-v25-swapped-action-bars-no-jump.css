@@ -1,0 +1,172 @@
+/* === ID: yyk-v25-swapped-action-bars-no-jump === */
+
+/* v2.5 Control Panel Geometry: module actions LEFT, mode tabs RIGHT */
+#yykAuditControlPanel{
+  position:relative!important;
+  top:auto!important;
+  z-index:9600!important;
+  background:rgba(18,18,18,.96)!important;
+  border-bottom:1px solid rgba(176,184,194,.22)!important;
+  contain:layout paint!important;
+  transform:translateZ(0)!important;
+}
+#yykAuditControlPanel .yyk-audit-wrap{
+  width:min(1500px,90vw)!important;
+  margin:0 auto!important;
+  padding:12px 0!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-areas:
+    "title modes"
+    "actions context"!important;
+  gap:10px 18px!important;
+  align-items:start!important;
+  min-height:116px!important;
+}
+#yykAuditControlPanel .yyk-audit-top{
+  display:grid!important;
+}
+#yykAuditControlPanel .yyk-audit-top > div:first-child{
+  grid-area:title!important;
+  min-width:0!important;
+  align-self:start!important;
+}
+#yykAuditControlPanel .yyk-audit-modes{
+  grid-area:modes!important;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  justify-content:flex-end!important;
+  align-items:flex-start!important;
+  gap:8px!important;
+  min-width:330px!important;
+  justify-self:end!important;
+}
+#yykAuditControlPanel .yyk-control-actions{
+  grid-area:actions!important;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  justify-content:flex-start!important;
+  align-items:flex-start!important;
+  gap:8px!important;
+  width:100%!important;
+  max-width:980px!important;
+  min-height:78px!important;
+  margin:0!important;
+  justify-self:start!important;
+}
+#yykAuditControlPanel .yyk-audit-context{
+  grid-area:context!important;
+  justify-self:end!important;
+  text-align:right!important;
+  max-width:420px!important;
+  min-height:42px!important;
+  overflow-wrap:anywhere!important;
+}
+#yykAuditControlPanel .yyk-mode-btn,
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-return-site-btn{
+  min-height:38px!important;
+  white-space:normal!important;
+  line-height:1.18!important;
+  transform:none!important;
+}
+#yykAuditControlPanel .yyk-control-action{
+  flex:0 1 158px!important;
+  text-align:left!important;
+  justify-content:flex-start!important;
+}
+#yykAuditControlPanel .yyk-mode-btn{
+  flex:0 0 auto!important;
+}
+#yykAuditControlPanel .yyk-return-site-btn{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:8px 11px!important;
+  border:1px solid rgba(201,162,39,.58)!important;
+  background:rgba(201,162,39,.12)!important;
+  color:#fff!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  font-size:11px!important;
+  letter-spacing:.10em!important;
+  text-transform:uppercase!important;
+  text-decoration:none!important;
+  cursor:pointer!important;
+}
+#yykAuditControlPanel .yyk-return-site-btn:hover{background:rgba(201,162,39,.20)!important;border-color:rgba(201,162,39,.72)!important;}
+/* No visual jumping when switching Procurement / Engineering / Compliance */
+#yykAuditModeWorkspace{
+  min-height:334px!important;
+  contain:layout paint!important;
+  overflow-anchor:none!important;
+}
+#yykAuditModeWorkspace .yyk-work-wrap{min-height:334px!important;}
+#yykAuditModeWorkspace .yyk-work-head{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(300px,740px)!important;
+  gap:16px!important;
+  align-items:start!important;
+  min-height:78px!important;
+  margin-bottom:14px!important;
+}
+#yykAuditModeWorkspace .yyk-work-copy{
+  width:100%!important;
+  max-width:740px!important;
+  min-height:66px!important;
+  overflow-wrap:anywhere!important;
+}
+#yykAuditModeWorkspace .yyk-mode-grid{
+  min-height:190px!important;
+  align-items:stretch!important;
+}
+#yykAuditModeWorkspace .yyk-mode-card{
+  min-height:188px!important;
+  height:auto!important;
+}
+/* Return to website button inside modal/engine windows, placed in the top-right control zone */
+.yyk-engine-return-site{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:38px!important;
+  padding:8px 12px!important;
+  margin-right:8px!important;
+  border:1px solid rgba(201,162,39,.55)!important;
+  background:rgba(201,162,39,.10)!important;
+  color:#fff!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  font-size:10px!important;
+  letter-spacing:.10em!important;
+  text-transform:uppercase!important;
+  text-decoration:none!important;
+  cursor:pointer!important;
+}
+.yyk-engine-return-site:hover{background:rgba(201,162,39,.18)!important;}
+@media(max-width:1100px){
+  #yykAuditControlPanel{top:40px!important;}
+  #yykAuditControlPanel .yyk-audit-wrap{
+    /* grid-template-columns not needed for flex layout */
+    grid-template-areas:"modes" "title" "actions" "context"!important;
+    min-height:0!important;
+  }
+  #yykAuditControlPanel .yyk-audit-modes,
+  #yykAuditControlPanel .yyk-control-actions,
+  #yykAuditControlPanel .yyk-audit-context{
+    justify-self:start!important;
+    justify-content:flex-start!important;
+    text-align:left!important;
+    min-width:0!important;
+    max-width:100%!important;
+  }
+  #yykAuditControlPanel .yyk-control-actions{min-height:0!important;}
+  #yykAuditModeWorkspace .yyk-work-head{/* grid-template-columns not needed for flex layout */min-height:0!important;}
+  #yykAuditModeWorkspace .yyk-work-copy{min-height:0!important;}
+}
+@media(max-width:760px){
+  #yykAuditControlPanel{position:relative!important;top:auto!important;}
+  #yykAuditControlPanel .yyk-audit-wrap{width:calc(100vw - 28px)!important;}
+  #yykAuditControlPanel .yyk-control-action{flex:1 1 100%!important;}
+  #yykAuditModeWorkspace,#yykAuditModeWorkspace .yyk-work-wrap{min-height:0!important;}
+}
+
+

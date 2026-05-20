@@ -1,0 +1,19 @@
+/* === ID: yyk-directive20-global-logistics-css === */
+
+.yyk-logistics-dictate{background:linear-gradient(180deg,rgba(0,0,0,.20),rgba(0,0,0,.30));}
+.yyk-hub-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:stretch}
+.yyk-hub-card{border:1px solid rgba(201,162,39,.22)!important;background:rgba(0,0,0,.22)!important;min-height:270px!important}
+.yyk-hub-card h3{margin-top:10px}
+.yyk-hub-meta{display:grid;gap:8px;margin-top:14px}
+.yyk-hub-line{display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,.08);padding-top:8px;color:#E5E8EC;font-size:12.5px;line-height:1.35}
+.yyk-hub-line span:first-child{color:var(--muted2)}
+.yyk-hub-line strong{text-align:right;color:#fff}
+.yyk-hub-status{display:inline-flex;align-items:center;gap:7px;margin-top:14px;border:1px solid rgba(255,204,51,.30);background:rgba(255,204,51,.055);padding:8px 10px;color:#d8ffe8;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.yyk-hub-status b{color:#FFCC33;text-shadow:0 0 8px rgba(255,204,51,.55)}
+.yyk-korea-distribution-note{margin-top:14px;border:1px solid rgba(201,162,39,.28);background:rgba(201,162,39,.055);padding:15px 16px;color:var(--muted);font-size:13px;line-height:1.6}
+.yyk-audit-arbitration{border:1px solid rgba(201,162,39,.32);background:rgba(201,162,39,.055);padding:18px;margin-top:14px}
+.yyk-audit-arbitration h3{margin:0 0 10px}.yyk-audit-arbitration p{color:var(--muted);font-size:14px;line-height:1.65;margin:0}
+@media(max-width:1200px){.yyk-hub-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.yyk-hub-grid{grid-template-columns:1fr}.yyk-hub-line{display:block}.yyk-hub-line strong{display:block;text-align:left;margin-top:4px}}
+
+

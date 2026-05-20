@@ -1,0 +1,61 @@
+/* === ID: yyk-v48-legal-risk-interactive-fix === */
+
+#yykLegalRiskPanel .yyk-legal-risk-head{
+  position:relative!important;
+  isolation:isolate!important;
+  border-bottom:1px solid rgba(176,184,194,.16)!important;
+  user-select:none!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+#yykLegalRiskPanel .yyk-legal-risk-head::after{
+  content:"CLICK TO EXPAND";
+  position:absolute;
+  right:18px;
+  bottom:5px;
+  color:rgba(201,162,39,.68);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  font-size:8px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  pointer-events:none;
+  opacity:.72;
+}
+#yykLegalRiskPanel.open .yyk-legal-risk-head::after{content:"CLICK TO COLLAPSE";color:rgba(255,204,51,.68)}
+#yykLegalRiskPanel .yyk-legal-risk-head:hover,
+#yykLegalRiskPanel .yyk-legal-risk-head:focus-visible{
+  outline:none!important;
+  background:linear-gradient(90deg,rgba(201,162,39,.11),rgba(255,204,51,.035))!important;
+  box-shadow:inset 0 0 0 1px rgba(201,162,39,.22)!important;
+}
+#yykLegalRiskPanel.open{
+  border-color:rgba(255,204,51,.34)!important;
+  box-shadow:0 0 26px rgba(255,204,51,.07),inset 0 1px 0 rgba(255,255,255,.045)!important;
+}
+#yykLegalRiskBody{
+  overflow:hidden!important;
+  transition:grid-template-rows .24s ease,opacity .20s ease,padding .20s ease!important;
+}
+#yykLegalRiskBody[hidden]{display:none!important;opacity:0!important;padding-top:0!important;padding-bottom:0!important}
+#yykLegalRiskPanel.open #yykLegalRiskBody{display:block!important;opacity:1!important}
+#yykLegalRiskPanel .yyk-legal-risk-chevron{
+  display:inline-block!important;
+  width:24px!important;
+  height:24px!important;
+  line-height:24px!important;
+  text-align:center!important;
+  border:1px solid rgba(201,162,39,.38)!important;
+  background:rgba(201,162,39,.08)!important;
+  border-radius:2px!important;
+  font-size:0!important;
+  vertical-align:middle!important;
+}
+#yykLegalRiskPanel.open .yyk-legal-risk-chevron{
+  border-color:rgba(255,204,51,.38)!important;
+  background:rgba(255,204,51,.08)!important;
+  color:#FFCC33!important;
+}
+
+  #yykLegalRiskPanel .yyk-legal-risk-head::after{position:static;display:block;grid-column:1/-1;margin-top:2px;text-align:left}
+}
+
+

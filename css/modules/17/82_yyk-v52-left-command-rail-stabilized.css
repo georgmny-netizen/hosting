@@ -1,0 +1,112 @@
+/* === ID: yyk-v52-left-command-rail-stabilized === */
+
+/* v5.2: restore the left command rail after v5.1 role-switcher stabilization.
+   Principle: left actions own the left column; role tabs own the right column; neither can push the other. */
+#yykAuditControlPanel{
+  width:100%!important;
+  overflow:visible!important;
+}
+#yykAuditControlPanel .yyk-audit-wrap{
+  width:min(1500px,90vw)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding-left:0!important;
+  padding-right:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  /* grid-template-areas removed for vertical stack layout */
+  align-items:stretch!important;
+  /* justify-items not needed for flex */
+  gap:10px!important;
+  /* row-gap handled by gap */
+  min-height:62px!important;
+}
+#yykAuditControlPanel .yyk-control-actions,
+#yykAuditControlPanel #yykAuditControlActions{
+  /* grid-area:actions removed - flexbox */
+  justify-self:start!important;
+  align-self:center!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  padding-left:0!important;
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  transform:none!important;
+  float:none!important;
+}
+#yykAuditControlPanel .yyk-audit-top{
+  display:grid!important;
+}
+#yykAuditControlPanel .yyk-audit-modes{
+  /* grid-area:modes removed - flexbox */
+  justify-self:end!important;
+  align-self:center!important;
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:8px!important;
+  width:auto!important;
+  min-width:max-content!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  transform:none!important;
+  float:none!important;
+  position:relative!important;
+  right:auto!important;
+  left:auto!important;
+  top:auto!important;
+}
+#yykAuditControlPanel .yyk-audit-top > div:first-child,
+#yykAuditControlPanel .yyk-audit-kicker,
+#yykAuditControlPanel .yyk-audit-title,
+#yykAuditControlPanel .yyk-audit-context{
+  display:block!important;
+}
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-return-site-btn,
+#yykAuditControlPanel .yyk-executive-primary-btn,
+#yykAuditControlPanel .yyk-v32-exec-btn,
+#yykAuditControlPanel .yyk-mode-btn{
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+  transform:none!important;
+}
+#yykAuditModeWorkspace{
+  width:min(1500px,90vw)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+@media(max-width:1120px){
+  #yykAuditControlPanel .yyk-audit-wrap{
+    /* grid-template-columns not needed for flex layout */
+    /* grid-template-areas removed for flex layout */
+    width:calc(100vw - 36px)!important;
+  }
+  #yykAuditControlPanel .yyk-audit-modes{
+    justify-self:start!important;
+    justify-content:flex-start!important;
+    min-width:0!important;
+    max-width:100%!important;
+    overflow-x:auto!important;
+    padding-bottom:6px!important;
+  }
+  #yykAuditModeWorkspace{width:calc(100vw - 36px)!important;}
+}
+@media(max-width:640px){
+  #yykAuditControlPanel .yyk-audit-wrap,
+  #yykAuditModeWorkspace{width:calc(100vw - 24px)!important;}
+}
+
+

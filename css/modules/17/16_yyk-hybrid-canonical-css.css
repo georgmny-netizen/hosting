@@ -1,0 +1,25 @@
+/* === ID: yyk-hybrid-canonical-css === */
+
+#yyk-hybrid-canonical-intelligence{clear:both;scroll-margin-top:96px}
+#yyk-hybrid-canonical-intelligence .hyb-shell{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));padding:22px;overflow:hidden}
+#yyk-hybrid-canonical-intelligence .hyb-grid{display:grid;grid-template-columns:1fr 340px;gap:14px}
+#yyk-hybrid-canonical-intelligence .hyb-main,#yyk-hybrid-canonical-intelligence .hyb-rail{border:1px solid var(--line);background:rgba(0,0,0,.18);padding:18px}
+#yyk-hybrid-canonical-intelligence .hyb-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}
+#yyk-hybrid-canonical-intelligence .hyb-kpi{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025);padding:12px;color:#E5E8EC;font-size:12px;line-height:1.45}
+#yyk-hybrid-canonical-intelligence .hyb-kpi strong{display:block;color:var(--gold);font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px}
+#yyk-hybrid-canonical-intelligence .hyb-detail{margin-top:10px;border:1px solid var(--line);background:rgba(0,0,0,.20)}
+#yyk-hybrid-canonical-intelligence .hyb-detail summary{cursor:pointer;list-style:none;padding:13px 15px;background:rgba(201,162,39,.10);color:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;letter-spacing:.10em;text-transform:uppercase}
+#yyk-hybrid-canonical-intelligence .hyb-detail summary::-webkit-details-marker{display:none}
+#yyk-hybrid-canonical-intelligence .hyb-detail summary:after{content:" · OPEN";color:var(--gold)}
+#yyk-hybrid-canonical-intelligence .hyb-detail[open] summary:after{content:" · CLOSE"}
+#yyk-hybrid-canonical-intelligence .hyb-detail-body{padding:16px;max-width:100%;overflow:auto}
+#yyk-hybrid-canonical-intelligence .hyb-detail-body table{min-width:900px}
+#yyk-hybrid-canonical-intelligence .hyb-rail-card{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025);padding:12px;margin-top:10px;color:#E5E8EC;font-size:12px;line-height:1.45}
+#yyk-hybrid-canonical-intelligence .hyb-rail-card strong{display:block;color:var(--gold);font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px}
+header .lang-switch,header .lang-btn,header .regional-legal-switch,header .region-btn,header .region-sep{display:none!important;visibility:hidden!important;height:0!important;width:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important}
+header,header *,nav,nav *{box-shadow:none!important}
+header{border-bottom:none!important}
+@media(max-width:1100px){#yyk-hybrid-canonical-intelligence .hyb-grid{grid-template-columns:1fr}#yyk-hybrid-canonical-intelligence .hyb-kpis{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){#yyk-hybrid-canonical-intelligence .hyb-kpis{grid-template-columns:1fr}}
+
+

@@ -1,0 +1,23 @@
+/* === ID: yyk-engineering-catalog-tabs-fix === */
+
+/* Targeted fix only: Engineering Catalog for 6N–7N Materials tabs */
+.yyk-engineering-catalog-scope [data-catalog-panel],
+.yyk-engineering-catalog-scope .catalog-panel{
+  display:none!important;
+}
+.yyk-engineering-catalog-scope [data-catalog-panel].active,
+.yyk-engineering-catalog-scope .catalog-panel.active{
+  display:block!important;
+}
+.yyk-engineering-catalog-scope [data-catalog-tab],
+.yyk-engineering-catalog-scope .catalog-tab{
+  cursor:pointer;
+}
+.yyk-engineering-catalog-scope [data-catalog-tab].active,
+.yyk-engineering-catalog-scope .catalog-tab.active{
+  border-color:rgba(201,162,39,.62)!important;
+  background:rgba(201,162,39,.10)!important;
+  color:#fff!important;
+}
+
+

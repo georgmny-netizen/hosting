@@ -1,0 +1,127 @@
+/* === ID: yyk-map-v2-master-layer === */
+
+/* V2 MASTER MAP — realistic terminal-grade enhancements */
+#yykFooterLogisticsMap{
+  background:
+    radial-gradient(circle at 58% 42%, rgba(201,162,39,.075), transparent 34%),
+    radial-gradient(circle at 36% 70%, rgba(201,162,39,.04), transparent 24%),
+    linear-gradient(180deg,#000 0%,#020403 48%,#000 100%)!important;
+}
+
+/* ocean depth / bathymetry layer */
+#yykFooterLogisticsMap .bathymetry path{
+  fill:none;
+  stroke:rgba(201,162,39,.075);
+  stroke-width:1;
+  stroke-linecap:round;
+  vector-effect:non-scaling-stroke;
+}
+#yykFooterLogisticsMap .sea-label{
+  fill:rgba(252,243,213,.12);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  font-style:italic;
+}
+
+/* cargo pulses: small, rare, controlled */
+#yykFooterLogisticsMap .cargo-pulse{
+  fill:#d1fae5;
+  filter:drop-shadow(0 0 4px #c9a227) drop-shadow(0 0 12px rgba(201,162,39,.75));
+  opacity:.95;
+}
+
+/* Busan hub heat */
+#yykFooterLogisticsMap .busan-hub-heat{
+  fill:url(#busanHubGlow);
+  opacity:.58;
+  pointer-events:none;
+  mix-blend-mode:screen;
+}
+
+/* Route status terminal plate */
+#yykFooterLogisticsMap .route-status-panel{
+  position:absolute;
+  right:clamp(20px,4vw,64px);
+  bottom:30px;
+  z-index:8;
+  width:min(330px,calc(100% - 40px));
+  border:1px solid rgba(201,162,39,.35);
+  background:rgba(0,0,0,.72);
+  box-shadow:0 0 24px rgba(201,162,39,.10), inset 0 0 18px rgba(201,162,39,.04);
+  padding:14px 15px;
+  color:#d1fae5;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  text-transform:uppercase;
+}
+#yykFooterLogisticsMap .route-status-panel .title{
+  color:#c9a227;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.22em;
+  margin-bottom:10px;
+  text-shadow:0 0 8px rgba(201,162,39,.6);
+}
+#yykFooterLogisticsMap .route-status-row{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  border-top:1px solid rgba(201,162,39,.16);
+  padding-top:7px;
+  margin-top:7px;
+  font-size:10px;
+  letter-spacing:.12em;
+}
+#yykFooterLogisticsMap .route-status-row span:first-child{
+  color:rgba(252,243,213,.58);
+}
+#yykFooterLogisticsMap .route-status-row span:last-child{
+  color:#d1fae5;
+  text-align:right;
+}
+#yykFooterLogisticsMap .route-status-dot{
+  display:inline-block;
+  width:5px;
+  height:5px;
+  margin-right:8px;
+  background:#c9a227;
+  box-shadow:0 0 6px #c9a227,0 0 14px rgba(201,162,39,.75);
+  vertical-align:middle;
+  animation:v2StatusBlink 1.8s linear infinite;
+}
+@keyframes v2StatusBlink{
+  0%,55%,100%{opacity:1}
+  56%,72%{opacity:.28}
+}
+
+/* slightly richer land read, still black/emerald */
+#yykFooterLogisticsMap .land{
+  fill:rgba(201,162,39,.12)!important;
+  stroke:rgba(252,243,213,.62)!important;
+  filter:drop-shadow(0 0 5px rgba(201,162,39,.48))!important;
+}
+
+/* Hover remains precise; do not move cards */
+#yykFooterLogisticsMap .local-port-card rect{
+  stroke:rgba(201,162,39,.82)!important;
+  box-shadow:none!important;
+}
+
+/* no large circles */
+#yykFooterLogisticsMap circle:not(.port-dot):not(.cargo-pulse){
+  display:none!important;
+}
+
+@media(max-width:900px){
+  #yykFooterLogisticsMap .route-status-panel{
+    display:none;
+  }
+  #yykFooterLogisticsMap .sea-label{
+    font-size:9px;
+    letter-spacing:.16em;
+  }
+}
+
+

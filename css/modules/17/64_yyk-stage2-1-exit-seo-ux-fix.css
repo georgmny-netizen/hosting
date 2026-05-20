@@ -1,0 +1,15 @@
+/* === ID: yyk-stage2-1-exit-seo-ux-fix === */
+
+/* Stage 2.1 in-place fix: visible exits, no table dead-ends, accessible focus, cyan brand layer */
+:root{--yyk-cyan:#FFD700;--yyk-cyan-soft:rgba(255,215,0,.12);--yyk-cyan-line:rgba(255,215,0,.48)}
+.yyk-stage-exitbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:18px;padding:14px 16px;border:1px solid var(--yyk-cyan-line);background:linear-gradient(90deg,rgba(255,215,0,.10),rgba(255,255,255,.025));color:var(--text)}
+.yyk-stage-exitbar strong{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--yyk-cyan);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+.yyk-stage-exitbar span{color:var(--muted);font-size:13px;line-height:1.45}
+.yyk-stage-close-btn,.yyk-stage-top-btn{border:1px solid var(--yyk-cyan-line);background:rgba(0,0,0,.22);color:var(--yyk-cyan);padding:10px 12px;cursor:pointer;font-weight:800;letter-spacing:.10em;text-transform:uppercase;font-size:11px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+.yyk-stage-close-btn:hover,.yyk-stage-top-btn:hover,.yyk-stage-close-btn:focus-visible,.yyk-stage-top-btn:focus-visible{background:var(--yyk-cyan-soft);outline:2px solid var(--yyk-cyan);outline-offset:2px}
+.table-panel{position:relative}
+.table-panel:after{content:"Swipe / scroll table horizontally if needed";display:none;color:var(--muted2);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:9px 12px;border-top:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.14)}
+@media(max-width:760px){.table-panel{overflow-x:auto;-webkit-overflow-scrolling:touch}.table-panel table{min-width:760px}.table-panel:after{display:block}.yyk-stage-exitbar{align-items:flex-start}.yyk-stage-close-btn,.yyk-stage-top-btn{width:100%;text-align:center}}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--yyk-cyan)!important;outline-offset:2px!important}
+
+

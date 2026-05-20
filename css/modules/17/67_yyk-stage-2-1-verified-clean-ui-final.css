@@ -1,0 +1,28 @@
+/* === ID: yyk-stage-2-1-verified-clean-ui-final === */
+
+/* VERIFIED CLEAN UI FINAL: neutral return controls, no green hover frame, no orphan text under buttons */
+:root{--yyk-ui-neutral-border:rgba(176,184,194,.30);--yyk-ui-neutral-hover:rgba(255,255,255,.075);}
+.yyk-return-to-site,.return-to-site,.yyk-back-main,.yyk-modal-back,[data-return-to-site],button[data-return-to-site]{
+  position:absolute!important;top:18px!important;right:18px!important;left:auto!important;bottom:auto!important;z-index:9999!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;
+  min-height:34px!important;padding:8px 12px!important;border:1px solid var(--yyk-ui-neutral-border)!important;
+  background:rgba(18,18,18,.88)!important;color:#E0E0E0!important;box-shadow:none!important;text-shadow:none!important;
+  outline:none!important;text-decoration:none!important;border-radius:0!important;letter-spacing:.08em!important;font-size:11px!important;
+}
+.yyk-return-to-site:hover,.return-to-site:hover,.yyk-back-main:hover,.yyk-modal-back:hover,[data-return-to-site]:hover,button[data-return-to-site]:hover{
+  border-color:rgba(224,224,224,.48)!important;background:var(--yyk-ui-neutral-hover)!important;color:#fff!important;box-shadow:none!important;outline:none!important;text-decoration:none!important;
+}
+.yyk-return-to-site::before,.yyk-return-to-site::after,.return-to-site::before,.return-to-site::after,.yyk-back-main::before,.yyk-back-main::after,.yyk-modal-back::before,.yyk-modal-back::after,[data-return-to-site]::before,[data-return-to-site]::after{content:none!important;display:none!important;}
+/* neutralize accidental green borders inside table/modal engines */
+.table-panel,table,thead,tbody,tr,td,th,.compliance-content table,.product-table,.yyk-vdr-card,.yyk-vdr-panel,.yyk-vdr-engine,.yyk-supply-table,.yyk-pricing-table{
+  border-color:rgba(176,184,194,.22)!important;box-shadow:none!important;outline:none!important;
+}
+td:hover,th:hover,tr:hover,table:hover,.table-panel:hover{box-shadow:none!important;outline:none!important;}
+button:hover,a:hover,.micro-btn:hover,.nav-link:hover,.sogo-primary-cta:hover{box-shadow:none!important;text-decoration:none!important;}
+button:focus,button:focus-visible,a:focus,a:focus-visible,input:focus,select:focus,textarea:focus{
+  outline:1px solid rgba(224,224,224,.26)!important;outline-offset:2px!important;box-shadow:none!important;
+}
+.yyk-vdr-tone-row{/* grid-template-columns not needed for flex layout */gap:6px!important;overflow:hidden!important;}
+.yyk-vdr-tone-row s,.yyk-vdr-tone-row b{display:block!important;max-width:100%!important;white-space:normal!important;overflow-wrap:break-word!important;word-break:normal!important;}
+
+

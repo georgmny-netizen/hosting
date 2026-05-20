@@ -1,0 +1,50 @@
+/* === ID: yyk-hero-audit-vdr-table-governance === */
+
+/* Governance Rule:
+   Hero = ticker + executive summary only.
+   Large compliance/fiscal tables = Audit / VDR only.
+*/
+.hero table,
+.hero .d26-table-wrap,
+.hero [class*="table-wrap"],
+.hero .table-panel{
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  max-height:0!important;
+  overflow:hidden!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+}
+.hero .d26-china-deadline-ticker,
+.hero .terminal-ticker,
+.hero .footer-terminal-ticker{
+  display:block!important;
+  visibility:visible!important;
+  height:auto!important;
+  max-height:none!important;
+}
+.hero .executive-summary,
+.hero [data-hero-summary],
+.hero .lead{
+  max-width:980px;
+}
+section[id*="audit"] table,
+section[id*="vdr"] table,
+section[data-vdr-tab] table,
+#directive26-fiscal-passport-2026 table{
+  display:table;
+}
+section[id*="audit"] [class*="table-wrap"],
+section[id*="vdr"] [class*="table-wrap"],
+#directive26-fiscal-passport-2026 .d26-table-wrap{
+  max-width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+#directive26-fiscal-passport-2026{
+  clear:both;
+}
+
+

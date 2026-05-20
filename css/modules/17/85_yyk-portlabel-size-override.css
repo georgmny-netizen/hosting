@@ -1,0 +1,349 @@
+/* === ID: yyk-portlabel-size-override === */
+
+/* Sogo drawer fixes */
+.sogo-head .card-text {
+  color: #AEB4BC !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  margin-top: 8px !important;
+}
+.sogo-body::-webkit-scrollbar {
+  width: 6px !important;
+}
+.sogo-body::-webkit-scrollbar-track {
+  background: rgba(0,0,0,.30) !important;
+}
+.sogo-body::-webkit-scrollbar-thumb {
+  background: rgba(201,162,39,.55) !important;
+  border-radius: 3px !important;
+}
+.sogo-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(201,162,39,.85) !important;
+}
+.yyk-stage-exitbar {
+  justify-content: flex-end !important;
+  padding: 10px 16px !important;
+  margin-top: 8px !important;
+}
+.yyk-legal-risk-chevron {
+  display: inline-block !important;
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 0 !important;
+  position: relative !important;
+}
+.yyk-legal-risk-chevron::before {
+  content: "" !important;
+  display: block !important;
+  width: 8px !important;
+  height: 8px !important;
+  border-right: 2px solid currentColor !important;
+  border-bottom: 2px solid currentColor !important;
+  transform: rotate(45deg) !important;
+  position: absolute !important;
+  top: 6px !important;
+  left: 6px !important;
+}
+#yykLegalRiskPanel.open .yyk-legal-risk-chevron::before {
+  transform: rotate(225deg) !important;
+  top: 9px !important;
+}
+/* Full-width open legal risk panel */
+/* Full-width legal risk panel - always */
+#yykLegalRiskPanel {
+  grid-column: 1 / -1 !important;
+}
+.yyk-legal-panel {
+  grid-column: 1 / -1 !important;
+}
+.yyk-legal-grid {
+  /* grid-template-columns not needed for flex layout */
+}
+.grid4:has(.passport) {
+  grid-template-rows: repeat(10, auto) !important;
+  align-items: start !important;
+}
+.grid4 .passport {
+
+  grid-row: span 10 !important;
+  display: grid !important;
+  grid-template-rows: subgrid !important;
+  gap: 0 !important;
+  row-gap: 10px !important;
+}
+.grid4 .passport .kv {
+  display: contents !important;
+}
+
+.yyk-proof-strip div {
+  display: flex !important;
+  flex-direction: column !important;
+}
+.yyk-proof-strip span {
+  min-height: 2.8em !important;
+  display: flex !important;
+  align-items: flex-start !important;
+}
+.yyk-proof-strip strong {
+  margin-top: auto !important;
+}
+#yykFooterLogisticsMap .yyk-proof-card { overflow: visible !important; }
+#yykFooterLogisticsMap .yyk-proof-close {
+  position: absolute !important;
+  top: -12px !important;
+  right: -12px !important;
+  width: 22px !important;
+  height: 22px !important;
+  font-size: 13px !important;
+  line-height: 22px !important;
+  text-align: center !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  z-index: 10 !important;
+  background: #050505 !important;
+  border: 1px solid rgba(255,204,51,.55) !important;
+  color: #FFCC33 !important;
+  cursor: pointer !important;
+}
+#yykFooterLogisticsMap .yyk-proof-head {
+  margin-bottom: 5px !important;
+  padding-bottom: 5px !important;
+  align-items: center !important;
+}
+#yykFooterLogisticsMap .yyk-proof-head .yyk-proof-status {
+  margin-bottom: 0 !important;
+  font-size: 9px !important;
+  letter-spacing: .08em !important;
+  flex: 1 !important;
+}
+#yykFooterLogisticsMap .yyk-proof-title { display: none !important; }
+#yykFooterLogisticsMap .yyk-proof-table th,
+#yykFooterLogisticsMap .yyk-proof-table td {
+  padding: 4px 6px !important;
+  font-size: 10px !important;
+}
+#yykFooterLogisticsMap .yyk-proof-table th { width: 52px !important; }
+#yykFooterLogisticsMap .yyk-proof-actions {
+  margin-top: 6px !important;
+  gap: 4px !important;
+}
+#yykFooterLogisticsMap .yyk-proof-action {
+  background: none !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255,204,51,.55) !important;
+  padding: 0 !important;
+  text-decoration: none !important;
+  color: rgba(255,204,51,.85) !important;
+  font-size: 10px !important;
+  letter-spacing: .08em !important;
+  text-transform: none !important;
+  cursor: pointer !important;
+  display: inline !important;
+}
+#yykFooterLogisticsMap .yyk-proof-action:hover {
+  color: #FFCC33 !important;
+  border-bottom-color: #FFCC33 !important;
+}
+#yykFooterLogisticsMap .yyk-proof-link {
+  margin: 0 4px 0 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  text-decoration: underline !important;
+  color: rgba(255,204,51,.7) !important;
+  font-size: 10px !important;
+}
+#yykFooterLogisticsMap .yyk-proof-card {
+  width: 280px !important;
+  max-width: 280px !important;
+  padding: 12px !important;
+  position: absolute !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  left: auto !important;
+  top: auto !important;
+}
+#yykFooterLogisticsMap .yyk-proof-card .yyk-proof-table th {
+  width: 80px !important;
+}
+#yykFooterLogisticsMap .map-head {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  width: 100% !important;
+  z-index: auto !important;
+  padding: 7px 16px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  border-bottom: 1px solid rgba(255,204,51,.18) !important;
+}
+#yykFooterLogisticsMap .port-label {
+  pointer-events: all !important;
+  cursor: pointer !important;
+}
+.yyk-apac-desk-grid .yyk-apac-panel,
+.yyk-apac-panel {
+  background: radial-gradient(circle at 62% 42%,rgba(255,204,51,.09),transparent 32%),linear-gradient(180deg,#000 0%,#020403 52%,#000 100%) !important;
+}
+#yykFooterLogisticsMap text.port-label,
+#yykFooterLogisticsMap .port-label {
+  font-size: 28px !important;
+}
+/* === GLOBAL MODAL SCROLLBAR + HEADER TEXT FIX === */
+.compliance-engine, .product-engine, .contact-engine,
+.esg-deep-layer, .yyk-legal-engine, .yyk-data-room-engine,
+.yyk-tds-engine, .yyk-supply-engine, .yyk-pricing-engine,
+.yyk-approval-engine, .yyk-tp-engine,
+#pricingEngine, #technicalPartnershipEngine,
+.modal-box, .sogo-body,
+.compliance-content, .product-content, .contact-content,
+.esg-layer-content, .yyk-dr-content, .yyk-tds-content,
+.yyk-supply-content, .yyk-legal-content {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(201,162,39,.55) rgba(0,0,0,.30) !important;
+}
+.compliance-engine::-webkit-scrollbar,
+.product-engine::-webkit-scrollbar,
+.contact-engine::-webkit-scrollbar,
+.esg-deep-layer::-webkit-scrollbar,
+.yyk-legal-engine::-webkit-scrollbar,
+.yyk-data-room-engine::-webkit-scrollbar,
+.yyk-tds-engine::-webkit-scrollbar,
+.yyk-supply-engine::-webkit-scrollbar,
+#pricingEngine::-webkit-scrollbar,
+#technicalPartnershipEngine::-webkit-scrollbar,
+.modal-box::-webkit-scrollbar,
+.compliance-content::-webkit-scrollbar,
+.product-content::-webkit-scrollbar,
+.contact-content::-webkit-scrollbar,
+.esg-layer-content::-webkit-scrollbar,
+.yyk-dr-content::-webkit-scrollbar,
+.yyk-tds-content::-webkit-scrollbar,
+.yyk-supply-content::-webkit-scrollbar {
+  width: 6px !important;
+}
+.compliance-engine::-webkit-scrollbar-track,
+.product-engine::-webkit-scrollbar-track,
+.contact-engine::-webkit-scrollbar-track,
+.esg-deep-layer::-webkit-scrollbar-track,
+.yyk-legal-engine::-webkit-scrollbar-track,
+.yyk-data-room-engine::-webkit-scrollbar-track,
+.yyk-tds-engine::-webkit-scrollbar-track,
+.yyk-supply-engine::-webkit-scrollbar-track,
+#pricingEngine::-webkit-scrollbar-track,
+#technicalPartnershipEngine::-webkit-scrollbar-track,
+.compliance-content::-webkit-scrollbar-track,
+.product-content::-webkit-scrollbar-track,
+.esg-layer-content::-webkit-scrollbar-track,
+.yyk-dr-content::-webkit-scrollbar-track,
+.yyk-tds-content::-webkit-scrollbar-track,
+.yyk-supply-content::-webkit-scrollbar-track {
+  background: rgba(0,0,0,.30) !important;
+}
+.compliance-engine::-webkit-scrollbar-thumb,
+.product-engine::-webkit-scrollbar-thumb,
+.contact-engine::-webkit-scrollbar-thumb,
+.esg-deep-layer::-webkit-scrollbar-thumb,
+.yyk-legal-engine::-webkit-scrollbar-thumb,
+.yyk-data-room-engine::-webkit-scrollbar-thumb,
+.yyk-tds-engine::-webkit-scrollbar-thumb,
+.yyk-supply-engine::-webkit-scrollbar-thumb,
+#pricingEngine::-webkit-scrollbar-thumb,
+#technicalPartnershipEngine::-webkit-scrollbar-thumb,
+.compliance-content::-webkit-scrollbar-thumb,
+.product-content::-webkit-scrollbar-thumb,
+.esg-layer-content::-webkit-scrollbar-thumb,
+.yyk-dr-content::-webkit-scrollbar-thumb,
+.yyk-tds-content::-webkit-scrollbar-thumb,
+.yyk-supply-content::-webkit-scrollbar-thumb {
+  background: rgba(201,162,39,.55) !important;
+  border-radius: 3px !important;
+}
+.compliance-engine::-webkit-scrollbar-thumb:hover,
+.product-engine::-webkit-scrollbar-thumb:hover,
+.contact-engine::-webkit-scrollbar-thumb:hover,
+.esg-deep-layer::-webkit-scrollbar-thumb:hover,
+.yyk-legal-engine::-webkit-scrollbar-thumb:hover,
+.yyk-data-room-engine::-webkit-scrollbar-thumb:hover,
+.yyk-tds-engine::-webkit-scrollbar-thumb:hover,
+.yyk-supply-engine::-webkit-scrollbar-thumb:hover,
+.esg-layer-content::-webkit-scrollbar-thumb:hover,
+.yyk-tds-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(201,162,39,.85) !important;
+}
+/* Header hint text in all modals */
+.compliance-head .card-text,
+.compliance-head .hint,
+.product-head .card-text,
+.product-head .hint,
+.contact-head .card-text,
+.esg-layer-head .card-text,
+.yyk-dr-head .card-text,
+.yyk-tds-head .hint,
+.yyk-supply-head .card-text,
+.yyk-legal-head .hint,
+.modal-head .message {
+  color: #AEB4BC !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  margin-top: 8px !important;
+  display: block !important;
+}
+/* Sogo panel centered fix */
+.sogo-external-close {
+  position: fixed !important;
+  top: 68px !important;
+  right: min(524px, calc(100vw + 4px)) !important;
+  z-index: 9300 !important;
+  background: rgba(12,13,15,.92) !important;
+  color: #C9A227 !important;
+  border: 1px solid rgba(201,162,39,.45) !important;
+  padding: 7px 14px !important;
+  font-size: 11px !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+  font-family: ui-monospace, monospace !important;
+  cursor: pointer !important;
+  display: none !important;
+}
+.sogo-drawer.active .sogo-external-close {
+  display: block !important;
+}
+/* Hide exitbar in sogo - has its own close button */
+.sogo-body .yyk-stage-exitbar {
+  display: none !important;
+}
+
+
+
+
+
+
+
+/* All modals: push content below sticky nav */
+.compliance-engine,
+.product-engine,
+.contact-engine,
+.esg-deep-layer,
+.yyk-legal-engine,
+.yyk-data-room-engine,
+.yyk-tds-engine,
+.yyk-supply-engine,
+#pricingEngine,
+#technicalPartnershipEngine {
+  padding-top: 112px !important;
+}
+.modal {
+  padding-top: 112px !important;
+  align-items: flex-start !important;
+}
+.modal .modal-box {
+  margin-top: 0 !important;
+}
+/* Hide exitbar everywhere - all modals have own close button */
+.yyk-stage-exitbar {
+  display: none !important;
+}
+
+

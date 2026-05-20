@@ -1,0 +1,42 @@
+/* === ID: yyk-green-apac-clock-final === */
+
+.yyk-green-apac-clock{
+  width:100%;
+  margin:0 0 22px;
+  padding:16px 0;
+  border-top:1px solid rgba(255,204,51,.24);
+  border-bottom:1px solid rgba(255,204,51,.24);
+  background:rgba(0,0,0,.38);
+  color:#FFCC33!important;
+  text-shadow:0 0 5px rgba(255,204,51,.85),0 0 14px rgba(255,204,51,.38);
+}
+.yyk-green-clock-grid{
+  width:min(1500px,calc(100% - 48px));
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+  align-items:center;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#FFCC33!important;
+}
+.yyk-clock-item{
+  display:block;
+  color:#FFCC33!important;
+  white-space:nowrap;
+  text-align:center;
+}
+.yyk-clock-item time,
+.yyk-clock-item em{
+  color:#FFCC33!important;
+  font:inherit;
+  font-style:normal;
+}
+@media(max-width:900px){.yyk-green-clock-grid{grid-template-columns:repeat(2,1fr);width:calc(100% - 36px);font-size:11px;letter-spacing:.10em}}
+@media(max-width:560px){.yyk-green-clock-grid{grid-template-columns:1fr;font-size:10px}}
+
+

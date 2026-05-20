@@ -1,0 +1,16 @@
+/* === ID: yyk-batch-backend-rfq-lock-style === */
+
+.batch-backend-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:14px;align-items:stretch}
+.batch-backend-card{border:1px solid var(--line);background:rgba(255,255,255,.035);padding:18px;display:flex;flex-direction:column;min-height:220px}
+.batch-backend-card h3{margin:0 0 12px;font-size:20px;color:#fff;line-height:1.12}
+.batch-lock-state{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(198,106,74,.58);background:rgba(198,106,74,.10);color:#f0a087;padding:8px 10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-weight:800;margin-top:12px;width:max-content;max-width:100%}
+.batch-lock-state.release{border-color:rgba(201,162,39,.58);background:rgba(201,162,39,.10);color:#d4b85c}
+.batch-lock-state.conditional{border-color:rgba(201,162,39,.58);background:rgba(201,162,39,.10);color:#f5d982}
+.batch-api-contract{margin-top:14px;border:1px solid var(--line);background:rgba(0,0,0,.18);padding:14px;color:var(--muted);font-size:12px;line-height:1.55;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;white-space:normal;overflow-wrap:anywhere}
+.batch-gate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.batch-gate-item{border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.18);padding:12px;color:#E5E8EC;font-size:12px;line-height:1.45}
+.batch-gate-item strong{display:block;color:var(--gold);font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:7px}
+#batchBackendRows td:last-child{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px}
+@media(max-width:960px){.batch-backend-grid,.batch-gate-grid{grid-template-columns:1fr}.batch-lock-state{width:100%}}
+
+

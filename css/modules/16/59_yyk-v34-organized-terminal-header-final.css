@@ -1,0 +1,156 @@
+/* === ID: yyk-v34-organized-terminal-header-final === */
+
+/* v3.4 — Organized terminal header: brand / command groups / language rail */
+header{
+  overflow:visible!important;
+}
+header .yyk-terminal-header{
+  max-width:1500px!important;
+  width:90vw!important;
+  min-height:56px!important;
+  padding:10px 0!important;
+  display:grid!important;
+  grid-template-columns:auto minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:18px!important;
+  overflow:visible!important;
+  white-space:normal!important;
+}
+header .yyk-terminal-brand{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:38px!important;
+  padding:0 14px!important;
+  border:1px solid rgba(201,162,39,.34)!important;
+  background:rgba(201,162,39,.075)!important;
+  color:#F5F5F2!important;
+  letter-spacing:.12em!important;
+  white-space:nowrap!important;
+}
+header .yyk-terminal-command{
+  min-width:0!important;
+  height:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  white-space:nowrap!important;
+  scrollbar-width:thin!important;
+  scrollbar-color:rgba(201,162,39,.42) transparent!important;
+  padding:2px 2px 4px!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+header .yyk-terminal-command::-webkit-scrollbar{height:4px!important}
+header .yyk-terminal-command::-webkit-scrollbar-track{background:transparent!important}
+header .yyk-terminal-command::-webkit-scrollbar-thumb{background:rgba(201,162,39,.38)!important}
+header .yyk-terminal-group{
+  flex:0 0 auto!important;
+  height:38px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:7px!important;
+  padding:0 12px!important;
+  border:1px solid rgba(176,184,194,.22)!important;
+  background:rgba(255,255,255,.028)!important;
+}
+header .yyk-terminal-prefix{
+  color:rgba(201,162,39,.88)!important;
+  font-weight:900!important;
+  letter-spacing:.12em!important;
+  margin-right:2px!important;
+}
+header .yyk-terminal-link{
+  height:38px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  padding:0 1px!important;
+  color:rgba(224,224,224,.84)!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+}
+header .yyk-terminal-link:hover,
+header .yyk-terminal-link:focus-visible,
+header .yyk-terminal-link.active{
+  color:#fff!important;
+}
+header .yyk-terminal-link::after,
+header .yyk-terminal-lang-link::after{
+  bottom:5px!important;
+  background:var(--gold)!important;
+}
+header .yyk-terminal-dot{
+  color:rgba(201,162,39,.38)!important;
+  font-weight:900!important;
+}
+header .yyk-terminal-sep{
+  display:none!important;
+}
+header .yyk-terminal-lang{
+  height:38px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:7px!important;
+  padding:0 0 0 14px!important;
+  border-left:1px solid rgba(201,162,39,.30)!important;
+  white-space:nowrap!important;
+}
+header .yyk-terminal-lang-link{
+  height:30px!important;
+  min-width:30px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:1px solid rgba(176,184,194,.20)!important;
+  background:rgba(255,255,255,.022)!important;
+  color:rgba(224,224,224,.78)!important;
+  padding:0 7px!important;
+}
+header .yyk-terminal-lang-link.active,
+header .yyk-terminal-lang-link:hover,
+header .yyk-terminal-lang-link:focus-visible{
+  border-color:rgba(201,162,39,.58)!important;
+  background:rgba(201,162,39,.10)!important;
+  color:#fff!important;
+}
+header .yyk-terminal-lang span{
+  display:none!important;
+}
+@media(max-width:1100px){
+  header .yyk-terminal-header{
+    width:calc(100vw - 32px)!important;
+    grid-template-columns:1fr auto!important;
+    grid-template-areas:
+      "brand lang"
+      "command command"!important;
+    gap:8px 14px!important;
+    padding:9px 0!important;
+  }
+  header .yyk-terminal-brand{grid-area:brand!important;justify-self:start!important;min-height:34px!important}
+  header .yyk-terminal-lang{grid-area:lang!important;height:34px!important;padding-left:10px!important}
+  header .yyk-terminal-command{grid-area:command!important;width:100%!important;padding-bottom:5px!important}
+  header .yyk-terminal-group{height:34px!important;padding:0 10px!important}
+  header .yyk-terminal-link{height:34px!important}
+}
+@media(max-width:620px){
+  header .yyk-terminal-header{
+    width:calc(100vw - 24px)!important;
+    /* grid-template-columns not needed for flex layout */
+    grid-template-areas:"brand" "command" "lang"!important;
+  }
+  header .yyk-terminal-lang{
+    justify-content:flex-start!important;
+    border-left:0!important;
+    padding-left:0!important;
+    overflow-x:auto!important;
+    max-width:100%!important;
+  }
+  header .yyk-terminal-brand{
+    width:100%!important;
+    justify-content:center!important;
+  }
+}
+
+

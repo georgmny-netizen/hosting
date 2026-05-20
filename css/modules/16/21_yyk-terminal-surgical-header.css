@@ -1,0 +1,188 @@
+/* === ID: yyk-terminal-surgical-header === */
+
+/* Surgical high-density terminal header */
+header{
+  position:sticky!important;
+  top:0!important;
+  z-index:9500!important;
+  width:100%!important;
+  background:rgba(18,18,18,.92)!important;
+  -webkit-backdrop-filter:blur(12px)!important;
+  backdrop-filter:blur(12px)!important;
+  border-bottom:1px solid rgba(255,255,255,.10)!important;
+}
+header .yyk-terminal-header{
+  width:100%;
+  max-width:1600px;
+  margin-left:auto;
+  margin-right:auto;
+  min-height:40px;
+  padding:0 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:26px;
+  white-space:nowrap;
+  overflow:hidden;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  font-size:11px;
+  line-height:1;
+  letter-spacing:.065em;
+  text-transform:uppercase;
+}
+header .yyk-terminal-brand{
+  flex:0 0 auto;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  
+  background:transparent!important;
+  color:rgba(245,245,242,.94)!important;
+  font:inherit!important;
+  font-weight:900!important;
+  letter-spacing:.13em!important;
+}
+header .yyk-terminal-command{
+  flex:1 1 auto;
+  min-width:0;
+  height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  overflow:hidden;
+  white-space:nowrap;
+  color:rgba(200,204,210,.78);
+}
+header .yyk-terminal-lang{
+  flex:0 0 auto;
+  height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:9px;
+  padding:0 0 0 22px!important;
+  margin:0!important;
+  border-left:1px solid rgba(201,162,39,.24);
+  white-space:nowrap;
+  color:rgba(201,162,39,.30);
+}
+header .yyk-terminal-group{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  height:40px;
+  flex:0 0 auto;
+}
+header .yyk-terminal-prefix{
+  color:rgba(201,162,39,.64);
+  font-weight:900;
+  letter-spacing:.11em;
+}
+header .yyk-terminal-link,
+header .yyk-terminal-lang-link{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  height:40px;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  
+  background:transparent!important;
+  box-shadow:none!important;
+  transform:none!important;
+  color:rgba(200,204,210,.78)!important;
+  font:inherit!important;
+  line-height:1!important;
+  letter-spacing:.065em!important;
+  text-transform:uppercase!important;
+  transition:color .14s ease;
+}
+header .yyk-terminal-link::after,
+header .yyk-terminal-lang-link::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:8px;
+  height:1px;
+  background:#c9a227;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .14s ease;
+}
+header .yyk-terminal-link:hover,
+header .yyk-terminal-link:focus-visible,
+header .yyk-terminal-link.active,
+header .yyk-terminal-lang-link:hover,
+header .yyk-terminal-lang-link:focus-visible,
+header .yyk-terminal-lang-link.active{
+  color:#c9a227!important;
+  outline:none;
+}
+header .yyk-terminal-link:hover::after,
+header .yyk-terminal-link:focus-visible::after,
+header .yyk-terminal-link.active::after,
+header .yyk-terminal-lang-link:hover::after,
+header .yyk-terminal-lang-link:focus-visible::after,
+header .yyk-terminal-lang-link.active::after{
+  transform:scaleX(1);
+}
+header .yyk-terminal-sep{
+  color:rgba(201,162,39,.30);
+  font-weight:900;
+}
+header .yyk-terminal-dot{
+  color:rgba(255,255,255,.24);
+}
+header .yyk-terminal-lang-link{
+  color:rgba(174,180,188,.74)!important;
+}
+.nav-link,
+.lang-btn,
+.micro-btn,
+.sogo-primary-cta,
+.input,
+.select,
+.textarea,
+button,
+.evidence-node,
+.yyk-evidence-node{
+  
+}
+@media(max-width:1320px){
+  header .yyk-terminal-header{
+    padding:0 24px;
+    gap:18px;
+    font-size:10.5px;
+    letter-spacing:.045em;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scrollbar-width:none;
+  }
+  header .yyk-terminal-header::-webkit-scrollbar{display:none}
+  header .yyk-terminal-command{
+    flex:0 0 auto;
+    justify-content:flex-start;
+    overflow:visible;
+  }
+}
+@media(max-width:760px){
+  header .yyk-terminal-header{
+    min-height:38px;
+    padding:0 14px;
+    gap:16px;
+    font-size:10px;
+  }
+  header .yyk-terminal-brand,
+  header .yyk-terminal-command,
+  header .yyk-terminal-lang,
+  header .yyk-terminal-group,
+  header .yyk-terminal-link,
+  header .yyk-terminal-lang-link{
+    height:38px;
+  }
+}
+
+

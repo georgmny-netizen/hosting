@@ -1,0 +1,49 @@
+/* === ID: yyk-deep-audit-cleanup === */
+
+/* Deep audit cleanup: no city-click framing, no marker outline */
+#yykFooterLogisticsMap .port-node,
+#yykFooterLogisticsMap .port-node *,
+#yykFooterLogisticsMap .precision-marker,
+#yykFooterLogisticsMap .precision-marker *,
+#yykFooterLogisticsMap .port-dot{
+  outline:none!important;
+  box-shadow:none!important;
+}
+#yykFooterLogisticsMap .port-node:focus,
+#yykFooterLogisticsMap .port-node:focus-visible,
+#yykFooterLogisticsMap .port-node:active,
+#yykFooterLogisticsMap .port-node.is-active,
+#yykFooterLogisticsMap .port-node.is-route-active,
+#yykFooterLogisticsMap .port-node.is-intel-active{
+  outline:none!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+#yykFooterLogisticsMap .port-node:hover .precision-ring,
+#yykFooterLogisticsMap .port-node.is-active .precision-ring,
+#yykFooterLogisticsMap .port-node.is-route-active .precision-ring,
+#yykFooterLogisticsMap .port-node.is-intel-active .precision-ring{
+  stroke-width:1!important;
+  opacity:.68!important;
+  filter:none!important;
+}
+#yykFooterLogisticsMap .port-node:hover .precision-cross,
+#yykFooterLogisticsMap .port-node.is-active .precision-cross,
+#yykFooterLogisticsMap .port-node.is-route-active .precision-cross,
+#yykFooterLogisticsMap .port-node.is-intel-active .precision-cross{
+  opacity:.52!important;
+  filter:none!important;
+}
+#yykFooterLogisticsMap a:focus,
+#yykFooterLogisticsMap button:focus,
+#yykFooterLogisticsMap a:focus-visible,
+#yykFooterLogisticsMap button:focus-visible{
+  outline:none!important;
+  box-shadow:none!important;
+}
+#yykFooterLogisticsMap .yyk-proof-card-master{
+  outline:none!important;
+  border-radius:0!important;
+}
+
+

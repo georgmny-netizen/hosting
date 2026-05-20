@@ -1,0 +1,26 @@
+/* === ID: yyk-business-identity-final === */
+
+.yyk-business-identity-card{
+  margin:12px 0 14px;
+  padding:12px 14px;
+  border:1px solid rgba(201,162,39,.42);
+  background:rgba(201,162,39,.065);
+  color:#F5F5F2;
+}
+.yyk-business-identity-card .identity-label{
+  display:block;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:.20em;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.yyk-business-identity-card .identity-name{
+  display:block;
+  font-size:14px;
+  line-height:1.35;
+  font-weight:700;
+  color:#fff;
+}
+
+

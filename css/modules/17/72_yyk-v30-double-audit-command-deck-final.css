@@ -1,0 +1,263 @@
+/* === ID: yyk-v30-double-audit-command-deck-final === */
+
+/*
+  Double-audit conclusion:
+  1) UX audit: the business-unit tabs must never share visual pressure with long workspace titles.
+  2) Technical audit: older overrides competed with each other; this final layer creates one stable grid.
+*/
+#yykAuditControlPanel{
+  position:sticky!important;
+  top:0!important;
+  z-index:9700!important;
+  width:100%!important;
+  background:linear-gradient(180deg,rgba(18,18,18,.992),rgba(18,18,18,.955))!important;
+  border-top:1px solid rgba(224,224,224,.10)!important;
+  border-bottom:1px solid rgba(176,184,194,.32)!important;
+  box-shadow:0 16px 42px rgba(0,0,0,.36)!important;
+  backdrop-filter:blur(16px)!important;
+  -webkit-backdrop-filter:blur(16px)!important;
+  overflow:visible!important;
+  contain:none!important;
+}
+#yykAuditControlPanel .yyk-audit-wrap{
+  width:90vw!important;
+  max-width:1480px!important;
+  min-height:0!important;
+  margin:0 auto!important;
+  padding:11px 0 12px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-areas:
+    "brand modes"
+    "context modes"
+    "actions actions"!important;
+  column-gap:34px!important;
+  row-gap:8px!important;
+  align-items:start!important;
+}
+#yykAuditControlPanel .yyk-audit-top{
+  display:grid!important;
+  min-height:0!important;
+  overflow:visible!important;
+}
+#yykAuditControlPanel .yyk-audit-top > div:first-child{
+  grid-area:brand!important;
+  min-width:0!important;
+  padding:0!important;
+  margin:0!important;
+  align-self:start!important;
+}
+#yykAuditControlPanel .yyk-audit-kicker{
+  display:block!important;
+  margin:0 0 4px!important;
+  font-size:10px!important;
+  line-height:1.1!important;
+  letter-spacing:.26em!important;
+  color:var(--gold,#C9A227)!important;
+  text-transform:uppercase!important;
+  white-space:nowrap!important;
+}
+#yykAuditControlPanel .yyk-audit-title,
+#yykAuditModeTitle{
+  display:block!important;
+  max-width:100%!important;
+  margin:0!important;
+  color:#fff!important;
+  font-size:clamp(22px,1.75vw,30px)!important;
+  line-height:1.04!important;
+  letter-spacing:-.026em!important;
+  font-weight:800!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  word-break:normal!important;
+  overflow-wrap:break-word!important;
+}
+#yykAuditControlPanel .yyk-audit-context{
+  grid-area:context!important;
+  display:block!important;
+  max-width:760px!important;
+  min-height:20px!important;
+  margin:0!important;
+  padding:0!important;
+  color:#C8CCD2!important;
+  font-size:12.5px!important;
+  line-height:1.48!important;
+  overflow-wrap:break-word!important;
+}
+/* Right business-unit switch: independent segmented rail, no overlap with workspace title */
+#yykAuditControlPanel .yyk-audit-modes{
+  grid-area:modes!important;
+  justify-self:end!important;
+  align-self:start!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(138px,1fr))!important;
+  gap:8px!important;
+  width:auto!important;
+  min-width:450px!important;
+  max-width:560px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  overflow:visible!important;
+}
+#yykAuditControlPanel .yyk-mode-btn{
+  width:100%!important;
+  min-width:138px!important;
+  min-height:42px!important;
+  margin:0!important;
+  padding:10px 13px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:1px solid rgba(176,184,194,.32)!important;
+  background:rgba(255,255,255,.026)!important;
+  color:#D9DDE3!important;
+  box-shadow:none!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  font-size:10px!important;
+  font-weight:900!important;
+  letter-spacing:.105em!important;
+  line-height:1.1!important;
+  text-transform:uppercase!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  cursor:pointer!important;
+  transform:none!important;
+}
+#yykAuditControlPanel .yyk-mode-btn:hover,
+#yykAuditControlPanel .yyk-mode-btn.active,
+#yykAuditControlPanel .yyk-mode-btn[aria-selected="true"]{
+  border-color:rgba(201,162,39,.72)!important;
+  background:rgba(201,162,39,.135)!important;
+  color:#fff!important;
+  box-shadow:inset 0 -2px 0 rgba(201,162,39,.78)!important;
+}
+/* Full-width terminal rail: left-aligned to Procurement Workspace boundary */
+#yykAuditControlPanel .yyk-control-actions,
+#yykAuditControlPanel .yyk-control-actions.yyk-terminal-rail-ready{
+  grid-area:actions!important;
+  justify-self:stretch!important;
+  align-self:start!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  min-height:50px!important;
+  margin:2px 0 0!important;
+  padding:8px 0 11px!important;
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scrollbar-gutter:stable!important;
+  overscroll-behavior-x:contain!important;
+  -webkit-overflow-scrolling:touch!important;
+  scroll-snap-type:x proximity!important;
+  border-top:1px solid rgba(176,184,194,.16)!important;
+  border-bottom:1px solid rgba(176,184,194,.16)!important;
+  background:linear-gradient(180deg,rgba(0,0,0,.13),rgba(0,0,0,.23))!important;
+}
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar{height:8px!important;}
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar-track{background:rgba(255,255,255,.045)!important;}
+#yykAuditControlPanel .yyk-control-actions::-webkit-scrollbar-thumb{background:rgba(201,162,39,.58)!important;border-radius:999px!important;}
+#yykAuditControlPanel .yyk-control-actions::before{
+  content:"COMMAND RAIL"!important;
+  flex:0 0 auto!important;
+  min-height:38px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0 11px!important;
+  margin:0!important;
+  border:1px solid rgba(201,162,39,.50)!important;
+  background:rgba(201,162,39,.105)!important;
+  color:var(--gold,#C9A227)!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  font-size:9px!important;
+  font-weight:900!important;
+  letter-spacing:.18em!important;
+  text-transform:uppercase!important;
+  white-space:nowrap!important;
+  scroll-snap-align:start!important;
+}
+#yykAuditControlPanel .yyk-control-action,
+#yykAuditControlPanel .yyk-return-site-btn{
+  flex:0 0 auto!important;
+  min-width:max-content!important;
+  min-height:38px!important;
+  margin:0!important;
+  padding:9px 11px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:1px solid rgba(176,184,194,.28)!important;
+  background:rgba(255,255,255,.025)!important;
+  color:#E0E0E0!important;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  font-size:10px!important;
+  font-weight:850!important;
+  letter-spacing:.095em!important;
+  line-height:1.12!important;
+  text-transform:uppercase!important;
+  white-space:nowrap!important;
+  text-decoration:none!important;
+  cursor:pointer!important;
+  transform:none!important;
+  scroll-snap-align:start!important;
+}
+#yykAuditControlPanel .yyk-return-site-btn,
+#yykAuditControlPanel .yyk-control-action[data-terminal-priority="1"]{
+  border-color:rgba(201,162,39,.64)!important;
+  background:rgba(201,162,39,.12)!important;
+  color:#fff!important;
+}
+#yykAuditControlPanel .yyk-control-action:hover,
+#yykAuditControlPanel .yyk-control-action:focus-visible,
+#yykAuditControlPanel .yyk-return-site-btn:hover,
+#yykAuditControlPanel .yyk-return-site-btn:focus-visible{
+  border-color:rgba(201,162,39,.78)!important;
+  background:rgba(201,162,39,.18)!important;
+  color:#fff!important;
+  outline:none!important;
+}
+#yykAuditModeWorkspace{
+  min-height:380px!important;
+  scroll-margin-top:150px!important;
+  overflow-anchor:none!important;
+  contain:layout paint!important;
+}
+#yykAuditModeWorkspace .yyk-work-wrap{min-height:380px!important;}
+#yykAuditModeWorkspace .yyk-work-head{min-height:106px!important;align-items:flex-end!important;}
+#yykAuditModeWorkspace .yyk-mode-grid{min-height:250px!important;align-items:stretch!important;}
+#yykAuditModeWorkspace .yyk-mode-card{min-height:214px!important;}
+@media(max-width:1180px){
+  #yykAuditControlPanel .yyk-audit-wrap{
+    /* grid-template-columns not needed for flex layout */
+    grid-template-areas:"brand" "context" "modes" "actions"!important;
+    row-gap:9px!important;
+  }
+  #yykAuditControlPanel .yyk-audit-modes{
+    justify-self:start!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:560px!important;
+  }
+}
+@media(max-width:760px){
+  #yykAuditControlPanel{max-height:58vh!important;overflow:auto!important;}
+  #yykAuditControlPanel .yyk-audit-wrap{width:calc(100vw - 32px)!important;padding:10px 0!important;}
+  #yykAuditControlPanel .yyk-audit-modes{grid-template-columns:repeat(3,minmax(112px,1fr))!important;overflow-x:auto!important;overflow-y:hidden!important;padding-bottom:7px!important;}
+  #yykAuditControlPanel .yyk-mode-btn{min-width:112px!important;font-size:9px!important;padding:9px 9px!important;}
+  #yykAuditControlPanel .yyk-control-actions::before{min-height:36px!important;font-size:8px!important;padding:0 9px!important;}
+  #yykAuditControlPanel .yyk-control-action,
+  #yykAuditControlPanel .yyk-return-site-btn{min-height:36px!important;font-size:9px!important;padding:8px 9px!important;}
+  #yykAuditModeWorkspace,#yykAuditModeWorkspace .yyk-work-wrap{min-height:0!important;}
+  #yykAuditModeWorkspace .yyk-work-head{min-height:0!important;}
+}
+
+

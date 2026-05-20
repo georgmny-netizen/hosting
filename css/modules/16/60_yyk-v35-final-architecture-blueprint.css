@@ -1,0 +1,33 @@
+/* === ID: yyk-v35-final-architecture-blueprint === */
+
+/* v3.5 Final Architecture Blueprint — SEO + UX decision hierarchy */
+#yykFinalArchitecture{position:relative;z-index:2;border-top:1px solid rgba(176,184,194,.22);border-bottom:1px solid rgba(176,184,194,.22);background:linear-gradient(180deg,rgba(18,18,18,.98),rgba(10,11,12,.96));scroll-margin-top:150px}
+.yyk-arch-wrap{width:90vw;max-width:1500px;margin:0 auto;padding:22px 0 24px}
+.yyk-arch-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:end;margin-bottom:14px}
+.yyk-arch-kicker{color:var(--gold,#C9A227);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:10px;font-weight:900;letter-spacing:.24em;text-transform:uppercase}
+.yyk-arch-title{margin-top:7px;color:#fff;font-size:clamp(25px,2.15vw,36px);line-height:1.02;letter-spacing:-.04em;font-weight:850}
+.yyk-arch-sub{margin-top:8px;color:#C8CCD2;font-size:13px;line-height:1.58;max-width:920px}
+.yyk-arch-badge{min-height:42px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(201,162,39,.58);background:rgba(201,162,39,.10);color:#fff;padding:9px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.yyk-arch-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:12px;align-items:stretch}
+.yyk-arch-card{border:1px solid rgba(176,184,194,.22);background:rgba(255,255,255,.033);padding:16px;min-height:174px;box-shadow:none!important}
+.yyk-arch-card h3{margin:0 0 11px;color:#fff;font-size:17px;line-height:1.15;letter-spacing:-.01em}
+.yyk-arch-lanes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.yyk-arch-lane{border:1px solid rgba(176,184,194,.17);background:rgba(0,0,0,.18);padding:12px;min-height:122px}
+.yyk-arch-lane b{display:block;color:#fff;font-size:12px;line-height:1.25;margin-bottom:7px}
+.yyk-arch-lane span{display:block;color:var(--gold,#C9A227);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:9px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+.yyk-arch-lane p{margin:0;color:#C8CCD2;font-size:12px;line-height:1.55}
+.yyk-arch-path{display:grid;gap:7px;margin-top:2px}
+.yyk-arch-step{display:grid;grid-template-columns:86px minmax(0,1fr) 130px;gap:10px;align-items:center;border-top:1px solid rgba(255,255,255,.08);padding-top:8px;color:#E5E8EC;font-size:12px;line-height:1.4}
+.yyk-arch-step:first-child{border-top:0;padding-top:0}
+.yyk-arch-step strong{color:var(--gold,#C9A227);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.yyk-arch-step em{font-style:normal;color:#fff;font-weight:800;text-align:right}
+.yyk-arch-seo{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}
+.yyk-arch-seo a,.yyk-arch-seo span{display:flex;align-items:center;min-height:44px;border:1px solid rgba(176,184,194,.18);background:rgba(0,0,0,.16);padding:9px 10px;color:#E0E0E0;text-decoration:none;font-size:11px;line-height:1.35}
+.yyk-arch-seo a:hover{border-color:rgba(201,162,39,.58);background:rgba(201,162,39,.08);color:#fff}
+.yyk-arch-rule{margin-top:12px;border:1px solid rgba(201,162,39,.38);background:rgba(201,162,39,.065);padding:12px 13px;color:#E5E8EC;font-size:12px;line-height:1.55}
+.yyk-arch-rule b{color:#fff}.yyk-arch-rule code{color:var(--gold,#C9A227);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+header .yyk-terminal-command .yyk-terminal-link[href="#yykFinalArchitecture"]{color:#fff!important}
+@media(max-width:1180px){.yyk-arch-head,.yyk-arch-grid{grid-template-columns:1fr}.yyk-arch-badge{justify-self:start}.yyk-arch-lanes,.yyk-arch-seo{grid-template-columns:1fr 1fr}.yyk-arch-step{grid-template-columns:74px minmax(0,1fr)}}
+@media(max-width:760px){.yyk-arch-wrap{width:calc(100vw - 32px);padding:18px 0}.yyk-arch-lanes,.yyk-arch-seo{grid-template-columns:1fr}.yyk-arch-step{grid-template-columns:1fr}.yyk-arch-step em{text-align:left}}
+
+

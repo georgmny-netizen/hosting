@@ -1,0 +1,192 @@
+/* YONGYEOKYO D25 Compact Executive Density Patch START */
+#directive25-enhanced-matrix .d25e-shell{
+  padding:16px !important;
+}
+
+#directive25-enhanced-matrix .section-head{
+  margin-bottom:14px !important;
+}
+
+#directive25-enhanced-matrix .d25e-grid{
+  display:grid !important;
+  /* grid-template-columns not needed for flex layout */
+  gap:12px !important;
+}
+
+#directive25-enhanced-matrix .d25e-card{
+  padding:14px !important;
+  min-height:0 !important;
+}
+
+#directive25-enhanced-matrix .d25e-card:first-child{
+  display:grid !important;
+  grid-template-columns:1.35fr .65fr !important;
+  gap:12px !important;
+  align-items:start !important;
+}
+
+#directive25-enhanced-matrix .d25e-card:first-child > .card-title{
+  grid-column:1 / -1 !important;
+  margin-bottom:0 !important;
+}
+
+#directive25-enhanced-matrix .d25e-card:first-child > .d25e-table-wrap{
+  grid-column:1 !important;
+  margin-top:0 !important;
+}
+
+#directive25-enhanced-matrix .d25e-card:first-child > .d25e-alert{
+  grid-column:2 !important;
+  margin-top:0 !important;
+  padding:12px !important;
+  font-size:12.5px !important;
+  line-height:1.45 !important;
+}
+
+#directive25-enhanced-matrix .d25e-card:first-child > .d25e-alert + .d25e-alert{
+  margin-top:10px !important;
+}
+
+#directive25-enhanced-matrix .d25e-table-wrap{
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  max-width:100% !important;
+  margin-top:0 !important;
+}
+
+#directive25-enhanced-matrix .d25e-table-wrap table{
+  width:100% !important;
+  min-width:0 !important;
+  table-layout:fixed !important;
+}
+
+#directive25-enhanced-matrix .d25e-table-wrap th,
+#directive25-enhanced-matrix .d25e-table-wrap td{
+  padding:8px 9px !important;
+  font-size:12px !important;
+  line-height:1.35 !important;
+  vertical-align:top !important;
+}
+
+#directive25-enhanced-matrix .d25e-table-wrap th:nth-child(1),
+#directive25-enhanced-matrix .d25e-table-wrap td:nth-child(1){
+  width:14% !important;
+}
+
+#directive25-enhanced-matrix .d25e-table-wrap th:nth-child(2),
+#directive25-enhanced-matrix .d25e-table-wrap td:nth-child(2){
+  width:20% !important;
+}
+
+#directive25-enhanced-matrix .d25e-table-wrap th:nth-child(3),
+#directive25-enhanced-matrix .d25e-table-wrap td:nth-child(3){
+  width:32% !important;
+}
+
+#directive25-enhanced-matrix .d25e-table-wrap th:nth-child(4),
+#directive25-enhanced-matrix .d25e-table-wrap td:nth-child(4){
+  width:34% !important;
+}
+
+#directive25-enhanced-matrix .d25e-card:nth-child(2){
+  display:grid !important;
+  grid-template-columns:300px 1fr !important;
+  gap:12px !important;
+  align-items:start !important;
+  padding:14px !important;
+}
+
+#directive25-enhanced-matrix .d25e-card:nth-child(2) > .card-title{
+  grid-column:1 / -1 !important;
+  margin-bottom:0 !important;
+}
+
+#directive25-enhanced-matrix .d25e-radar{
+  margin-top:0 !important;
+  padding:12px !important;
+}
+
+#directive25-enhanced-matrix .d25e-radar .card-text{
+  margin-top:4px !important;
+  font-size:12.5px !important;
+  line-height:1.4 !important;
+}
+
+#directive25-enhanced-matrix .d25e-radar-core{
+  width:210px !important;
+  height:210px !important;
+  min-width:210px !important;
+  max-width:210px !important;
+  margin-top:8px !important;
+  margin-bottom:8px !important;
+}
+
+#directive25-enhanced-matrix .d25e-state{
+  margin-top:6px !important;
+  padding:5px 8px !important;
+  font-size:10px !important;
+}
+
+#directive25-enhanced-matrix .d25e-card:nth-child(2) > .d25e-alert{
+  margin-top:0 !important;
+  padding:12px !important;
+  font-size:12.5px !important;
+  line-height:1.45 !important;
+}
+
+#directive25-enhanced-matrix .d25e-card:nth-child(2) > .d25e-alert + .d25e-alert{
+  margin-top:10px !important;
+}
+
+#directive25-enhanced-matrix .d25e-alert strong{
+  display:block !important;
+  margin-bottom:4px !important;
+  color:var(--gold) !important;
+  font-size:10px !important;
+  letter-spacing:.16em !important;
+  text-transform:uppercase !important;
+}
+
+@media(max-width:1180px){
+  #directive25-enhanced-matrix .d25e-card:first-child,
+  #directive25-enhanced-matrix .d25e-card:nth-child(2){
+    /* grid-template-columns not needed for flex layout */
+  }
+
+  #directive25-enhanced-matrix .d25e-card:first-child > .d25e-table-wrap,
+  #directive25-enhanced-matrix .d25e-card:first-child > .d25e-alert,
+  #directive25-enhanced-matrix .d25e-card:nth-child(2) > .d25e-radar,
+  #directive25-enhanced-matrix .d25e-card:nth-child(2) > .d25e-alert{
+    grid-column:1 !important;
+  }
+
+  #directive25-enhanced-matrix .d25e-card:first-child > .d25e-alert,
+  #directive25-enhanced-matrix .d25e-card:nth-child(2) > .d25e-alert{
+    margin-top:10px !important;
+  }
+}
+
+@media(max-width:760px){
+  #directive25-enhanced-matrix .d25e-table-wrap table{
+    min-width:640px !important;
+  }
+
+  #directive25-enhanced-matrix .d25e-shell{
+    padding:12px !important;
+  }
+
+  #directive25-enhanced-matrix .d25e-card{
+    padding:12px !important;
+  }
+
+  #directive25-enhanced-matrix .d25e-radar-core{
+    width:190px !important;
+    height:190px !important;
+    min-width:190px !important;
+    max-width:190px !important;
+  }
+}
+/* YONGYEOKYO D25 Compact Executive Density Patch END */
+
+
+

@@ -1,0 +1,141 @@
+/* === ID: yyk-panoramic-vivid-map === */
+
+/* MASTER BUILD: FULL-WIDTH PANORAMIC MAP & VIVID GEOGRAPHY */
+
+/* Full-width panoramic layout */
+#yykFooterLogisticsMap{
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  overflow:hidden!important;
+  background:#0a0a0a!important;
+  cursor:default!important;
+}
+#yykFooterLogisticsMap .map-shell{
+  left:0!important;
+  right:0!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:100%!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  display:flex!important;
+  justify-content:center!important;
+  align-items:center!important;
+  overflow:hidden!important;
+  z-index:3!important;
+}
+
+
+/* Watermark stays behind the map */
+#yykFooterLogisticsMap::before{
+  z-index:0!important;
+}
+#yykFooterLogisticsMap::after{
+  background:linear-gradient(180deg,rgba(10,10,10,.02),rgba(10,10,10,.70))!important;
+}
+
+/* Vivid geography */
+#yykFooterLogisticsMap .land{
+  fill:rgba(39,39,42,.60)!important;
+  stroke:#71717a!important;
+  stroke-width:1px!important;
+  stroke-linejoin:round!important;
+  filter:none!important;
+}
+#yykFooterLogisticsMap .sea-grid{
+  stroke:rgba(255,255,255,.04)!important;
+  stroke-width:1!important;
+  vector-effect:non-scaling-stroke!important;
+}
+#yykFooterLogisticsMap .bathymetry path{
+  stroke:rgba(255,255,255,.035)!important;
+  stroke-width:1!important;
+  vector-effect:non-scaling-stroke!important;
+  filter:none!important;
+}
+#yykFooterLogisticsMap .sea-label{
+  fill:rgba(255,255,255,.12)!important;
+  text-shadow:none!important;
+}
+
+/* Precision dash logistics */
+#yykFooterLogisticsMap .route-base{
+  stroke:rgba(201,162,39,.10)!important;
+  stroke-width:3.5!important;
+  stroke-dasharray:4 6!important;
+  stroke-linecap:round!important;
+  filter:none!important;
+}
+#yykFooterLogisticsMap .route,
+#yykFooterLogisticsMap .route-glow{
+  stroke:#c9a227!important;
+  stroke-dasharray:4 6!important;
+  stroke-dashoffset:100!important;
+  stroke-linecap:round!important;
+  animation:panoramic-dash-flow 20s linear infinite!important;
+  animation-timing-function:linear!important;
+  animation-iteration-count:infinite!important;
+  filter:drop-shadow(0 0 4px #c9a227)!important;
+}
+#yykFooterLogisticsMap .route{
+  stroke-width:3.6!important;
+}
+#yykFooterLogisticsMap .route-glow{
+  stroke-width:.9!important;
+  opacity:.44!important;
+}
+@keyframes panoramic-dash-flow{
+  from{stroke-dashoffset:100}
+  to{stroke-dashoffset:0}
+}
+
+/* Small emerald ports + tight pulse; no large ovals */
+#yykFooterLogisticsMap .port-dot{
+  r:3!important;
+  fill:#c9a227!important;
+  stroke:#c9a227!important;
+  filter:drop-shadow(0 0 3px rgba(201,162,39,.85))!important;
+}
+#yykFooterLogisticsMap .precision-core{
+  fill:#c9a227!important;
+  stroke:#c9a227!important;
+  filter:drop-shadow(0 0 3px rgba(201,162,39,.85))!important;
+}
+#yykFooterLogisticsMap .precision-ring{
+  stroke:#c9a227!important;
+  opacity:.68!important;
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:yyk-tight-port-pulse 2.4s ease-in-out infinite!important;
+}
+#yykFooterLogisticsMap .precision-cross{
+  stroke:#c9a227!important;
+  opacity:.52!important;
+}
+@keyframes yyk-tight-port-pulse{
+  0%,100%{transform:scale(.92);opacity:.42}
+  50%{transform:scale(1.18);opacity:.82}
+}
+
+/* Remove crosshair cursor completely */
+#yykFooterLogisticsMap,
+#yykFooterLogisticsMap .map-shell,
+
+#yykFooterLogisticsMap .port-node,
+#yykFooterLogisticsMap button,
+#yykFooterLogisticsMap a,
+#yykFooterLogisticsMap [role="button"]{
+  cursor:pointer!important;
+}
+#yykFooterLogisticsMap .terminal-crosshair,
+#yykFooterLogisticsMap .square-cursor,
+#yykFooterLogisticsMap [class*="crosshair"],
+#yykFooterLogisticsMap [class*="cursor"]{
+  display:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+}
+
+

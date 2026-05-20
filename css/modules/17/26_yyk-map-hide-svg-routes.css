@@ -1,0 +1,19 @@
+/* === ID: yyk-map-hide-svg-routes === */
+
+
+#yykFooterLogisticsMap .port-label {
+    font-size:19px !important;
+    fill: #ffffff !important;
+}
+#yykFooterLogisticsMap .port-dot {
+    width: 20px !important;
+    height: 20px !important;
+    fill: transparent !important;
+    stroke: transparent !important;
+    cursor: pointer;
+}
+#yykFooterLogisticsMap .precision-marker {
+    display: none !important;
+}
+
+

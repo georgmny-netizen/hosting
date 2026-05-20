@@ -1,0 +1,20 @@
+/* === ID: yyk-trading-os-stage1-style === */
+
+.trading-os-stage1{margin-top:14px;border:1px solid rgba(201,162,39,.42);background:linear-gradient(180deg,rgba(201,162,39,.07),rgba(255,255,255,.025));overflow:hidden}
+.trading-os-stage1-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;padding:15px;border-bottom:1px solid rgba(255,255,255,.09)}
+.trading-os-stage1-title{font-size:13px;color:#fff;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+.trading-os-stage1-state{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#d4b85c;border:1px solid rgba(201,162,39,.45);background:rgba(201,162,39,.10);padding:6px 8px;white-space:nowrap}
+.trading-os-stage1-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:15px}
+.trading-os-stage1-cell{border:1px solid rgba(255,255,255,.09);background:rgba(0,0,0,.20);padding:12px;min-height:82px}
+.trading-os-stage1-k{display:block;color:var(--gold);font-size:9px;letter-spacing:.18em;text-transform:uppercase;line-height:1.25}
+.trading-os-stage1-v{display:block;margin-top:7px;color:#fff;font-size:20px;line-height:1.05;font-weight:800;letter-spacing:-.03em}
+.trading-os-stage1-n{display:block;margin-top:7px;color:var(--muted2);font-size:11px;line-height:1.35}
+.trading-os-stage1-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid rgba(255,255,255,.09)}
+.trading-os-stage1-step{padding:12px;border-right:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.14);font-size:11px;color:var(--muted);line-height:1.4}
+.trading-os-stage1-step:last-child{border-right:0}.trading-os-stage1-step strong{display:block;color:#fff;font-size:12px;margin-bottom:5px}
+.trading-os-stage1-actions{display:flex;gap:8px;flex-wrap:wrap;padding:0 15px 15px}.trading-os-stage1-actions .micro-btn{font-size:10px}
+.trading-os-stage1-alert{border-top:1px solid rgba(255,255,255,.09);padding:12px 15px;color:var(--muted);font-size:12px;line-height:1.45;background:rgba(0,0,0,.12)}
+@media(max-width:1100px){.trading-os-stage1-grid{grid-template-columns:repeat(2,1fr)}.trading-os-stage1-flow{grid-template-columns:1fr}}
+@media(max-width:760px){.trading-os-stage1-head{display:block}.trading-os-stage1-state{display:inline-block;margin-top:9px}.trading-os-stage1-grid{grid-template-columns:1fr}}
+
+

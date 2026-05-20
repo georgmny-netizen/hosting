@@ -1,0 +1,78 @@
+/* === ID: yyk-precision-nodes-laser-ping-upgrade === */
+
+/* PRECISION NODES — laser-square port buttons; table structure untouched */
+#yykFooterLogisticsMap .port-node{
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+#yykFooterLogisticsMap .port-node *{
+  cursor:pointer!important;
+}
+#yykFooterLogisticsMap .port-dot,
+#yykFooterLogisticsMap .precision-core{
+  width:10px!important;
+  height:10px!important;
+  fill:#c9a227!important;
+  stroke:#c9a227!important;
+  stroke-width:0!important;
+  rx:0!important;
+  ry:0!important;
+  shape-rendering:crispEdges!important;
+  filter:drop-shadow(0 0 4px #c9a227) drop-shadow(0 0 14px rgba(201,162,39,.90))!important;
+}
+#yykFooterLogisticsMap .precision-marker{
+  pointer-events:none!important;
+}
+#yykFooterLogisticsMap .precision-ring{
+  display:block!important;
+  visibility:visible!important;
+  fill:none!important;
+  stroke:#c9a227!important;
+  stroke-width:1.7px!important;
+  opacity:.88!important;
+  transform-origin:center!important;
+  animation:yykLaserRadarPing 1.18s cubic-bezier(.18,.72,.22,1) infinite!important;
+  filter:drop-shadow(0 0 7px #c9a227) drop-shadow(0 0 22px rgba(201,162,39,.90))!important;
+}
+#yykFooterLogisticsMap .precision-cross{
+  stroke:#c9a227!important;
+  stroke-width:1.15px!important;
+  opacity:.76!important;
+  vector-effect:non-scaling-stroke!important;
+  filter:drop-shadow(0 0 5px rgba(201,162,39,.85))!important;
+}
+#yykFooterLogisticsMap .port-node:hover .precision-ring,
+#yykFooterLogisticsMap .port-node.is-open .precision-ring,
+#yykFooterLogisticsMap .port-node.is-locked .precision-ring{
+  stroke-width:2.25px!important;
+  opacity:1!important;
+  animation-duration:.82s!important;
+}
+#yykFooterLogisticsMap .port-node:hover .port-dot,
+#yykFooterLogisticsMap .port-node.is-open .port-dot,
+#yykFooterLogisticsMap .port-node.is-locked .port-dot,
+#yykFooterLogisticsMap .port-node:hover .precision-core,
+#yykFooterLogisticsMap .port-node.is-open .precision-core,
+#yykFooterLogisticsMap .port-node.is-locked .precision-core{
+  filter:drop-shadow(0 0 6px #c9a227) drop-shadow(0 0 24px rgba(201,162,39,1))!important;
+}
+#yykFooterLogisticsMap .port-label{
+  text-anchor:middle!important;
+  dominant-baseline:auto!important;
+  alignment-baseline:auto!important;
+  pointer-events:none!important;
+  transform:translateY(-2px)!important;
+}
+#yykFooterLogisticsMap .yyk-proof-card-master{
+  transition:none!important;
+}
+@keyframes yykLaserRadarPing{
+  0%{transform:scale(.42);opacity:1;stroke-width:2.3px}
+  52%{opacity:.72;stroke-width:1.55px}
+  100%{transform:scale(2.35);opacity:0;stroke-width:.65px}
+}
+@media(max-width:900px){
+  #yykFooterLogisticsMap .port-label{font-size:38px !important}
+}
+
+

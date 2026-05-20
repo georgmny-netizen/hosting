@@ -1,0 +1,188 @@
+/* === ID: yyk-terminal-ux-layer === */
+
+/* Terminal UX Layer — procurement-grade decision interface, non-destructive */
+.yyk-terminal-wrap{
+  margin-top:14px;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(0,0,0,.30),rgba(0,0,0,.18));
+  
+  overflow:hidden;
+}
+.yyk-terminal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:14px;
+  padding:14px 16px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.22);
+}
+.yyk-terminal-title{
+  color:#fff;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+.yyk-terminal-sub{
+  color:var(--muted2);
+  font-size:11px;
+  line-height:1.45;
+  margin-top:6px;
+  max-width:720px;
+}
+.yyk-terminal-clock{
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:.12em;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  white-space:nowrap;
+}
+.yyk-terminal-grid{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  min-height:310px;
+}
+.yyk-terminal-rail{
+  border-right:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.16);
+  padding:10px;
+}
+.yyk-terminal-btn{
+  width:100%;
+  border:1px solid transparent;
+  background:transparent;
+  color:var(--muted);
+  display:grid;
+  grid-template-columns:46px 1fr auto;
+  gap:10px;
+  align-items:center;
+  text-align:left;
+  padding:10px;
+  
+  cursor:pointer;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+.yyk-terminal-btn:hover,.yyk-terminal-btn.active{
+  border-color:rgba(201,162,39,.55);
+  background:rgba(201,162,39,.08);
+  color:#fff;
+}
+.yyk-terminal-code{
+  color:var(--gold);
+  font-size:13px;
+  font-weight:700;
+}
+.yyk-terminal-name{
+  font-size:12px;
+  line-height:1.28;
+}
+.yyk-terminal-signal{
+  border:1px solid rgba(201,162,39,.45);
+  background:rgba(201,162,39,.09);
+  color:#d4b85c;
+  
+  padding:4px 6px;
+  font-size:9px;
+  text-transform:uppercase;
+}
+.yyk-terminal-signal.rfq{
+  border-color:rgba(201,162,39,.45);
+  background:rgba(201,162,39,.08);
+  color:var(--gold);
+}
+.yyk-terminal-panel{
+  display:none;
+  padding:16px;
+}
+.yyk-terminal-panel.active{
+  display:block;
+}
+.yyk-terminal-kpi{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-bottom:10px;
+}
+.yyk-terminal-kpi .cell{
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.025);
+  
+  padding:10px;
+}
+.yyk-terminal-kpi .k{
+  color:var(--gold);
+  font-size:9px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+.yyk-terminal-kpi .v{
+  color:#fff;
+  font-size:15px;
+  margin-top:6px;
+  line-height:1.2;
+}
+.yyk-terminal-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+.yyk-terminal-table th,.yyk-terminal-table td{
+  border:1px solid rgba(255,255,255,.08);
+  padding:9px 10px;
+  font-size:12px;
+  line-height:1.45;
+  vertical-align:top;
+}
+.yyk-terminal-table th{
+  color:var(--gold);
+  background:rgba(0,0,0,.20);
+  font-size:9px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.yyk-terminal-note{
+  margin-top:10px;
+  border:1px solid rgba(201,162,39,.30);
+  background:rgba(201,162,39,.06);
+  
+  padding:10px 12px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.55;
+}
+.yyk-terminal-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.yyk-terminal-action{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+  color:var(--text);
+  
+  padding:9px 11px;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+.yyk-terminal-action.primary{
+  border-color:rgba(201,162,39,.58);
+  background:rgba(201,162,39,.10);
+}
+@media(max-width:960px){
+  .yyk-terminal-grid{grid-template-columns:1fr}
+  .yyk-terminal-rail{border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .yyk-terminal-kpi{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .yyk-terminal-head{display:block}
+  .yyk-terminal-clock{margin-top:8px}
+  .yyk-terminal-kpi{grid-template-columns:1fr}
+}
+
+

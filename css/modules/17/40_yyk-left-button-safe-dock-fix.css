@@ -1,0 +1,32 @@
+/* === ID: yyk-left-button-safe-dock-fix === */
+
+/* Safe Dock Fix — keeps left-side module buttons inside the content rail and prevents overlap */
+.yyk-data-room-launch,
+.yyk-legal-launch,
+.yyk-tds-launch{
+  left:max(20px, calc((100vw - 1500px) / 2 + 20px)) !important;
+  right:auto !important;
+  max-width:min(280px, calc(100vw - 40px)) !important;
+  white-space:normal !important;
+  text-align:left !important;
+  line-height:1.25 !important;
+}
+.yyk-data-room-launch{bottom:20px !important;z-index:9250 !important}
+.yyk-legal-launch{bottom:74px !important;z-index:9350 !important}
+.yyk-tds-launch{bottom:128px !important;z-index:9360 !important}
+@media(max-width:960px){
+  .yyk-data-room-launch,
+  .yyk-legal-launch,
+  .yyk-tds-launch{
+    left:14px !important;
+    right:14px !important;
+    width:auto !important;
+    max-width:none !important;
+    text-align:center !important;
+  }
+  .yyk-data-room-launch{bottom:74px !important}
+  .yyk-legal-launch{bottom:128px !important}
+  .yyk-tds-launch{bottom:182px !important}
+}
+
+

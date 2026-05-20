@@ -1,0 +1,92 @@
+/* === ID: yyk-stage-2-5-clean-interface-no-ghosts === */
+
+/* STAGE 2.5 — CLEAN INTERFACE / NO GHOST TEXT
+   Non-structural patch: removes hover artifacts, pseudo-label leakage and accidental text shadows under CTA/buttons. */
+:root{--yyk-ghost-safe-z:5}
+
+/* Keep action controls above decorative layers */
+button,a,.micro-btn,.nav-link,.lang-btn,.region-btn,.sogo-primary-cta,.yyk-vdr-tab,.yyk-vdr-action,.yyk-return-to-site,.yyk-back-main,.yyk-clean-action,[role="button"]{
+  position:relative!important;
+  z-index:var(--yyk-ghost-safe-z)!important;
+  overflow:hidden!important;
+  text-decoration:none!important;
+  box-shadow:none!important;
+}
+
+/* Remove unwanted generated labels on/under interactive elements */
+button::before,button::after,
+a::before,a::after,
+.micro-btn::before,.micro-btn::after,
+.nav-link::before,.nav-link::after,
+.lang-btn::before,.lang-btn::after,
+.region-btn::before,.region-btn::after,
+.sogo-primary-cta::before,.sogo-primary-cta::after,
+.yyk-vdr-tab::before,.yyk-vdr-tab::after,
+.yyk-vdr-action::before,.yyk-vdr-action::after,
+.yyk-return-to-site::before,.yyk-return-to-site::after,
+.yyk-back-main::before,.yyk-back-main::after,
+.yyk-clean-action::before,.yyk-clean-action::after,
+[role="button"]::before,[role="button"]::after{
+  content:none!important;
+  display:none!important;
+}
+
+/* Block pseudo-content leakage from label/tooltip data around action zones */
+[data-label]::before,[data-label]::after,
+[data-tooltip]::before,[data-tooltip]::after,
+[data-title]::before,[data-title]::after,
+[data-hover]::before,[data-hover]::after,
+[data-hint]::before,[data-hint]::after,
+[class*="tooltip"]::before,[class*="tooltip"]::after,
+[class*="ghost"]::before,[class*="ghost"]::after,
+[class*="label"]::before,[class*="label"]::after{
+  content:none!important;
+}
+
+/* Preserve legitimate visual meters/heatmaps by limiting only pseudo-text zones */
+.yyk-heat-cell::before,.bar-fill::before,.track .fill::before,.sogo-progress span::before,.footer-tech-dot::before,.terminal-ticker .dot::before{
+  display:initial!important;
+}
+
+/* No thin hover frames or accidental underline strips */
+button:hover,a:hover,.micro-btn:hover,.nav-link:hover,.lang-btn:hover,.region-btn:hover,.sogo-primary-cta:hover,.yyk-vdr-tab:hover,.yyk-vdr-action:hover,.yyk-return-to-site:hover,.yyk-back-main:hover{
+  text-decoration:none!important;
+  outline:none!important;
+  box-shadow:none!important;
+}
+button:focus-visible,a:focus-visible,.micro-btn:focus-visible,.nav-link:focus-visible,.lang-btn:focus-visible,.region-btn:focus-visible,.sogo-primary-cta:focus-visible,.yyk-vdr-tab:focus-visible,.yyk-vdr-action:focus-visible,.yyk-return-to-site:focus-visible,.yyk-back-main:focus-visible{
+  outline:1px solid rgba(255,215,0,.68)!important;
+  outline-offset:3px!important;
+  box-shadow:none!important;
+}
+
+/* Make VDR tone rows robust: no orphan word like orphan text escaping the card */
+.yyk-vdr-tone-row,.yyk-vdr-tone-row *,.yyk-vdr-card,.yyk-vdr-card *,.yyk-vdr-panel,.yyk-vdr-panel *{
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+  max-width:100%!important;
+}
+.yyk-vdr-tone-row s,.yyk-vdr-tone-row b{
+  display:inline!important;
+  white-space:normal!important;
+}
+
+/* Contain decorative overlays inside cards, never under buttons */
+.card,.dense-card,.passport,.verification-card,.route-card,.compliance-card,.product-card,.yyk-vdr-card,.yyk-vdr-panel,.table-panel{
+  position:relative!important;
+  isolation:isolate!important;
+}
+.card > button,.card > a,.dense-card button,.dense-card a,.passport button,.passport a,.verification-card button,.verification-card a,.route-card button,.route-card a,.compliance-card button,.compliance-card a,.product-card button,.product-card a,.yyk-vdr-card button,.yyk-vdr-card a,.yyk-vdr-panel button,.yyk-vdr-panel a{
+  z-index:10!important;
+}
+
+/* Suppress accidental raw JS/text remnants when wrapped by patch tooling */
+.yyk-ghost-text,.yyk-raw-script-leak,.yyk-hidden-leak{
+  display:none!important;
+  visibility:hidden!important;
+  width:0!important;
+  height:0!important;
+  overflow:hidden!important;
+}
+
+

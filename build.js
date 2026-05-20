@@ -25,16 +25,36 @@ console.log('=========================================\n');
 
 if (fs.existsSync(CSS_MODULES_DIR)) {
   console.log('  [CSS] Assembling modules...');
-  const cssFiles = fs.readdirSync(CSS_MODULES_DIR)
-    .filter(f => f.endsWith('.css'))
-    .sort();
+  const entries = fs.readdirSync(CSS_MODULES_DIR).sort();
   
   let cssOutput = '';
-  for (const file of cssFiles) {
-    const content = fs.readFileSync(path.join(CSS_MODULES_DIR, file), 'utf-8');
-    cssOutput += content + '\n';
-    const lines = content.split('\n').length;
-    console.log(`    ✓ ${file.padEnd(55)} ${lines} lines`);
+  let moduleCount = 0;
+  
+  for (const entry of entries) {
+    const entryPath = path.join(CSS_MODULES_DIR, entry);
+    const stat = fs.statSync(entryPath);
+    
+    if (stat.isFile() && entry.endsWith('.css')) {
+      // Flat CSS file (modules 01-15)
+      const content = fs.readFileSync(entryPath, 'utf-8');
+      cssOutput += content + '\n';
+      const lines = content.split('\n').length;
+      console.log(`    ✓ ${entry.padEnd(55)} ${lines} lines`);
+      moduleCount++;
+    } else if (stat.isDirectory()) {
+      // Subdirectory (modules 16/, 17/) — read all .css inside in sorted order
+      const subFiles = fs.readdirSync(entryPath)
+        .filter(f => f.endsWith('.css'))
+        .sort();
+      let subLines = 0;
+      for (const sf of subFiles) {
+        const content = fs.readFileSync(path.join(entryPath, sf), 'utf-8');
+        cssOutput += content + '\n';
+        subLines += content.split('\n').length;
+      }
+      console.log(`    ✓ ${(entry + '/ (' + subFiles.length + ' files)').padEnd(55)} ${subLines} lines`);
+      moduleCount += subFiles.length;
+    }
   }
   
   // Remove trailing newlines to match original
@@ -42,7 +62,7 @@ if (fs.existsSync(CSS_MODULES_DIR)) {
   
   fs.writeFileSync(CSS_OUTPUT, cssOutput, { encoding: 'utf-8' });
   const cssSizeKB = Math.round(fs.statSync(CSS_OUTPUT).size / 1024);
-  console.log(`  → legacy-blocks.css written: ${cssSizeKB} KB from ${cssFiles.length} modules\n`);
+  console.log(`  → legacy-blocks.css written: ${cssSizeKB} KB from ${moduleCount} modules\n`);
 } else {
   console.log('  [CSS] No modules directory found, using existing legacy-blocks.css\n');
 }

@@ -1,0 +1,21 @@
+/* === ID: yyk-tier1-footer-terminal-functions === */
+
+#yykFooterSystemStatus{width:90vw;max-width:1480px;margin:0 auto;padding:18px 0 0;display:flex;justify-content:flex-end;align-items:center;gap:10px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#6F7882}
+#yykFooterSystemStatus .yyk-green{color:#d4b85c;text-shadow:0 0 12px rgba(201,162,39,.18)}
+.yyk-live-dot{width:4px;height:4px;background:#d4b85c;box-shadow:0 0 14px rgba(201,162,39,.55);display:inline-block;animation:yykTerminalPulse 1.35s ease-in-out infinite}
+@keyframes yykTerminalPulse{0%,100%{opacity:.45;transform:scale(.82)}50%{opacity:1;transform:scale(1.22)}}
+.yyk-pdf-vault{margin-top:14px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.025);padding:12px}
+.yyk-pdf-vault h4{margin:0 0 10px!important;font-size:10px!important;letter-spacing:.18em!important;color:#C9A227!important}
+.yyk-pdf-vault a{display:flex;align-items:center;gap:8px;color:#AAB0B8;font-size:12px;line-height:1.55;padding:5px 0;transition:color .3s ease,transform .3s ease}
+.yyk-pdf-vault a span{color:#d4b85c;transition:color .3s ease,text-shadow .3s ease}
+.yyk-pdf-vault a:hover{color:#E5E8EC;transform:translateX(2px)}
+.yyk-pdf-vault a:hover span{color:#d4b85c;text-shadow:0 0 14px rgba(201,162,39,.35)}
+.yyk-qc-lab-btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(201,162,39,.45);background:rgba(201,162,39,.055);color:#d4b85c!important;padding:10px 12px;font-size:11px;letter-spacing:.10em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;transition:border-color .3s ease,background-color .3s ease,box-shadow .3s ease}
+.yyk-qc-lab-btn:hover{border-color:rgba(201,162,39,.75);background:rgba(201,162,39,.10);box-shadow:0 0 22px rgba(201,162,39,.12)}
+#yykFooterTimezones{width:90vw;max-width:1480px;margin:16px auto 0;border-top:1px solid rgba(255,255,255,.07);padding-top:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:10px;letter-spacing:.14em;color:#6F7882;text-transform:uppercase;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.yyk-verified-live-all{border-color:rgba(201,162,39,.78)!important;background:rgba(201,162,39,.13)!important;color:#d4b85c!important;box-shadow:0 0 0 1px rgba(201,162,39,.22) inset,0 0 28px rgba(201,162,39,.20)!important;animation:yykVerifiedPulse 1.55s ease-in-out infinite!important}
+#yykFooterSystemStatus.yyk-live .yyk-green{color:#d4b85c;text-shadow:0 0 16px rgba(201,162,39,.28)}
+#yykFooterLogisticsMap.yyk-live{border-color:rgba(201,162,39,.24);box-shadow:0 0 36px rgba(201,162,39,.08)}
+@media(max-width:760px){#yykFooterSystemStatus{justify-content:flex-start;font-size:9px;line-height:1.6}#yykFooterTimezones{display:block;line-height:1.8}}
+
+

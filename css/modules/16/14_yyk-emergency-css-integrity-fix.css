@@ -1,0 +1,10 @@
+/* === ID: yyk-emergency-css-integrity-fix === */
+
+html,body,button,input,select,textarea{font-family:"Segoe UI","Microsoft JhengHei","Meiryo","Malgun Gothic",Arial,Helvetica,sans-serif!important;}
+.regional-legal-switch.yyk-lang-panel{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;gap:0!important;white-space:nowrap!important;flex-wrap:nowrap!important;margin-top:2px!important;font-family:"Segoe UI","Microsoft JhengHei","Meiryo","Malgun Gothic",sans-serif!important;font-size:12px!important;font-weight:300!important;letter-spacing:.02em!important;line-height:1.2!important;}
+.yyk-lang-panel .region-btn{border:0!important;background:transparent!important;color:rgba(245,245,242,.68)!important;padding:0 6px!important;margin:0!important;font:inherit!important;font-weight:300!important;letter-spacing:.02em!important;text-transform:none!important;box-shadow:none!important;cursor:pointer!important;}
+.yyk-lang-panel .region-btn.active{color:#fff!important;font-weight:500!important;}
+.yyk-lang-panel .region-sep{color:rgba(245,245,242,.32)!important;padding:0!important;margin:0!important;font-weight:300!important;}
+@media(max-width:760px){.regional-legal-switch.yyk-lang-panel{justify-content:flex-start!important;overflow-x:auto!important;max-width:100%!important;}}
+
+

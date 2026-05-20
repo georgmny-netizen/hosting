@@ -1,0 +1,65 @@
+/* === ID: yyk-apac-engine-final === */
+
+/* YONGYEOKYO APAC ENGINE — scoped, terminal-grade, zero-flicker */
+#yykFooterLogisticsMap,
+#yykFooterLogisticsMap *{box-sizing:border-box}
+#yykFooterLogisticsMap{position:relative!important;isolation:isolate!important;overflow:hidden!important;cursor:default!important;transform:none!important;scale:1!important;zoom:1!important;transition:none!important;contain:layout style!important}
+#yykFooterLogisticsMap svg,
+#yykFooterLogisticsMap .map-shell{transform:none!important;scale:1!important;zoom:1!important;transition:none!important;cursor:default!important}
+#yykFooterLogisticsMap .precision-marker,
+#yykFooterLogisticsMap .precision-cross{display:none!important}
+#yykFooterLogisticsMap .terminal-card,
+#yykFooterLogisticsMap .local-port-card,
+#yykFooterLogisticsMap .yyk-proof-card-master{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}
+#yykFooterLogisticsMap .route-group[data-route="shanghai-kaohsiung"],
+#yykFooterLogisticsMap .route-group[data-route="shanghai-kaohsiung"] *{display:none!important;opacity:0!important}
+#yykFooterLogisticsMap .route-base{fill:none!important;stroke:rgba(176,184,194,.20)!important;stroke-width:1.1!important;vector-effect:non-scaling-stroke!important}
+#yykFooterLogisticsMap .route{fill:none!important;stroke:#FFCC33!important;stroke-width:1.45!important;stroke-dasharray:6 9!important;stroke-linecap:square!important;opacity:.52!important;vector-effect:non-scaling-stroke!important;animation:yykApacRouteFlow 5.8s linear infinite!important}
+#yykFooterLogisticsMap .route-glow{fill:none!important;stroke:#FFCC33!important;stroke-width:5!important;opacity:.08!important;vector-effect:non-scaling-stroke!important;animation:none!important}
+#yykFooterLogisticsMap .route-group.is-active .route{opacity:.95!important;stroke-width:3.6!important}
+#yykFooterLogisticsMap .route-group.is-dim .route{opacity:.20!important}
+@keyframes yykApacRouteFlow{from{stroke-dashoffset:0}to{stroke-dashoffset:-90}}
+#yykFooterLogisticsMap .port-node{cursor:default!important;pointer-events:auto!important;z-index:60!important;transform:none!important;transition:none!important}
+#yykFooterLogisticsMap .port-dot{fill:#FFCC33!important;stroke:#d7ffea!important;stroke-width:1!important;rx:0!important;ry:0!important;transform:none!important;transition:opacity .3s ease!important;cursor:default!important;filter:drop-shadow(0 0 6px rgba(255,204,51,.45))!important;animation:yykApacSoftNode 5.5s ease-in-out infinite!important}
+#yykFooterLogisticsMap .port-node[data-port="Busan"] .port-dot{animation:yykApacHubBreath 3s ease-in-out infinite!important;filter:drop-shadow(0 0 10px rgba(255,204,51,.72))!important}
+#yykFooterLogisticsMap[data-proof-open="1"] .port-dot,
+#yykFooterLogisticsMap .port-node.is-open .port-dot{animation-play-state:paused!important;opacity:1!important}
+@keyframes yykApacHubBreath{0%,100%{opacity:1}50%{opacity:.58}}
+@keyframes yykApacSoftNode{0%,100%{opacity:.92}50%{opacity:.72}}
+#yykFooterLogisticsMap .port-label{font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;letter-spacing:.16em!important;fill:rgba(245,245,242,.72)!important;cursor:default!important;pointer-events:none!important}
+#yykFooterLogisticsMap .yyk-apac-hitbox{fill:transparent!important;stroke:none!important;pointer-events:all!important;cursor:default!important}
+#yykFooterLogisticsMap .yyk-apac-badge{position:absolute;z-index:120;display:none;pointer-events:none;width:max-content;max-width:240px;padding:7px 9px;border:1px solid rgba(255,204,51,.46);background:#050505;color:#FFCC33;font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:10px;line-height:1.25;letter-spacing:.08em;text-transform:uppercase;border-radius:0!important;box-shadow:none!important;opacity:0;transition:opacity .18s ease!important}
+#yykFooterLogisticsMap .yyk-apac-badge.is-visible{display:block;opacity:1}
+#yykFooterLogisticsMap .yyk-proof-card{position:absolute;z-index:150;display:none;width:480px!important;max-width:480px!important;padding:22px!important;border:1px solid rgba(255,204,51,.48)!important;background:#050505!important;color:#f5f5f2!important;font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;border-radius:0!important;box-shadow:0 24px 80px rgba(0,0,0,.42)!important;opacity:0;transition:opacity .22s ease!important;pointer-events:auto!important}
+#yykFooterLogisticsMap .yyk-proof-card.is-visible{display:block;opacity:1}
+#yykFooterLogisticsMap .yyk-proof-card *{border-radius:0!important;font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important}
+#yykFooterLogisticsMap .yyk-proof-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.10)}
+#yykFooterLogisticsMap .yyk-proof-title{font-size:12px;line-height:1.2;letter-spacing:.12em;text-transform:uppercase;color:#FFCC33;font-weight:800}
+#yykFooterLogisticsMap .yyk-proof-close{width:28px;height:28px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#d8ffe8;cursor:default!important;font-size:16px;line-height:1}
+#yykFooterLogisticsMap .yyk-proof-status{font-size:10px;line-height:1.45;color:rgba(200,204,210,.78);letter-spacing:.10em;text-transform:uppercase;margin-bottom:12px}
+#yykFooterLogisticsMap .yyk-proof-table{width:100%!important;border-collapse:collapse!important;margin:0!important}
+#yykFooterLogisticsMap .yyk-proof-table th,
+#yykFooterLogisticsMap .yyk-proof-table td{border:1px solid rgba(255,255,255,.10)!important;padding:10px 11px!important;text-align:left!important;vertical-align:top!important;font-size:11px!important;line-height:1.45!important}
+#yykFooterLogisticsMap .yyk-proof-table th{width:112px!important;color:rgba(200,204,210,.50)!important;font-weight:400!important;letter-spacing:.14em!important;text-transform:uppercase!important;background:rgba(255,255,255,.025)!important}
+#yykFooterLogisticsMap .yyk-proof-table td{color:#fff!important;font-weight:800!important;background:rgba(0,0,0,.18)!important}
+#yykFooterLogisticsMap .yyk-proof-link{display:inline-flex;align-items:center;gap:6px;margin:0 6px 6px 0;padding:5px 7px;border:1px solid rgba(255,204,51,.32);background:rgba(255,204,51,.055);color:#d8ffe8!important;font-size:10px!important;font-weight:800!important;letter-spacing:.08em;text-transform:uppercase;text-decoration:none!important;cursor:default!important}
+#yykFooterLogisticsMap .yyk-proof-link:hover{border-color:rgba(255,204,51,.65);background:rgba(255,204,51,.10)}
+#yykFooterLogisticsMap .yyk-proof-copy{cursor:default!important;color:#fff!important;text-decoration:underline;text-decoration-color:rgba(255,204,51,.45);text-underline-offset:3px}
+#yykFooterLogisticsMap .yyk-proof-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+#yykFooterLogisticsMap .yyk-proof-action{border:1px solid rgba(255,204,51,.50);background:rgba(255,204,51,.10);color:#d8ffe8;padding:10px 12px;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;cursor:default!important}
+#yykFooterLogisticsMap .yyk-proof-action:hover{background:rgba(255,204,51,.16)}
+.yyk-apac-print-report{display:none}
+@media print{
+  body *{visibility:hidden!important}
+  .yyk-apac-print-report,.yyk-apac-print-report *{visibility:visible!important}
+  .yyk-apac-print-report{display:block!important;position:fixed!important;inset:0!important;padding:34px!important;background:#fff!important;color:#000!important;font-family:'IBM Plex Mono',monospace!important;z-index:999999!important}
+  .yyk-apac-print-report:before{content:'OFFICIAL YONGYEOKYO DATA';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-28deg);font-size:36px;font-weight:900;letter-spacing:.10em;color:rgba(0,0,0,.06)}
+  .yyk-apac-print-report h1{font-size:20px!important;letter-spacing:.12em!important;margin:0 0 20px!important;color:#000!important}
+  .yyk-apac-print-report table{width:100%!important;border-collapse:collapse!important;margin-top:14px!important}
+  .yyk-apac-print-report th,.yyk-apac-print-report td{border:1px solid #111!important;padding:12px!important;color:#000!important;font-size:12px!important;text-align:left!important}
+  .yyk-apac-print-report .sig{margin-top:28px;font-weight:900!important}
+
+  .yyk-apac-print-report .yyk-certified-export-footer{position:absolute!important;left:34px!important;right:34px!important;bottom:24px!important;border-top:1px solid #111!important;padding-top:10px!important;font-size:10px!important;line-height:1.45!important;color:#111!important;font-weight:700!important;letter-spacing:.02em!important}
+}
+
+

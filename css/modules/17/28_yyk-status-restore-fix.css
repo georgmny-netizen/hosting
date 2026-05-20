@@ -1,0 +1,135 @@
+/* === ID: yyk-status-restore-fix === */
+
+/* Status Panels Layout Fix */
+#yykFooterLogisticsMap {
+    display: flex;
+    flex-direction: column;
+}
+
+#yykFooterLogisticsMap .map-status-strip {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    z-index: 2 !important;
+    width: calc(100% - 48px) !important;
+    margin: 12px 24px 0 !important;
+    padding: 12px 14px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 12px 18px !important;
+    border: 1px solid rgba(16, 185, 129, 0.18) !important;
+    background: rgba(0, 0, 0, 0.58) !important;
+    color: #c9a227 !important;
+    font-size: 11px !important;
+    letter-spacing: 0.1em !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#yykFooterLogisticsMap .map-status-strip span {
+    line-height: 1.35 !important;
+    white-space: normal !important;
+}
+
+#yykFooterLogisticsMap .map-status-strip i {
+    background: #c9a227 !important;
+    box-shadow: 0 0 8px #c9a227 !important;
+}
+
+#yykFooterLogisticsMap .route-status-panel {
+    position: relative !important;
+    right: auto !important;
+    left: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    z-index: 2 !important;
+    width: calc(100% - 48px) !important;
+    margin: 12px 24px 24px !important;
+    padding: 15px 16px !important;
+    display: grid !important;
+    grid-template-columns: 1.15fr repeat(4, minmax(130px, 1fr)) !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(16, 185, 129, 0.15) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#yykFooterLogisticsMap .route-status-panel .title {
+    display: flex !important;
+    align-items: center !important;
+    background: transparent !important;
+    color: #c9a227 !important;
+    font-weight: 900 !important;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.6) !important;
+    margin: 0 !important;
+    padding: 10px 0 !important;
+    font-size: 11px !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+}
+
+#yykFooterLogisticsMap .route-status-dot {
+    background: #c9a227 !important;
+    box-shadow: 0 0 10px #c9a227 !important;
+    display: inline-block !important;
+    width: 8px !important;
+    height: 8px !important;
+    margin-right: 8px !important;
+    border-radius: 50% !important;
+}
+
+#yykFooterLogisticsMap .route-status-row {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 5px !important;
+    margin: 0 !important;
+    padding: 10px 11px !important;
+    border: 1px solid rgba(16, 185, 129, 0.14) !important;
+    background: rgba(16, 185, 129, 0.02) !important;
+}
+
+#yykFooterLogisticsMap .route-status-row span:first-child {
+    font-size: 9px !important;
+    color: rgba(16, 185, 129, 0.6) !important;
+    text-transform: uppercase !important;
+    opacity: 0.7 !important;
+}
+
+#yykFooterLogisticsMap .route-status-row span:last-child {
+    font-size: 11px !important;
+    color: #fff !important;
+    line-height: 1.3 !important;
+    text-align: left !important;
+}
+
+@media (max-width: 1100px) {
+    #yykFooterLogisticsMap .route-status-panel {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    #yykFooterLogisticsMap .route-status-panel .title {
+        grid-column: 1 / -1 !important;
+    }
+}
+
+@media (max-width: 640px) {
+    #yykFooterLogisticsMap .map-status-strip,
+    #yykFooterLogisticsMap .route-status-panel {
+        width: calc(100% - 28px) !important;
+        margin-left: 14px !important;
+        margin-right: 14px !important;
+    }
+    #yykFooterLogisticsMap .route-status-panel {
+        /* grid-template-columns not needed for flex layout */
+    }
+}
+
+

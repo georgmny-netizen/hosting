@@ -1,0 +1,5 @@
+/* === ID: yyk-v41-map-ghost-guard === */
+
+#yykFooterLogisticsMap .leaflet-control,#yykFooterLogisticsMap .leaflet-control-container,#yykFooterLogisticsMap .mapboxgl-ctrl,#yykFooterLogisticsMap .maplibregl-ctrl,#yykFooterLogisticsMap .gm-control-active,#yykFooterLogisticsMap [aria-label="Zoom in"],#yykFooterLogisticsMap [aria-label="Zoom out"],#yykFooterLogisticsMap [title="Zoom in"],#yykFooterLogisticsMap [title="Zoom out"],#yykFooterLogisticsMap button:empty,#yykFooterLogisticsMap a:empty,#yykModuleHealth,.yyk-module-health{display:none!important;visibility:hidden!important;pointer-events:none!important;width:0!important;height:0!important;overflow:hidden!important}
+
+
