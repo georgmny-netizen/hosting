@@ -327,9 +327,7 @@ html body [class*="-engine"] select {
 /* =========================================================
    Task 07: Sogo Drawer — smooth slide timing
    ========================================================= */
-html {
-  scrollbar-gutter: stable !important;
-}
+/* html scrollbar-gutter moved to 01_head.html to prevent FOUC */
 .sogo-drawer {
   transition: visibility 0.55s ease !important;
   overflow: hidden !important;
@@ -542,8 +540,324 @@ section { max-width: 1480px !important; margin-left: auto !important; margin-rig
 
 /* Remove black background from phase integration block */
 #yykPhaseIntegration { background: transparent !important; }
+.sogo-body {
+  overflow-y: scroll !important;
+  padding-bottom: 0 !important;
+}
+.sogo-actions {
+  position: sticky !important;
+  bottom: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+/* =========================================================
+   Task 08: Trust Control Status — clickable tiles
+   ========================================================= */
+.trust-control-card {
+  cursor: pointer !important;
+  transition: border-color 0.2s ease, background 0.2s ease !important;
+}
+.trust-control-card:hover {
+  border-color: rgba(201,162,39,0.5) !important;
+  background: rgba(201,162,39,0.06) !important;
+}
+.trust-control-card.is-active,
+.trust-control-card[aria-pressed="true"] {
+  border-color: rgba(201,162,39,0.8) !important;
+  background: rgba(201,162,39,0.12) !important;
+}
+#trustControlTablePanel {
+  animation: trustTableReveal 0.35s ease forwards;
+}
+/* Override legacy .hero .table-panel { display:none !important } */
+#trustControlTablePanel[style*="display: block"],
+#trustControlTablePanel[style*="display:block"] {
+  display: block !important;
+  visibility: visible !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  margin-top: 10px !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+/* Override legacy .hero table { display:none !important } */
+#trustControlTablePanel[style*="display: block"] table,
+#trustControlTablePanel[style*="display:block"] table {
+  display: table !important;
+  visibility: visible !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  width: 100% !important;
+}
+#trustControlTablePanel[style*="display: block"] th,
+#trustControlTablePanel[style*="display: block"] td,
+#trustControlTablePanel[style*="display:block"] th,
+#trustControlTablePanel[style*="display:block"] td {
+  display: table-cell !important;
+  visibility: visible !important;
+}
+@keyframes trustTableReveal {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Task 09: suppress hover tooltip on Copy email buttons */
+.yyk-copy-email::after,
+.yyk-copy-email::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Task 09: email link styling ? remove underline */
+.yyk-contact-email {
+  text-decoration: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  color: rgba(201,162,39,0.9) !important;
+  transition: color 0.2s ease !important;
+}
+.yyk-contact-email:hover {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+/* Prevent button resizing when text changes to Copied */
+.yyk-copy-email {
+  min-width: 80px !important;
+  text-align: center !important;
+}
+
+/* Task 10: Prevent jitter between Aluminum/Zinc */
+.product-panel {
+  min-height: 520px;
+}
+
+/* Fix for Product Passport tables: hide empty headers and center cell text */
+.passport .table-panel thead,
+.passport .table-panel th:empty {
+  display: none !important;
+}
+.passport .table-panel td {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+
+/* Force tight wrapping of passport tables to prevent empty vertical space */
+.passport .table-panel {
+  height: max-content !important;
+  min-height: 0 !important;
+  flex: 0 0 auto !important;
+  margin-top: 10px !important;
+  padding: 0 !important;
+}
+.passport .table-panel table {
+  height: max-content !important;
+  margin: 0 !important;
+}
+.passport .table-panel tr:first-child td {
+  border-top: none !important;
+}
+
+
+
+/* Align geo-legal footer to wrap edges */
+.yyk-geo-legal-footer { padding: 0 0 22px !important; }
+
+/* =========================================================
+   RESTORE ORIGINAL APAC FOOTER PALETTE
+   ========================================================= */
+
+/* 1. Top and Bottom Strips: Green instead of Gold */
+.footer-tech-status-row,
+.footer-terminal-ticker,
+.yyk-apac-command-strip {
+    border-top-color: rgba(16, 185, 129, .32) !important;
+    border-bottom-color: rgba(16, 185, 129, .32) !important;
+}
+
+.footer-tech-status-inner, 
+.footer-terminal-inner,
+.footer-tech-left, .footer-tech-center, .footer-tech-right,
+.footer-terminal-left, .footer-terminal-core, .footer-terminal-right,
+.footer-terminal-core time, #footerApacClock, #apacClock,
+.yyk-apac-command-strip, .yyk-apac-command-inner,
+.yyk-apac-command-strip span,
+.footer-tech-dot {
+    color: #10b981 !important;
+    text-shadow: none !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+.yyk-apac-dot {
+    background: #10b981 !important;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* 2. System Status Live Indicators: specific pale green #c7d6b3 */
+#yykFooterSystemStatus .yyk-green,
+#yykFooterSystemStatus.yyk-live .yyk-green {
+    color: #c7d6b3 !important;
+    text-shadow: none !important;
+    font-weight: 600 !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+.yyk-live-dot {
+    background: #c7d6b3 !important;
+    box-shadow: 0 0 14px rgba(199, 214, 179, .65) !important;
+}
+
+/* Align footer tech status row padding with apac command inner */
+.footer-tech-status-inner { padding-left: 28px !important; padding-right: 28px !important; }
+
+
+/* Align footer components padding with apac command inner */
+#yykFooterSystemStatus, .footer-grid { padding-left: 28px !important; padding-right: 28px !important; }
+
+
+/* Match apac command text size with tech status row */
+.yyk-apac-command-inner { font-size: 13px !important; }
+
+
+/* Hide full-width bottom border on compact workspace */
+#yyk-procurement-workspace-compact { border-bottom: none !important; }
+
+
+/* Align all sections to site boundaries to prevent full-width overflow (Moved to 01_head.html to prevent FOUC) */
+
+
+/* Remove black background from phase integration block */
+#yykPhaseIntegration { background: transparent !important; }
 
 
 /* Lower tooltip z-index so it doesn't cover modals */
 .yyk-hover-intel-tooltip { z-index: 90 !important; }
 
+/* Match font-size of top terminal nav with hard primary tabs */
+html body header .yyk-terminal-command,
+html body header .yyk-terminal-command .yyk-terminal-prefix,
+html body header .yyk-terminal-command .yyk-terminal-link,
+html body header .yyk-terminal-command .yyk-terminal-dot,
+html body header .yyk-terminal-command .yyk-terminal-sep {
+    font-size: 14px !important;
+    letter-spacing: .10em !important;
+}
+
+/* Lower the terminal command navigation by ~1cm from the brand */
+html body header .yyk-terminal-command {
+    margin-top: 38px !important;
+}
+
+/* =========================================================
+   Session 3 / Point 5: Workspace Action Buttons (.yyk-control-action)
+   1. Increase font size to 14px
+   2. Remove persistent golden border from .active & [priority=1]
+   3. Ensure hover brings back the golden border
+   ========================================================= */
+
+/* 1. Reset font size and default state for all action buttons */
+html body #yykAuditControlPanel #yykAuditControlActions .yyk-control-action,
+html body #yykAuditControlActions .yyk-control-action {
+    font-size: 14px !important;
+    background: #1A1A1A !important;
+    color: #F5F5F2 !important;
+    border: 1px solid rgba(176,184,194,.32) !important;
+    box-shadow: none !important;
+}
+
+/* 2. Force reset of persistent gold (even for .active and priority 1) */
+html body #yykAuditControlPanel #yykAuditControlActions .yyk-control-action.active,
+html body #yykAuditControlActions .yyk-control-action.active,
+html body #yykAuditControlPanel #yykAuditControlActions .yyk-control-action[data-terminal-priority="1"],
+html body #yykAuditControlActions .yyk-control-action[data-terminal-priority="1"] {
+    background: #1A1A1A !important;
+    color: #F5F5F2 !important;
+    border: 1px solid rgba(176,184,194,.32) !important;
+    box-shadow: none !important;
+}
+
+/* 3. Re-enable golden hover state */
+html body #yykAuditControlPanel #yykAuditControlActions .yyk-control-action:hover,
+html body #yykAuditControlActions .yyk-control-action:hover {
+    background: rgba(201,162,39,.14) !important;
+    border-color: rgba(201,162,39,.62) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,.35) !important;
+}
+
+/* =========================================================
+   Session 3: Remove borders from Control Panel wrapper
+   ========================================================= */
+html body #yykAuditControlPanel {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+/* =========================================================
+   Session 3 / Point 3: Remove background grid from terminal menu
+   ========================================================= */
+html body header .yyk-terminal-group {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* =========================================================
+   Session 3: Fix scroll margin for anchor links
+   ========================================================= */
+html body section[id],
+html body div[id],
+html body [id] {
+    scroll-margin-top: 250px !important;
+}
+
+/* =========================================================
+   Session 3 / Point 7: Expand Product Engine Modal to 1480px
+   ========================================================= */
+html body .product-shell {
+    max-width: 1480px !important;
+}
+
+/* =========================================================
+   Session 3 / Point 8: Align Dropdown top border with grid
+   ========================================================= */
+html body .product-profit-risk-controls .yyk-custom-select-list {
+    top: calc(100% + 14px) !important;
+    border-radius: 0 0 4px 4px !important; /* Optional: makes it look more flushed if needed, but keeping standard for now */
+}
+
+/* =========================================================
+   Session 3 / Point 10: Remove double borders globally for all tables
+   ========================================================= */
+html body .table-panel,
+html body .table-panel table {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+html body .table-panel th {
+    border-top: none !important;
+}
+html body .table-panel tbody tr:first-child td {
+    border-top: none !important;
+}
+html body .table-panel tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* =========================================================
+   Session 3 / Extra: Fix Infrastructure Control borders
+   ========================================================= */
+html body section#infrastructure-control,
+html body .yyk-proof-layer,
+html body .section,
+html body .hero,
+html body .footer {
+    border-top: none !important;
+    border-bottom: none !important;
+}

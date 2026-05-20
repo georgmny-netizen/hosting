@@ -1,0 +1,103 @@
+/* ============================================================
+   CRITICAL LAYOUT STYLES & FOUC PREVENTION (Анти-прыжок)
+   ============================================================
+   Этот файл загружается самым первым в <head>, чтобы 
+   предотвратить любые визуальные скачки (FOUC) при загрузке.
+   Если клиент захочет поменять размеры или отступы шапки — 
+   делать это нужно здесь!
+   ============================================================ */
+
+/* 1. SCROLLBAR FIX: Резервируем место под скроллбар и возвращаем работу sticky */
+/* Гарантирует, что при появлении контента центр страницы не сместится влево */
+/* overflow-x: clip заменяет проблемный overflow-x: hidden, который ломал position: sticky у шапки */
+html { 
+    overflow-y: scroll !important; 
+    scrollbar-gutter: stable !important; 
+}
+body {
+    overflow-x: clip !important;
+}
+
+/* 2. HEADER TOP NAV: Шрифты и выравнивание терминальной навигации */
+/* Применяем сразу, чтобы не было "прыжка" шрифта с 11px на 14px */
+html body header .yyk-terminal-command,
+html body header .yyk-terminal-command .yyk-terminal-prefix,
+html body header .yyk-terminal-command .yyk-terminal-link,
+html body header .yyk-terminal-command .yyk-terminal-dot,
+html body header .yyk-terminal-command .yyk-terminal-sep {
+    font-size: 14px !important;
+    letter-spacing: .10em !important;
+}
+
+/* Опускаем блок меню ниже (отступ) и прижимаем к правой стороне */
+html body header .yyk-terminal-command { 
+    margin-top: 38px !important; 
+    justify-content: flex-end !important; 
+}
+
+/* 3. GRID ALIGNMENT: Синхронизация ширины шапки и контента */
+/* Сама шапка занимает 100% ширины и является плавающей (sticky) */
+html body header {
+    width: 100% !important;
+    max-width: none !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    background: rgba(18, 18, 18, 0.92) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+}
+
+/* Внутренние блоки шапки жестко ограничиваются до 1480px, чтобы их края идеально совпадали с секциями */
+html body header .yyk-terminal-header,
+html body header .yyk-hard-primary-tabs {
+    width: 90vw !important;
+    max-width: 1480px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+/* Универсальное ограничение ширины для всех секций и их внутренних контейнеров (чтобы не было overflow) */
+section,
+.yyk-arch-wrap,
+.yyk-exec-wrap,
+.yyk-think-wrap,
+.yyk-phase-wrap,
+.yyk-v15-wrap,
+.yyk-supplier-wrap,
+.yyk-control-panel,
+.yyk-control-panel-stable,
+#yykModePage,
+.wrap { 
+    max-width: 1480px !important; 
+    margin-left: auto !important; 
+    margin-right: auto !important; 
+    box-sizing: border-box !important;
+}
+section {
+    border-bottom: none !important; 
+    border-top: none !important; 
+}
+
+/* 4. HEADER PADDING: Внутренний отступ текста в шапке */
+/* Убираем старые отступы (22px), чтобы текст идеально равнялся с контентом ниже */
+html body header .yyk-terminal-header,
+html body header .yyk-hard-primary-tabs {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* 5. FOUC PREVENTION: Резервирование высоты для динамических блоков */
+/* Блок загружается через JS, поэтому мы заранее выделяем ему 757px, чтобы страница не прыгала */
+html body #yykAuditModeWorkspace {
+    min-height: 757px !important;
+}
+
+/* 6. SCROLL ANCHOR FIX: Компенсация увеличенной высоты шапки */
+/* Так как мы опустили меню на 38px вниз, старые настройки скролла сбились.
+   Это правило заставляет браузер останавливать скролл на 190px выше любого якоря, 
+   чтобы новая высокая шапка не перекрывала заголовки */
+section,
+[id] {
+    scroll-margin-top: 190px !important;
+}
